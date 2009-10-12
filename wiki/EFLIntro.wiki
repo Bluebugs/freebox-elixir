@@ -64,3 +64,7 @@ Le binding JavaScript expose partiellement l'API C d'Ecore. Ainsi seul les timer
 [http://docs.enlightenment.org/api/ecore/html/ Documentation]
 
 == Edje ==
+
+C'est LA bibliothèque des EFLs. Elle permet de définir des interfaces utilisateurs complètement séparées du code des développeurs. Le graphiste peut alors définir son interface sans être lié aux contraintes du développeurs et vice versa. C'est ici que sont défini les effets graphiques/animations à effectuer. Edje utilise Eet pour stocker ses données, Evas pour manipuler les objets définit par les graphistes et Ecore pour gérer le temps.
+
+Le binding JavaScript se veut aussi complet que possible étant donnée l'importance de cette bibliothèque dans tout projet utilisant les EFL et les différences avec l'API C sont mineure.
