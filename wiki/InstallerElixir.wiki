@@ -1,0 +1,73 @@
+#summary Comment installer Elixir sur sa machine.
+
+= Introduction =
+
+Le seul environnement de développement actuellement officiellement supporté est Linux. Mais un port Windows ne devrait pas poser trop de difficulté puisque les EFL et SpiderMonkey fonctionne sous Windows.
+
+= Depuis les paquets sources =
+
+Cette partie du tutorial décrit le processus d'installation depuis le dernier snapshot des EFL et d'Elixir.
+
+== Dépendences ==
+
+Il vous faudra installer les paquets de developpement des bibliothèques suivantes :
+ * libjpeg
+ * libpng
+ * libfreetype
+ * fontconfig
+ * gnutls
+ * libx11
+ * libcurl
+ * lua
+ * libnspr
+
+Il vous faudra aussi récuperer les derniers snapshot des [http://download.enlightenment.org/snapshots/LATEST/ EFL], de [http://www.mozilla.org/js/spidermonkey/ SpiderMonkey] et de Elixir.
+
+== Compilation ==
+
+Ensuite, dans l'ordre suivant :
+ * eina
+ * eet
+ * evas
+ * ecore
+ * embryo
+ * edje
+
+Il va falloir construire les differentes bibliothèques comme suit.
+ # Décompresser les différents paquets sources.
+ # Allez dans le répertoire racine du paquet décompressé.
+ # Exécuté {{{ ./configure }}}
+ # Vérifié qu'il a bien trouvé les dépendences
+ # Exécuté {{{ make }}}
+ # Installé le tout avec {{{ sudo make install }}}
+
+Maintenant que les EFL sont installe passont a SpiderMonkey. Il se peut que vous SpiderMonkey soit deja installé (C'est la bibliothèque JavaScript de Firefox tout de même), auquel car le répertoire /usr/include/mozjs/ doit être rempli de divers headers.
+
+Si ce n'est pas le cas, il faut donc compiler et installer [https://developer.mozilla.org/en/Building_only_SpiderMonkey SpiderMonkey].
+
+ # décompresser la dernière version de SpiderMonkey (la version utilisé pour ce tutorial est la 1.8.0-RC1).
+ # Allez dans le sous repertoire js/src.
+ # Exécuter {{{ make JS_THREADSAFE=1 JS_DIST=/usr -f Makefile.ref }}} (Il faut vous assurer avant que vous avez bien un répertoire `/usr/include/nspr/` installe par la libnspr).
+ # Exécuter ensuite la liste de commande suivante en étant root :
+{{{
+mkdir /usr/include/smjs
+cp *.h /usr/include/smjs
+cp *.tbl /usr/include/smjs
+cp Linux_All_DBG.OBJ/libjs.so /usr/lib/libsmjs.so
+cp Linux_All_DBG.OBJ/jsautocfg.h /usr/include/smjs/jsautocfg.h
+}}}
+
+Cette procédure évite que vous n'ecrasiez une futur installation de SpiderMonkey.
+
+Maintenant que SpiderMonkey est installé, nous pouvons passer à Elixir.
+
+Le processus est plutot simple :
+ # Décompresser le paquet contenant les sources d'elixir.
+ # Exécuter :
+{{{
+./configure
+make
+sudo make install
+}}}
+
+Et voila, vous pouvez maintenant tester Elixir.
