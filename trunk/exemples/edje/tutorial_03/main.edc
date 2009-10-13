@@ -1,0 +1,226 @@
+// Flickr theme
+// 08/12/2008
+
+fonts
+{
+        font: "calaos_content.ttf" "CalaosContent";
+        font: "calaos_content-bold.ttf" "CalaosContentBold";
+        font: "calaos_content-oblique.ttf" "CalaosContentOblique";
+}
+
+images
+{
+        image: "picture_back.png" COMP;
+        image: "logo_flickr.png" COMP;
+        image: "controls_back.png" COMP;
+        image: "control_fs.png" COMP;
+        image: "control_next.png" COMP;
+        image: "transition_vswipe_gap.png" COMP;
+}
+
+collections
+{
+        //include some transitions
+        #include "transition.edc"
+
+        group
+        {
+                name: "widget/picture";
+                min: 200 191;
+                max: 600 600;
+
+                parts
+                {
+                        part
+                        {
+                                name: "back";
+                                description
+                                {
+                                        state: "default" 0.0;
+                                        image.normal: "picture_back.png";
+                                        image.border: 99 100 94 96;
+                                }
+                        }
+
+                        part
+                        {
+                                name: "picture_clip";
+                                type: RECT;
+                                description
+                                {
+                                        state: "default" 0.0;
+                                        rel1 { relative: 0.0 0.0; offset: 8 8; }
+                                        rel2 { relative: 1.0 1.0; offset: -21 -35; }
+                                }
+                        }
+
+                        part
+                        {
+                                name: "picture";
+                                type: SWALLOW;
+                                clip_to: "picture_clip";
+                                description
+                                {
+                                        state: "default" 0.0;
+                                        rel1 { relative: 0.0 0.0; offset: 8 8; }
+                                        rel2 { relative: 1.0 1.0; offset: -21 -35; }
+                                }
+                        }
+
+                        part
+                        {
+                                name: "title";
+                                type: TEXT;
+                                description
+                                {
+                                        state, "default" 0.0;
+                                        visible: 1;
+                                        color: 12 12 12 200;
+                                        rel1 { relative: 0.0 1.0; offset: 8 -33; }
+                                        rel2 { relative: 1.0 1.0; offset: -21 -16; }
+                                        text { text: "..."; font: "CalaosContent"; size: 10; align: 0.0 0.5;}
+                                }
+                        }
+
+                        part
+                        {
+                                name: "logo_splash";
+                                description
+                                {
+                                        state: "default" 0.0;
+                                        image.normal: "logo_flickr.png";
+                                        rel1 { relative: 0.5 0.5; offset: -65 -78; }
+                                        rel2 { relative: 0.5 0.5; offset: 40 27; }
+                                        color: 0 0 0 0;
+                                        visible: 0;
+                                }
+                                description
+                                {
+                                        state: "visible" 0.0;
+                                        inherit: "default" 0.0;
+                                        color: 255 255 255 255;
+                                        visible: 1;
+                                }
+                        }
+
+                        part
+                        {
+                                name: "controls";
+                                type: RECT;
+                                description
+                                {
+                                        state: "default" 0.0;
+                                        rel1 { relative: 0.0 1.0; offset: 0 -90; }
+                                        rel2 { relative: 1.0 1.0; offset: -1 -1; }
+                                        color: 255 255 255 0;
+                                        visible: 0;
+                                }
+                                description
+                                {
+                                        state: "visible" 0.0;
+                                        inherit: "default" 0.0;
+                                        color: 255 255 255 255;
+                                        visible: 1;
+                                }
+                        }
+
+                        part
+                        {
+                                name: "controls_back";
+                                clip_to: "controls";
+                                description
+                                {
+                                        state: "default" 0.0;
+                                        image.normal: "controls_back.png";
+                                        image.border: 4 4 4 4;
+                                        rel1 { relative: 0.0 1.0; offset: 14 -79; }
+                                        rel2 { relative: 1.0 1.0; offset: -26 -39; }
+                                }
+                        }
+
+                        part
+                        {
+                                name: "controls_button_fs_clip";
+                                clip_to: "controls";
+                                description
+                                {
+                                        state: "default" 0.0;
+                                        rel1.to: "controls_back";
+                                        rel2.to: "controls_back";
+                                        color: 255 255 255 255;
+                                }
+                                description
+                                {
+                                        state: "click" 0.0;
+                                        inherit: "default" 0.0;
+                                        color: 140 140 255 255;
+                                }
+                        }
+
+                        part
+                        {
+                                name: "controls_button_next_clip";
+                                clip_to: "controls";
+                                description
+                                {
+                                        state: "default" 0.0;
+                                        rel1.to: "controls_back";
+                                        rel2.to: "controls_back";
+                                        color: 255 255 255 255;
+                                }
+                                description
+                                {
+                                        state: "click" 0.0;
+                                        inherit: "default" 0.0;
+                                        color: 140 140 255 255;
+                                }
+                        }
+
+                        part
+                        {
+                                name: "button_next";
+                                clip_to: "controls_button_next_clip";
+                                description
+                                {
+                                        state: "default" 0.0;
+                                        image.normal: "control_next.png";
+                                        rel1 { relative: 1.0 0.0; offset: -24 7; to: "controls_back"; }
+                                        rel2 { relative: 1.0 1.0; offset: -9 -7; to: "controls_back"; }
+                                }
+                        }
+
+                        part
+                        {
+                                name: "button_fs";
+                                clip_to: "controls_button_fs_clip";
+                                description
+                                {
+                                        state: "default" 0.0;
+                                        image.normal: "control_fs.png";
+                                        rel1 { relative: 0.0 0.0; offset: 11 7; to: "controls_back"; }
+                                        rel2 { relative: 0.0 1.0; offset: 37 -7; to: "controls_back"; }
+                                }
+                        }
+
+                        // Mouse part to catch move events, and show/hide controls overlay
+                        part
+                        {
+                                name: "mouse_mask";
+                                type: RECT;
+                                repeat_events: 1; //repeat mouse events to buttons under this part
+                                description
+                                {
+                                        state: "default" 0.0;
+                                        color: 255 255 255 0;
+                                        visible: 1;
+                                }
+                        }
+                }
+
+                programs
+                {
+                        #include "programs.edc"
+                }
+        }
+}
+
