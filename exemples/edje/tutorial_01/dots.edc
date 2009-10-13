@@ -1,0 +1,901 @@
+/*
+        HECKY Raoul
+        10/01/2007
+        Button dots
+*/
+
+part
+{
+        name: "button_dot1";
+        mouse_events: 0;
+        clip_to: "main_part";
+        description
+        {
+                state: "default" 0.0;
+                //on specifie le min et max pour eviter que l'image change de taille
+                min: 6 6;
+                max: 6 6;
+                rel1
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+                image
+                {
+                        normal: "dot.png";
+                }
+                visible: 0;
+                color: 255 0 0 0;
+        }
+        description
+        {
+                state: "normal" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+                rel1
+                {
+                        relative: 0.5  0.5;
+                        offset: 10 0;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.5;
+                        offset: 10 0;
+                        to: "button";
+                }
+        }
+        description
+        {
+                state: "move" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+        }
+        description
+        {
+                state: "next" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+        }
+        description
+        {
+                state: "down" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 0 0 255;
+        }
+        description
+        {
+                state: "center" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 0;
+        }
+}
+
+part
+{
+        name: "button_dot2";
+        mouse_events: 0;
+        clip_to: "main_part";
+        description
+        {
+                state: "default" 0.0;
+                min: 6 6;
+                max: 6 6;
+                rel1
+                {
+                        relative: 0.5  0.0;
+                        offset: 0 15;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.0;
+                        offset: 0 15;
+                        to: "button";
+                }
+                image
+                {
+                        normal: "dot.png";
+                }
+                visible: 0;
+                color: 255 0 0 0;
+        }
+        description
+        {
+                state: "normal" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+                rel1
+                {
+                        relative: 0.5  0.5;
+                        offset: -10 20;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.5;
+                        offset: -10 20;
+                        to: "button";
+                }
+        }
+        description
+        {
+                state: "move" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+        }
+        description
+        {
+                state: "next" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+                rel1
+                {
+                        relative: 0.88  0.12;
+                        offset: -15 15;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.88  0.12;
+                        offset: -15 15;
+                        to: "button";
+                }
+        }
+        description
+        {
+                state: "down" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 0 0 255;
+        }
+        description
+        {
+                state: "center" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 0;
+                rel1
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+        }
+}
+
+part
+{
+        name: "button_dot3";
+        mouse_events: 0;
+        clip_to: "main_part";
+        description
+        {
+                state: "default" 0.0;
+                min: 6 6;
+                max: 6 6;
+                rel1
+                {
+                        relative: 0.5  1.0;
+                        offset: 0 -15;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  1.0;
+                        offset: 0 -15;
+                        to: "button";
+                }
+                image
+                {
+                        normal: "dot.png";
+                }
+                visible: 0;
+                color: 255 0 0 0;
+        }
+        description
+        {
+                state: "normal" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+                rel1
+                {
+                        relative: 0.5  0.5;
+                        offset: -10 -20;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.5;
+                        offset: -10 -20;
+                        to: "button";
+                }
+        }
+        description
+        {
+                state: "move" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+        }
+        description
+        {
+                state: "next" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+                rel1
+                {
+                        relative: 0.12  0.88;
+                        offset: 15 -15;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.12  0.88;
+                        offset: 15 -15;
+                        to: "button";
+                }
+        }
+        description
+        {
+                state: "down" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 0 0 255;
+        }
+        description
+        {
+                state: "center" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 0;
+                rel1
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+        }
+}
+
+part
+{
+        name: "button_dot4";
+        mouse_events: 0;
+        clip_to: "main_part";
+        description
+        {
+                state: "default" 0.0;
+                min: 6 6;
+                max: 6 6;
+                rel1
+                {
+                        relative: 0.0  0.5;
+                        offset: 15 0;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.0  0.5;
+                        offset: 15 0;
+                        to: "button";
+                }
+                image
+                {
+                        normal: "dot.png";
+                }
+                visible: 0;
+                color: 255 0 0 0;
+        }
+        description
+        {
+                state: "normal" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+                rel1
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 10;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 10;
+                        to: "button";
+                }
+        }
+        description
+        {
+                state: "move" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+        }
+        description
+        {
+                state: "next" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+                rel1
+                {
+                        relative: 0.12  0.12;
+                        offset: 15 15;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.12  0.12;
+                        offset: 15 15;
+                        to: "button";
+                }
+        }
+        description
+        {
+                state: "down" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 0 0 255;
+        }
+        description
+        {
+                state: "center" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 0;
+                rel1
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+        }
+}
+
+part
+{
+        name: "button_dot5";
+        mouse_events: 0;
+        clip_to: "main_part";
+        description
+        {
+                state: "default" 0.0;
+                min: 6 6;
+                max: 6 6;
+                rel1
+                {
+                        relative: 1.0  0.5;
+                        offset: -15 0;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 1.0  0.5;
+                        offset: -15 0;
+                        to: "button";
+                }
+                image
+                {
+                        normal: "dot.png";
+                }
+                visible: 0;
+                color: 255 0 0 0;
+        }
+        description
+        {
+                state: "normal" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+                rel1
+                {
+                        relative: 0.5  0.5;
+                        offset: -10 -10;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.5;
+                        offset: -10 -10;
+                        to: "button";
+                }
+        }
+        description
+        {
+                state: "move" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+        }
+        description
+        {
+                state: "next" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+                rel1
+                {
+                        relative: 0.88  0.88;
+                        offset: -15 -15;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.88  0.88;
+                        offset: -15 -15;
+                        to: "button";
+                }
+        }
+        description
+        {
+                state: "down" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 0 0 255;
+        }
+        description
+        {
+                state: "center" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 0;
+                rel1
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+        }
+}
+
+part
+{
+        name: "button_dot6";
+        mouse_events: 0;
+        clip_to: "main_part";
+        description
+        {
+                state: "default" 0.0;
+                min: 6 6;
+                max: 6 6;
+                rel1
+                {
+                        relative: 0.88  0.12;
+                        offset: -15 15;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.88  0.12;
+                        offset: -15 15;
+                        to: "button";
+                }
+                image
+                {
+                        normal: "dot.png";
+                }
+                visible: 0;
+                color: 255 0 0 0;
+        }
+        description
+        {
+                state: "normal" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+                rel1
+                {
+                        relative: 0.5  0.5;
+                        offset: -10 10;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.5;
+                        offset: -10 10;
+                        to: "button";
+                }
+        }
+        description
+        {
+                state: "move" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+        }
+        description
+        {
+                state: "next" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+                rel1
+                {
+                        relative: 1.0  0.5;
+                        offset: -15 0;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 1.0  0.5;
+                        offset: -15 0;
+                        to: "button";
+                }
+        }
+        description
+        {
+                state: "down" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 0 0 255;
+        }
+        description
+        {
+                state: "center" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 0;
+                rel1
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+        }
+}
+
+part
+{
+        name: "button_dot7";
+        mouse_events: 0;
+        clip_to: "main_part";
+        description
+        {
+                state: "default" 0.0;
+                min: 6 6;
+                max: 6 6;
+                rel1
+                {
+                        relative: 0.12  0.12;
+                        offset: 15 15;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.12  0.12;
+                        offset: 15 15;
+                        to: "button";
+                }
+                image
+                {
+                        normal: "dot.png";
+                }
+                visible: 0;
+                color: 255 0 0 0;
+        }
+        description
+        {
+                state: "normal" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+                rel1
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+        }
+        description
+        {
+                state: "move" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+        }
+        description
+        {
+                state: "next" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+                rel1
+                {
+                        relative: 0.5  0.0;
+                        offset: 0 15;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.0;
+                        offset: 0 15;
+                        to: "button";
+                }
+        }
+        description
+        {
+                state: "down" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 0 0 255;
+        }
+        description
+        {
+                state: "center" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 0;
+                rel1
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+        }
+}
+
+part
+{
+        name: "button_dot8";
+        mouse_events: 0;
+        clip_to: "main_part";
+        description
+        {
+                state: "default" 0.0;
+                min: 6 6;
+                max: 6 6;
+                rel1
+                {
+                        relative: 0.12  0.88;
+                        offset: 15 -15;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.12  0.88;
+                        offset: 15 -15;
+                        to: "button";
+                }
+                image
+                {
+                        normal: "dot.png";
+                }
+                visible: 0;
+                color: 255 0 0 0;
+        }
+        description
+        {
+                state: "normal" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+                rel1
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 -10;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 -10;
+                        to: "button";
+                }
+        }
+        description
+        {
+                state: "move" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+        }
+        description
+        {
+                state: "next" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+                rel1
+                {
+                        relative: 0.0  0.5;
+                        offset: 15 0;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.0  0.5;
+                        offset: 15 0;
+                        to: "button";
+                }
+        }
+        description
+        {
+                state: "down" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 0 0 255;
+        }
+        description
+        {
+                state: "center" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 0;
+                rel1
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+        }
+}
+
+part
+{
+        name: "button_dot9";
+        mouse_events: 0;
+        clip_to: "main_part";
+        description
+        {
+                state: "default" 0.0;
+                min: 6 6;
+                max: 6 6;
+                rel1
+                {
+                        relative: 0.88  0.88;
+                        offset: -15 -15;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.88  0.88;
+                        offset: -15 -15;
+                        to: "button";
+                }
+                image
+                {
+                        normal: "dot.png";
+                }
+                visible: 0;
+                color: 255 0 0 0;
+        }
+        description
+        {
+                state: "normal" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+                rel1
+                {
+                        relative: 0.5  0.5;
+                        offset: -10 0;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.5;
+                        offset: -10 0;
+                        to: "button";
+                }
+        }
+        description
+        {
+                state: "move" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+        }
+        description
+        {
+                state: "next" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+                rel1
+                {
+                        relative: 0.5  1.0;
+                        offset: 0 -15;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  1.0;
+                        offset: 0 -15;
+                        to: "button";
+                }
+        }
+        description
+        {
+                state: "down" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 0 0 255;
+        }
+        description
+        {
+                state: "center" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 0;
+                rel1
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 0.5  0.5;
+                        offset: 0 0;
+                        to: "button";
+                }
+        }
+}
+

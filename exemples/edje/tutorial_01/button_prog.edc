@@ -1,0 +1,175 @@
+// button element programs
+// 10/01/2007
+//----------------------------------------
+//----------------------------------------
+program
+{
+        name: "on_show_button";
+        action: STATE_SET "visible" 0.0;
+        transition: SINUSOIDAL 0.8;
+        in: 0.5 0.0; //on attend 0.5s avant d'afficher le bouton
+        target: "button";
+        after: "on_show_dots";
+}
+//----------------------------------------
+program
+{
+        name: "on_show_mask";
+        action: STATE_SET "visible" 0.0;
+        transition: SINUSOIDAL 0.0001;
+        target: "button_mask";
+}
+//----------------------------------------
+program
+{
+        name: "on_mouse_in";
+        signal: "mouse,in";
+        source: "button_mask";
+        action: STATE_SET "move" 0.0;
+        transition: ACCELERATE 0.25;
+        target: "button_dot1";
+        target: "button_dot2";
+        target: "button_dot3";
+        target: "button_dot4";
+        target: "button_dot5";
+        target: "button_dot6";
+        target: "button_dot7";
+        target: "button_dot8";
+        target: "button_dot9";
+        after: "on_mouse_in_anim";
+}
+//----------------------------------------
+program
+{
+        name: "on_mouse_out";
+        signal: "mouse,out";
+        source: "button_mask";
+        action: ACTION_STOP;
+        target: "on_mouse_in_anim";
+        target: "on_mouse_in_anim2";
+        after: "on_mouse_out2";
+}
+program
+{
+        name: "on_mouse_out2";
+        action: STATE_SET "normal" 0.0;
+        transition: DECELERATE 0.30;
+        target: "button_dot1";
+        target: "button_dot2";
+        target: "button_dot3";
+        target: "button_dot4";
+        target: "button_dot5";
+        target: "button_dot6";
+        target: "button_dot7";
+        target: "button_dot8";
+        target: "button_dot9";
+}
+//----------------------------------------
+program
+{
+        name: "on_mouse_in_anim";
+        action: STATE_SET "next" 0.0;
+        transition: DECELERATE 0.30;
+        target: "button_dot1";
+        target: "button_dot2";
+        target: "button_dot3";
+        target: "button_dot4";
+        target: "button_dot5";
+        target: "button_dot6";
+        target: "button_dot7";
+        target: "button_dot8";
+        target: "button_dot9";
+        in: 0.4 0.0;
+        after: "on_mouse_in_anim2";
+}
+//----------------------------------------
+program
+{
+        name: "on_mouse_in_anim2";
+        action: STATE_SET "move" 0.0;
+        transition: LINEAR 0.0;
+        target: "button_dot1";
+        target: "button_dot2";
+        target: "button_dot3";
+        target: "button_dot4";
+        target: "button_dot5";
+        target: "button_dot6";
+        target: "button_dot7";
+        target: "button_dot8";
+        target: "button_dot9";
+        after: "on_mouse_in_anim";
+}
+//----------------------------------------
+program
+{
+        name: "on_mouse_down";
+        signal: "mouse,down,1";
+        source: "button_mask";
+        action: ACTION_STOP;
+        target: "on_mouse_in_anim";
+        target: "on_mouse_in_anim2";
+        after: "on_mouse_down_anim";
+}
+//----------------------------------------
+program
+{
+        name: "on_mouse_down_anim";
+        action: STATE_SET "down" 0.0;
+        transition: SINUSOIDAL 0.15;
+        target: "button_dot1";
+        target: "button_dot2";
+        target: "button_dot3";
+        target: "button_dot4";
+        target: "button_dot5";
+        target: "button_dot6";
+        target: "button_dot7";
+        target: "button_dot8";
+        target: "button_dot9";
+        after: "on_mouse_down_anim2";
+}
+//----------------------------------------
+program
+{
+        name: "on_mouse_down_anim2";
+        action: STATE_SET "move" 0.0;
+        transition: SINUSOIDAL 0.15;
+        target: "button_dot1";
+        target: "button_dot2";
+        target: "button_dot3";
+        target: "button_dot4";
+        target: "button_dot5";
+        target: "button_dot6";
+        target: "button_dot7";
+        target: "button_dot8";
+        target: "button_dot9";
+        after: "on_mouse_down_anim";
+}
+//----------------------------------------
+program
+{
+        name: "on_mouse_up";
+        signal: "mouse,up,1";
+        source: "button_mask";
+        action: ACTION_STOP;
+        target: "on_mouse_down_anim";
+        target: "on_mouse_down_anim2";
+        after: "on_mouse_up2";
+}
+//----------------------------------------
+program
+{
+        name: "on_mouse_up2";
+        action: STATE_SET "center" 0.0;
+        transition: ACCELERATE 0.10;
+        target: "button_dot1";
+        target: "button_dot2";
+        target: "button_dot3";
+        target: "button_dot4";
+        target: "button_dot5";
+        target: "button_dot6";
+        target: "button_dot7";
+        target: "button_dot8";
+        target: "button_dot9";
+        after: "on_mouse_out";
+}
+//----------------------------------------

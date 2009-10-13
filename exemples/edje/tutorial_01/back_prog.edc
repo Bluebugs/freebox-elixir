@@ -1,0 +1,35 @@
+// back element programs
+// 10/01/2007
+//----------------------------------------
+//----------------------------------------
+program
+{
+        name: "on_show";
+        signal: "show";
+        source: "";
+        action: STATE_SET "visible" 0.0;
+        transition: DECELERATE 0.5;
+        target: "main_part";
+        after: "on_show_button";
+}
+//----------------------------------------
+program
+{
+        name: "on_hide";
+        signal: "hide";
+        source: "";
+        action: STATE_SET "default" 0.0;
+        transition: LINEAR 0.001;
+        target: "main_part";
+        target: "button";
+        target: "button_dot1";
+        target: "button_dot2";
+        target: "button_dot3";
+        target: "button_dot4";
+        target: "button_dot5";
+        target: "button_dot6";
+        target: "button_dot7";
+        target: "button_dot8";
+        target: "button_dot9";
+}
+//----------------------------------------

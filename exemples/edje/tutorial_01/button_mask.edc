@@ -1,0 +1,41 @@
+/*
+        HECKY Raoul
+        10/01/2007
+        Button element
+*/
+
+//on cree un masque pour capturer les evennements souris
+part
+{
+        name: "button_mask";
+        mouse_events: 1; //on veut les evennements souris
+        clip_to: "main_part";
+        description
+        {
+                state: "default" 0.0;
+                rel1
+                {
+                        relative: 0.0  0.0;
+                        offset: 0 0;
+                        to: "button";
+                }
+                rel2
+                {
+                        relative: 1.0  1.0;
+                        offset: 0  0;
+                        to: "button";
+                }
+                image
+                {
+                        normal: "button.png";
+                }
+                visible: 0;
+                color: 0 0 0 0;
+        }
+        description
+        {
+                state: "visible" 0.0;
+                inherit: "default" 0.0;
+                visible: 1;
+        }
+}
