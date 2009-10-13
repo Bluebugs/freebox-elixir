@@ -1,0 +1,21 @@
+// button element programs
+// 10/01/2007
+//----------------------------------------
+//----------------------------------------
+program
+{
+        name: "on_show_dots";
+        action: STATE_SET "normal" 0.0;
+        transition: DECELERATE 0.4;
+        target: "button_dot1";
+        target: "button_dot2";
+        target: "button_dot3";
+        target: "button_dot4";
+        target: "button_dot5";
+        target: "button_dot6";
+        target: "button_dot7";
+        target: "button_dot8";
+        target: "button_dot9";
+        after: "on_show_mask";
+}
+//----------------------------------------
