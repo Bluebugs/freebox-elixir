@@ -1,0 +1,245 @@
+#summary Tutorial présentant Edje
+
+= Note =
+
+Merci a Raoul Hecky pour ce tutorial initialement publié sur son [http://blog.calaos.fr/ blog].
+
+= Introduction =
+
+Entrons maintenant dans le coeur des Efls. Voici un petit exemple de réalisation d’un bouton avec des effets plutôt intéressants. J’en profiterai pour expliquer les bases du « _language_ » EDC, ainsi que quelques techniques pour optimiser les interfaces Edje.
+
+== Structure d’une interface Edje ==
+
+L’écriture d’une interface Edje passe d’abord par l’apprentissage du language EDC qui sera ensuite compilé avec ses images et ses polices en un fichier EDJ illisible pour l’être humain mais utilisable par le moteur Edje. Le fichier EDJ, qui est en fait un fichier au format EET, contient ensuite toute l’interface avec ses images et ses polices. Une interface entière peut alors être stockée uniquement dans un seul fichier. On pourrait avoir, par exemple pour le gestionnaire de fenêtre E17, dans un seul fichier EDJ, le thème graphique des contrôles et des fenêtres ainsi qu’un fond d’écran animé!
+
+== Les outils Edje ==
+
+La librairie Edje est accompagnée de ces outils qui permettent de (dé)compiler les fichiers EDJ. Tout d’abord nous avons le compilateur `edje_cc` qui permet de compiler un (ou plusieurs en utilisant l’inclusion que nous verrons par la suite) fichier source EDC. On a ensuite `edje_decc` qui permet de décompiler un fichier EDJ pour retrouver ses sources. Cela veut dire que vous pourrez aller récupérer n’importe quel fichier de thème edj et récupérer les sources. Pour finir, il reste `edje_viewer` qui nous servira à tester notre interface.
+
+Pour vous simplifier la vie, un makefile est disponible ici:
+[http://calaos.fr/pub/edje/makefile]
+Vous n’avez plus qu’à  le mettre dans le dossier de votre projet, puis pour compiler :
+{{{
+ raoul@raoul:~$ make
+}}}
+et vous aurez un jolie fichier EDJ. Pour tester vous pourrez faire un simple :
+{{{
+ raoul@raoul:~$ make test
+}}}
+Et votre interface sera ouverte avec `edje_viewer`.
+
+== Le premier essai ==
+
+Une interface se « dessine » dans un fichier source edc. Il y a le Wiki officiel de E17 qui contient toutes les références du language, EDC disponible [http://docs.enlightenment.org/api/edje/html/edcref.html ici]. Le format est assez simple, il suffit de définir les éléments de l’interface (Image, rectangle ou texte) et de leur spécifier leurs attributs (position, taille, couleur, etc…). Puis chaque élément peut avoir un ou plusieurs états. Par exemple un état affiché et un autre caché. Nous allons commencer par un exemple simple. On va définir la structure de base de l’interface dans le fichier theme.edc :
+
+{{{
+/* Les commentaires se font comme en C */
+
+//on définit le taux de compression dans une constante
+#define FRAME LOSSY 90
+
+//On commence par inclure un autre fichier edc qui contient la définition des images utilisées
+#include "images.edc"
+
+//Interface
+collections
+{
+        //On peut définir plusieurs groupes dans un seul EDJ
+        group
+        {
+                name: "main"; //nom de l'objet edje
+
+                //taille min et max de l'objet "main"
+                min: 200 150;
+                max: 400 300;
+
+                parts
+                {
+                        //inclusion du fond
+                        #include "back.edc"
+                }
+
+                programs
+                {
+                        //inclusion des programmes utilisés par le fond
+                        #include "back_prog.edc"
+                }
+        }
+}
+}}}
+
+Voila pour la structure de base d’un EDC. Dans une collection on peut avoir plusieurs group, c’est à dire les morceaux d’interface que demande l’application. Pour un fond d’écran E17 par exemple, il faut un groupe qui se nomme « _desktop/background_ ». E17 chargera ensuite ce group et le redimensionnera à la taille du bureau. On peut alors avoir n’importe quel partie (les part) et toutes les animations que l’on voudra dans le fond d’écran. C’est le même principe pour tout les interfaces edje.
+
+== L’élément de fond ==
+
+Dans le fichier inclus « _back.edc_ », on définit notre image de fond de telle sorte qu’il prenne tout l’espace du group:
+
+{{{
+part
+{
+        name: "back";
+        mouse_events: 0;
+        clip_to: "main_part";
+        description
+        {
+                state: "default" 0.0;
+                image
+                {
+                        normal: "back.png";
+                        //on donne une bordure pour le redimensionnement
+                        //de l'image
+                        border: 15 15 15 15;
+                }
+                visible: 1;
+                color: 255 255 255 255;
+        }
+}
+}}}
+
+L’élément « _back_ » ne possède qu’un seul état « _default_ ». Les éléments doivent obligatoirement avoir un état « _default_ ». L’image de fond sera donc visible tout le temps. Deux choses importantes sont à noter ici, il s’agit de la directive border et clip_to.
+
+L’image *back.png* utilisée ici contient des bords arrondis. La directive border permet de créer des bords qui ne seront pas touchés par le redimensionnement de l’image.
+
+[http://blog.calaos.fr/old/images/edje_03.jpg]
+
+Les arguments sont : « _border_: *gauche droite haut bas* ; » en pixels. Dans cet exemple 15 pixels de chaque coté nous suffisent pour que les coins restent intacts.
+
+La deuxième directive importante est *clip`_`to*. Ici, on « _clip_ » l’élément « _back_ » à l’élément « _main`_`part_ ». Cela signifie que « _back_ » est dépendant de l’état de « _main`_`part_ ». Si « _main`_`part_ » est invisible, « _back_ » le sera également. Si « _main`_`part_ » a une transparence de 50%, « _back_ » sera transparent également. De même, « _back_ » ne peut être affiché que dans la zone délimité par « _main`_`part_ ». L’avantage d’avoir une partie principale ou tous les éléments fils sont clippés est de pouvoir agir sur l’état de tous les éléments d’un seul coup. Dans notre exemple, nous ajouterons un bouton sur le fond, pour afficher/cacher le bouton + le fond, il suffira d’agir sur l’état de « _main`_`part_ ».
+
+{{{
+part
+{
+        name: "main_part";
+        mouse_events: 0;
+        type: RECT;
+        description
+        {
+                state: "default" 0.0;
+                //par defaut la position/taille est la meme
+                //que le groupe "main"
+                visible: 0;
+                color: 255 255 255 0;
+        }
+        description
+        {
+                state: "visible" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+        }
+}
+}}}
+
+Nous avons donc ici un deuxième état avec les propriétés visible à 1 et le canal alpha à 100%. Pour l’état par défaut, le canal de transparence est à 0.
+
+== Animation ! ==
+
+Les animations fonctionnent sur un principe de keyframe. On définit un état de départ et un état de fin, le type de transition (accélération, linéaire, etc…), ainsi que la durée et Edje fera le reste. Le programme pour afficher l’interface est dans le fichier « _back`_`prog.edc_ »:
+
+{{{
+program
+{
+        name: "on_show";
+        signal: "show";
+        source: "";
+        action: STATE_SET "visible" 0.0;
+        transition: DECELERATE 0.5;
+        target: "main_part";
+}
+}}}
+
+Ici on réagit au signal envoyé par Edje « _show_ » qui survient quand l’application demande à afficher l’objet edje. L’action réalisée est de mettre le « _main`_`part_ » à l’état « _visible_ » avec une transition de décélération et le tout en 0.5 secondes.
+
+Ca y est! Nous avons notre première animation qui fonctionne. Un petit make et make test vous permettra de voir l’image de fond qui s’affichera avec un bel effet de fondu, et vous pourrez également le redimensionner pour voir l’effet de la directive border évoqué avant.
+
+== Un bouton ==
+
+On veut aller plus loin et ajouter un bouton à notre interface. Pour cela on va créer 2 nouveaux fichiers (« _button.edc_ » pour le bouton et « _button`_`prog.edc_ » pour les programmes associés) et les inclure dans le « _theme.edc_ »:
+
+{{{
+parts
+{
+        #include "button.edc"
+
+        ...
+
+        programs
+        {
+                #include "button_prog.edc"
+
+                ...
+
+}}}
+
+A noter qu’il faut faire attention à l’ordre de définition des éléments. Si le bouton était définit avant le fond, il serait recouvert par celui-ci.
+
+La définition du bouton se fait de la même manière que le fond:
+
+{{{
+part
+{
+        name: "button";
+        mouse_events: 0;
+        clip_to: "main_part";
+        //on "clip" le bouton sur l'element principal
+        description
+        {
+                state: "default" 0.0;
+                rel1
+                {
+                        relative: 0.0  1.0;
+                        offset: 16    -104;
+                        to: "back"; //on se positionne par rapport a l'image de fond
+                }
+                rel2
+                {
+                        relative: 0.0  1.0;
+                        offset: 104   -16;
+                        to: "back";
+                }
+                image
+                {
+                        normal: "button.png";
+                }
+                visible: 0;
+                color: 255 0 0 0;
+        }
+        description
+        {
+                state: "visible" 0.0;
+                //on hérite les proprietes de l'etat "default"
+                //on evite alors de reecrire les proprietes qui ne changent pas
+                inherit: "default" 0.0;
+                visible: 1;
+                color: 255 255 255 255;
+        }
+}
+}}}
+
+On clip le bouton sur l’élément principal pour qu’il soit affiché en même temps que le fond. Mais ici on affecte quand même un état « _visible_ » (à noter que l’on part d’une couleur rouge pour fondre vers la couleur normale du bouton). Le but est d’afficher le bouton un poil plus tard, une fois que le fond est déjà en place. Pour cela on rajoute dans le programme « _on`_`show_ »:
+
+{{{
+after: "on_show_button";
+}}}
+
+Pour dire à Edje de lancer le programme « _on`_`show`_`button_ » dès que le programme « _on`_`show_ » est terminé (et donc que le fond est affiché).
+
+{{{
+program
+{
+        name: "on_show_button";
+        action: STATE_SET "visible" 0.0;
+        transition: SINUSOIDAL 0.8;
+        in: 0.5 0.0;
+        //on attend 0.5s avant d'afficher le bouton
+        target: "button";
+}
+}}}
+
+Dans ce programme, on va d’abord attendre 0.5 secondes avant d’exécuter le programme (directive « _in_ »).
+
+Nous avons maintenant un jolie bouton qui s’affiche juste après le fond. Malheureusement, le bouton ne réagit pas à la souris. En effet, pour avoir de l’animation lors du passage de la souris ou du click, il faut encore écrire les programmes correspondants. En utilisant le même principe qu’avant, nous pourrons écrire des programme réagissant aux signaux d’Edje nous donnera lors des actions de la souris. Il faut pour cela mettre la propriété « _mouse`_`events_ » à 1, sans quoi on ne recevra pas les signaux.
+
+En utilisant tout ces principes de base, on peut faire un bouton réagissant à la souris avec des animations relativement poussés. Vous pouvez avoir un aperçu dans la vidéo ci-dessous. Vous pouvez également télécharger l’archive contenant les sources du tutoriel ici:
+
+[http://calaos.fr/pub/edje/tuto_edje01.tar.bz2]
+[http://blog.calaos.fr/old/video/edje_tuto1.flv]
