@@ -1,0 +1,97 @@
+// Flickr theme
+// 08/12/2008
+
+program
+{
+        name: "on_show";
+        signal: "show";
+        source: "";
+        action: STATE_SET "visible" 0.0;
+        transition: SINUSOIDAL 4.0;
+        target: "logo_splash";
+        after: "hide_splash";
+}
+
+program
+{
+        name: "hide_splash";
+        action: STATE_SET "default" 0.0;
+        transition: SINUSOIDAL 4.0;
+        target: "logo_splash";
+}
+
+program
+{
+        name: "on_mouse_in";
+        signal: "mouse,in";
+        source: "mouse_mask";
+        action: STATE_SET "visible" 0.0;
+        transition: ACCELERATE 0.23;
+        target: "controls";
+}
+
+program
+{
+        name: "on_mouse_out";
+        signal: "mouse,out";
+        source: "mouse_mask";
+        action: STATE_SET "default" 0.0;
+        transition: DECELERATE 0.75;
+        target: "controls";
+}
+
+program
+{
+        name: "on_down_fs";
+        signal: "mouse,down,1";
+        source: "button_fs";
+        action: STATE_SET "click" 0.0;
+        transition: ACCELERATE 0.18;
+        target: "controls_button_fs_clip";
+}
+
+program
+{
+        name: "on_up_fs";
+        signal: "mouse,up,1";
+        source: "button_fs";
+        action: STATE_SET "default" 0.0;
+        transition: DECELERATE 0.25;
+        target: "controls_button_fs_clip";
+}
+
+program
+{
+        name: "on_click_fs";
+        signal: "mouse,clicked,1";
+        source: "button_fs";
+        action: SIGNAL_EMIT "fullscreen" "controls";
+}
+
+program
+{
+        name: "on_down_next";
+        signal: "mouse,down,1";
+        source: "button_next";
+        action: STATE_SET "click" 0.0;
+        transition: ACCELERATE 0.18;
+        target: "controls_button_next_clip";
+}
+
+program
+{
+        name: "on_up_next";
+        signal: "mouse,up,1";
+        source: "button_next";
+        action: STATE_SET "default" 0.0;
+        transition: DECELERATE 0.25;
+        target: "controls_button_next_clip";
+}
+
+program
+{
+        name: "on_click_next";
+        signal: "mouse,clicked,1";
+        source: "button_next";
+        action: SIGNAL_EMIT "next" "controls";
+}
