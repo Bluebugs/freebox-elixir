@@ -100,7 +100,7 @@ L’élément « _back_ » ne possède qu’un seul état « _default_ ». Les �
 
 L’image *back.png* utilisée ici contient des bords arrondis. La directive border permet de créer des bords qui ne seront pas touchés par le redimensionnement de l’image.
 
-[http://blog.calaos.fr/old/images/edje_03.jpg]
+[http://freebox-elixir.googlecode.com/files/edje_03.jpg]
 
 Les arguments sont : « _border_: *gauche droite haut bas* ; » en pixels. Dans cet exemple 15 pixels de chaque coté nous suffisent pour que les coins restent intacts.
 
