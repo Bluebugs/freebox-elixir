@@ -1,0 +1,89 @@
+#include "parts/anim_macro.edc"
+
+data {
+   item: "current_entry_bg_color" "248 209 70 100";
+   item: "current_entry_fg_color" "120 120 120 255";
+   item: "selected_entry_bg_color" "126 162 248 100";
+   item: "selected_entry_fg_color" "180 180 180 255";
+}
+fonts {
+   font: "Vera.ttf" "Edje Vera";
+}
+#include "images/images.edc"
+collections {
+   group {
+      name: "eclair_main_body";
+      min: 438 260;
+      max: 438 260;
+      script {
+         #include "scripts/body_script.edc"
+      }
+      parts {
+        //lets anim the whole thing !
+        /* 1ere ligne */
+        ANIM_PART("01", 255, 0, 0, 0.0833333, 0.1, 0.0      , 0.0, 0.1666666, 0.2)
+        ANIM_PART("02", 255, 0, 0, 0.25     , 0.1, 0.1666666, 0.0, 0.3333332, 0.2)
+        ANIM_PART("03", 255, 0, 0, 0.4166665, 0.1, 0.3333332, 0.0, 0.5      , 0.2)
+        ANIM_PART("04", 255, 0, 0, 0.5833333, 0.1, 0.5      , 0.0, 0.6666666, 0.2)
+        ANIM_PART("05", 255, 0, 0, 0.75     , 0.1, 0.6666666, 0.0, 0.8333332, 0.2)
+        ANIM_PART("06", 255, 0, 0, 0.9166665, 0.1, 0.8333332, 0.0, 1.0      , 0.2)
+
+        /* 2e ligne */
+        ANIM_PART("07", 0, 255, 0, 0.0833333, 0.3, 0.0      , 0.2, 0.1666666, 0.4)
+        ANIM_PART("08", 0, 255, 0, 0.25     , 0.3, 0.1666666, 0.2, 0.3333332, 0.4)
+        ANIM_PART("09", 0, 255, 0, 0.4166665, 0.3, 0.3333332, 0.2, 0.5      , 0.4)
+        ANIM_PART("10", 0, 255, 0, 0.5833333, 0.3, 0.5      , 0.2, 0.6666666, 0.4)
+        ANIM_PART("11", 0, 255, 0, 0.75     , 0.3, 0.6666666, 0.2, 0.8333332, 0.4)
+        ANIM_PART("12", 0, 255, 0, 0.9166665, 0.3, 0.8333332, 0.2, 1.0      , 0.4)
+
+        /* 3e ligne */
+        ANIM_PART("13", 255, 0, 255, 0.0833333, 0.5, 0.0      , 0.4, 0.1666666, 0.6)
+        ANIM_PART("14", 255, 0, 255, 0.25     , 0.5, 0.1666666, 0.4, 0.3333332, 0.6)
+        ANIM_PART("15", 255, 0, 255, 0.4166665, 0.5, 0.3333332, 0.4, 0.5      , 0.6)
+        ANIM_PART("16", 255, 0, 255, 0.5833333, 0.5, 0.5      , 0.4, 0.6666666, 0.6)
+        ANIM_PART("17", 255, 0, 255, 0.75     , 0.5, 0.6666666, 0.4, 0.8333332, 0.6)
+        ANIM_PART("18", 255, 0, 255, 0.9166665, 0.5, 0.8333332, 0.4, 1.0      , 0.6)
+
+        /* 4e ligne */
+        ANIM_PART("19", 255, 255, 0, 0.0833333, 0.7, 0.0      , 0.6, 0.1666666, 0.8)
+        ANIM_PART("20", 255, 255, 0, 0.25     , 0.7, 0.1666666, 0.6, 0.3333332, 0.8)
+        ANIM_PART("21", 255, 255, 0, 0.4166665, 0.7, 0.3333332, 0.6, 0.5      , 0.8)
+        ANIM_PART("22", 255, 255, 0, 0.5833333, 0.7, 0.5      , 0.6, 0.6666666, 0.8)
+        ANIM_PART("23", 255, 255, 0, 0.75     , 0.7, 0.6666666, 0.6, 0.8333332, 0.8)
+        ANIM_PART("24", 255, 255, 0, 0.9166665, 0.7, 0.8333332, 0.6, 1.0      , 0.8)
+
+        /* 5e ligne */
+        ANIM_PART("25", 0, 0, 255, 0.0833333, 0.9, 0.0      , 0.8, 0.1666666, 1.0)
+        ANIM_PART("26", 0, 0, 255, 0.25     , 0.9, 0.1666666, 0.8, 0.3333332, 1.0)
+        ANIM_PART("27", 0, 0, 255, 0.4166665, 0.9, 0.3333332, 0.8, 0.5      , 1.0)
+        ANIM_PART("28", 0, 0, 255, 0.5833333, 0.9, 0.5      , 0.8, 0.6666666, 1.0)
+        ANIM_PART("29", 0, 0, 255, 0.75     , 0.9, 0.6666666, 0.8, 0.8333332, 1.0)
+        ANIM_PART("30", 0, 0, 255, 0.9166665, 0.9, 0.8333332, 0.8, 1.0      , 1.0)
+
+
+         #include "parts/left_side_back.edc"
+         #include "parts/right_side_back.edc"
+         #include "parts/playlist_back.edc"
+         #include "parts/body.edc"
+         #include "parts/volume_control.edc"
+         #include "parts/progress_bar.edc"
+         #include "parts/info_bar.edc"
+         #include "parts/navigation_buttons.edc"
+         #include "parts/left_side_front.edc"
+         #include "parts/right_side_front.edc"
+         #include "parts/playlist_front.edc"
+      }
+      programs {
+         #include "programs/left_side.edc"
+         //#include "programs/right_side.edc"
+         #include "programs/playlist.edc"
+         #include "programs/body.edc"
+         #include "programs/navigation_buttons.edc"
+         #include "programs/progress_bar.edc"
+         #include "programs/volume_control.edc"
+         #include "programs/info_bar.edc"
+         #include "programs/core.edc"
+      }
+   }
+   #include "groups/playlist_entry.edc"
+}
