@@ -1,0 +1,13 @@
+/*
+        HECKY Raoul
+        10/01/2007
+        default images
+*/
+
+images
+{
+        /* definition des images */
+        image: "back.png" FRAME;
+        image: "button.png" FRAME;
+        image: "dot.png" FRAME;
+}

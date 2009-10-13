@@ -1,0 +1,51 @@
+/*
+        HECKY Raoul
+        10/01/2007
+        Button element
+*/
+
+part
+{
+        name: "button";
+        mouse_events: 0;
+        clip_to: "main_part"; //on "clip" le bouton sur l'element principal
+        description
+        {
+                state: "default" 0.0;
+                rel1
+                {
+                        relative: 0.0  1.0;
+                        offset: 16    -104;
+                        to: "back"; //on se positionne par rapport a l'image de fond
+                }
+                rel2
+                {
+                        relative: 0.0  1.0;
+                        offset: 104   -16;
+                        to: "back";
+                }
+                image
+                {
+                        normal: "button.png";
+                }
+                visible: 1;
+                color: 255 255 255 225;
+        }
+        description
+        {
+                state: "bounce" 0.0;
+                inherit: "default" 0.0;
+                rel1
+                {
+                        relative: 0.0  0.0;
+                        offset: 16    16;
+                        to: "back";
+                }
+                rel2
+                {
+                        relative: 0.0  0.0;
+                        offset: 104   104;
+                        to: "back";
+                }
+        }
+}

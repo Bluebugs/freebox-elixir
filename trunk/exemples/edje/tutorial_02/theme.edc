@@ -1,0 +1,105 @@
+/*
+        HECKY Raoul
+        14/01/2007
+        Edje Tutorial #02
+        http://blog.calaos.fr
+*/
+
+#include "anim_rect_macro.edc"
+
+/* Definition de quelques polices */
+fonts
+{
+   font: "Vera.ttf"   "EdjeVera";
+   font: "VeraBd.ttf" "EdjeVeraBold";
+   font: "VeraIt.ttf" "EdjeVeraItalic";
+}
+
+//compression ratio
+#define FRAME LOSSY 90
+
+//Inclusion des images
+#include "images.edc"
+
+//Interface
+collections
+{
+        group
+        {
+                name: "main"; //nom de l'objet edje
+
+                //taille min et max de l'objet "main"
+                min: 200 150;
+                max: 400 300;
+
+                parts
+                {
+                        //Les 30 RECT pour l'animation du début
+                        //on utilise une macro pour éviter de reecrire 30 fois les meme choses
+
+                        /* 1ere ligne */
+                        ANIM_PART("01", 255, 0, 0, 0.0833333, 0.1, 0.0      , 0.0, 0.1666666, 0.2)
+                        ANIM_PART("02", 255, 0, 0, 0.25     , 0.1, 0.1666666, 0.0, 0.3333332, 0.2)
+                        ANIM_PART("03", 255, 0, 0, 0.4166665, 0.1, 0.3333332, 0.0, 0.5      , 0.2)
+                        ANIM_PART("04", 255, 0, 0, 0.5833333, 0.1, 0.5      , 0.0, 0.6666666, 0.2)
+                        ANIM_PART("05", 255, 0, 0, 0.75     , 0.1, 0.6666666, 0.0, 0.8333332, 0.2)
+                        ANIM_PART("06", 255, 0, 0, 0.9166665, 0.1, 0.8333332, 0.0, 1.0      , 0.2)
+
+                        /* 2e ligne */
+                        ANIM_PART("07", 0, 255, 0, 0.0833333, 0.3, 0.0      , 0.2, 0.1666666, 0.4)
+                        ANIM_PART("08", 0, 255, 0, 0.25     , 0.3, 0.1666666, 0.2, 0.3333332, 0.4)
+                        ANIM_PART("09", 0, 255, 0, 0.4166665, 0.3, 0.3333332, 0.2, 0.5      , 0.4)
+                        ANIM_PART("10", 0, 255, 0, 0.5833333, 0.3, 0.5      , 0.2, 0.6666666, 0.4)
+                        ANIM_PART("11", 0, 255, 0, 0.75     , 0.3, 0.6666666, 0.2, 0.8333332, 0.4)
+                        ANIM_PART("12", 0, 255, 0, 0.9166665, 0.3, 0.8333332, 0.2, 1.0      , 0.4)
+
+                        /* 3e ligne */
+                        ANIM_PART("13", 255, 0, 255, 0.0833333, 0.5, 0.0      , 0.4, 0.1666666, 0.6)
+                        ANIM_PART("14", 255, 0, 255, 0.25     , 0.5, 0.1666666, 0.4, 0.3333332, 0.6)
+                        ANIM_PART("15", 255, 0, 255, 0.4166665, 0.5, 0.3333332, 0.4, 0.5      , 0.6)
+                        ANIM_PART("16", 255, 0, 255, 0.5833333, 0.5, 0.5      , 0.4, 0.6666666, 0.6)
+                        ANIM_PART("17", 255, 0, 255, 0.75     , 0.5, 0.6666666, 0.4, 0.8333332, 0.6)
+                        ANIM_PART("18", 255, 0, 255, 0.9166665, 0.5, 0.8333332, 0.4, 1.0      , 0.6)
+
+                        /* 4e ligne */
+                        ANIM_PART("19", 255, 255, 0, 0.0833333, 0.7, 0.0      , 0.6, 0.1666666, 0.8)
+                        ANIM_PART("20", 255, 255, 0, 0.25     , 0.7, 0.1666666, 0.6, 0.3333332, 0.8)
+                        ANIM_PART("21", 255, 255, 0, 0.4166665, 0.7, 0.3333332, 0.6, 0.5      , 0.8)
+                        ANIM_PART("22", 255, 255, 0, 0.5833333, 0.7, 0.5      , 0.6, 0.6666666, 0.8)
+                        ANIM_PART("23", 255, 255, 0, 0.75     , 0.7, 0.6666666, 0.6, 0.8333332, 0.8)
+                        ANIM_PART("24", 255, 255, 0, 0.9166665, 0.7, 0.8333332, 0.6, 1.0      , 0.8)
+
+                        /* 5e ligne */
+                        ANIM_PART("25", 0, 0, 255, 0.0833333, 0.9, 0.0      , 0.8, 0.1666666, 1.0)
+                        ANIM_PART("26", 0, 0, 255, 0.25     , 0.9, 0.1666666, 0.8, 0.3333332, 1.0)
+                        ANIM_PART("27", 0, 0, 255, 0.4166665, 0.9, 0.3333332, 0.8, 0.5      , 1.0)
+                        ANIM_PART("28", 0, 0, 255, 0.5833333, 0.9, 0.5      , 0.8, 0.6666666, 1.0)
+                        ANIM_PART("29", 0, 0, 255, 0.75     , 0.9, 0.6666666, 0.8, 0.8333332, 1.0)
+                        ANIM_PART("30", 0, 0, 255, 0.9166665, 0.9, 0.8333332, 0.8, 1.0      , 1.0)
+
+                        //inclusion du fond
+                        #include "back.edc"
+
+                        //ansi que du bouton
+                        #include "button.edc"
+                        #include "dots.edc"
+
+                        //on ajoute le masque du bouton par
+                        //dessus les autres objets (calques)
+                        //Le masque est en fait l'image du bouton transparente
+                        //qui va simplement nous servir à recuperer les evennements souris
+                        //En effet, les 9 petites images des points aurait brouillé les evenements mouse,in
+                        //et mouse,out
+                        #include "button_mask.edc"
+                }
+
+                //les différents programmes du fond et du bouton
+                programs
+                {
+                        //programs
+                        #include "back_prog.edc"
+                        #include "button_prog.edc"
+                        #include "dots_prog.edc"
+                }
+        }
+}

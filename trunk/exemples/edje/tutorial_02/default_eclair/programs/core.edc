@@ -1,0 +1,147 @@
+program {
+   name: "init";
+   signal: "show";
+   source: "";
+   in: 1.5 0.0;
+   action: STATE_SET "visible" 0.0;
+   target: "main_part";
+   after: "open_playlist";
+   after: "info_scroll_right";
+   after: "set_start_done";
+}
+
+program
+{
+        name: "set_start_done";
+        script
+        {
+                set_int(start_anim_done, 1);
+        }
+}
+
+//Show anim
+program
+{
+        name: "on_show_rects";
+        signal: "show";
+        source: "";
+        after: "rect_anim_01";
+        after: "rect_anim_02";
+        after: "rect_anim_03";
+        after: "rect_anim_04";
+        after: "rect_anim_05";
+        after: "rect_anim_06";
+        after: "rect_anim_07";
+        after: "rect_anim_08";
+        after: "rect_anim_09";
+        after: "rect_anim_10";
+        after: "rect_anim_11";
+        after: "rect_anim_12";
+        after: "rect_anim_13";
+        after: "rect_anim_14";
+        after: "rect_anim_15";
+        after: "rect_anim_16";
+        after: "rect_anim_17";
+        after: "rect_anim_18";
+        after: "rect_anim_19";
+        after: "rect_anim_20";
+        after: "rect_anim_21";
+        after: "rect_anim_22";
+        after: "rect_anim_23";
+        after: "rect_anim_24";
+        after: "rect_anim_25";
+        after: "rect_anim_26";
+        after: "rect_anim_27";
+        after: "rect_anim_28";
+        after: "rect_anim_29";
+        after: "rect_anim_30";
+}
+//----------------------------------------
+ANIM_PRG("01", 0.01, 0.8)
+ANIM_PRG("02", 0.01, 0.8)
+ANIM_PRG("03", 0.01, 0.8)
+ANIM_PRG("04", 0.01, 0.8)
+ANIM_PRG("05", 0.01, 0.8)
+ANIM_PRG("06", 0.01, 0.8)
+ANIM_PRG("07", 0.01, 0.8)
+ANIM_PRG("08", 0.01, 0.8)
+ANIM_PRG("09", 0.01, 0.8)
+ANIM_PRG("10", 0.01, 0.8)
+ANIM_PRG("11", 0.01, 0.8)
+ANIM_PRG("12", 0.01, 0.8)
+ANIM_PRG("13", 0.01, 0.8)
+ANIM_PRG("14", 0.01, 0.8)
+ANIM_PRG("15", 0.01, 0.8)
+ANIM_PRG("16", 0.01, 0.8)
+ANIM_PRG("17", 0.01, 0.8)
+ANIM_PRG("18", 0.01, 0.8)
+ANIM_PRG("19", 0.01, 0.8)
+ANIM_PRG("20", 0.01, 0.8)
+ANIM_PRG("21", 0.01, 0.8)
+ANIM_PRG("22", 0.01, 0.8)
+ANIM_PRG("23", 0.01, 0.8)
+ANIM_PRG("24", 0.01, 0.8)
+ANIM_PRG("25", 0.01, 0.8)
+ANIM_PRG("26", 0.01, 0.8)
+ANIM_PRG("27", 0.01, 0.8)
+ANIM_PRG("28", 0.01, 0.8)
+ANIM_PRG("29", 0.01, 0.8)
+ANIM_PRG("30", 0.01, 0.8)
+//----------------------------------------
+
+//TODO: edje bug
+program {
+   name: "update";
+   action: STATE_SET "default" 0.0;
+   target: "body";
+}
+program {
+   name: "play";
+   signal: "signal_play";
+   source: "eclair_bin";
+   action: STATE_SET "play" 0.0;
+   transition: LINEAR 0.25;
+   /*target: "button_play";
+   target: "button_pause";*/
+   target: "progress_bar_drag";
+}
+/*program {
+   name: "pause";
+   signal: "signal_pause";
+   source: "eclair_bin";
+   action: STATE_SET "pause" 0.0;
+   transition: LINEAR 0.25;
+   target: "button_play";
+   target: "button_pause";
+}*/
+program {
+   name: "stop";
+   signal: "signal_stop";
+   source: "eclair_bin";
+   action: STATE_SET "stop" 0.0;
+   transition: LINEAR 0.25;
+   /*target: "button_play";
+   target: "button_pause";*/
+   target: "progress_bar_drag";
+}
+program {
+   name: "cover_set";
+   signal: "signal_cover_set";
+   source: "eclair_bin";
+   script {
+        if (get_int(start_anim_done) == 0)
+        {
+                timer(1.5, "cover_set_cb", 0);
+        }
+        else
+                cover_set();
+   }
+}
+program {
+   name: "cover_unset";
+   signal: "signal_cover_unset";
+   source: "eclair_bin";
+   script {
+      cover_unset();
+   }
+}
