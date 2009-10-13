@@ -17,7 +17,7 @@ L’écriture d’une interface Edje passe d’abord par l’apprentissage du la
 La librairie Edje est accompagnée de ces outils qui permettent de (dé)compiler les fichiers EDJ. Tout d’abord nous avons le compilateur `edje_cc` qui permet de compiler un (ou plusieurs en utilisant l’inclusion que nous verrons par la suite) fichier source EDC. On a ensuite `edje_decc` qui permet de décompiler un fichier EDJ pour retrouver ses sources. Cela veut dire que vous pourrez aller récupérer n’importe quel fichier de thème edj et récupérer les sources. Pour finir, il reste `edje_viewer` qui nous servira à tester notre interface.
 
 Pour vous simplifier la vie, un makefile est disponible ici:
-[http://calaos.fr/pub/edje/makefile]
+[http://freebox-elixir.googlecode.com/files/Makefile]
 Vous n’avez plus qu’à  le mettre dans le dossier de votre projet, puis pour compiler :
 {{{
  raoul@raoul:~$ make
@@ -241,4 +241,4 @@ Nous avons maintenant un jolie bouton qui s’affiche juste après le fond. Malh
 
 En utilisant tout ces principes de base, on peut faire un bouton réagissant à la souris avec des animations relativement poussés. Vous pouvez avoir un aperçu dans la vidéo ci-dessous. Vous pouvez également télécharger l’archive contenant les sources du tutoriel ici: [http://code.google.com/p/freebox-elixir/source/browse/#svn/trunk/exemples/edje/tutorial_01]
 
-[http://blog.calaos.fr/old/video/edje_tuto1.flv]
+[http://freebox-elixir.googlecode.com/files/edje_tuto1.flv]
