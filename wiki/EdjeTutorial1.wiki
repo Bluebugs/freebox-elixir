@@ -239,6 +239,4 @@ Dans ce programme, on va d’abord attendre 0.5 secondes avant d’exécuter le 
 
 Nous avons maintenant un jolie bouton qui s’affiche juste après le fond. Malheureusement, le bouton ne réagit pas à la souris. En effet, pour avoir de l’animation lors du passage de la souris ou du click, il faut encore écrire les programmes correspondants. En utilisant le même principe qu’avant, nous pourrons écrire des programme réagissant aux signaux d’Edje nous donnera lors des actions de la souris. Il faut pour cela mettre la propriété « _mouse`_`events_ » à 1, sans quoi on ne recevra pas les signaux.
 
-En utilisant tout ces principes de base, on peut faire un bouton réagissant à la souris avec des animations relativement poussés. Vous pouvez avoir un aperçu dans la vidéo ci-dessous. Vous pouvez également télécharger l’archive contenant les sources du tutoriel ici: [http://code.google.com/p/freebox-elixir/source/browse/#svn/trunk/exemples/edje/tutorial_01]
-
-[http://freebox-elixir.googlecode.com/files/edje_tuto1.flv]
+En utilisant tout ces principes de base, on peut faire un bouton réagissant à la souris avec des animations relativement poussés. Vous pouvez avoir un aperçu dans la vidéo ci-dessous. Vous pouvez également voir les sources du tutoriel [http://code.google.com/p/freebox-elixir/source/browse/#svn/trunk/exemples/edje/tutorial_01 ici] et une vidéo [http://freebox-elixir.googlecode.com/files/edje_tuto1.flv la]
