@@ -1,0 +1,190 @@
+#summary Tutorial présentant Edje.
+
+= Note =
+
+Merci a Raoul Hecky pour ce tutorial initialement publié sur son [http://blog.calaos.fr blog].
+
+= Animation "_Blocs_" ==
+
+Pour continuer dans la lancée des billets sur les Efls, nous allons voir comment faire pour afficher une interface avec une animation un peu plus poussée que le simple fondu de couleur…
+
+Le but de ce tutoriel est de montrer l’avantage majeur de l’utilisation des macro. En effet, Edje utilise, lors du processus de compilation, le préprocesseur C de GNU GCC et donc permet d’utiliser les directives `#define` et `#include`.
+
+L’animation que nous allons rajouter est assez simple, il s’agit de diviser l’image de fond en une trentaine de petits carrés qui s’afficheront l’un après l’autre pour donner l’effet d’une image qui se construit. On va commencer par rajouter un fichier pour les macros dans notre projet précédent et y insérer ce code:
+
+{{{
+#define ANIM_PART(part_name, from_color_R, from_color_V, from_color_B, hide_xpos, hide_ypos, rel1_xpos, rel1_ypos, rel2_xpos, rel2_ypos) \
+part \
+{ \
+        name: "rect_anim_"part_name; \
+        mouse_events: 0; \
+        type: RECT; \
+        description \
+        { \
+                state: "default" 0.0; \
+                visible: 0; \
+                color: from_color_R from_color_V from_color_B 0; \
+                rel1 \
+                { \
+                        relative: hide_xpos hide_ypos; \
+                        offset: 0   0; \                 } \
+                        rel2 \
+                        { \
+                                relative: hide_xpos hide_ypos; \
+                                offset: 0   0; \
+                        } \
+                } \
+        } \
+        description \
+        { \
+                state: "visible" 0.0; \
+                visible: 1; \
+                color: 255 255 255 255; \
+                rel1 \
+                { \
+                        relative: rel1_xpos rel1_ypos; \
+                        offset: 0   0; \
+                } \
+                rel2 \
+                { \
+                        relative: rel2_xpos rel2_ypos; \
+                        offset: 0   0; \
+                } \
+        } \
+        description \
+        { \
+                state: "big" 0.0; \
+                visible: 1; \
+                color: 255 255 255 255; \
+                rel1 \
+                { \
+                        relative: rel1_xpos rel1_ypos; \
+                        offset: -5   -5; \
+                } \
+                rel2 \
+                { \
+                        relative: rel2_xpos rel2_ypos; \
+                        offset: 5   5; \
+                } \
+        } \
+} \
+part \
+{ \
+        name: "anim_back_"part_name; \
+        mouse_events: 0; \
+        clip_to: "rect_anim_"part_name; \
+        description \
+        { \
+                state: "default" 0.0; \
+                image \
+                { \
+                        normal: "back.png"; \
+                        border: 15 15 15 15; \
+                } \
+                visible: 1; \
+                color: 255 255 255 255; \
+        } \
+}
+}}}
+
+Une macro se définit avec la directive `#define` suivit du nom de la macro puis des arguments. Chaque argument utilisé dans la macro sera remplacé par sa valeur qu’on passera lors de l’appel à cette macro. Dans notre exemple, on passe en paramètre les éléments des part qui changent entre les différents carrés. On a d’abord le nom (on ajoute simplement l’argument à la chaine « _rect`_`anim_ » name: « _rect`_`anim_ »_part`_`name_;), puis les 3 valeurs R, V et B pour choisir la couleur de départ de l’animation (cela va permettre de varier l’animation entre les différents carrés), puis viennent les positions relatives des carrés. D’abord pour l’état « _default_ » où l’élément est caché, puis pour l’état « _visible_ ». On utilise un positionnement relatif à la place des valeurs en pixels pour que les carrés gardent les même proportions et se redimensionnent automatiquement aux valeurs du group.
+
+Un deuxième élément Edje est ajouté à chaque carré, il s’agit de l’image de fond qui est clipé au carré. Pour cette effet, on aurait très bien pu découper l’image de fond dans The Gimp et ajouter tous ces morceaux d’images dans le projet. Utiliser des clips avec l’image de fond (qui est déjà intégré au projet) permet de limiter la taille du fichier EDJ final et est donc préférable.
+
+Une petite note quant à la notation des macros, il faut ajouter un « *\* » à chaque saut de ligne pour que le préprocesseur sache ou s’arrêter.
+
+Réouvrons notre « _theme.edc_ » et ajoutons l’inclusion de notre belle macro au début du fichier :
+
+{{{
+#include "anim_rect_macro.edc"
+}}}
+
+Nous pouvons à présent déclarer nos carrés juste avant la déclaration de l’élément de fond.
+
+{{{
+parts
+{
+        //Les 30 RECT pour l'animation du début
+        //on utilise une macro pour éviter de reecrire 30 fois les meme choses
+        /* 1ere ligne */
+        ANIM_PART("01", 255, 0, 0, 0.0833333, 0.1, 0.0      , 0.0, 0.1666666, 0.2)
+        ANIM_PART("02", 255, 0, 0, 0.25     , 0.1, 0.1666666, 0.0, 0.3333332, 0.2)
+        ANIM_PART("03", 255, 0, 0, 0.4166665, 0.1, 0.3333332, 0.0, 0.5      , 0.2)
+        ANIM_PART("04", 255, 0, 0, 0.5833333, 0.1, 0.5      , 0.0, 0.6666666, 0.2)
+        ANIM_PART("05", 255, 0, 0, 0.75     , 0.1, 0.6666666, 0.0, 0.8333332, 0.2)
+        ANIM_PART("06", 255, 0, 0, 0.9166665, 0.1, 0.8333332, 0.0, 1.0      , 0.2)
+        [....]
+        etc
+        [...]
+
+        //inclusion du fond
+        #include "back.edc"
+        ...
+
+        ...
+}
+}}}
+
+En une trentaine de ligne on déclare donc les 30 carrés + les 30 images clipés. Ca nous évite donc beaucoup de copier/coller et ca nous économise aussi pas mal de temps ! L’appel à la macro est très simple, les paramètres entre guillemets sont des chaines de caractères et les autres des valeurs numériques (les valeurs à ralonge avec 6/7 chiffres après la virgule sont dû a la division de 1.0 / 6, nous voulons 5 carrés en hauteur * 6 carrés en largeur).
+
+Reste plus qu’à animer le tout avec des morceaux de programmes. Même principe qu’avant, nous allons utiliser une macro pour définir les 30 programmes des carrés.
+
+{{{
+#define ANIM_PRG(prg_name, pause, pause_random) \
+program \
+{ \
+        name: "rect_anim_"prg_name; \
+        in: pause pause_random; \
+        action: STATE_SET "big" 0.0; \
+        transition: ACCELERATE 0.3; \
+        target: "rect_anim_"prg_name; \
+        after: "rect_anim_done_"prg_name; \
+} \
+program \
+{ \
+        name: "rect_anim_done_"prg_name; \
+        action: STATE_SET "visible" 0.0; \
+        transition: ACCELERATE 0.15; \
+        target: "rect_anim_"prg_name; \
+}
+}}}
+
+L’animation se passe en 2 temps, on affiche d’abord l’état « _big_ » puis enfin l’état « _visible_ » ou le carré d’image de fond sera affiché. A noter qu’on utilise un paramètre pause_random qui va permettre de retarder le démarrage des programmes d’une valeur aléatoire de temps pour améliorer l’effet final de l’animation.
+
+Il nous reste encore à ajouter les déclarations des programmes dans le fichier « _back`_`prog.edc_ » et les lancer lors de l’affichage grâce à la directive after:
+
+{{{
+program
+{
+        name: "on_show_rects";
+        signal: "show";
+        source: "";
+        after: "rect_anim_01";
+        after: "rect_anim_02";
+        after: "rect_anim_03";
+        [...]
+        after: "rect_anim_30";
+}
+ANIM_PRG("01", 0.01, 0.8)
+ANIM_PRG("02", 0.01, 0.8)
+ANIM_PRG("03", 0.01, 0.8)
+[...]
+ANIM_PRG("30", 0.01, 0.8)
+}}}
+
+Sans oublier de retarder l’affichage « réel » de l’interface en mettant un temps de pause au début:
+
+{{{
+program
+{
+        name: "on_show";
+        signal: "show";
+        source: "";
+        in: 1.4 0.0; //pause pour attendre la fin de l'animation
+        [...]
+}
+}}}
+
+Notre animation est terminé et voici une petite vidéo montrant le résultat. Vous pourrez récupérer les sources complète [http://code.google.com/p/freebox-elixir/source/browse/#svn/trunk/exemples/edje/tutorial_02 ici] et une petite video [http://freebox-elixir.googlecode.com/files/edje_tuto2.flv la].
+
+Vous trouverez également le thème par défaut de l’application Eclair modifié par mes soins. J’y ai ajouté la petite animation décrite au dessus. Jugez par vous même de l’effet [http://freebox-elixir.googlecode.com/files/eclair.flv graphique] :-)
