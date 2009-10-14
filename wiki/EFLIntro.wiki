@@ -3,6 +3,7 @@
 = Introduction =
 
 Ce document présente succinctement les bibliothèques du projet Enlightenment.
+
 Il se base sur les documents suivants [http://fr.enlightenment.org/wiki/wiki/] et mes connaissances personnelles sur le sujet.
 
 = Bref historique =
