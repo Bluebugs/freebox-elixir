@@ -2,7 +2,7 @@
 
 = Note =
 
-Merci a Raoul Hecky pour ce tutorial initialement publié sur son [http://blog.calaos.fr/ blog].
+Merci a Raoul Hecky pour ce tutorial initialement publié sur son [http://blog.calaos.fr/ blog]. Vous pourrez aussi trouver plus d'information sur Edje [http://docs.enlightenment.org/books/edjebook/edjebook.pdf ici]
 
 = Introduction =
 
