@@ -38,6 +38,22 @@ function anim_cb(obj)
    return 1;
 }
 
+function key_up_cb(data, e, obj, event)
+{
+   switch (event.keyname)
+     {
+      case "b":
+      case "Red":
+      case "equal":
+      case "Stop":
+      case "Home":
+      case "Escape":
+      case "Start":
+	 ecore_main_loop_quit();
+	 break;
+     }
+}
+
 function main()
 {
    var bg;
@@ -61,6 +77,9 @@ function main()
    evas_object_color_set(obj, 0, 0, 0, 255);
    evas_object_show(obj);
    bg = obj;
+
+   evas_object_event_callback_add(bg, EVAS_CALLBACK_KEY_UP, key_up_cb, null);
+   evas_object_focus_set(bg, 1);
 
    obj = evas_object_rectangle_add(evas);
    evas_object_resize(obj, 250, 200);
