@@ -5,15 +5,17 @@ test &= elx.load("evas");
 test &= elx.load("ecore");
 test &= elx.load("ecore-evas");
 
-var x = 50;
-var y = 50;
 var dx = +20;
 var dy = +10;
 
 function anim_cb(obj)
 {
-   x += dx;
-   y += dy;
+   var geom = evas_object_geometry_get(obj);
+   var x;
+   var y;
+
+   x = geom.x + dx;
+   y = geom.y + dy;
 
    if (x + 250 > 720 || x < 0)
      {
