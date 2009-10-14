@@ -5,14 +5,14 @@ test &= elx.load("evas");
 test &= elx.load("ecore");
 test &= elx.load("ecore-evas");
 
-var dx = +20;
-var dy = +10;
-
 function anim_cb(obj)
 {
    var geom = evas_object_geometry_get(obj);
-   var x;
-   var y;
+   var dx, x;
+   var dy, y;
+
+   dx = evas_object_data_get(obj, "dx");
+   dy = evas_object_data_get(obj, "dy");
 
    x = geom.x + dx;
    y = geom.y + dy;
@@ -21,12 +21,16 @@ function anim_cb(obj)
      {
 	dx = -dx;
 	x += 2 * dx;
+
+	evas_object_data_set(obj, "dx", dx);
      }
 
    if (y + 200 > 576 || y < 0)
      {
 	dy = -dy;
 	y += 2 * dy;
+
+	evas_object_data_set(obj, "dy", dy);
      }
 
    evas_object_move(obj, x, y);
@@ -64,6 +68,8 @@ function main()
    evas_object_move(obj, 50, 50);
    evas_object_show(obj);
 
+   evas_object_data_set(obj, "dx", +20);
+   evas_object_data_set(obj, "dy", +10);
    ecore_animator_add(anim_cb, obj);
 
    ecore_evas_show(ee);
