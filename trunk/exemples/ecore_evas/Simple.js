@@ -34,6 +34,7 @@ function anim_cb(obj)
 
 function main()
 {
+   var bg;
    var obj;
 
    ecore_init();
@@ -53,6 +54,7 @@ function main()
    evas_object_resize(obj, 720, 576);
    evas_object_color_set(obj, 0, 0, 0, 255);
    evas_object_show(obj);
+   bg = obj;
 
    obj = evas_object_rectangle_add(evas);
    evas_object_resize(obj, 250, 200);
@@ -64,7 +66,11 @@ function main()
 
    ecore_evas_show(ee);
    ecore_main_loop_begin();
+
    evas_object_del(obj);
+   evas_object_del(bg);
+
+   ecore_evas_free(ee);
 
    ecore_evas_shutdown();
    ecore_shutdown();
