@@ -8,7 +8,7 @@ Il se base sur les documents suivants [http://fr.enlightenment.org/wiki/wiki/] e
 
 = Bref historique =
 
-Retour en 1999: le gestionnaire de fenêtres Enlightenment (version 16), très en avance sur son temps, offre une interface utilisateur très "eye-cadies" tout en restant convivial.
+Retour en 1999: le gestionnaire de fenêtres Enlightenment (version 16), très en avance sur son temps, offre une interface utilisateur très "eye-candies" tout en restant convivial.
 
 Plusieurs effets graphiques (fenêtres coulissantes, animation d'ombrage, et the ripples and waves ) apparaissent comme révolutionnaire. Avec de plus la possibilité de rajouter différents thèmes.
 
