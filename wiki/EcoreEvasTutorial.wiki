@@ -1,0 +1,247 @@
+#summary Tutorial présentant l'utilisation de Ecore et Evas en Javascript
+
+= Introduction =
+
+Ce petit tutorial va vous faire découvrir quelque spécificité du bindings _Javascript_ et comment utiliser _Ecore`_`Evas_ pour créer une fenètre graphique, de _Evas_ pour manipuler des objets, gérer les évenements clavier et _Ecore_ pour la gestion du temps et d'une animation.
+
+= Elixir =
+
+Lorsque votre script démarre, Elixir n'a qu'un seul objet de disponible, l'objet *elx*. Il faut lui demander de charger les différents modules dont votre application va avoir besoin. Dans le cadre de cette exemple, nous aurons besoin de _Ecore`_`Evas_, _Ecore_ et _Evas_. Créez donc un fichier " _Simple.js_ " et commencont donc par initialiser ces modules :
+
+{{{
+var test = true;
+
+test &= elx.load("evas");
+test &= elx.load("ecore");
+test &= elx.load("ecore-evas");
+}}}
+
+Comme les modules sont tous optionnels, et que elixir ne les fournit pas forcément, il faut tester leur disponibilité. Ici, si la variable *test* vaut *true*, et bien, votre initialisation ce sera bien passé.
+
+= Initialisation de l'écran =
+
+Nous allons maintenant créer une fenètre graphique. Pour cela nous allons d'abord initialiser _Ecore_ (Capture des évènements) et _Ecore`_`Evas_ (Instantiations graphique).
+
+{{{
+function main()
+{
+   var bg;
+   var obj;
+
+   ecore_init();
+   ecore_evas_init();
+
+   ecore_animator_frametime_set(1 / 20);
+}}}
+
+Ce bout de code initialise donc les deux modules et indique à _Ecore_ que ses *animator* devront fonctionner à la fréquence de 20 tick par seconde. Les *animator* sont des timer qui ont la propriété d'être exécuter à un intervale régulier, ici tous les un vingtième de seconde, et surtout tous les *animator* sont executé au même moment. L'idée, c'est qu'on veut que toutes nos animations arrivent en même temps et pour cela il faut que tous les timers s'exécute de manière synchronisé. Ce que font les *animator*.
+
+Maintenant créons notre fenètre :
+{{{
+   ee = ecore_evas_new(null, 0, 0, 720, 576, "name=Test;");
+}}}
+
+Nous demandons donc une fenètre de 720 pixels par 576 avec comme titre " Test " au moteur graphique le plus adapté sur la machine qu'on utilise (premier paramètre a *null*).
+
+Maintenant que nous avons cette fenètre, nous pouvons commencer à définir quelque paramètre du canvas _Evas_.
+
+{{{
+   var evas = ecore_evas_get(ee);
+
+   evas_image_cache_set(evas, 10 * 1024 * 1024);
+   evas_font_path_prepend(evas, FN);
+   evas_font_cache_set(evas, 512 * 1024);
+}}}
+
+On limite ainsi le cache d'image inutilisé a 10Mo, le cache de font a 512Ko et on indique que les fonts se trouveront dans le repertoire *FN*.
+
+= Création d'objet graphique =
+
+Par défault un canvas _Evas_ n'a pas de fond (et donc une fenètre peut être complètement transparente. Hors pour notre exemple, ca ne nous arrange pas vraiment. Nous allons ajouter un rectangle opaque noir pour faire le fond.
+
+{{{
+   obj = evas_object_rectangle_add(evas);
+   evas_object_resize(obj, 720, 576);
+   evas_object_color_set(obj, 0, 0, 0, 255);
+   evas_object_show(obj);
+   bg = obj;
+}}}
+
+Comme _Evas_ est un canvas statefull, il suffit de créer un objet rectangle et de lui changer ses propriétés. Les objets étant empilé au fur et à mesure sur le canvas, le premier créé se trouve forcément au fond. Nous avons donc bien créé une fenètre avec un fond noir opaque. `evas_object_color_set` prend en paramètre un _Evas`_`Object_ et une couleur au format RGBA, c'est à dire Rouge, Vert, Bleu et Alpha avec des valeurs sur 8 bits (entre 0 et 255). Donc le noir opaque, c'est bien " *0, 0, 0, 255* ".
+
+Et comme par defaut, un objet n'est pas visible, il ne faut pas oublier de dire au canvas de l'afficher.
+
+Maintenant que nous avons notre fond d'écran, rajoutons un autre rectangle qui lui sera animé.
+
+{{{
+   obj = evas_object_rectangle_add(evas);
+   evas_object_resize(obj, 250, 200);
+   evas_object_color_set(obj, 128, 64, 0, 180);
+   evas_object_move(obj, 50, 50);
+   evas_object_show(obj);
+}}}
+
+Ce rectangle est légèrement transparent, comme ca à titre d'exercice si vous en ajoutez plusieurs vous pourrez les voir se superposer.
+
+C'est le moment de créer l'animator qui sera charger de faire bouger ce rectangle. Pour cela nous allons juste faire :
+
+{{{
+   ecore_animator_add(anim_cb, obj);
+}}}
+
+_anim`_`cb_ est la fonction qui sera appelé tous les 1/20s par ecore. C'est plutot simple et nous verrons après ce que nous mettons comme code dans cette fonction. Pour l'instant nous allons finir de créer notre fenètre par :
+
+{{{
+   ecore_evas_show(ee);
+}}}
+
+= Boucle principal et fin du programme =
+
+Maintenant que notre fenètre est créé, nous pouvons démarrer la boucle principal d'ecore. C'est elle qui va déclencher l'appel des bonnes fonctions au fur et à mesure que le temps passe. Cela veut aussi dire que lorsque cette fonction finit de s'exécuter, votre programme a fini.
+
+{{{
+   ecore_main_loop_begin();
+}}}
+
+Donc maintenant que notre programme a fini, nous pouvons faire le ménage avant de partir. Détruisons d'abord les objets créé.
+
+{{{
+   evas_object_del(obj);
+   evas_object_del(bg);
+}}}
+
+Puis la fenètre.
+
+{{{
+   ecore_evas_free(ee);
+}}}
+
+Et maintenant, on peut éteindre la lumière.
+
+{{{
+   ecore_evas_shutdown();
+   ecore_shutdown();
+}
+}}}
+
+Et voila, notre fonction principal est maintenant correctement écrite. Il faut juste l'appelé si tous les modules nécessaire sont disponible. Le petit bout de code suivant y suffira :
+
+{{{
+if (test)
+  main();
+}}}
+
+= Animator =
+
+Occupons nous de rajouter un peu de mouvement. Tout d'abord, il va nous falloir deux propriété supplémentaire au rectangle que l'on veut animer pour indiquer son vecteur de déplacement. Pour cela nous allons rajouter deux lignes dans le main pour le définir :
+
+{{{
+   evas_object_data_set(obj, "dx", +20);
+   evas_object_data_set(obj, "dy", +10);
+}}}
+
+Ces deux lignes doivent se trouver entre la creation du rectangle à animer et le démarrage de la boucle d'_Ecore_ pour qu'elle soit pris en compte correctement.
+
+Maintenant nous pouvons coder notre fonction d'animation.
+
+{{{
+function anim_cb(obj)
+{
+}}}
+
+Le prototype d'une callback d'un _animator_ a juste comme paramètre l'objet passé en paramètre lorsqu'on a instancié l'_animator.
+
+{{{
+   var geom = evas_object_geometry_get(obj);
+   var dx, x;
+   var dy, y;
+
+   dx = evas_object_data_get(obj, "dx");
+   dy = evas_object_data_get(obj, "dy");
+}}}
+
+Tout d'abord nous récupérons les coordonnées de l'objet et les propriétés de son vecteur vitesse. Noté que le prototype de `evas_object_geometry_get` est légèrement différent de la version en C puis qu'il retourne un objet geometry qui contient la position en pixel dans les champs _x_ et _y_ et la taille dans _w_ (`width`) et _h_ (`height`).
+
+Nous pouvons donc maintenant calculer sa nouvelle position :
+
+{{{
+   x = geom.x + dx;
+   y = geom.y + dy;
+
+   if (x + 250 > 720 || x < 0)
+     {
+        dx = -dx;
+        x += 2 * dx;
+
+        evas_object_data_set(obj, "dx", dx);
+     }
+
+   if (y + 200 > 576 || y < 0)
+     {
+        dy = -dy;
+        y += 2 * dy;
+
+        evas_object_data_set(obj, "dy", dy);
+     }
+}}}
+
+Notez qu'on ne met a jour le vecteur vitesse que si c'est nécessaire.
+
+Enfin nous pouvons déplacer l'objet :
+
+{{{
+   evas_object_move(obj, x, y);
+}}}
+
+Et comme tout c'est bien passé, nous pouvons quitter l'_animator_ et indiquer que celui-ci doit continuer de fonctionner (Il suffit de retourner 0 pour qu'il soit détruit).
+
+{{{
+   return 1;
+}
+}}}
+
+Et voila, nous avons maintenant un rectangle animé. Mais nous ne pouvons pas quitter notre application.
+
+= Evènements =
+
+Pour cela, il faut capturer les évènements claviers et détecter l'appui sur une touche. De manière général, on ne quittera une application que lorsqu'une touche sera relaché et non lorsqu'elle sera appuyé.
+
+Nous allons tout d'abord ajouter une callback qui prendra en compte le relachement d'une touche sur le background et lui donner le focus clavier. Dans le main, avant le démarrage de la boucle principal, il faut ajouter :
+
+{{{
+   evas_object_event_callback_add(bg, EVAS_CALLBACK_KEY_UP, key_up_cb, null);
+   evas_object_focus_set(bg, 1);
+}}}
+
+Maintenant nous devons ajouter cette fonction `key`_`up`_`cb` qui sera appelé à chaque fois qu'une touche du clavier sera relaché.
+
+{{{
+function key_up_cb(data, e, obj, event)
+{
+}}}
+
+Le prototype est un peu plus complexe que pour un animateur. Tout d'abord, on recoit dans *data* la valeur passé lors de l'instantiation de la callback, ici *null*. Ensuite on recoit dans *e* le canvas _Evas_ sur lequel se trouve l'objet *obj*. Et enfin dans *event* le contenu de l'évènement. Ici celui lié au relachement d'une touche clavier. Dont seul la propriété keyname nous interresse.
+
+{{{
+   switch (event.keyname)
+     {
+      case "b":
+      case "Red":
+      case "equal":
+      case "Stop":
+      case "Home":
+      case "Escape":
+      case "Start":
+         ecore_main_loop_quit();
+         break;
+     }
+}
+}}}
+
+On test quelques touches qui si elles sont relaché vont déclencher la fin de la boucle principal d'_Ecore_.
+
+Et voila notre premier programme _Elixir_ de fini. Vous pouvez vous amuser à ajouter plus de rectangle qui bouge, à changer la vitesse de rafraichissement, à animer la couleur des rectangle aussi...
+
+Vous trouverez toute la source de cette exemple [http://code.google.com/p/freebox-elixir/source/browse/trunk/exemples/ecore_evas/Simple.js ici]
+
+Have fun !
