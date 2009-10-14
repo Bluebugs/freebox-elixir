@@ -8,18 +8,20 @@ Il se base sur les documents suivants [http://fr.enlightenment.org/wiki/wiki/] e
 
 = Bref historique =
 
-Retour en 1999: le gestionnaire de fenêtres Enlightenment (version 16), très en avance sur son temps, offre une interface utilisateur très "eye-cadies", tout en conservant la convivialité.
+Retour en 1999: le gestionnaire de fenêtres Enlightenment (version 16), très en avance sur son temps, offre une interface utilisateur très "eye-cadies" tout en restant convivial.
 
-Plusieurs effets graphiques (fenêtres coulissantes, animation d'ombrage, et the ripples and waves ) ont été tout à fait révolutionnaire pour un gestionnaire de fenêtre. Avec la possibilité de rajouter différents thèmes.
+Plusieurs effets graphiques (fenêtres coulissantes, animation d'ombrage, et the ripples and waves ) apparaissent comme révolutionnaire. Avec de plus la possibilité de rajouter différents thèmes.
 
-Alors que la plupart des applications, suportant le principe du thème ne permet que de modifier la couleur des interfaces, Enlightenment pouvait personnaliser tout.
-Les thèmes pourraient être complètement différents suivant l'aspect que l'on regarde. Plusieurs thèmes ont été tellement complexe que finalement faire des Enlightenment ressemble à différents systèmes (Mac OS Aqua, BeOS).
+Alors que la plupart des applications suportant le principe du thème n'autorisent qu'une modification de la couleur des interfaces, Enlightenment permet de tout personnaliser.
+Les thèmes peuvent être complètement différents suivant l'aspect regardé. Plusieurs thèmes ont été tellement complexe que finalement faire des Enlightenment ressemble à différents systèmes (Mac OS Aqua, BeOS).
 
-Enlightenment a aussi été à un moment intégré à Gnome. Alors que Gnome a progressé depuis et vient maintenant avec son propre gestionnaire de fenêtres (Metacity), le fait est que Enlightenment a été installé sur de nombreux ordinateurs de bureau à l'époque. La version 16 est toujours la dernière version stable d'Enlightenment. Cela signifie que Enlightenment V16 est un gestionnaire de fenêtres très stable. Depuis ses besoins en ressources sont à peu près les même, ce qui semble être un poids lourd des gestionnaires de fenêtres se révèle être très léger.
+Enlightenment a aussi été à un moment intégré à Gnome. Alors que Gnome a progressé depuis et vient maintenant avec son propre gestionnaire de fenêtres (Metacity), le fait est que Enlightenment a été installé sur de nombreux ordinateurs de bureau à l'époque. 
+
+La version 16 reste à ce jour la dernière version stable d'Enlightenment et ses besoins en ressources ont sensiblement peu changé, ce qui semble être un poids lourd des gestionnaires de fenêtres se révèle être très léger.
 
 Alors, pourquoi n'avons-nous pas une nouvelle version d'Enlightenment aujourd'hui? Et pourquoi la version de développement (V17) n'a pas encore été sortie en version stable, après tant d'années ?
 
-La version 17 de Enlightenment est un "desktop shell". L'infrastructure de ce window manager se présente sous la forme de bibliothèques graphiques distinct appelé "Enlightenment Foundation Libraries"(*EFL* en plus court). Enlightenment est maintenant basé sur ces bibliothèques, qui peut également être utilisé pour des applications normales en dehors du gestionnaire de fenêtres.
+La version 17 de Enlightenment est un "desktop shell". L'infrastructure de ce window manager se présente sous la forme de bibliothèques graphiques distinctes appelées "Enlightenment Foundation Libraries"(*EFL* en plus court). Enlightenment est maintenant basé sur ces bibliothèques, qui peuvent également être utilisées pour des applications normales, en dehors du gestionnaire de fenêtres.
 
 Ces bibliothèques qui se devait d'être efficace en utilisant aux mieux le matériel quelque soit les conditions, se sont révélé être tout a fait utilisable pour l'écriture d'applications généraliste. Permettant même d'écrire des applications plus graphique sans avoir besoin d'une machine de dernière génération. Ces bibliotheques arrivant à tirer le meilleur du matériel, elles sont naturellement utilisée dans des projets embarqués avec du matériel beaucoup plus limité que nos PC de bureau.
 
