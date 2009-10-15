@@ -67,7 +67,7 @@ Par défault un canvas _Evas_ n'a pas de fond (et donc une fenètre peut être c
    bg = obj;
 }}}
 
-Comme _Evas_ est un canvas statefull, il suffit de créer un objet rectangle et de changer ses propriétés. Les objets étant empilé au fur et à mesure sur le canvas, le premier créé se trouve forcément au fond. Nous avons donc bien créé une fenètre avec un fond noir opaque. `evas_object_color_set` prend en paramètre un _Evas`_`Object_ et une couleur au format RGBA, c'est à dire Rouge, Vert, Bleu et Alpha avec des valeurs sur 8 bits (entre 0 et 255). Donc le noir opaque, c'est bien " *0, 0, 0, 255* ".
+Comme _Evas_ est un canvas statefull, il suffit de créer un objet rectangle et de changer ses propriétés. Les objets étant empilés au fur et à mesure sur le canvas, le premier créé se trouve forcément au fond. Nous avons donc bien créé une fenètre avec un fond noir opaque. `evas_object_color_set` prend en paramètre un _Evas`_`Object_ et une couleur au format RGBA, c'est à dire Rouge, Vert, Bleu et Alpha avec des valeurs sur 8 bits (entre 0 et 255). Donc le noir opaque, c'est bien " *0, 0, 0, 255* ".
 
 Et comme par defaut, un objet n'est pas visible, il ne faut pas oublier de dire au canvas de l'afficher.
 
