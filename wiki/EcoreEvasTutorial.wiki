@@ -133,7 +133,7 @@ if (test)
 
 = Animator =
 
-Occupons nous de rajouter un peu de mouvement. Tout d'abord, il va nous falloir deux propriétés supplémentaires au rectangle que l'on veut animer pour indiquer son vecteur de déplacement. Pour cela nous allons rajouter deux lignes dans le main pour le définir :
+Occupons nous de rajouter un peu de mouvement. Tout d'abord, il va nous falloir deux propriétés supplémentaires au rectangle que l'on veut animer pour indiquer son vecteur de déplacement. Pour cela nous allons rajouter deux lignes dans le _main_ pour le définir :
 
 {{{
    evas_object_data_set(obj, "dx", +20);
@@ -160,7 +160,7 @@ Le prototype d'une callback d'un _animator_ a juste comme paramètre l'objet pas
    dy = evas_object_data_get(obj, "dy");
 }}}
 
-Tout d'abord nous récupérons les coordonnées de l'objet et les propriétés de son vecteur vitesse. Noté que le prototype de `evas_object_geometry_get` est légèrement différent de la version en C puis qu'il retourne un objet geometry qui contient la position en pixel dans les champs _x_ et _y_ et la taille dans _w_ (`width`) et _h_ (`height`).
+Tout d'abord nous récupérons les coordonnées de l'objet et les propriétés de son vecteur vitesse. Notez que le prototype de `evas_object_geometry_get` est légèrement différent de la version en C puis qu'il retourne un objet geometry qui contient la position en pixel dans les champs _x_ et _y_ et la taille dans _w_ (`width`) et _h_ (`height`).
 
 Nous pouvons donc maintenant calculer sa nouvelle position :
 
@@ -202,11 +202,11 @@ Et comme tout s'est bien passé, nous pouvons quitter l'_animator_ et indiquer q
 
 Et voila, nous avons maintenant un rectangle animé. Mais nous ne pouvons pas quitter notre application.
 
-= Evènements =
+= Evénements =
 
-Pour cela, il faut capturer les évènements claviers et détecter l'appui sur une touche. De manière générale, on ne quittera une application que lorsqu'une touche sera relachée et non lorsqu'elle sera appuyée.
+Pour cela, il faut capturer les événements claviers et détecter l'appui sur une touche. De manière générale, on ne quittera une application que lorsqu'une touche sera relachée et non lorsqu'elle sera appuyée.
 
-Nous allons tout d'abord ajouter une callback qui prendra en compte le relachement d'une touche sur le background et lui donner le focus clavier. Dans le main, avant le démarrage de la boucle principal, il faut ajouter :
+Nous allons tout d'abord ajouter une callback qui prendra en compte le relachement d'une touche sur le background et lui donner le focus clavier. Dans le _main_, avant le démarrage de la boucle principale, il faut ajouter :
 
 {{{
    evas_object_event_callback_add(bg, EVAS_CALLBACK_KEY_UP, key_up_cb, null);
