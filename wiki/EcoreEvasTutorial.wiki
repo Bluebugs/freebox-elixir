@@ -6,7 +6,7 @@ Ce petit tutoriel va vous faire découvrir quelques spécificités du bindings _
 
 = Elixir =
 
-Lorsque votre script démarre, Elixir n'a qu'un seul objet de disponible, l'objet *elx*. Il faut lui demander de charger les différents modules dont votre application va avoir besoin. Dans le cadre de cet exemple, nous aurons besoin de _Ecore`_`Evas_, _Ecore_ et _Evas_. Créez donc un fichier " _Simple.js_ " et commençons donc par initialiser ces modules :
+Lorsque votre script démarre, Elixir n'a qu'un seul objet de disponible, l'objet *elx*. Il faut lui demander de charger les différents modules dont votre application va avoir besoin. Dans le cadre de cet exemple, nous aurons besoin de _Ecore`_`Evas_, _Ecore_ et _Evas_. Créez donc un fichier " _Simple.js_ " et commençons par initialiser ces modules :
 
 {{{
 var test = true;
