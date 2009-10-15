@@ -136,7 +136,7 @@ part
 }
 }}}
 
-La barre de contrôle ainsi que les boutons seront clippés par rapport a l’élément « _controls_ » (_clip`_`to_: « _controls_ »;). La même technique sera utilisée pour l’affichage du splash screen (le logo).
+La barre de contrôle ainsi que les boutons seront clipés par rapport a l’élément « _controls_ » (_clip`_`to_: « _controls_ »;). La même technique sera utilisée pour l’affichage du splash screen (le logo).
 
 Nous avons maintenant un design d’interface défini dans notre edc. Il reste maintenant la partie animation et les différents « _programs_ » qui donneront de la vie. Nous allons commencer par afficher le splash screen au démarrage de l’application. Pour cela rien de plus simple, il faut mettre le clip du logo dans l’état visible avec une transition et le tout s’exécute au moment ou l’Edje est affiché (evennement show):
 
