@@ -2,7 +2,7 @@
 
 = Introduction =
 
-Le seul environnement de développement actuellement officiellement supporté est Linux. Mais un port Windows ne devrait pas poser trop de difficultés puisque les EFL et SpiderMonkey fonctionnent sous Windows.
+Actuellement, le seul environnement de développement officiellement supporté est Linux. Mais un port Windows ne devrait pas poser trop de difficultés puisque les EFL et SpiderMonkey fonctionnent sous Windows.
 
 = Depuis les paquets source =
 
@@ -10,7 +10,7 @@ Cette partie du tutorial décrit le processus d'installation depuis le dernier s
 
 == Dépendences ==
 
-Il vous faudra installer les paquets de developpement des bibliothèques suivantes :
+Il vous faudra installer les paquets de développement des bibliothèques suivantes :
  * libjpeg
  * libpng
  * libfreetype
@@ -41,7 +41,7 @@ Il va falloir construire les différentes bibliothèques comme suit:
  ./configure
 }}}
  # Vérifiez qu'il a bien trouvé les dépendances
- # Exécuter
+ # Exécutez
 {{{
 make
 }}}
@@ -50,13 +50,19 @@ make
 sudo make install
 }}}
 
-Maintenant que les EFL sont installées, passons à SpiderMonkey. Il se peut que SpiderMonkey soit deja installé (C'est la bibliothèque JavaScript de Firefox tout de même), auquel cas le répertoire /usr/include/mozjs/ doit être rempli de divers headers.
+Maintenant que les EFL sont installées, passons à SpiderMonkey. 
+
+Il se peut que SpiderMonkey soit deja installé (C'est la bibliothèque JavaScript de Firefox tout de même), auquel cas le répertoire /usr/include/mozjs/ doit être rempli de divers headers.
 
 Si ce n'est pas le cas, il faut donc compiler et installer [https://developer.mozilla.org/en/Building_only_SpiderMonkey SpiderMonkey] :
 
  # Décompressez la dernière version de SpiderMonkey (la version utilisé pour ce tutorial est la 1.8.0-RC1).
  # Allez dans le sous repertoire js/src.
- # Exécutez {{{ make JS_THREADSAFE=1 JS_DIST=/usr -f Makefile.ref }}} ( Assurez-vous avant de bien disposer d'un répertoire `/usr/include/nspr/` installé par la libnspr).
+ # Exécutez
+{{{ 
+make JS_THREADSAFE=1 JS_DIST=/usr -f Makefile.ref 
+}}} 
+( Assurez-vous avant de bien disposer d'un répertoire `/usr/include/nspr/` installé par la libnspr).
  # Exécutez ensuite la liste de commande suivante en étant root :
 {{{
 mkdir /usr/include/smjs
