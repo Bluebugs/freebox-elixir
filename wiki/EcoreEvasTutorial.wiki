@@ -213,14 +213,14 @@ Nous allons tout d'abord ajouter une callback qui prendra en compte le relacheme
    evas_object_focus_set(bg, 1);
 }}}
 
-Maintenant nous devons ajouter cette fonction `key`_`up`_`cb` qui sera appelée à chaque fois qu'une touche du clavier sera relaché.
+Maintenant nous devons ajouter cette fonction `key`_`up`_`cb` qui sera appelée à chaque fois qu'une touche du clavier sera relachée.
 
 {{{
 function key_up_cb(data, e, obj, event)
 {
 }}}
 
-Le prototype est un peu plus complexe que pour un animateur. Tout d'abord, on recoit dans *data* la valeur passé lors de l'instantiation de la callback, ici *null*. Ensuite on recoit dans *e* le canvas _Evas_ sur lequel se trouve l'objet *obj*. Et enfin dans *event* le contenu de l'évènement. Ici celui lié au relachement d'une touche clavier. Dont seule la propriété keyname nous interresse.
+Le prototype est un peu plus complexe que pour un animateur. Tout d'abord, on reçoit dans *data* la valeur passée lors de l'instantiation de la callback, ici *null*. Ensuite on recoit dans *e* le canvas _Evas_ sur lequel se trouve l'objet *obj*. Et enfin dans *event* le contenu de l'événement. Ici celui lié au relachement d'une touche clavier. Dont seule la propriété keyname nous intéresse.
 
 {{{
    switch (event.keyname)
