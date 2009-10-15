@@ -41,7 +41,7 @@ Cette introduction se concentrera sur les bibliothèques utilisées et nécessai
 
 Cette bibliothèque fournit un ensemble de type de données avec un rapport performance/consommation mémoire le plus efficace possible. Elle est utilisé par tout le projet Enlightenment et par Elixir pour leur type de données. Mais l'interface JavaScript d'Elixir n'expose aucune de ses fonctions, car le JavaScript inclut déjà tous les types de données utiles (tableau, table de hashage, liste, ...).
 
-Cette bibliothèque n'a donc d'utilité que pour les developpeurs C des EFL.
+Cette bibliothèque n'a donc d'utilité que pour les développeurs C des EFL.
 
 [http://docs.enlightenment.org/api/eina/html/ Documentation]
 
