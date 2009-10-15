@@ -185,6 +185,6 @@ program
 }
 }}}
 
-Notre animation est terminée et voici une petite vidéo montrant le résultat. Vous pourrez récupérer les sources complètes [http://code.google.com/p/freebox-elixir/source/browse/#svn/trunk/exemples/edje/tutorial_02 ici] et une petite video [http://freebox-elixir.googlecode.com/files/edje_tuto2.flv la].
+Notre animation est terminée et voici une petite vidéo montrant le résultat. Vous pourrez récupérer les sources complètes [http://code.google.com/p/freebox-elixir/source/browse/#svn/trunk/exemples/edje/tutorial_02 ici] et une petite video [http://freebox-elixir.googlecode.com/files/edje_tuto2.flv là].
 
 Vous trouverez également le thème par défaut de l’application Eclair modifiée par mes soins. J’y ai ajouté la petite animation décrite au dessus. Jugez par vous même de l’effet [http://freebox-elixir.googlecode.com/files/eclair.flv graphique] :-)
