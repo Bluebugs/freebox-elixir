@@ -35,7 +35,7 @@ Ainsi les projets suivant utilisent les EFL :
 
 = Les bibliothèques ==
 
-Cette introduction se concentrera sur les bibliothèques utilisé et nécessaire pour Elixir.
+Cette introduction se concentrera sur les bibliothèques utilisées et nécessaires pour Elixir.
 
 == Eina ==
 
