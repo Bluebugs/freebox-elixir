@@ -2,29 +2,29 @@
 
 = Introduction =
 
-Elixir fournit une suite de binding JavaScript pour les EFL. Mais celui-ci n'expose en rien un DOM de navigateur web. Il y a donc une petite API spécifique à Elixir et quelques règles quand à la définition des API des bindings exposé.
+Elixir fournit une suite de binding JavaScript pour les EFL. Mais celui-ci n'expose en rien un DOM de navigateur web. Il y a donc une petite API spécifique à Elixir et quelques règles quand à la définition des API des bindings exposés.
 
 = API Elixir =
 
-Tout d'abord, Elixir fournit un objet *elx* qui est le seul objet disponible lorsque le Javascript est appelé. Cet objet a les propriétés suivante :
+Tout d'abord, Elixir fournit un objet *elx* qui est le seul objet disponible lorsque le JavaScript est appelé. Cet objet a les propriétés suivantes :
 
  * `print(...)`: Affiche tous les paramètres sur la ligne de commande.
  * `sleep(s)`
-Bloque l'application pendant *s* seconde.
- * `usleep(ms)`: Bloque l'application pendant *ms* micro second.
- * `usid()`: Retourne une chaine de charactère unique qualifiant le JavaScript en cour d'exécution.
- * `gcid()`: Retourne une chaine de charactère unique qualifiant tous les JavaScript exécuté depuis le démarrage de Elixir.
+Bloque l'application pendant *s* secondes.
+ * `usleep(ms)`: Bloque l'application pendant *ms* micro secondes.
+ * `usid()`: Retourne une chaine de caractères unique qualifiant le JavaScript en cour d'exécution.
+ * `gcid()`: Retourne une chaine de caractères unique qualifiant tous les JavaScript exécutés depuis le démarrage d' Elixir.
  * `load(m)`: Charge le module *m*.
  * `unload(m)`: Décharge le module *m*.
  * `include(fichier, [[section], clef])`: Inclut le *fichier*. Si c'est un fichier _Eet_, la *section* permet de spécifier une alternative à _elixir/main_ et la *clef* permet de le déchiffrer si nécessaire.
  * `parse(fichier, [[section], clef])`: Permet de générer du texte à partir de n'importe quel document.
- * `version()`: Retourne la version de elixir.
+ * `version()`: Retourne la version de Elixir.
  * `gc()`: Force l'exécution du Garbage Collector.
  * `chdir(d)`: Change le répertoire courant.
 
 = Bindings =
 
-Elixir fournit actuellement les modules suivant :
+Elixir fournit actuellement les modules suivants :
 
  * dir
  * ecore
