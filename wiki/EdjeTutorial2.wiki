@@ -2,13 +2,13 @@
 
 = Note =
 
-Merci a Raoul Hecky pour ce tutorial initialement publié sur son [http://blog.calaos.fr blog].
+Merci a Raoul Hecky pour ce tutoriel initialement publié sur son [http://blog.calaos.fr blog].
 
 = Animation "_Blocs_" ==
 
-Pour continuer dans la lancée des billets sur les Efls, nous allons voir comment faire pour afficher une interface avec une animation un peu plus poussée que le simple fondu de couleur…
+Pour continuer dans la lancée des billets sur les EFL, nous allons voir comment faire pour afficher une interface avec une animation un peu plus poussée que le simple fondu de couleurs…
 
-Le but de ce tutoriel est de montrer l’avantage majeur de l’utilisation des macro. En effet, Edje utilise, lors du processus de compilation, le préprocesseur C de GNU GCC et donc permet d’utiliser les directives `#define` et `#include`.
+Le but de ce tutoriel est de montrer l’avantage majeur de l’utilisation des macros. En effet, Edje utilise, lors du processus de compilation, le préprocesseur C de GNU GCC et permet d’utiliser les directives `#define` et `#include`.
 
 L’animation que nous allons rajouter est assez simple, il s’agit de diviser l’image de fond en une trentaine de petits carrés qui s’afficheront l’un après l’autre pour donner l’effet d’une image qui se construit. On va commencer par rajouter un fichier pour les macros dans notre projet précédent et y insérer ce code:
 
@@ -87,9 +87,9 @@ part \
 }
 }}}
 
-Une macro se définit avec la directive `#define` suivit du nom de la macro puis des arguments. Chaque argument utilisé dans la macro sera remplacé par sa valeur qu’on passera lors de l’appel à cette macro. Dans notre exemple, on passe en paramètre les éléments des part qui changent entre les différents carrés. On a d’abord le nom (on ajoute simplement l’argument à la chaine « _rect`_`anim_ » name: « _rect`_`anim_ »_part`_`name_;), puis les 3 valeurs R, V et B pour choisir la couleur de départ de l’animation (cela va permettre de varier l’animation entre les différents carrés), puis viennent les positions relatives des carrés. D’abord pour l’état « _default_ » où l’élément est caché, puis pour l’état « _visible_ ». On utilise un positionnement relatif à la place des valeurs en pixels pour que les carrés gardent les même proportions et se redimensionnent automatiquement aux valeurs du group.
+Une macro se définit avec la directive `#define` suivi du nom de la macro puis des arguments. Chaque argument utilisé dans la macro sera remplacé par sa valeur qu’on passera lors de l’appel à cette macro. Dans notre exemple, on passe en paramètre les éléments des _part_ qui changent entre les différents carrés. On a d’abord le nom (on ajoute simplement l’argument à la chaîne « _rect`_`anim_ » name: « _rect`_`anim_ »_part`_`name_;), puis les 3 valeurs R, V et B pour choisir la couleur de départ de l’animation (cela va permettre de varier l’animation entre les différents carrés), puis viennent les positions relatives des carrés. D’abord pour l’état « _default_ » où l’élément est caché, puis pour l’état « _visible_ ». On utilise un positionnement relatif à la place des valeurs en pixels pour que les carrés gardent les même proportions et se redimensionnent automatiquement aux valeurs du _group_.
 
-Un deuxième élément Edje est ajouté à chaque carré, il s’agit de l’image de fond qui est clipé au carré. Pour cette effet, on aurait très bien pu découper l’image de fond dans The Gimp et ajouter tous ces morceaux d’images dans le projet. Utiliser des clips avec l’image de fond (qui est déjà intégré au projet) permet de limiter la taille du fichier EDJ final et est donc préférable.
+Un deuxième élément Edje est ajouté à chaque carré, il s’agit de l’image de fond qui est clipé au carré. Pour cette effet, on aurait très bien pu découper l’image de fond dans The Gimp et ajouter tous ces morceaux d’images dans le projet. Utiliser des clips avec l’image de fond (qui est déjà intégré au projet) permet de limiter la taille du fichier EDJ final et s'avère donc préférable.
 
 Une petite note quant à la notation des macros, il faut ajouter un « *\* » à chaque saut de ligne pour que le préprocesseur sache ou s’arrêter.
 
@@ -105,7 +105,7 @@ Nous pouvons à présent déclarer nos carrés juste avant la déclaration de l�
 parts
 {
         //Les 30 RECT pour l'animation du début
-        //on utilise une macro pour éviter de reecrire 30 fois les meme choses
+        //on utilise une macro pour éviter de réécrire 30 fois les même choses
         /* 1ere ligne */
         ANIM_PART("01", 255, 0, 0, 0.0833333, 0.1, 0.0      , 0.0, 0.1666666, 0.2)
         ANIM_PART("02", 255, 0, 0, 0.25     , 0.1, 0.1666666, 0.0, 0.3333332, 0.2)
@@ -125,9 +125,9 @@ parts
 }
 }}}
 
-En une trentaine de ligne on déclare donc les 30 carrés + les 30 images clipés. Ca nous évite donc beaucoup de copier/coller et ca nous économise aussi pas mal de temps ! L’appel à la macro est très simple, les paramètres entre guillemets sont des chaines de caractères et les autres des valeurs numériques (les valeurs à ralonge avec 6/7 chiffres après la virgule sont dû a la division de 1.0 / 6, nous voulons 5 carrés en hauteur * 6 carrés en largeur).
+En une trentaine de lignes on déclare donc les 30 carrés + les 30 images clipés. Ca nous évite donc beaucoup de copier/coller et ca nous économise aussi pas mal de temps ! L’appel à la macro est très simple, les paramètres entre guillemets sont des chaines de caractères et les autres des valeurs numériques (les valeurs à rallonge avec 6/7 chiffres après la virgule sont dû a la division de 1.0 / 6, nous voulons 5 carrés en hauteur * 6 carrés en largeur).
 
-Reste plus qu’à animer le tout avec des morceaux de programmes. Même principe qu’avant, nous allons utiliser une macro pour définir les 30 programmes des carrés.
+Ne reste plus qu’à animer le tout avec des morceaux de programmes. Même principe qu’avant, nous allons utiliser une macro pour définir les 30 programmes des carrés.
 
 {{{
 #define ANIM_PRG(prg_name, pause, pause_random) \
@@ -149,7 +149,7 @@ program \
 }
 }}}
 
-L’animation se passe en 2 temps, on affiche d’abord l’état « _big_ » puis enfin l’état « _visible_ » ou le carré d’image de fond sera affiché. A noter qu’on utilise un paramètre pause_random qui va permettre de retarder le démarrage des programmes d’une valeur aléatoire de temps pour améliorer l’effet final de l’animation.
+L’animation se passe en 2 temps, on affiche d’abord l’état « _big_ » puis enfin l’état « _visible_ » ou le carré d’images de fond sera affiché. A noter qu’on utilise un paramètre pause_random qui va permettre de retarder le démarrage des programmes d’une valeur aléatoire de temps pour améliorer l’effet final de l’animation.
 
 Il nous reste encore à ajouter les déclarations des programmes dans le fichier « _back`_`prog.edc_ » et les lancer lors de l’affichage grâce à la directive after:
 
@@ -185,6 +185,6 @@ program
 }
 }}}
 
-Notre animation est terminé et voici une petite vidéo montrant le résultat. Vous pourrez récupérer les sources complète [http://code.google.com/p/freebox-elixir/source/browse/#svn/trunk/exemples/edje/tutorial_02 ici] et une petite video [http://freebox-elixir.googlecode.com/files/edje_tuto2.flv la].
+Notre animation est terminée et voici une petite vidéo montrant le résultat. Vous pourrez récupérer les sources complètes [http://code.google.com/p/freebox-elixir/source/browse/#svn/trunk/exemples/edje/tutorial_02 ici] et une petite video [http://freebox-elixir.googlecode.com/files/edje_tuto2.flv la].
 
-Vous trouverez également le thème par défaut de l’application Eclair modifié par mes soins. J’y ai ajouté la petite animation décrite au dessus. Jugez par vous même de l’effet [http://freebox-elixir.googlecode.com/files/eclair.flv graphique] :-)
+Vous trouverez également le thème par défaut de l’application Eclair modifiée par mes soins. J’y ai ajouté la petite animation décrite au dessus. Jugez par vous même de l’effet [http://freebox-elixir.googlecode.com/files/eclair.flv graphique] :-)
