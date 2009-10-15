@@ -8,7 +8,7 @@ Merci a Raoul Hecky pour ce tutoriel initialement publié sur son [http://blog.c
 
 Dans la petite série d’articles sur les EFL, voici la première partie qui explique la création d’une petite application utilisant les EFL. Il s’agit d’une simple interface qui va permettre d’afficher des photos en provenance d'un site web et les faire défiler sous forme de slideshow. On donnera aussi la possibilité à l’utilisateur d’interagir avec l’interface et de mettre la photo en plein écran ou encore passer à l’image suivante. Ce tutoriel se concentrera sur le design de l’interface grâce à Edje.
 
-Afin de créer notre petite interface, nous allons d’abord créer les différentes images, pour cela on pourra se servir d’un logiciel tels que Gimp ou Inkscape. Dans le cas présent j’ai utilisé Inkscape pour faire un fond du type « _photo polaroid_ »:
+Afin de créer notre petite interface, nous allons d’abord créer les différentes images, pour cela on pourra se servir d’un logiciel tel que Gimp ou Inkscape. Dans le cas présent j’ai utilisé Inkscape pour faire un fond du type « _photo polaroid_ »:
 
 [http://freebox-elixir.googlecode.com/svn/trunk/exemples/edje/tutorial_03/images/picture_back.png]
 
@@ -190,4 +190,4 @@ program
 
 Pour le bouton plein écran on enverra le signal « _fullscreen_ » avec comme source « _controls_ ». L’application devra réagir à ce signal, nous détaillerons cela dans un prochain article.
 
-Nous voila donc avec une interface fonctionnelle et prête à etre intégré dans l’application qui reste encore a écrire. Les sources Edje complètes sont disponibles [http://code.google.com/p/freebox-elixir/source/browse/trunk/exemples/edje/tutorial_03/ ici].
+Nous voilà donc avec une interface fonctionnelle et prête à etre intégré dans l’application qui reste encore a écrire. Les sources Edje complètes sont disponibles [http://code.google.com/p/freebox-elixir/source/browse/trunk/exemples/edje/tutorial_03/ ici].
