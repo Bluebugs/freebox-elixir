@@ -12,10 +12,10 @@ Retour en 1999: le gestionnaire de fenêtres Enlightenment (version 16), très e
 
 Plusieurs effets graphiques (fenêtres coulissantes, animation d'ombrage et the ripples and waves ) apparaissent comme révolutionnaire. Avec, de plus, la possibilité de rajouter différents thèmes.
 
-Alors que la plupart des applications suportant le principe du thème n'autorisent qu'une modification de la couleur des interfaces, Enlightenment permet de tout personnaliser.
-Les thèmes peuvent être complètement différents suivant l'aspect regardé. Plusieurs thèmes ont été tellement complexe que finalement faire des Enlightenment ressemble à différents systèmes (Mac OS Aqua, BeOS).
+Alors que la plupart des applications supportant le principe du thème n'autorisent qu'une modification de la couleur des interfaces, Enlightenment permet de tout personnaliser.
+Les thèmes peuvent être complètement différents suivant l'aspect regardé. Plusieurs thèmes sont tellement complexes que finalement faire des Enlightenment ressemble à différents systèmes (Mac OS Aqua, BeOS).
 
-Enlightenment a également été un temps intégré à Gnome. Alors que Gnome a progressé depuis et vient maintenant avec son propre gestionnaire de fenêtres (Metacity), le fait est que Enlightenment a été installé sur de nombreux ordinateurs de bureau à l'époque. 
+Enlightenment a également été un temps intégré à Gnome. Gnome a progressé depuis et vient maintenant avec son propre gestionnaire de fenêtres (Metacity), mais le fait est que Enlightenment a été installé sur de nombreux ordinateurs de bureau à l'époque. 
 
 La version 16 reste à ce jour la dernière version stable d'Enlightenment et ses besoins en ressources ont sensiblement peu changé. Ce qui semble être un poids lourd des gestionnaires de fenêtres se révèle en fait être très léger.
 
