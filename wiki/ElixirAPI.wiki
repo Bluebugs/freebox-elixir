@@ -12,12 +12,12 @@ Tout d'abord, Elixir fournit un objet *elx* qui est le seul objet disponible lor
  * `sleep(s)`: Bloque l'application pendant *s* secondes.
  * `usleep(ms)`: Bloque l'application pendant *ms* micro-secondes.
  * `usid()`: Retourne une chaine de caractères unique qualifiant le JavaScript en cours d'exécution.
- * `gcid()`: Retourne une chaine de caractères unique qualifiant tous les JavaScript exécutés depuis le démarrage d' Elixir.
+ * `gcid()`: Retourne une chaine de caractères unique qualifiant tous les JavaScript exécutés depuis le démarrage d'Elixir.
  * `load(m)`: Charge le module *m*.
  * `unload(m)`: Décharge le module *m*.
  * `include(fichier, [[section], clef])`: Inclut le *fichier*. Si c'est un fichier _Eet_, la *section* permet de spécifier une alternative à _elixir/main_ et la *clef* permet de le déchiffrer si nécessaire.
  * `parse(fichier, [[section], clef])`: Permet de générer du texte à partir de n'importe quel document.
- * `version()`: Retourne la version de Elixir.
+ * `version()`: Retourne la version d'Elixir.
  * `gc()`: Force l'exécution du Garbage Collector.
  * `chdir(d)`: Change le répertoire courant.
 
