@@ -62,7 +62,7 @@ Si ce n'est pas le cas, il faut donc compiler et installer [https://developer.mo
 {{{ 
 make JS_THREADSAFE=1 JS_DIST=/usr -f Makefile.ref 
 }}} 
-( Assurez-vous avant de bien disposer d'un répertoire `/usr/include/nspr/` installé par la libnspr).
+(Assurez-vous avant de bien disposer d'un répertoire `/usr/include/nspr/` installé par la libnspr).
  # Exécutez ensuite la liste de commande suivante en étant root :
 {{{
 mkdir /usr/include/smjs
