@@ -16,7 +16,7 @@ test &= elx.load("ecore");
 test &= elx.load("ecore-evas");
 }}}
 
-Comme les modules sont tous optionnels, et que elixir ne les fournit pas forcément, il faut tester leur disponibilité. Ici, si la variable *test* vaut *true*, votre initialisation ce sera bien passé.
+Comme les modules sont tous optionnels, et que elixir ne les fournit pas forcément, il faut tester leur disponibilité. Ici, si la variable *test* vaut *true*, votre initialisation se sera bien passée.
 
 = Initialisation de l'écran =
 
