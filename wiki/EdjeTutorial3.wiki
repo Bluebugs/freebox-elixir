@@ -153,7 +153,7 @@ program
 }
 }}}
 
-Puis pour cacher le splash apres qu’il ait été affiché, on lance after: « _hide`_`splash_ »; qui va remettre le logo dans son état « _default_ » initial, donc invisible. On utilisera une technique similaire pour afficher/cacher la barre de contrôle, à la difference près que la barre s’affichera lorsque la souris sera sur la fenêtre de notre application:
+Puis pour cacher le splash après qu’il ait été affiché, on lance after: « _hide`_`splash_ »; qui va remettre le logo dans son état « _default_ » initial, donc invisible. On utilisera une technique similaire pour afficher/cacher la barre de contrôle, à la difference près que la barre s’affichera lorsque la souris sera sur la fenêtre de notre application:
 
 {{{
 program
