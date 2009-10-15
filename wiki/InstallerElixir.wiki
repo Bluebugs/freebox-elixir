@@ -2,9 +2,9 @@
 
 = Introduction =
 
-Le seul environnement de développement actuellement officiellement supporté est Linux. Mais un port Windows ne devrait pas poser trop de difficulté puisque les EFL et SpiderMonkey fonctionne sous Windows.
+Le seul environnement de développement actuellement officiellement supporté est Linux. Mais un port Windows ne devrait pas poser trop de difficultés puisque les EFL et SpiderMonkey fonctionnent sous Windows.
 
-= Depuis les paquets sources =
+= Depuis les paquets source =
 
 Cette partie du tutorial décrit le processus d'installation depuis le dernier snapshot des EFL et d'Elixir.
 
@@ -21,43 +21,43 @@ Il vous faudra installer les paquets de developpement des bibliothèques suivant
  * lua
  * libnspr
 
-Il vous faudra aussi récuperer les derniers snapshot des [http://download.enlightenment.org/snapshots/LATEST/ EFL], de [http://www.mozilla.org/js/spidermonkey/ SpiderMonkey] et de Elixir.
+Il vous faudra aussi récupérer les derniers snapshots des [http://download.enlightenment.org/snapshots/LATEST/ EFL], de [http://www.mozilla.org/js/spidermonkey/ SpiderMonkey] et d'Elixir.
 
 == Compilation ==
 
 Ensuite, dans l'ordre suivant :
- * eina
- * eet
- * evas
- * ecore
- * embryo
- * edje
+ * Eina
+ * Eet
+ * Evas
+ * Ecore
+ * Embryo
+ * Edje
 
-Il va falloir construire les differentes bibliothèques comme suit.
- # Décompresser les différents paquets sources.
- # Aller dans le répertoire racine du paquet décompressé.
- # Exécuter
+Il va falloir construire les différentes bibliothèques comme suit:
+ # Décompressez les différents paquets source.
+ # Allez dans le répertoire racine du paquet décompressé.
+ # Exécutez
 {{{
  ./configure
 }}}
- # Vérifier qu'il a bien trouvé les dépendences
+ # Vérifiez qu'il a bien trouvé les dépendances
  # Exécuter
 {{{
 make
 }}}
- # Installé le tout avec
+ # Installez le tout avec
 {{{
 sudo make install
 }}}
 
-Maintenant que les EFL sont installe passont a SpiderMonkey. Il se peut que vous SpiderMonkey soit deja installé (C'est la bibliothèque JavaScript de Firefox tout de même), auquel car le répertoire /usr/include/mozjs/ doit être rempli de divers headers.
+Maintenant que les EFL sont installées, passons à SpiderMonkey. Il se peut que SpiderMonkey soit deja installé (C'est la bibliothèque JavaScript de Firefox tout de même), auquel cas le répertoire /usr/include/mozjs/ doit être rempli de divers headers.
 
-Si ce n'est pas le cas, il faut donc compiler et installer [https://developer.mozilla.org/en/Building_only_SpiderMonkey SpiderMonkey].
+Si ce n'est pas le cas, il faut donc compiler et installer [https://developer.mozilla.org/en/Building_only_SpiderMonkey SpiderMonkey] :
 
- # Décompresser la dernière version de SpiderMonkey (la version utilisé pour ce tutorial est la 1.8.0-RC1).
+ # Décompressez la dernière version de SpiderMonkey (la version utilisé pour ce tutorial est la 1.8.0-RC1).
  # Allez dans le sous repertoire js/src.
- # Exécuter {{{ make JS_THREADSAFE=1 JS_DIST=/usr -f Makefile.ref }}} (Il faut vous assurer avant que vous avez bien un répertoire `/usr/include/nspr/` installe par la libnspr).
- # Exécuter ensuite la liste de commande suivante en étant root :
+ # Exécutez {{{ make JS_THREADSAFE=1 JS_DIST=/usr -f Makefile.ref }}} ( Assurez-vous avant de bien disposer d'un répertoire `/usr/include/nspr/` installé par la libnspr).
+ # Exécutez ensuite la liste de commande suivante en étant root :
 {{{
 mkdir /usr/include/smjs
 cp *.h /usr/include/smjs
@@ -66,12 +66,12 @@ cp Linux_All_DBG.OBJ/libjs.so /usr/lib/libsmjs.so
 cp Linux_All_DBG.OBJ/jsautocfg.h /usr/include/smjs/jsautocfg.h
 }}}
 
-Cette procédure évite que vous n'ecrasiez une futur installation de SpiderMonkey.
+Cette procédure évite que vous n'écrasiez une future installation de SpiderMonkey.
 
 Maintenant que SpiderMonkey est installé, nous pouvons passer à Elixir.
 
 Le processus est plutot simple :
- # Décompresser le paquet contenant les sources d'elixir.
+ # Décompressez le paquet contenant les sources d'Elixir.
  # Exécuter :
 {{{
 ./configure
@@ -79,4 +79,4 @@ make
 sudo make install
 }}}
 
-Et voila, vous pouvez maintenant tester Elixir.
+Et voila ! Vous pouvez maintenant tester Elixir.
