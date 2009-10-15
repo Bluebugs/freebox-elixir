@@ -125,7 +125,7 @@ parts
 }
 }}}
 
-En une trentaine de lignes on déclare donc les 30 carrés + les 30 images clipés. Ca nous évite donc beaucoup de copier/coller et ca nous économise aussi pas mal de temps ! L’appel à la macro est très simple, les paramètres entre guillemets sont des chaines de caractères et les autres des valeurs numériques (les valeurs à rallonge avec 6/7 chiffres après la virgule sont dû a la division de 1.0 / 6, nous voulons 5 carrés en hauteur * 6 carrés en largeur).
+En une trentaine de lignes on déclare donc les 30 carrés + les 30 images clipés. Ca nous évite donc beaucoup de copier/coller et ca nous économise aussi pas mal de temps ! L’appel à la macro est très simple, les paramètres entre guillemets sont des chaînes de caractères et les autres des valeurs numériques (les valeurs à rallonge avec 6/7 chiffres après la virgule sont dûs a la division de 1.0 / 6, nous voulons 5 carrés en hauteur * 6 carrés en largeur).
 
 Ne reste plus qu’à animer le tout avec des morceaux de programmes. Même principe qu’avant, nous allons utiliser une macro pour définir les 30 programmes des carrés.
 
