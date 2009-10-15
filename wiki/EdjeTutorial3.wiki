@@ -2,7 +2,7 @@
 
 = Note =
 
-Merci a Raoul Hecky pour ce tutorial initialement publié sur son [http://blog.calaos.fr blog].
+Merci a Raoul Hecky pour ce tutoriel initialement publié sur son [http://blog.calaos.fr blog].
 
 = Application Flickr ==
 
