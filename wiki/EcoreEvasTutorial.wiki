@@ -2,7 +2,7 @@
 
 = Introduction =
 
-Ce petit tutoriel va vous faire découvrir quelques spécificités du bindings _Javascript_ et comment utiliser _Ecore`_`Evas_ pour créer une fenêtre graphique, de _Evas_ pour manipuler des objets, gérer les évenements clavier et _Ecore_ pour la gestion du temps et d'une animation.
+Ce petit tutoriel va vous faire découvrir quelques spécificités du bindings _Javascript_ et comment utiliser _Ecore`_`Evas_ pour créer une fenêtre graphique, _Evas_ pour manipuler des objets, gérer les évenements clavier et _Ecore_ pour la gestion du temps et d'une animation.
 
 = Elixir =
 
