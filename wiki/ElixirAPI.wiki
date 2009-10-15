@@ -2,7 +2,7 @@
 
 = Introduction =
 
-Elixir fournit une suite de binding JavaScript pour les EFL. Mais celui-ci n'expose en rien un DOM de navigateur web. Il y a donc une petite API spécifique à Elixir et quelques règles quand à la définition des API des bindings exposés.
+Elixir fournit une suite de binding JavaScript pour les EFL. Mais celui-ci n'expose en rien un DOM de navigateur web. Il y a donc une petite API spécifique à Elixir et quelques règles quant à la définition des API des bindings exposés.
 
 = API Elixir =
 
