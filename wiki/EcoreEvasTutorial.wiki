@@ -69,7 +69,7 @@ Par défault un canvas _Evas_ n'a pas de fond (et donc une fenètre peut être c
 
 Comme _Evas_ est un canvas statefull, il suffit de créer un objet rectangle et de changer ses propriétés. Les objets étant empilés au fur et à mesure sur le canvas, le premier créé se trouve forcément au fond. Nous avons donc bien créé une fenètre avec un fond noir opaque. `evas_object_color_set` prend en paramètre un _Evas`_`Object_ et une couleur au format RGBA, c'est à dire Rouge, Vert, Bleu et Alpha avec des valeurs sur 8 bits (entre 0 et 255). Donc le noir opaque, c'est bien " *0, 0, 0, 255* ".
 
-Et comme par defaut, un objet n'est pas visible, il ne faut pas oublier de dire au canvas de l'afficher.
+Et comme par défaut, un objet n'est pas visible, il ne faut pas oublier de dire au canvas de l'afficher.
 
 Maintenant que nous avons notre fond d'écran, rajoutons un autre rectangle qui lui sera animé.
 
@@ -81,7 +81,7 @@ Maintenant que nous avons notre fond d'écran, rajoutons un autre rectangle qui 
    evas_object_show(obj);
 }}}
 
-Ce rectangle est légèrement transparent, comme ca à titre d'exercice si vous en ajoutez plusieurs vous pourrez les voir se superposer.
+Ce rectangle est légèrement transparent, comme ça à titre d'exercice si vous en ajoutez plusieurs vous pourrez les voir se superposer.
 
 C'est le moment de créer l'animator qui sera chargé de faire bouger ce rectangle. Pour cela nous allons juste faire :
 
@@ -89,7 +89,7 @@ C'est le moment de créer l'animator qui sera chargé de faire bouger ce rectang
    ecore_animator_add(anim_cb, obj);
 }}}
 
-_anim`_`cb_ est la fonction qui sera appelée tous les 1/20s par ecore. C'est plutot simple et nous verrons après ce que nous mettrons comme code dans cette fonction. Pour l'instant nous allons finir de créer notre fenètre par :
+_anim`_`cb_ est la fonction qui sera appelée tous les 1/20s par _Ecore_. C'est plutot simple et nous verrons après ce que nous mettrons comme code dans cette fonction. Pour l'instant nous allons finir de créer notre fenètre par :
 
 {{{
    ecore_evas_show(ee);
@@ -97,13 +97,13 @@ _anim`_`cb_ est la fonction qui sera appelée tous les 1/20s par ecore. C'est pl
 
 = Boucle principale et fin du programme =
 
-Maintenant que notre fenètre est créée, nous pouvons démarrer la boucle principale d'ecore. C'est elle qui va déclencher l'appel des bonnes fonctions au fur et à mesure que le temps passe. Cela veut aussi dire que lorsque cette fonction finit de s'exécuter, votre programme a fini.
+Maintenant que notre fenètre est créée, nous pouvons démarrer la boucle principale d'_Ecore_. C'est elle qui va déclencher l'appel des bonnes fonctions au fur et à mesure que le temps passe. Cela veut aussi dire que lorsque cette fonction finit de s'exécuter, votre programme a fini.
 
 {{{
    ecore_main_loop_begin();
 }}}
 
-Donc maintenant que notre programme a fini, nous pouvons faire le ménage avant de partir. Détruisons d'abord les objets créé.
+Donc maintenant que notre programme a fini, nous pouvons faire le ménage avant de partir. Détruisons d'abord les objets créés.
 
 {{{
    evas_object_del(obj);
