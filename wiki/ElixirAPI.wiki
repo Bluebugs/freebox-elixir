@@ -39,4 +39,4 @@ Elixir fournit actuellement les modules suivants :
  * [http://www.libsdl.org/projects/SDL_mixer/docs/index.html mix] (aka: libSDL_mixer)
  * [http://www.sqlite.org/docs.html sqlite]
 
-Tous ces modules suivent l'API C correspondante à l'exception de fonction comme [http://docs.enlightenment.org/auto/evas/group__Evas__Object__Group.html#ga5fa60c701af13dac5dd31071167309d2 _evas`_`object`_`geometry`_`get_] qui retourne en JavaScript un objet avec tous les champs que la fonction peut récupéré.
+Tous ces modules suivent l'API C correspondante à l'exception de fonction comme [http://docs.enlightenment.org/auto/evas/group__Evas__Object__Group.html#ga5fa60c701af13dac5dd31071167309d2 _evas`_`object`_`geometry`_`get_] qui retourne en JavaScript un objet avec tous les champs que la fonction peut récupérer.
