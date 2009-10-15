@@ -1,0 +1,42 @@
+#summary Présentation des spécificités de l'API d'Elixir
+
+= Introduction =
+
+Elixir fournit une suite de binding JavaScript pour les EFL. Mais celui-ci n'expose en rien un DOM de navigateur web. Il y a donc une petite API spécifique à Elixir et quelques règles quand à la définition des API des bindings exposé.
+
+= API Elixir =
+
+Tout d'abord, Elixir fournit un objet *elx* qui est le seul objet disponible lorsque le Javascript est appelé. Cet objet a les propriétés suivante :
+
+ * `print(...)`: Affiche tous les paramètres sur la ligne de commande.
+ * `sleep(s)`
+Bloque l'application pendant *s* seconde.
+ * `usleep(ms)`: Bloque l'application pendant *ms* micro second.
+ * `usid()`: Retourne une chaine de charactère unique qualifiant le JavaScript en cour d'exécution.
+ * `gcid()`: Retourne une chaine de charactère unique qualifiant tous les JavaScript exécuté depuis le démarrage de Elixir.
+ * `load(m)`: Charge le module *m*.
+ * `unload(m)`: Décharge le module *m*.
+ * `include(fichier, [[section], clef])`: Inclut le *fichier*. Si c'est un fichier _Eet_, la *section* permet de spécifier une alternative à _elixir/main_ et la *clef* permet de le déchiffrer si nécessaire.
+ * `parse(fichier, [[section], clef])`: Permet de générer du texte à partir de n'importe quel document.
+ * `version()`: Retourne la version de elixir.
+ * `gc()`: Force l'exécution du Garbage Collector.
+ * `chdir(d)`: Change le répertoire courant.
+
+= Bindings =
+
+Elixir fournit actuellement les modules suivant :
+
+ * dir
+ * ecore
+ * ecore_con
+ * ecore_evas
+ * ecore_file
+ * ecore_job
+ * edje
+ * eet
+ * evas
+ * file
+ * [http://www.libsdl.org/projects/SDL_mixer/docs/index.html mix] (aka: libSDL_mixer)
+ * [http://www.sqlite.org/docs.html sqlite]
+
+Tous ces modules suivent l'API C correspondante à l'exception de fonction comme [http://docs.enlightenment.org/auto/evas/group__Evas__Object__Group.html#ga5fa60c701af13dac5dd31071167309d2 _evas`_`object`_`geometry`_`get_] qui retourne en JavaScript un objet avec tous les champs que la fonction peut récupéré.
