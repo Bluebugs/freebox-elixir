@@ -91,7 +91,7 @@ Une macro se définit avec la directive `#define` suivi du nom de la macro puis 
 
 Un deuxième élément Edje est ajouté à chaque carré, il s’agit de l’image de fond qui est clipé au carré. Pour cette effet, on aurait très bien pu découper l’image de fond dans The Gimp et ajouter tous ces morceaux d’images dans le projet. Utiliser des clips avec l’image de fond (qui est déjà intégré au projet) permet de limiter la taille du fichier EDJ final et s'avère donc préférable.
 
-Une petite note quant à la notation des macros, il faut ajouter un « *\* » à chaque saut de ligne pour que le préprocesseur sache ou s’arrêter.
+Une petite note quant à la notation des macros, il faut ajouter un « *\* » à chaque saut de ligne pour que le préprocesseur sache où s’arrêter.
 
 Réouvrons notre « _theme.edc_ » et ajoutons l’inclusion de notre belle macro au début du fichier :
 
