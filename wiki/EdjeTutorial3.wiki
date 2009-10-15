@@ -22,7 +22,7 @@ Afin d’agrémenter l’interface d’animations inutiles, on va ajouter un « 
 
 Il ne nous reste plus qu’à découper les différentes parties: le fond, l’overlay, le bouton fullscreen, le bouton suivant et pour finir le logo.
 
-Nous avons maintenans toutes les ressources qu’ils nous faut pour écrire le fichier Edje. Commençons par déclarer les images qui seront utilisées:
+Nous avons maintenant toutes les ressources qu’ils nous faut pour écrire le fichier Edje. Commençons par déclarer les images qui seront utilisées:
 
 {{{
 images
