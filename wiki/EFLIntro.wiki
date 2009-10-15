@@ -17,7 +17,7 @@ Les thèmes peuvent être complètement différents suivant l'aspect regardé. P
 
 Enlightenment a également été un temps intégré à Gnome. Alors que Gnome a progressé depuis et vient maintenant avec son propre gestionnaire de fenêtres (Metacity), le fait est que Enlightenment a été installé sur de nombreux ordinateurs de bureau à l'époque. 
 
-La version 16 reste à ce jour la dernière version stable d'Enlightenment et ses besoins en ressources ont sensiblement peu changé, ce qui semble être un poids lourd des gestionnaires de fenêtres se révèle être très léger.
+La version 16 reste à ce jour la dernière version stable d'Enlightenment et ses besoins en ressources ont sensiblement peu changé. Ce qui semble être un poids lourd des gestionnaires de fenêtres se révèle en fait être très léger.
 
 Alors, pourquoi n'avons-nous pas une nouvelle version d'Enlightenment aujourd'hui? 
 Et pourquoi la version de développement (V17) n'est-elle pas sortie dans une version stable, après tant d'années ?
