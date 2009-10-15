@@ -44,7 +44,7 @@ Une interface se « dessine » dans un fichier source EDC. Il y a le Wiki offici
 //Interface
 collections
 {
-        //On peut définir plusieurs _group_ dans un seul EDJ
+        //On peut définir plusieurs group dans un seul EDJ
         group
         {
                 name: "main"; //nom de l'objet Edje
@@ -116,7 +116,7 @@ part
         {
                 state: "default" 0.0;
                 //par defaut la position/taille est la meme
-                //que le _group_ "main"
+                //que le group "main"
                 visible: 0;
                 color: 255 255 255 0;
         }
