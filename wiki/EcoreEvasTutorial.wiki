@@ -43,7 +43,7 @@ Maintenant créons notre fenêtre :
 
 Nous demandons donc une fenêtre de 720 pixels par 576 avec comme titre " Test " au moteur graphique le plus adapté sur la machine qu'on utilise (premier paramètre a *null*).
 
-Maintenant que nous avons cette fenêtre, nous pouvons commencer à définir quelques paramètre du canvas _Evas_.
+Maintenant que nous avons cette fenêtre, nous pouvons commencer à définir quelques paramètres du canvas _Evas_.
 
 {{{
    var evas = ecore_evas_get(ee);
