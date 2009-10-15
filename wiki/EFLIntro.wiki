@@ -10,7 +10,7 @@ Il se base sur les documents suivants [http://fr.enlightenment.org/wiki/wiki/] e
 
 Retour en 1999: le gestionnaire de fenêtres Enlightenment (version 16), très en avance sur son temps, offre une interface utilisateur très "eye-candies" tout en restant convivial.
 
-Plusieurs effets graphiques (fenêtres coulissantes, animation d'ombrage, et the ripples and waves ) apparaissent comme révolutionnaire. Avec de plus la possibilité de rajouter différents thèmes.
+Plusieurs effets graphiques (fenêtres coulissantes, animation d'ombrage et the ripples and waves ) apparaissent comme révolutionnaire. Avec de plus la possibilité de rajouter différents thèmes.
 
 Alors que la plupart des applications suportant le principe du thème n'autorisent qu'une modification de la couleur des interfaces, Enlightenment permet de tout personnaliser.
 Les thèmes peuvent être complètement différents suivant l'aspect regardé. Plusieurs thèmes ont été tellement complexe que finalement faire des Enlightenment ressemble à différents systèmes (Mac OS Aqua, BeOS).
