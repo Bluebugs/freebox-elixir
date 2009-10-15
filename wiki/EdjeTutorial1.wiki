@@ -104,7 +104,7 @@ L’image *back.png* utilisée ici contient des bords arrondis. La directive bor
 
 Les arguments sont : « _border_: *gauche droite haut bas* ; » en pixels. Dans cet exemple 15 pixels de chaque coté nous suffisent pour que les coins restent intacts.
 
-La deuxième directive importante est *clip`_`to*. Ici, on « _clip_ » l’élément « _back_ » à l’élément « _main`_`part_ ». Cela signifie que « _back_ » est dépendant de l’état de « _main`_`part_ ». Si « _main`_`part_ » est invisible, « _back_ » le sera également. Si « _main`_`part_ » a une transparence de 50%, « _back_ » sera transparent également. De même, « _back_ » ne peut être affiché que dans la zone délimité par « _main`_`part_ ». L’avantage d’avoir une partie principale ou tous les éléments fils sont clippés est de pouvoir agir sur l’état de tous les éléments d’un seul coup. Dans notre exemple, nous ajouterons un bouton sur le fond, pour afficher/cacher le bouton + le fond, il suffira d’agir sur l’état de « _main`_`part_ ».
+La deuxième directive importante est *clip`_`to*. Ici, on « _clip_ » l’élément « _back_ » à l’élément « _main`_`part_ ». Cela signifie que « _back_ » est dépendant de l’état de « _main`_`part_ ». Si « _main`_`part_ » est invisible, « _back_ » le sera également. Si « _main`_`part_ » a une transparence de 50%, « _back_ » sera transparent également. De même, « _back_ » ne peut être affiché que dans la zone délimité par « _main`_`part_ ». L’avantage d’avoir une partie principale ou tous les éléments fils sont clipés est de pouvoir agir sur l’état de tous les éléments d’un seul coup. Dans notre exemple, nous ajouterons un bouton sur le fond, pour afficher/cacher le bouton + le fond, il suffira d’agir sur l’état de « _main`_`part_ ».
 
 {{{
 part
