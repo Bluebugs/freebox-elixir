@@ -57,7 +57,7 @@ On limite ainsi le cache d'image inutilisé a 10Mo, le cache de font a 512Ko et 
 
 = Création d'objet graphique =
 
-Par défault un canvas _Evas_ n'a pas de fond et donc une fenètre peut être complètement transparente. Or pour notre exemple, cela ne nous arrange pas vraiment. Nous allons ajouter un rectangle opaque noir pour faire le fond.
+Par défaut un canvas _Evas_ n'a pas de fond et donc une fenètre peut être complètement transparente. Or pour notre exemple, cela ne nous arrange pas vraiment. Nous allons ajouter un rectangle opaque noir pour faire le fond.
 
 {{{
    obj = evas_object_rectangle_add(evas);
