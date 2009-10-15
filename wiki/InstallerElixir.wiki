@@ -79,4 +79,4 @@ make
 sudo make install
 }}}
 
-Et voila ! Vous pouvez maintenant tester Elixir.
+Et voilà ! Vous pouvez maintenant tester Elixir.
