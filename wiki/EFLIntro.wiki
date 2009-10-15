@@ -24,7 +24,7 @@ Et pourquoi la version de développement (V17) n'est-elle pas sortie dans une ve
 
 La version 17 de Enlightenment est un "desktop shell". L'infrastructure de ce window manager se présente sous la forme de bibliothèques graphiques distinctes appelées "Enlightenment Foundation Libraries"(*EFL* en plus court). Enlightenment est maintenant basé sur ces bibliothèques, qui peuvent également être utilisées pour des applications normales, en dehors du gestionnaire de fenêtres.
 
-Ces bibliothèques qui se devaient d'être efficaces en utilisant aux mieux le matériel quelles que soient les conditions, se sont révélées être tout a fait utilisable pour l'écriture d'applications généraliste. Permettant même d'écrire des applications plus graphique sans avoir besoin d'une machine de dernière génération. Ces bibliothèques arrivant à tirer le meilleur du matériel, elles sont naturellement utilisée dans des projets embarqués avec du matériel beaucoup plus limité que nos PC de bureau.
+Ces bibliothèques qui se devaient d'être efficaces en utilisant aux mieux le matériel quelles que soient les conditions, se sont révélées être tout a fait utilisables pour l'écriture d'applications généraliste. Permettant même d'écrire des applications plus graphique sans avoir besoin d'une machine de dernière génération. Ces bibliothèques arrivant à tirer le meilleur du matériel, elles sont naturellement utilisée dans des projets embarqués avec du matériel beaucoup plus limité que nos PC de bureau.
 
 Ainsi les projets suivant utilisent les EFL :
   * [http://openbossa.indt.org/canola/ Canola] (Nokia N810)
