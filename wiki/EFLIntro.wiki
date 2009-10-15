@@ -47,15 +47,15 @@ Cette bibliothèque n'a donc d'utilité que pour les développeurs C des EFL.
 
 == Eet ==
 
-Cette bibliothèque fournit des *outils de sérialisation des données* nécessaire pour les EFL. Elle permet ainsi de sauvegarder dans un unique fichier des images et des objets qui peuvent être relu quelque soit la plateforme. Elle permet aussi de sérialiser/désérialiser des objets rapidement pour les envoyer sur le réseau.
+Cette bibliothèque fournit des *outils de sérialisation des données* nécessaire pour les EFL. Elle permet ainsi de sauvegarder dans un unique fichier des images et des objets qui peuvent être relus quelle que soit la plateforme. Elle permet aussi de sérialiser/désérialiser des objets rapidement pour les envoyer sur le réseau.
 
-Cette bibliothèque aura principalement son utilité avec Edje (voir ci-dessous) et lors de transfert réseau. Une partie de l'API de Eet est donc disponible dans Elixir pour gérer la sérialisation réseau.
+Cette bibliothèque aura principalement son utilité avec Edje (voir ci-dessous) et lors de transferts réseau. Une partie de l'API de Eet est donc disponible dans Elixir pour gérer la sérialisation réseau.
 
 [http://docs.enlightenment.org/api/eet/html/ Documentation]
 
 == Evas ==
 
-Cette bibliothèque fournit un *canvas state-full*. Elle expose des méthodes pour créer et manipuler des objets graphiques et qui optimise le rendu pour tirer le maximum du matériel à disposition.
+Cette bibliothèque fournit un *canvas state-full*. Elle expose des méthodes pour créer et manipuler des objets graphiques et optimise le rendu pour tirer le maximum du matériel à disposition.
 
 Cette bibliothèque est la base graphique de tout le pipeline de rendu des EFL. Ces API permettent de créer des primitives graphiques (Image, Rectangle, Text, ...) et de les manipuler. Elle s'occupe également du dispatching des events aux bons objets. Etant le coeur graphique des EFL, son API est bien entendu accessible en JavaScript avec quelques légères différences avec l'API C.
 
@@ -63,7 +63,7 @@ Cette bibliothèque est la base graphique de tout le pipeline de rendu des EFL. 
 
 == Ecore ==
 
-Cette bibliothèque gère toute la partie *évenementielle* des EFL avec notament des timers, la gestion du réseau, l'accès aux système de fichiers, mais aussi la création de fenètres.
+Cette bibliothèque gère toute la partie *événementielle* des EFL avec notament des timers, la gestion du réseau, l'accès aux systèmes de fichiers, mais aussi la création de fenètres.
 
 Le binding JavaScript expose partiellement l'API C d'Ecore. Ainsi seuls les timers, la gestion réseau et la gestion de fenètre sont exposés.
 
