@@ -2,19 +2,19 @@
 
 = Note =
 
-Merci a Raoul Hecky pour ce tutorial initialement publié sur son [http://blog.calaos.fr/ blog]. Vous pourrez aussi trouver plus d'information sur Edje [http://docs.enlightenment.org/books/edjebook/edjebook.pdf ici]
+Merci a Raoul Hecky pour ce tutoriel initialement publié sur son [http://blog.calaos.fr/ blog]. Vous pourrez aussi trouver plus d'informations sur Edje [http://docs.enlightenment.org/books/edjebook/edjebook.pdf ici]
 
 = Introduction =
 
-Entrons maintenant dans le coeur des Efls. Voici un petit exemple de réalisation d’un bouton avec des effets plutôt intéressants. J’en profiterai pour expliquer les bases du « _language_ » EDC, ainsi que quelques techniques pour optimiser les interfaces Edje.
+Entrons maintenant dans le coeur des EFLs. Voici un petit exemple de réalisation d’un bouton avec des effets plutôt intéressants. J’en profiterai pour expliquer les bases du « _language_ » EDC, ainsi que quelques techniques pour optimiser les interfaces Edje.
 
 == Structure d’une interface Edje ==
 
-L’écriture d’une interface Edje passe d’abord par l’apprentissage du language EDC qui sera ensuite compilé avec ses images et ses polices en un fichier EDJ illisible pour l’être humain mais utilisable par le moteur Edje. Le fichier EDJ, qui est en fait un fichier au format EET, contient ensuite toute l’interface avec ses images et ses polices. Une interface entière peut alors être stockée uniquement dans un seul fichier. On pourrait avoir, par exemple pour le gestionnaire de fenêtre E17, dans un seul fichier EDJ, le thème graphique des contrôles et des fenêtres ainsi qu’un fond d’écran animé!
+L’écriture d’une interface Edje passe d’abord par l’apprentissage du language EDC qui sera ensuite compilé avec ses images et ses polices en un fichier EDJ illisible pour l’être humain mais utilisable par le moteur Edje. Le fichier EDJ, qui est en fait un fichier au format EET, contient ensuite toute l’interface avec ses images et ses polices. Une interface entière peut alors être stockée dans un seul fichier. On pourrait avoir, par exemple pour le gestionnaire de fenêtre E17, dans un seul fichier EDJ, le thème graphique des contrôles et des fenêtres ainsi qu’un fond d’écran animé!
 
 == Les outils Edje ==
 
-La librairie Edje est accompagnée de ces outils qui permettent de (dé)compiler les fichiers EDJ. Tout d’abord nous avons le compilateur `edje_cc` qui permet de compiler un (ou plusieurs en utilisant l’inclusion que nous verrons par la suite) fichier source EDC. On a ensuite `edje_decc` qui permet de décompiler un fichier EDJ pour retrouver ses sources. Cela veut dire que vous pourrez aller récupérer n’importe quel fichier de thème edj et récupérer les sources. Pour finir, il reste `edje_viewer` qui nous servira à tester notre interface.
+La librairie Edje est accompagnée de ses outils qui permettent de (dé)compiler les fichiers EDJ. Tout d’abord nous avons le compilateur `edje_cc` qui permet de compiler un (ou plusieurs en utilisant l’inclusion que nous verrons par la suite) fichier source EDC. On a ensuite `edje_decc` qui permet de décompiler un fichier EDJ pour retrouver ses sources. Cela veut dire que vous pourrez aller récupérer n’importe quel fichier de thème EDJ et récupérer les sources. Pour finir, il reste `edje_viewer` qui nous servira à tester notre interface.
 
 Pour vous simplifier la vie, un makefile est disponible ici:
 [http://freebox-elixir.googlecode.com/files/Makefile]
@@ -22,7 +22,7 @@ Vous n’avez plus qu’à  le mettre dans le dossier de votre projet, puis pour
 {{{
  raoul@raoul:~$ make
 }}}
-et vous aurez un jolie fichier EDJ. Pour tester vous pourrez faire un simple :
+et vous aurez un joli fichier EDJ. Pour tester vous pourrez faire un simple :
 {{{
  raoul@raoul:~$ make test
 }}}
@@ -30,7 +30,7 @@ Et votre interface sera ouverte avec `edje_viewer`.
 
 == Le premier essai ==
 
-Une interface se « dessine » dans un fichier source edc. Il y a le Wiki officiel de E17 qui contient toutes les références du language, EDC disponible [http://docs.enlightenment.org/api/edje/html/edcref.html ici]. Le format est assez simple, il suffit de définir les éléments de l’interface (Image, rectangle ou texte) et de leur spécifier leurs attributs (position, taille, couleur, etc…). Puis chaque élément peut avoir un ou plusieurs états. Par exemple un état affiché et un autre caché. Nous allons commencer par un exemple simple. On va définir la structure de base de l’interface dans le fichier theme.edc :
+Une interface se « dessine » dans un fichier source EDC. Il y a le Wiki officiel de E17 qui contient toutes les références du language, EDC disponible [http://docs.enlightenment.org/api/edje/html/edcref.html ici]. Le format est assez simple, il suffit de définir les éléments de l’interface (Image, rectangle ou texte) et de leur spécifier leurs attributs (position, taille, couleur, etc…). Puis chaque élément peut avoir un ou plusieurs états. Par exemple un état affiché et un autre caché. Nous allons commencer par un exemple simple. On va définir la structure de base de l’interface dans le fichier theme.edc :
 
 {{{
 /* Les commentaires se font comme en C */
@@ -38,16 +38,16 @@ Une interface se « dessine » dans un fichier source edc. Il y a le Wiki offici
 //on définit le taux de compression dans une constante
 #define FRAME LOSSY 90
 
-//On commence par inclure un autre fichier edc qui contient la définition des images utilisées
+//On commence par inclure un autre fichier EDC qui contient la définition des images utilisées
 #include "images.edc"
 
 //Interface
 collections
 {
-        //On peut définir plusieurs groupes dans un seul EDJ
+        //On peut définir plusieurs _group_ dans un seul EDJ
         group
         {
-                name: "main"; //nom de l'objet edje
+                name: "main"; //nom de l'objet Edje
 
                 //taille min et max de l'objet "main"
                 min: 200 150;
@@ -68,11 +68,11 @@ collections
 }
 }}}
 
-Voila pour la structure de base d’un EDC. Dans une collection on peut avoir plusieurs group, c’est à dire les morceaux d’interface que demande l’application. Pour un fond d’écran E17 par exemple, il faut un groupe qui se nomme « _desktop/background_ ». E17 chargera ensuite ce group et le redimensionnera à la taille du bureau. On peut alors avoir n’importe quel partie (les part) et toutes les animations que l’on voudra dans le fond d’écran. C’est le même principe pour tout les interfaces edje.
+Voilà pour la structure de base d’un EDC. Dans une collection on peut avoir plusieurs _group_, c’est-à-dire les morceaux d’interface que demande l’application. Pour un fond d’écran E17 par exemple, il faut un _group_ qui se nomme « _desktop/background_ ». E17 chargera ensuite ce _group_ et le redimensionnera à la taille du bureau. On peut alors avoir n’importe quelle partie (les part) et toutes les animations que l’on voudra dans le fond d’écran. C’est le même principe pour toutes les interfaces Edje.
 
 == L’élément de fond ==
 
-Dans le fichier inclus « _back.edc_ », on définit notre image de fond de telle sorte qu’il prenne tout l’espace du group:
+Dans le fichier inclus « _back.edc_ », on définit notre image de fond de telle sorte qu’elle prenne tout l’espace du _group_:
 
 {{{
 part
@@ -116,7 +116,7 @@ part
         {
                 state: "default" 0.0;
                 //par defaut la position/taille est la meme
-                //que le groupe "main"
+                //que le _group_ "main"
                 visible: 0;
                 color: 255 255 255 0;
         }
@@ -129,7 +129,7 @@ part
 }
 }}}
 
-Nous avons donc ici un deuxième état avec les propriétés visible à 1 et le canal alpha à 100%. Pour l’état par défaut, le canal de transparence est à 0.
+Nous avons donc ici un deuxième état avec les propriétés visibles à 1 et le canal alpha à 100%. Pour l’état par défaut, le canal de transparence est à 0.
 
 == Animation ! ==
 
@@ -147,7 +147,7 @@ program
 }
 }}}
 
-Ici on réagit au signal envoyé par Edje « _show_ » qui survient quand l’application demande à afficher l’objet edje. L’action réalisée est de mettre le « _main`_`part_ » à l’état « _visible_ » avec une transition de décélération et le tout en 0.5 secondes.
+Ici on réagit au signal envoyé par Edje « _show_ » qui survient quand l’application demande à afficher l’objet Edje. L’action réalisée est de mettre le « _main`_`part_ » à l’état « _visible_ » avec une transition de décélération et le tout en 0.5 secondes.
 
 Ca y est! Nous avons notre première animation qui fonctionne. Un petit make et make test vous permettra de voir l’image de fond qui s’affichera avec un bel effet de fondu, et vous pourrez également le redimensionner pour voir l’effet de la directive border évoqué avant.
 
@@ -170,7 +170,7 @@ parts
 
 }}}
 
-A noter qu’il faut faire attention à l’ordre de définition des éléments. Si le bouton était définit avant le fond, il serait recouvert par celui-ci.
+A noter qu’il faut faire attention à l’ordre de définition des éléments. Si le bouton était défini avant le fond, il serait recouvert par celui-ci.
 
 La définition du bouton se fait de la même manière que le fond:
 
@@ -237,6 +237,6 @@ program
 
 Dans ce programme, on va d’abord attendre 0.5 secondes avant d’exécuter le programme (directive « _in_ »).
 
-Nous avons maintenant un jolie bouton qui s’affiche juste après le fond. Malheureusement, le bouton ne réagit pas à la souris. En effet, pour avoir de l’animation lors du passage de la souris ou du click, il faut encore écrire les programmes correspondants. En utilisant le même principe qu’avant, nous pourrons écrire des programme réagissant aux signaux d’Edje nous donnera lors des actions de la souris. Il faut pour cela mettre la propriété « _mouse`_`events_ » à 1, sans quoi on ne recevra pas les signaux.
+Nous avons maintenant un joli bouton qui s’affiche juste après le fond. Malheureusement, le bouton ne réagit pas à la souris. En effet, pour avoir de l’animation lors du passage de la souris ou du clic, il faut encore écrire les programmes correspondants. En utilisant le même principe qu’avant, nous pourrons écrire des programmes réagissant aux signaux qu’Edje nous donnera lors des actions de la souris. Il faut pour cela mettre la propriété « _mouse`_`events_ » à 1, sans quoi on ne recevra pas les signaux.
 
-En utilisant tout ces principes de base, on peut faire un bouton réagissant à la souris avec des animations relativement poussés. Vous pouvez avoir un aperçu dans la vidéo ci-dessous. Vous pouvez également voir les sources du tutoriel [http://code.google.com/p/freebox-elixir/source/browse/#svn/trunk/exemples/edje/tutorial_01 ici] et une vidéo [http://freebox-elixir.googlecode.com/files/edje_tuto1.flv la]
+En utilisant tout ces principes de base, on peut faire un bouton réagissant à la souris avec des animations relativement poussées. Vous pouvez avoir un aperçu dans la vidéo ci-dessous. Vous pouvez également voir les sources du tutoriel [http://code.google.com/p/freebox-elixir/source/browse/#svn/trunk/exemples/edje/tutorial_01 ici] et une vidéo [http://freebox-elixir.googlecode.com/files/edje_tuto1.flv la]
