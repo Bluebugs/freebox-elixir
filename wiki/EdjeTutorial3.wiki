@@ -6,23 +6,23 @@ Merci a Raoul Hecky pour ce tutoriel initialement publié sur son [http://blog.c
 
 = Application Flickr ==
 
-Dans la petite série d’articles sur les Efl, voici la première partie qui explique la création d’une petite application utilisant les EFL. Il s’agit d’une simple interface qui va permettre d’afficher des photos en provenance d'un site web de Photo et les faire défiler sous forme de slideshow. On donnera aussi la possibilité à l’utilisateur d’interagir avec l’interface et mettre la photo en plein écran ou encore passer à l’image suivante. Ce tutorial se concentrera sur le design de l’interface grâce à Edje.
+Dans la petite série d’articles sur les EFL, voici la première partie qui explique la création d’une petite application utilisant les EFL. Il s’agit d’une simple interface qui va permettre d’afficher des photos en provenance d'un site web et les faire défiler sous forme de slideshow. On donnera aussi la possibilité à l’utilisateur d’interagir avec l’interface et de mettre la photo en plein écran ou encore passer à l’image suivante. Ce tutoriel se concentrera sur le design de l’interface grâce à Edje.
 
 Afin de créer notre petite interface, nous allons d’abord créer les différentes images, pour cela on pourra se servir d’un logiciel tels que Gimp ou Inkscape. Dans le cas présent j’ai utilisé Inkscape pour faire un fond du type « _photo polaroid_ »:
 
 [http://freebox-elixir.googlecode.com/svn/trunk/exemples/edje/tutorial_03/images/picture_back.png]
 
-Cela nous donne le fond de l’interface. Pour les controles (plein écran et Image suivante) on va ajouter un petit « _overlay_ » en bas de l’image qui sera affiché lorsque la souris passe sur la photo.
+Cela nous donne le fond de l’interface. Pour les contrôles (plein écran et Image suivante) on va ajouter un petit « _overlay_ » en bas de l’image qui s'affichera lorsque la souris passe sur la photo.
 
 [http://freebox-elixir.googlecode.com/svn/trunk/exemples/edje/tutorial_03/images/logo.png]
 
-Afin d’agrémenter l’interface d’animations inutiles, on va ajouter un « _splash screen_ » lors du démarrage de l’application. Ce sera un logo qui s’affichera au milieu de l’interface et disparaitra progressivement.
+Afin d’agrémenter l’interface d’animations inutiles, on va ajouter un « _splash screen_ » lors du démarrage de l’application. Ce sera un logo qui s’affichera au milieu de l’interface et disparaîtra progressivement.
 
 [http://freebox-elixir.googlecode.com/svn/trunk/exemples/edje/tutorial_03/images/back03.png]
 
 Il ne nous reste plus qu’à découper les différentes parties: le fond, l’overlay, le bouton fullscreen, le bouton suivant et pour finir le logo.
 
-Nous avons maintenans toutes les ressources qu’ils nous faut pour écrire le fichier edje. Commençons par déclarer les images qui seront utilisées:
+Nous avons maintenans toutes les ressources qu’ils nous faut pour écrire le fichier Edje. Commençons par déclarer les images qui seront utilisées:
 
 {{{
 images
@@ -36,7 +36,7 @@ images
 }
 }}}
 
-Puis le group principal chargé par l’application. On donnera une taille minimum et maximum à ce group:
+Puis le _group_ principal chargé par l’application. On donnera une taille minimum et maximum à ce _group_:
 
 {{{
 group
@@ -61,7 +61,7 @@ part
 }
 }}}
 
-On definit également le paramètre border de l’image, pour permettre au fond de se redimensionner mais en gardant les bords intacts.
+On définit également le paramètre border de l’image, pour permettre au fond de se redimensionner mais en gardant les bords intacts.
 On continue par ajouter le conteneur de type *SWALLOW* qui servira a accueillir la photo elle même:
 
 {{{
@@ -79,7 +79,7 @@ part
 }
 }}}
 
-Nous pouvons passer maintenant au texte qui affichera le titre de la photo ainsi que la partie des controles.
+Nous pouvons passer maintenant au texte qui affichera le titre de la photo ainsi que la partie des contrôles.
 
 {{{
 part
@@ -98,7 +98,7 @@ part
 }
 }}}
 
-Le texte utilisera la police définit au debut du fichier et sera aligné horizontalement sur la gauche, et centré verticalement (_align_: *0.0 0.5*;) Pour les controles, nous allons utiliser un clip qui servira a afficher/cacher la barre de controles. Ce rectangle ne sera pas directement visible, mais les parties clippé a ce rectangle prendront les memes propriétés de couleur. On donne donc 2 etats a ce rectangle et on s’en servira pour faire un fondu entre l’etat affiché et l’etat caché.
+Le texte utilisera la police définie au début du fichier et sera aligné horizontalement sur la gauche, et centré verticalement (_align_: *0.0 0.5*;) Pour les contrôles, nous allons utiliser un clip qui servira a afficher/cacher la barre de contrôle. Ce rectangle ne sera pas directement visible, mais les parties clippées à ce rectangle prendront les mêmes propriétés de couleur. On donne donc 2 états a ce rectangle et on s’en servira pour faire un fondu entre l’état affiché et l’état caché.
 
 {{{
 part
@@ -136,9 +136,9 @@ part
 }
 }}}
 
-La barre de controles ainsi que les boutons seront clippé par rapport a l’element « _controls_ » (_clip`_`to_: « _controls_ »;). La meme technique sera utilisé pour l’affichage du splash screen (le logo).
+La barre de contrôle ainsi que les boutons seront clippés par rapport a l’élément « _controls_ » (_clip`_`to_: « _controls_ »;). La même technique sera utilisée pour l’affichage du splash screen (le logo).
 
-Nous avons maintenant un design d’interface definit dans notre edc. Il reste maintenant la partie animation et les différents « _programs_ » qui donneront de la vie. Nous allons commencer par afficher le splash screen au demarrage de l’application. Pour cela rien de plus simple, il faut mettre le clip du logo dans l’etat visible avec une transition et le tout s’execute au moment ou l’edje est affiché (evennement show):
+Nous avons maintenant un design d’interface défini dans notre edc. Il reste maintenant la partie animation et les différents « _programs_ » qui donneront de la vie. Nous allons commencer par afficher le splash screen au démarrage de l’application. Pour cela rien de plus simple, il faut mettre le clip du logo dans l’état visible avec une transition et le tout s’exécute au moment ou l’Edje est affiché (evennement show):
 
 {{{
 program
@@ -153,7 +153,7 @@ program
 }
 }}}
 
-Puis pour cacher le splash apres qu’il ai été affiché, on lance after: « _hide`_`splash_ »; qui va remettre le logo dans son etat « _default_ » initial, donc invisible. On utilisera une technique similaire pour afficher/cacher la barre de controles, a la difference pres que la barre s’affichera lorsque la souris sera sur la fenetre de notre application:
+Puis pour cacher le splash apres qu’il ait été affiché, on lance after: « _hide`_`splash_ »; qui va remettre le logo dans son état « _default_ » initial, donc invisible. On utilisera une technique similaire pour afficher/cacher la barre de contrôle, à la difference près que la barre s’affichera lorsque la souris sera sur la fenêtre de notre application:
 
 {{{
 program
@@ -176,7 +176,7 @@ program
 }
 }}}
 
-L’evenement « _mouse,in_ » et « _mouse,out_ » seront utilisés pour determiner si la souris entre ou sort de l’interface. Il nous reste encore a envoyer les signaux à l’application lorsque l’on clique sur les boutons fullscreen et suivant.
+Les événements « _mouse,in_ » et « _mouse,out_ » seront utilisés pour déterminer si la souris entre ou sort de l’interface. Il nous reste encore à envoyer les signaux à l’application lorsque l’on clique sur les boutons fullscreen et suivant.
 
 {{{
 program
@@ -188,6 +188,6 @@ program
 }
 }}}
 
-Pour le bouton plein ecran on enverra le signal « _fullscreen_ » avec comme source « _controls_ ». L’application devra réagir à ce signal, nous laisserons ca à un prochain article.
+Pour le bouton plein écran on enverra le signal « _fullscreen_ » avec comme source « _controls_ ». L’application devra réagir à ce signal, nous détaillerons cela dans un prochain article.
 
-Nous voila donc avec une interface fonctionnelle et prête a etre intégré dans l’application qui reste encore a ecrire. Les sources edje complete sont disponible [http://code.google.com/p/freebox-elixir/source/browse/trunk/exemples/edje/tutorial_03/ ici].
+Nous voila donc avec une interface fonctionnelle et prête à etre intégré dans l’application qui reste encore a écrire. Les sources Edje complètes sont disponibles [http://code.google.com/p/freebox-elixir/source/browse/trunk/exemples/edje/tutorial_03/ ici].
