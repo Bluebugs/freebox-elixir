@@ -10,21 +10,21 @@ Il se base sur les documents suivants [http://fr.enlightenment.org/wiki/wiki/] e
 
 Retour en 1999: le gestionnaire de fenêtres Enlightenment (version 16), très en avance sur son temps, offre une interface utilisateur très "eye-candies" tout en restant convivial.
 
-Plusieurs effets graphiques (fenêtres coulissantes, animation d'ombrage et the ripples and waves ) apparaissent comme révolutionnaire. Avec, de plus, la possibilité de rajouter différents thèmes.
+Plusieurs effets graphiques (fenêtres coulissantes, animation d'ombrage et the ripples and waves) apparaissent comme révolutionnaires. Avec, de plus, la possibilité de rajouter différents thèmes.
 
 Alors que la plupart des applications supportant le principe du thème n'autorisent qu'une modification de la couleur des interfaces, Enlightenment permet de tout personnaliser.
-Les thèmes peuvent être complètement différents suivant l'aspect regardé. Plusieurs thèmes sont tellement complexes que finalement faire des Enlightenment ressemble à différents systèmes (Mac OS Aqua, BeOS).
+Les thèmes peuvent être complètement différents suivant l'aspect regardé.
 
 Enlightenment a également été un temps intégré à Gnome. Gnome a progressé depuis et vient maintenant avec son propre gestionnaire de fenêtres (Metacity), mais le fait est que Enlightenment a été installé sur de nombreux ordinateurs de bureau à l'époque. 
 
 La version 16 reste à ce jour la dernière version stable d'Enlightenment et ses besoins en ressources ont sensiblement peu changé. Ce qui semble être un poids lourd des gestionnaires de fenêtres se révèle en fait être très léger.
 
-Alors, pourquoi n'avons-nous pas une nouvelle version d'Enlightenment aujourd'hui? 
+Alors, pourquoi n'avons-nous pas une nouvelle version d'Enlightenment aujourd'hui ? 
 Et pourquoi la version de développement (V17) n'est-elle pas sortie dans une version stable, après tant d'années ?
 
-La version 17 de Enlightenment est un "desktop shell". L'infrastructure de ce window manager se présente sous la forme de bibliothèques graphiques distinctes appelées "Enlightenment Foundation Libraries"(*EFL* en plus court). Enlightenment est maintenant basé sur ces bibliothèques, qui peuvent également être utilisées pour des applications normales, en dehors du gestionnaire de fenêtres.
+La version 17 de Enlightenment est un "desktop shell". L'infrastructure de ce "window manager" se présente sous la forme de bibliothèques graphiques distinctes appelées "Enlightenment Foundation Libraries"(*EFL* en plus court). Enlightenment est maintenant basé sur ces bibliothèques, qui peuvent également être utilisées pour des applications normales, en dehors du gestionnaire de fenêtres.
 
-Ces bibliothèques qui se devaient d'être efficaces en utilisant aux mieux le matériel quelles que soient les conditions, se sont révélées être tout a fait utilisables pour l'écriture d'applications généraliste. Permettant même d'écrire des applications plus graphique sans avoir besoin d'une machine de dernière génération. Ces bibliothèques arrivant à tirer le meilleur du matériel, elles sont naturellement utilisée dans des projets embarqués avec du matériel beaucoup plus limité que nos PC de bureau.
+Ces bibliothèques qui se devaient d'être efficaces en utilisant au mieux le matériel quelles que soient les conditions, se sont révélées être tout a fait utilisables pour l'écriture d'applications généralistes et même graphiques sans avoir besoin d'une machine de dernière génération. Ces bibliothèques arrivant à tirer le meilleur du matériel, elles sont naturellement utilisées dans des projets embarqués ayant du matériel beaucoup plus limité que nos PC de bureau.
 
 Ainsi les projets suivant utilisent les EFL :
   * [http://openbossa.indt.org/canola/ Canola] (Nokia N810)
@@ -47,7 +47,7 @@ Cette bibliothèque n'a donc d'utilité que pour les développeurs C des EFL.
 
 == Eet ==
 
-Cette bibliothèque fournit des *outils de sérialisation des données* nécessaire pour les EFL. Elle permet ainsi de sauvegarder dans un unique fichier des images et des objets qui peuvent être relus quelle que soit la plateforme. Elle permet aussi de sérialiser/désérialiser des objets rapidement pour les envoyer sur le réseau.
+Cette bibliothèque fournit des *outils de sérialisation de données* nécessaires pour les EFL. Elle permet ainsi de sauvegarder dans un unique fichier des images et des objets qui peuvent être relus quelle que soit la plateforme. Elle permet aussi de sérialiser/désérialiser des objets rapidement pour les envoyer sur le réseau.
 
 Cette bibliothèque aura principalement son utilité avec Edje (voir ci-dessous) et lors de transferts réseau. Une partie de l'API de Eet est donc disponible dans Elixir pour gérer la sérialisation réseau.
 
@@ -55,22 +55,22 @@ Cette bibliothèque aura principalement son utilité avec Edje (voir ci-dessous)
 
 == Evas ==
 
-Cette bibliothèque fournit un *canvas state-full*. Elle expose des méthodes pour créer et manipuler des objets graphiques et optimise le rendu pour tirer le maximum du matériel à disposition.
+Cette bibliothèque fournit un *canvas stateful*. Elle expose des méthodes pour créer et manipuler des objets graphiques et optimise le rendu pour tirer le maximum du matériel à disposition.
 
-Cette bibliothèque est la base graphique de tout le pipeline de rendu des EFL. Ces API permettent de créer des primitives graphiques (Image, Rectangle, Text, ...) et de les manipuler. Elle s'occupe également du dispatching des events aux bons objets. Etant le coeur graphique des EFL, son API est bien entendu accessible en JavaScript avec quelques légères différences avec l'API C.
+Cette bibliothèque est la base graphique de tout le pipeline de rendu des EFL. Ces API permettent de créer des primitives graphiques (Image, Rectangle, Text, ...) et de les manipuler. Elle s'occupe également du dispatching des événements aux bons objets. Etant le coeur graphique des EFL, son API est bien entendu accessible en JavaScript avec quelques légères différences par rapport à l'API C.
 
 [http://docs.enlightenment.org/api/evas/html/ Documentation]
 
 == Ecore ==
 
-Cette bibliothèque gère toute la partie *événementielle* des EFL avec notament des timers, la gestion du réseau, l'accès aux systèmes de fichiers, mais aussi la création de fenètres.
+Cette bibliothèque gère toute la partie *événementielle* des EFL avec notamment des timers, la gestion du réseau, l'accès aux systèmes de fichiers, mais aussi la création de fenêtres.
 
-Le binding JavaScript expose partiellement l'API C d'Ecore. Ainsi seuls les timers, la gestion réseau et la gestion de fenètre sont exposés.
+Le binding JavaScript expose partiellement l'API C d'Ecore. Ainsi seuls les timers, la gestion réseau et la gestion de fenêtres sont exposés.
 
 [http://docs.enlightenment.org/api/ecore/html/ Documentation]
 
 == Edje ==
 
-C'est LA bibliothèque des EFLs. Elle permet de définir des interfaces utilisateurs complètement séparées du code des développeurs. Le graphiste peut alors définir son interface sans être lié aux contraintes du développeur et vice et versa. C'est ici que sont définis les effets graphiques/animations à effectuer. Edje utilise Eet pour stocker ses données, Evas pour manipuler les objets définis par les graphistes et Ecore pour gérer le temps.
+C'est LA bibliothèque des EFLs. Elle permet de définir des interfaces utilisateurs complètement séparées du code des développeurs. Le graphiste peut alors définir son interface sans être lié aux contraintes du développeur et vice versa. C'est ici que sont définis les effets graphiques/animations à effectuer. Edje utilise Eet pour stocker ses données, Evas pour manipuler les objets définis par les graphistes et Ecore pour gérer le temps.
 
 Le binding JavaScript se veut aussi complet que possible étant donné l'importance de cette bibliothèque dans tout projet utilisant les EFL, les différences avec l'API C restant mineures.
