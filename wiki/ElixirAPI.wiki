@@ -10,9 +10,9 @@ Tout d'abord, Elixir fournit un objet *elx* qui est le seul objet disponible lor
 
  * `print(...)`: Affiche tous les paramètres sur la ligne de commande.
  * `sleep(s)`: Bloque l'application pendant *s* secondes.
- * `usleep(ms)`: Bloque l'application pendant *ms* micro-secondes.
- * `usid()`: Retourne une chaine de caractères unique qualifiant le JavaScript en cours d'exécution.
- * `gcid()`: Retourne une chaine de caractères unique qualifiant tous les JavaScript exécutés depuis le démarrage d'Elixir.
+ * `usleep(ms)`: Bloque l'application pendant *ms* microsecondes.
+ * `usid()`: Retourne une chaîne de caractères unique qualifiant le JavaScript en cours d'exécution.
+ * `gcid()`: Retourne une chaîne de caractères unique qualifiant tous les JavaScript exécutés depuis le démarrage d'Elixir.
  * `load(m)`: Charge le module *m*.
  * `unload(m)`: Décharge le module *m*.
  * `include(fichier, [[section], clef])`: Inclut le *fichier*. Si c'est un fichier _Eet_, la *section* permet de spécifier une alternative à _elixir/main_ et la *clef* permet de le déchiffrer si nécessaire.
