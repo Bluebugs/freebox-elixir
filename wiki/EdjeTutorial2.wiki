@@ -10,7 +10,7 @@ Pour continuer dans la lancée des billets sur les EFL, nous allons voir comment
 
 Le but de ce tutoriel est de montrer l’avantage majeur de l’utilisation des macros. En effet, Edje utilise, lors du processus de compilation, le préprocesseur C de GNU GCC et permet d’utiliser les directives `#define` et `#include`.
 
-L’animation que nous allons rajouter est assez simple, il s’agit de diviser l’image de fond en une trentaine de petits carrés qui s’afficheront l’un après l’autre pour donner l’effet d’une image qui se construit. On va commencer par rajouter un fichier pour les macros dans notre projet précédent et y insérer ce code:
+L’animation que nous allons rajouter est assez simple, il s’agit de diviser l’image de fond en une trentaine de petits carrés qui s’afficheront l’un après l’autre pour donner l’effet d’une image qui se construit. On va commencer par rajouter un fichier pour les macros dans notre projet précédent et y insérer ce code :
 
 {{{
 #define ANIM_PART(part_name, from_color_R, from_color_V, from_color_B, hide_xpos, hide_ypos, rel1_xpos, rel1_ypos, rel2_xpos, rel2_ypos) \
@@ -151,7 +151,7 @@ program \
 
 L’animation se passe en 2 temps, on affiche d’abord l’état « _big_ » puis enfin l’état « _visible_ » ou le carré d’images de fond sera affiché. A noter qu’on utilise un paramètre pause_random qui va permettre de retarder le démarrage des programmes d’une valeur aléatoire de temps pour améliorer l’effet final de l’animation.
 
-Il nous reste encore à ajouter les déclarations des programmes dans le fichier « _back`_`prog.edc_ » et les lancer lors de l’affichage grâce à la directive after:
+Il nous reste encore à ajouter les déclarations des programmes dans le fichier « _back`_`prog.edc_ » et les lancer lors de l’affichage grâce à la directive after :
 
 {{{
 program
