@@ -2,7 +2,7 @@
 
 = Introduction =
 
-Actuellement, le seul environnement de développement officiellement supporté est Linux. Mais un port Windows ne devrait pas poser trop de difficultés puisque les EFL et SpiderMonkey fonctionnent sous Windows.
+Actuellement, le seul environnement de développement officiellement supporté est Linux ; mais un port Windows ne devrait pas poser trop de difficultés puisque les EFL et SpiderMonkey fonctionnent sous Windows.
 
 = Depuis les paquets source =
 
@@ -33,7 +33,7 @@ Ensuite, dans l'ordre suivant :
  * Embryo
  * Edje
 
-Il va falloir construire les différentes bibliothèques comme suit:
+Il va falloir construire les différentes bibliothèques comme suit :
  # Décompressez les différents paquets source.
  # Allez dans le répertoire racine du paquet décompressé.
  # Exécutez
@@ -76,7 +76,7 @@ Cette procédure évite que vous n'écrasiez une future installation de SpiderMo
 
 Maintenant que SpiderMonkey est installé, nous pouvons passer à Elixir.
 
-Le processus est plutot simple :
+Le processus est plutôt simple :
  # Décompressez le paquet contenant les sources d'Elixir.
  # Exécuter :
 {{{
