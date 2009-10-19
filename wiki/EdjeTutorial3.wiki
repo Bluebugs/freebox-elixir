@@ -98,7 +98,7 @@ part
 }
 }}}
 
-Le texte utilisera la police définie au début du fichier et sera aligné horizontalement sur la gauche, et centré verticalement (_align_: *0.0 0.5*;) Pour les contrôles, nous allons utiliser un clip qui servira a afficher/cacher la barre de contrôle. Ce rectangle ne sera pas directement visible, mais les parties clippées à ce rectangle prendront les mêmes propriétés de couleur. On donne donc 2 états a ce rectangle et on s’en servira pour faire un fondu entre l’état affiché et l’état caché.
+Le texte utilisera la police définie au début du fichier et sera aligné horizontalement sur la gauche, et centré verticalement (_align_: *0.0 0.5*;) Pour les contrôles, nous allons utiliser un clip qui servira à afficher/cacher la barre de contrôle. Ce rectangle ne sera pas directement visible, mais les parties clippées à ce rectangle prendront les mêmes propriétés de couleur. On donne donc 2 états à ce rectangle et on s’en servira pour faire un fondu entre l’état affiché et l’état caché.
 
 {{{
 part
@@ -138,7 +138,7 @@ part
 
 La barre de contrôle ainsi que les boutons seront clipés par rapport a l’élément « _controls_ » (_clip`_`to_: « _controls_ »;). La même technique sera utilisée pour l’affichage du splash screen (le logo).
 
-Nous avons maintenant un design d’interface défini dans notre edc. Il reste maintenant la partie animation et les différents « _programs_ » qui donneront de la vie. Nous allons commencer par afficher le splash screen au démarrage de l’application. Pour cela rien de plus simple, il faut mettre le clip du logo dans l’état visible avec une transition et le tout s’exécute au moment ou l’Edje est affiché (evennement show):
+Nous avons maintenant un design d’interface défini dans notre edc. Il reste maintenant la partie animation et les différents « _programs_ » qui donneront de la vie. Nous allons commencer par afficher le splash screen au démarrage de l’application. Pour cela rien de plus simple, il faut mettre le clip du logo dans l’état visible avec une transition et le tout s’exécute au moment ou l’Edje est affiché (événement show):
 
 {{{
 program
@@ -153,7 +153,7 @@ program
 }
 }}}
 
-Puis pour cacher le splash après qu’il ait été affiché, on lance after: « _hide`_`splash_ »; qui va remettre le logo dans son état « _default_ » initial, donc invisible. On utilisera une technique similaire pour afficher/cacher la barre de contrôle, à la difference près que la barre s’affichera lorsque la souris sera sur la fenêtre de notre application:
+Puis pour cacher le splash après qu’il ait été affiché, on lance after: « _hide`_`splash_ »; qui va remettre le logo dans son état « _default_ » initial, donc invisible. On utilisera une technique similaire pour afficher/cacher la barre de contrôle, à la différence près que la barre s’affichera lorsque la souris sera sur la fenêtre de notre application :
 
 {{{
 program
