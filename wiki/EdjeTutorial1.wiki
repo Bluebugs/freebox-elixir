@@ -10,7 +10,7 @@ Entrons maintenant dans le coeur des EFLs. Voici un petit exemple de réalisatio
 
 == Structure d’une interface Edje ==
 
-L’écriture d’une interface Edje passe d’abord par l’apprentissage du language EDC qui sera ensuite compilé avec ses images et ses polices en un fichier EDJ illisible pour l’être humain mais utilisable par le moteur Edje. Le fichier EDJ, qui est en fait un fichier au format EET, contient ensuite toute l’interface avec ses images et ses polices. Une interface entière peut alors être stockée dans un seul fichier. On pourrait avoir, par exemple pour le gestionnaire de fenêtre E17, dans un seul fichier EDJ, le thème graphique des contrôles et des fenêtres ainsi qu’un fond d’écran animé!
+L’écriture d’une interface Edje passe d’abord par l’apprentissage du language EDC qui sera ensuite compilé avec ses images et ses polices en un fichier EDJ illisible pour l’être humain mais utilisable par le moteur Edje. Le fichier EDJ, qui est en fait un fichier au format EET, contient ensuite toute l’interface avec ses images et ses polices. Une interface entière peut alors être stockée dans un seul fichier. On pourrait avoir, par exemple pour le gestionnaire de fenêtre E17, dans un seul fichier EDJ, le thème graphique des contrôles et des fenêtres ainsi qu’un fond d’écran animé !
 
 == Les outils Edje ==
 
@@ -147,9 +147,9 @@ program
 }
 }}}
 
-Ici on réagit au signal envoyé par Edje « _show_ » qui survient quand l’application demande à afficher l’objet Edje. L’action réalisée est de mettre le « _main`_`part_ » à l’état « _visible_ » avec une transition de décélération et le tout en 0.5 secondes.
+Ici on réagit au signal envoyé par Edje « _show_ » qui survient quand l’application demande à afficher l’objet Edje. L’action réalisée est de mettre le « _main`_`part_ » à l’état « _visible_ » avec une transition de décélération et le tout en 0,5 seconde.
 
-Ca y est! Nous avons notre première animation qui fonctionne. Un petit make et make test vous permettra de voir l’image de fond qui s’affichera avec un bel effet de fondu, et vous pourrez également le redimensionner pour voir l’effet de la directive border évoqué avant.
+Ca y est ! Nous avons notre première animation qui fonctionne. Un petit make et make test vous permettra de voir l’image de fond qui s’affichera avec un bel effet de fondu, et vous pourrez également le redimensionner pour voir l’effet de la directive border évoqué avant.
 
 == Un bouton ==
 
@@ -172,7 +172,7 @@ parts
 
 A noter qu’il faut faire attention à l’ordre de définition des éléments. Si le bouton était défini avant le fond, il serait recouvert par celui-ci.
 
-La définition du bouton se fait de la même manière que le fond:
+La définition du bouton se fait de la même manière que le fond :
 
 {{{
 part
@@ -206,8 +206,8 @@ part
         description
         {
                 state: "visible" 0.0;
-                //on hérite les proprietes de l'etat "default"
-                //on evite alors de reecrire les proprietes qui ne changent pas
+                //on hérite les propriétés de l'état "default"
+                //on évite alors de réécrire les propriétés qui ne changent pas
                 inherit: "default" 0.0;
                 visible: 1;
                 color: 255 255 255 255;
@@ -235,7 +235,7 @@ program
 }
 }}}
 
-Dans ce programme, on va d’abord attendre 0.5 secondes avant d’exécuter le programme (directive « _in_ »).
+Dans ce programme, on va d’abord attendre 0,5 seconde avant d’exécuter le programme (directive « _in_ »).
 
 Nous avons maintenant un joli bouton qui s’affiche juste après le fond. Malheureusement, le bouton ne réagit pas à la souris. En effet, pour avoir de l’animation lors du passage de la souris ou du clic, il faut encore écrire les programmes correspondants. En utilisant le même principe qu’avant, nous pourrons écrire des programmes réagissant aux signaux qu’Edje nous donnera lors des actions de la souris. Il faut pour cela mettre la propriété « _mouse`_`events_ » à 1, sans quoi on ne recevra pas les signaux.
 
