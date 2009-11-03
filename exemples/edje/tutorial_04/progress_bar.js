@@ -11,14 +11,27 @@ function anim_cb(obj)
    var geom = evas_object_geometry_get(obj);
    var dx, x;
    var dy, y;
+   var dh, h;
+   var w;
 
    dx = evas_object_data_get(obj, "dx");
    dy = evas_object_data_get(obj, "dy");
+   dh = evas_object_data_get(obj, "dh");
 
    x = geom.x + dx;
    y = geom.y + dy;
+   w = geom.w;
+   h = geom.h + dh;
 
-   if (x + geom.w > 720 || x < 0)
+   if (h > 56 || h < 24)
+     {
+	dh = -dh;
+	h += 2 * dh;
+
+	evas_object_data_set(obj, "dh", dh);
+     }
+
+   if (x + w > 720 || x < 0)
      {
 	dx = -dx;
 	x += 2 * dx;
@@ -35,6 +48,7 @@ function anim_cb(obj)
      }
 
    evas_object_move(obj, x, y);
+   evas_object_resize(obj, w, h);
 
    return 1;
 }
@@ -44,9 +58,8 @@ function anim_bar_cb(data)
    data.cursor += 0.01;
    if (data.cursor >= 1.0) data.cursor = 0;
 
-   elx.print("cursor: ", data.cursor, "\n");
-
    edje_object_part_drag_value_set(data.obj, "cursor", data.cursor, data.cursor);
+   edje_object_part_text_set(data.obj, "percent", parseInt(data.cursor * 100) + "%");
 
    return 1;
 }
@@ -96,14 +109,16 @@ function main()
 
    obj = edje_object_add(evas);
    edje_object_file_set(obj, "progress_bar.edj", "bar");
-   evas_object_resize(obj, 250, 32);
+   evas_object_resize(obj, 250, 52);
    evas_object_move(obj, 50, 50);
    evas_object_show(obj);
 
    edje_object_part_drag_value_set(obj, "cursor", 0.1, 0.1);
+   edje_object_part_text_set(obj, "percent", "10%");
 
    evas_object_data_set(obj, "dx", +2);
    evas_object_data_set(obj, "dy", +1);
+   evas_object_data_set(obj, "dh", +1);
    ecore_animator_add(anim_cb, obj);
 
    ecore_animator_add(anim_bar_cb, { obj: obj, cursor: 0.1 });
