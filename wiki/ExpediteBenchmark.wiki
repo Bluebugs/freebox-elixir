@@ -4,6 +4,8 @@
 
 Juste pour donner une idee des performances des EFL sur Freebox HD, voici une comparaison entre une Freebox HD v5, un PC (AMD Athlon(tm) 64 X2 Dual Core Processor 4600+) en soft et avec OpenGL (driver proprietaire NVidia).
 
+Vous pouvez comparer avec votre PC en compilant/executant `expedite` depuis le svn du projet Enlightenment.
+
 = Details =
 
 ||Tests||Freebox HD||PC Soft||x||PC OpenGL||x||
@@ -57,4 +59,3 @@ Juste pour donner une idee des performances des EFL sur Freebox HD, voici une co
 ||Image Blend Occlude 1 Very Many||0,27||68,41||_253_||11,80||_44_||
 ||Image Blend Occlude 2 Very Many||0,39||20,74||_53_||19,35||_50_||
 ||Image Blend Occlude 3 Very Many||0,68||12,46||_18_||37,13||_55_||
-
