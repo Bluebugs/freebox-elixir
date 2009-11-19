@@ -1,0 +1,29 @@
+11 7#
+11 #5 #
+6 6# 3# #
+6 #8 # #
+6 # $## $  #$##
+6 # .*.## $3 #
+6 #.*.*.#$#3 #
+4 3#*.*.*3 # ##
+  3#  .*.*. # # #
+ ## $ 3#.4#3 #
+ #3 $ @$.$ ##$#$#
+ #3 #$$ .  #4 #
+ 3#3 #$4# $#$#
+3 # $$6.  $ #
+3 #3 7#3 #
+3 5#5 5#
+Title: What's this ?
+Author: François Marques
+AuthorMail: sokoban@online.fr
+AuthorPage: http://sokoban.online.fr/
+Date: 2003/09/20
+ActionMessage:
+Ce tableau fait l'objet d'un concours sur Sokoban Online.
+Vous pouvez y participer en envoyant votre solution !
+Les résultats actuels sont visible sur :
+http://sokoban.online.fr/
+ActionMessage-End:
+ActionMail: sokoban@online.fr
+ActionExpiration: 2003/10/31

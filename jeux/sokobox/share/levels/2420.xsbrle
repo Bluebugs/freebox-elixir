@@ -1,0 +1,18 @@
+5 8#
+5 # 5.#
+5 #  5#
+5 ## #
+6 # #
+4 3#$##
+5#  $ ##
+#3 #$ $  ##
+# @  $5 #
+8#3 #
+7 5#
+Title:3 Co nechat na neskor 01
+Author:  Vladimir Zahoransky
+Limit:3 141-58
+Comment:
+Tato strategia ukazuje, ze casto sa riesenie da minimalizovat ak nechate "prechadzanie" urcitej casti na neskor. Tym, ze ju "predcastne" vykonante, stratite pohyby tym, ze musite sa vraciat za kazdym balikom a robite pohyby tejto ceste viackrat. Iank povedane, casto zaberie na minimalizovanie riesenia to, ked urcite to, co Vam na prechadzanie nezavadza a nechate to na vyriesenie dovtedy, kym nebude to nevyhnutne. Tak isto strategia vravi, ze zachadzanie a vychadzanie produkuje nadbytocne duplicitne tahy. V nasom priklade je to "odlozenie" balika az lavy "odkladaci" priestor tvaru 2x3. Tato strategia je casto vyhodna po tom, ako najdete nejake riesenie levelu a potom sa pustite do minimalizacie. Obzvlast casto zaberie pre zaciatocnikov.
+Color Green
+Comment-End:

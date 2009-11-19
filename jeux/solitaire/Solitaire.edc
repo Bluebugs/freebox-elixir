@@ -1,0 +1,584 @@
+images {
+   image, "btBleu.png" COMP;
+   image, "btGreen.png" COMP;
+   image, "btRed.png" COMP;
+   image, "btYellow.png" COMP;
+   image, "interface.jpg" LOSSY 70;
+   image, "welcome_solitaire.jpg" LOSSY 95;
+}
+
+collections {
+   group {
+        name, "start";
+
+        parts {
+           part {
+              name, "main";
+              type, IMAGE;
+
+              mouse_events, 1;
+
+              description {
+                 state, "default" 0.0;
+                 rel1.relative, 0.0 0.0;
+                 rel2.relative, 1.0 1.0;
+                 image.normal, "welcome_solitaire.jpg";
+              }
+           }
+           part {
+              name, "green";
+              type, TEXT;
+
+              mouse_events, 0;
+
+              description {
+                 state, "default" 0.0;
+                 rel1.relative, 0.5416 0.7538;
+                 rel2.relative, 0.75 0.80;
+
+                 text {
+                    font, "Vera";
+                    text, "Relancer";
+                    size, 20;
+                    align, 0.0 0.0;
+                 }
+
+                 color, 255 255 255 255;
+              }
+           }
+           part {
+              name, "blue";
+              type, TEXT;
+
+              mouse_events, 0;
+
+              description {
+                 state, "default" 0.0;
+                 rel1.relative, 0.3125 0.7538;
+                 rel2.relative, 0.47 0.80;
+
+                 text {
+                    font, "Vera";
+                    text, "Tirer";
+                    size, "20";
+                    align, 0.0 0.0;
+                 }
+
+                 color, 255 255 255 255;
+              }
+           }
+           part {
+              name, "red";
+              type, TEXT;
+
+              mouse_events, 0;
+
+              description {
+                 state, "default" 0.0;
+                 rel1.relative, 0.5416 0.8138;
+                 rel2.relative, 0.6416 0.857;
+
+                 text {
+                    font, "Vera";
+                    text, "Sortir";
+                    size, "20";
+                    align, 0.0 0.0;
+                 }
+                 color, 255 255 255 255;
+              }
+           }
+           part {
+              name, "time";
+              type, TEXT;
+              effect, SOFT_SHADOW;
+
+              mouse_events, 0;
+
+              description {
+                 state, "default" 0.0;
+                 rel1.relative, 0.288 0.8125;
+                 rel2.relative, 0.46 0.857;
+
+                 text {
+                    font, "VeraBd";
+                    text, "-- : --";
+                    size, 24;
+                 }
+
+                 color, 0 51 0 255;
+                 color3, 0 0 0 255;
+              }
+           }
+        }
+   }
+}
+
+#define CARDS(Color)                                          \
+  image, "cartes/"Color"_10.png" COMP;                        \
+  image, "cartes/"Color"_2.png" COMP;                         \
+  image, "cartes/"Color"_3.png" COMP;                         \
+  image, "cartes/"Color"_4.png" COMP;                         \
+  image, "cartes/"Color"_5.png" COMP;                         \
+  image, "cartes/"Color"_6.png" COMP;                         \
+  image, "cartes/"Color"_7.png" COMP;                         \
+  image, "cartes/"Color"_8.png" COMP;                         \
+  image, "cartes/"Color"_9.png" COMP;                         \
+  image, "cartes/"Color"_a.png" COMP;                         \
+  image, "cartes/"Color"_j.png" COMP;                         \
+  image, "cartes/"Color"_k.png" COMP;                         \
+  image, "cartes/"Color"_q.png" COMP;
+
+images {
+   CARDS("carreau");
+   CARDS("coeur");
+   CARDS("pique");
+   CARDS("trefle");
+
+   image, "cartes/carte_base.png" COMP;
+   image, "cartes/selected_carte.png" COMP;
+   image, "cartes/selected_carte_bleu.png" COMP;
+}
+
+#define GCARD(Color, Value)                                     \
+  group {                                                       \
+     name, Color"/"Value;                                       \
+     parts {                                                    \
+        part {                                                  \
+           name, "main";                                        \
+           type, IMAGE;                                         \
+           mouse_events, 0;                                     \
+           description {                                        \
+              state, "default" 0.0;                             \
+              rel1.relative, 0.0 0.0;                           \
+              rel2.relative, 1.0 1.0;                           \
+              image.normal, "cartes/"Color"_"Value".png";       \
+           }                                                    \
+        }                                                       \
+     }                                                          \
+  }
+
+#define GCARDS(Color)                           \
+  GCARD(Color, "10");                           \
+  GCARD(Color, "2");                            \
+  GCARD(Color, "3");                            \
+  GCARD(Color, "4");                            \
+  GCARD(Color, "5");                            \
+  GCARD(Color, "6");                            \
+  GCARD(Color, "7");                            \
+  GCARD(Color, "8");                            \
+  GCARD(Color, "9");                            \
+  GCARD(Color, "a");                            \
+  GCARD(Color, "j");                            \
+  GCARD(Color, "k");                            \
+  GCARD(Color, "q");
+
+collections {
+   GCARDS("carreau");
+   GCARDS("coeur");
+   GCARDS("pique");
+   GCARDS("trefle");
+
+   group {
+      name, "select/red";
+
+      script {
+         public pulsing = 0;
+         public stop_pulsing_timer_id = 0;
+         const Float:pulse_timeout = 2.0;
+
+         public stop_pulsing() {
+            set_int(pulsing, 0);
+         }
+         public stop_pulsing_cb(val) {
+            set_state(PART:"pulse", "pulse", 0.0);
+            set_int(pulsing, 0);
+            stop_pulsing();
+            return 0;
+         }
+      }
+
+      parts {
+         part {
+            name, "main";
+            type, IMAGE;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel2.relative, 1.0 1.0;
+               image {
+                  normal, "cartes/selected_carte.png";
+                  border, 10 10 10 10;
+                  middle, 0;
+               }
+            }
+         }
+         part {
+            name, "pulse";
+            type, IMAGE;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel1.offset, -2 -2;
+               rel2.relative, 1.0 1.0;
+               rel2.offset, +1 +1;
+               image {
+                  normal, "cartes/selected_carte.png";
+                  border, 10 10 10 10;
+                  middle, 0;
+               }
+               color, 255 255 255 180;
+            }
+            description {
+               state, "pulse" 0.0;
+               inherit, "default" 0.0;
+               rel1.offset, 0 0;
+               rel2.offset, 0 0;
+               color, 255 255 255 60;
+            }
+         }
+      }
+      programs {
+         program {
+            name, "show";
+            signal, "show";
+            source, "";
+
+            script {
+               stop_pulsing();
+               if (get_int(pulsing) == 0)
+                 run_program(PROGRAM:"pulse");
+               set_int(pulsing, 1);
+            }
+         }
+         program {
+            name, "hide";
+            signal, "hide";
+            source, "";
+
+            script {
+               stop_pulsing();
+            }
+
+            after, "pulse,hide";
+         }
+         program {
+            name, "pulse";
+
+            action, STATE_SET "pulse" 0.0;
+            transition, SINUSOIDAL 0.8;
+            target, "pulse";
+
+            after, "pulse,inactive";
+         }
+         program {
+            name, "pulse,inactive";
+
+            action, STATE_SET "default" 0.0;
+            transition, SINUSOIDAL 0.8;
+            target, "pulse";
+
+            after, "pulse";
+         }
+         program {
+            name, "pulse,hide";
+
+            action, STATE_SET "pulse" 0.0;
+            target, "pulse";
+         }
+      }
+   }
+   group {
+      name, "select/blue";
+
+      script {
+         public pulsing = 0;
+         public stop_pulsing_timer_id = 0;
+         const Float:pulse_timeout = 2.0;
+
+         public stop_pulsing() {
+            set_int(pulsing, 0);
+         }
+         public stop_pulsing_cb(val) {
+            set_state(PART:"pulse", "pulse", 0.0);
+            set_int(pulsing, 0);
+            stop_pulsing();
+            return 0;
+         }
+      }
+
+      parts {
+         part {
+            name, "main";
+            type, IMAGE;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel2.relative, 1.0 1.0;
+               image {
+                  normal, "cartes/selected_carte_bleu.png";
+                  border, 10 10 10 10;
+                  middle, 0;
+               }
+            }
+         }
+         part {
+            name, "pulse";
+            type, IMAGE;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel1.offset, -2 -2;
+               rel2.relative, 1.0 1.0;
+               rel2.offset, +1 +1;
+               image {
+                  normal, "cartes/selected_carte_bleu.png";
+                  border, 10 10 10 10;
+                  middle, 0;
+               }
+               color, 255 255 255 180;
+            }
+            description {
+               state, "pulse" 0.0;
+               inherit, "default" 0.0;
+               rel1.offset, 0 0;
+               rel2.offset, 0 0;
+               color, 255 255 255 60;
+            }
+         }
+      }
+      programs {
+         program {
+            name, "show";
+            signal, "show";
+            source, "";
+
+            script {
+               stop_pulsing();
+               if (get_int(pulsing) == 0)
+                 run_program(PROGRAM:"pulse");
+               set_int(pulsing, 1);
+            }
+         }
+         program {
+            name, "hide";
+            signal, "hide";
+            source, "";
+
+            script {
+               stop_pulsing();
+            }
+
+            after, "pulse,hide";
+         }
+         program {
+            name, "pulse";
+
+            action, STATE_SET "pulse" 0.0;
+            transition, SINUSOIDAL 0.8;
+            target, "pulse";
+
+            after, "pulse,inactive";
+         }
+         program {
+            name, "pulse,inactive";
+
+            action, STATE_SET "default" 0.0;
+            transition, SINUSOIDAL 0.8;
+            target, "pulse";
+
+            after, "pulse";
+         }
+         program {
+            name, "pulse,hide";
+
+            action, STATE_SET "pulse" 0.0;
+            target, "pulse";
+         }
+      }
+   }
+   group {
+      name, "back-card";
+
+      parts {
+         part {
+            name, "main";
+            type, IMAGE;
+
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               visible, 1;
+               rel1.relative, 0.0 0.0;
+               rel2.relative, 1.0 1.0;
+               image.normal, "cartes/carte_base.png";
+            }
+            description {
+               state, "empty" 0.0;
+               inherit, "default" 0.0;
+               visible, 0;
+            }
+         }
+      }
+      programs {
+         program {
+            name, "hide";
+            signal, "hide";
+            source, "javascript";
+
+            action, STATE_SET "empty" 0.0;
+            target, "main";
+         }
+         program {
+            name, "show";
+            signal, "show";
+            source, "javascript";
+
+            action, STATE_SET "default" 0.0;
+            target, "main";
+         }
+      }
+   }
+   group {
+      name, "main";
+
+      parts {
+         part {
+            name, "main";
+            type, IMAGE;
+
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel2.relative, 1.0 1.0;
+               image.normal, "interface.jpg";
+            }
+         }
+         part {
+            name, "timing";
+            type, TEXT;
+            effect, SOFT_SHADOW;
+
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.13 0.31329;
+               rel2.relative, 0.3 0.34929;
+
+               text {
+                  font, "VeraBd";
+                  text, "-- : --";
+                  size, 22;
+               }
+               color, 0 51 0 255;
+               color3, 0 0 0 255;
+            }
+            description {
+               state, "highscore" 0.0;
+               inherit, "default" 0.0;
+
+               color, 255 0 0 255;
+               color3, 0 0 0 255;
+            }
+         }
+         part {
+            name, "still";
+            type, GROUP;
+            source, "back-card";
+            mouse_events, 1;
+            repeat_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.107 0.095486;
+               rel2.relative, 0.2112 0.2916;
+            }
+         }
+
+#define GETS(Number, X1, X2)                    \
+         part {                                 \
+            name, "gets/"Number;                \
+            type, SWALLOW;                      \
+            mouse_events, 1;                    \
+            repeat_events, 0;                   \
+            description {                       \
+               state, "default" 0.0;            \
+               rel1.relative, X1 0.095486;      \
+               rel2.relative, X2 0.2916;        \
+            }                                   \
+         }
+
+         GETS("0", 0.2194, 0.3236);
+         GETS("1", 0.2375, 0.3416);
+         GETS("2", 0.2555, 0.3597);
+
+#define STOCK(Number, X1, X2)                   \
+         part {                                 \
+            name, "stock/"Number;               \
+            type, RECT;                         \
+            mouse_events, 1;                    \
+            description {                       \
+               state, "default" 0.0;            \
+               rel1.relative, X1 0.095486;      \
+               rel2.relative, X2 0.2916;        \
+               color, 0 0 0 0;                  \
+            }                                   \
+         }
+
+         STOCK("0", 0.4430, 0.5472);
+         STOCK("1", 0.5555, 0.65972);
+         STOCK("2", 0.6680, 0.7722);
+         STOCK("3", 0.7805, 0.8847);
+
+#define STACK(Number, X1, X2)                   \
+         part {                                 \
+            name, "stack/"Number;               \
+            type, RECT;                         \
+            mouse_events, 1;                    \
+            description {                       \
+               state, "default" 0.0;            \
+               rel1.relative, X1 0.39062;       \
+               rel2.relative, X2 0.5868;        \
+               color, 0 0 0 0;                  \
+            }                                   \
+         }
+
+         STACK("0", 0.107044, 0.2112);
+         STACK("1", 0.2195, 0.3237);
+         STACK("2", 0.33204, 0.43621);
+         STACK("3", 0.4445, 0.5487);
+         STACK("4", 0.5556, 0.65982);
+         STACK("5", 0.6681, 0.7723);
+         STACK("6", 0.7806, 0.8848);
+      }
+      programs {
+         program {
+            name, "timing/highscore";
+            signal, "highscore";
+            source, "javascript";
+
+            action, STATE_SET "highscore" 0.0;
+            target, "timing";
+         }
+         program {
+            name, "timing/reset";
+            signal, "reset";
+            source, "javascript";
+
+            action, STATE_SET "default" 0.0;
+            target, "timing";
+         }
+      }
+   }
+}

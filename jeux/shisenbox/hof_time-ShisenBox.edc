@@ -1,0 +1,399 @@
+images {
+ image: "hof.png" COMP;
+ image: "nouveau_score.png" COMP;
+}
+
+collections {
+  group {
+    name, "hof";
+    min, 720 576;
+    max, 720 576;
+
+    parts {
+      part {
+	name, "background";
+	type, IMAGE;
+
+	description {
+	  state, "default" 0.0;
+
+	  rel1.relative, 0.0 0.0;
+	  rel2.relative, 1.0 1.0;
+
+	  image {
+	    normal, "hof.png";
+	  }
+
+	  color, 0 0 0 0;
+	}
+
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 255 255 255 255;
+	}
+      }
+
+      program {
+	name, "animate_background/appear";
+	signal, "hof,background,appear";
+	source, "js";
+	action, STATE_SET "focus" 0.0;
+	transition, LINEAR 0.4;
+	target, "background";
+      }
+
+      program {
+	name, "animate_background/disappear";
+	signal, "hof,background,disappear";
+	source, "js";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "background";
+	after, "animate_background/disappeared";
+      }
+
+      program {
+	name, "animate_background/disappeared";
+       	action, SIGNAL_EMIT "hof_background_disappeared" "edc";
+      }
+
+      part {
+	name, "hof_image_text";
+	type, IMAGE;
+	mouse_events, 0;
+	description {
+	  state, "default" 0.0;
+	  image.normal, "nouveau_score.png";
+	  rel1.relative, 0.5 0.5;
+	  rel2.relative, 0.5 0.5;
+	  fixed, 1 1;
+	  align, 0.5 0.5;
+	  visible, 0;
+	}
+	description {
+	  state, "nouveau_score" 0.0;
+	  inherit, "default" 0.0;
+	  image.normal, "nouveau_score.png";
+	  min, 296 28;
+	  max, 296 28;
+	  visible, 1;
+	}
+	description {
+	  state, "nouveau_score/hidden" 0.0;
+	  inherit, "default" 0.0;
+	  image.normal, "nouveau_score.png";
+	  visible, 1;
+	}
+      }
+
+      part {
+	name, "rank_col";
+	type, TEXT;
+	effect, SOFT_SHADOW;
+	mouse_events, 0;
+	description {
+	  state, "default" 0.0;
+	  color, 0 0 0 0;
+	  text {
+	    font, "Vera";
+	    text, "";
+	    size, 20;
+	    align, 1.0 0.5;
+	  }
+	  rel1.relative, 0.0 0.0;
+	  rel1.offset, 170 100;
+	  rel2.relative, 0.0 0.0;
+	  rel2.offset, 230 120;
+	}
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 180 50 0 255;
+	}
+      }
+
+      part {
+	name, "name_col";
+	type, TEXT;
+	effect, SOFT_SHADOW;
+	mouse_events, 0;
+	description {
+	  state, "default" 0.0;
+	  color, 0 0 0 0;
+	  text {
+	    font, "Vera";
+	    text, "";
+	    size, 20;
+	    align, 0.5 0.5;
+	  }
+	  rel1.relative, 0.0 0.0;
+	  rel1.offset, 240 100;
+	  rel2.relative, 0.0 0.0;
+	  rel2.offset, 400 120;
+	}
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 180 50 0 255;
+	}
+      }
+
+      part {
+	name, "time_col";
+	type, TEXT;
+	effect, SOFT_SHADOW;
+	mouse_events, 0;
+	description {
+	  state, "default" 0.0;
+	  color, 0 0 0 0;
+	  text {
+	    font, "Vera";
+	    text, "";
+	    size, 20;
+	    align, 0.5 0.5;
+	  }
+	  rel1.relative, 0.0 0.0;
+	  rel1.offset, 420 100;
+	  rel2.relative, 0.0 0.0;
+	  rel2.offset, 550 120;
+	}
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 180 50 0 255;
+	}
+      }
+
+      program {
+	name, "default";
+	signal, "hof_image_text,default";
+	source, "js";
+	action, STATE_SET "default" 0.0;
+	target, "hof_image_text";
+      }
+	   
+#define HEADER_PROG(tget)		\
+      program {				\
+	name, "animate_"tget"_col/appear";\
+	signal, "hof,"tget"_col,appear";\
+	source, "js";			\
+	action, STATE_SET "focus" 0.0;	\
+	transition, LINEAR 0.4;		\
+	target, tget"_col";		\
+      }					\
+      program {				\
+	name, "animate_"tget"_col/disappear";\
+	signal, "hof,"tget"_col,disappear";\
+	source, "js";			\
+	action, STATE_SET "default" 0.0;\
+	transition, LINEAR 0.4;		\
+	target, tget"_col";		\
+      }					\
+
+      HEADER_PROG("rank");
+      HEADER_PROG("name");
+      HEADER_PROG("time");
+
+#define EVENT_PROG(Event)                         \
+      program {                                   \
+        name, Event;                              \
+        signal, Event;                            \
+        source, "js";                             \
+        action, STATE_SET Event"/hidden" 0.0;     \
+        target, "hof_image_text";                 \
+        after, Event"/2";                         \
+      }                                           \
+      program {                                   \
+        name, Event"/2";                          \
+        signal, Event"/2";                        \
+        source, "js";                             \
+        action, STATE_SET Event 0.0;              \
+        transition, SINUSOIDAL 0.8;               \
+        target, "hof_image_text";                 \
+        after, Event"/3";                         \
+      }                                           \
+      program {                                   \
+        name, Event"/3";                          \
+        signal, Event"/3";                        \
+        source, "js";                             \
+        action, STATE_SET Event 0.0;              \
+        transition, LINEAR 1.0;                   \
+        target, "hof_image_text";                 \
+        after, Event"/4";                         \
+      }                                           \
+      program {                                   \
+        name, Event"/4";                          \
+        signal, Event"/4";                        \
+        source, "js";                             \
+        action, STATE_SET Event"/hidden" 0.0;     \
+        transition, SINUSOIDAL 0.8;               \
+        target, "hof_image_text";                 \
+        after, Event"/5";                         \
+      }                                           \
+      program {                                   \
+        name, Event"/5";                          \
+        signal, Event"/5";                        \
+        source, "js";                             \
+       	action, SIGNAL_EMIT "hof_im_text_end" "edc"; \
+        after, "default";                         \
+      }
+
+      EVENT_PROG("nouveau_score");
+
+#define SCORE_PROG(nb, tget)		\
+      program {				\
+	name, "animate_"tget"_"nb"/appear";\
+	signal, "play,"tget"_"nb",appear";\
+	source, "js";			\
+	action, STATE_SET "mid" 0.0;	\
+	transition, LINEAR 0.4;		\
+	target, tget"_"nb;		\
+      }					\
+      program {				\
+	name, "animate_"tget"_"nb"/disappear";\
+	signal, "play,"tget"_"nb",disappear";\
+	source, "js";			\
+	action, STATE_SET "default" 0.0;\
+	transition, LINEAR 0.4;		\
+	target, tget"_"nb;		\
+      }					\
+      program {				\
+	name, "animate_"tget"_"nb"/blink";\
+	signal, "play,"tget"_"nb",blink";\
+	source, "js";			\
+	action, STATE_SET "focus" 0.0;	\
+	transition, LINEAR 0.8;		\
+	target, tget"_"nb;		\
+        after, "animate_"tget"_"nb"/blink2";\
+      }					\
+      program {				\
+	name, "animate_"tget"_"nb"/blink2";\
+	source, "js";			\
+	action, STATE_SET "mid" 0.0;	\
+	transition, LINEAR 0.8;		\
+	target, tget"_"nb;		\
+        after, "animate_"tget"_"nb"/blink";\
+      }					\
+      program {				\
+	name, "animate_"tget"_"nb"/stop";\
+	signal, "stop,"tget"_"nb"";\
+	source, "js";			\
+	action, ACTION_STOP;		\
+	target, "animate_"tget"_"nb"/blink";\
+      }
+
+#define SCORE_PART(nb, y1, y2)		\
+      part {				\
+	name, "rank_"nb;		\
+	type, TEXT;			\
+	effect, SOFT_SHADOW;		\
+	mouse_events, 0;		\
+	description {			\
+	  state, "default" 0.0;		\
+	  color, 0 0 0 0;		\
+	  text {			\
+	    font, "Vera";		\
+	    text, "";			\
+	    size, 20;			\
+	    align, 1.0 0.5;		\
+	  }				\
+	  rel1.relative, 0.0 0.0;	\
+	  rel1.offset, 170 y1;		\
+	  rel2.relative, 0.0 0.0;	\
+	  rel2.offset, 210 y2;		\
+	}				\
+	description {			\
+	  state, "mid" 0.0;		\
+	  inherit, "default" 0.0;	\
+	  color, 180 180 0 255;		\
+	}				\
+	description {			\
+	  state, "focus" 0.0;		\
+	  inherit, "default" 0.0;	\
+	  color, 255 255 100 255;	\
+	}				\
+      }					\
+					\
+      SCORE_PROG(nb, "rank");		\
+					\
+      part {				\
+	name, "name_"nb;		\
+	type, TEXT;			\
+	effect, SOFT_SHADOW;		\
+	mouse_events, 0;		\
+	description {			\
+	  state, "default" 0.0;		\
+	  color, 0 0 0 0;		\
+	  text {			\
+	    font, "Vera";		\
+	    text, "";			\
+	    size, 20;			\
+	    align, 0.5 0.5;		\
+	  }				\
+	  rel1.relative, 0.0 0.0;	\
+	  rel1.offset, 225 y1;		\
+	  rel2.relative, 0.0 0.0;	\
+	  rel2.offset, 425 y2;		\
+	}				\
+	description {			\
+	  state, "mid" 0.0;		\
+	  inherit, "default" 0.0;	\
+	  color, 180 180 0 255;		\
+	}				\
+	description {			\
+	  state, "focus" 0.0;		\
+	  inherit, "default" 0.0;	\
+	  color, 255 255 100 255;	\
+	}				\
+      }					\
+					\
+      SCORE_PROG(nb, "name");		\
+					\
+      part {				\
+	name, "time_"nb;		\
+	type, TEXT;			\
+	effect, SOFT_SHADOW;		\
+	mouse_events, 0;		\
+	description {			\
+	  state, "default" 0.0;		\
+	  color, 0 0 0 0;		\
+	  text {			\
+	    font, "Vera";		\
+	    text, "";			\
+	    size, 20;			\
+	    align, 1.0 0.5;		\
+	  }				\
+	  rel1.relative, 0.0 0.0;	\
+	  rel1.offset, 420 y1;		\
+	  rel2.relative, 0.0 0.0;	\
+	  rel2.offset, 550 y2;		\
+	}				\
+	description {			\
+	  state, "mid" 0.0;		\
+	  inherit, "default" 0.0;	\
+	  color, 180 180 0 255;		\
+	}				\
+	description {			\
+	  state, "focus" 0.0;		\
+	  inherit, "default" 0.0;	\
+	  color, 255 255 100 255;	\
+	}				\
+      }					\
+					\
+      SCORE_PROG(nb, "time");
+
+      SCORE_PART(1,  140, 160);
+      SCORE_PART(2,  180, 200);
+      SCORE_PART(3,  220, 240);
+      SCORE_PART(4,  260, 280);
+      SCORE_PART(5,  300, 320);
+      SCORE_PART(6,  340, 360);
+      SCORE_PART(7,  380, 400);
+      SCORE_PART(8,  420, 440);
+      SCORE_PART(9,  460, 480);
+      SCORE_PART(10, 500, 520);
+    }
+  }
+}
+

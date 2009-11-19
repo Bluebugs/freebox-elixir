@@ -1,0 +1,21 @@
+12 4#
+13#  ##
+#11 #3 #
+# $ $ $ $ $@$3 #
+# $9#$3 #
+#  #7 #.4#
+4#7 #.#
+11 #.#
+11 #.#
+11 #.#
+11 #.#
+11 #.#
+11 #.#
+11 3#
+Title:3 Pripravne posunutie 01
+Author:  Vladimir Zahoransky
+Limit:3 250-98
+Comment:
+Tato strategia ukazuje, ako sa pri zahybani da casto usetrit tlacenie balikov. AK pouzijeme bezny postup "zasunutia", tak stale musime robit pre optimalitu poctu tahov zasuvanie o pole dalej. Ak to vykoname s jednym balikom, stale robime tieto dve pohyby naviac. Da sa to usetrit pri zachovani minima tahov tak, ze pouzijeme strategiu ulozenia balika na "pomocne" vhodne miesto. V nasom pripade "pred ustie" k cielovemu rozlozeniu. A potom zajdeme po dalsi balik. Balik pred ustim posunieme na cielove policko a pri navrate dame vysunuty balik na "pomocnu" poziciu. A to opakujeme az do konca, ked sa vratime po "zasunuty" balik. Je to dora strategia pri ktorej casto optimalizujeme riesenia na pocet tlaceni. Tato strategia je dobra tym, ze z hladiska poctu tahov je maximalne efektivna. Je to jedna zo strategii, na ktoru sa casto zabuda, no je velmi uzitocna. Pri sutazi patri medzi tie, ktore je lepsie robit ak mate level nastudovany a po ruke nejake riesenie, ktore zlepsujete. Tato strategia je dobra aj tym, ze posuva lisenie sa rieseni na pocet tahov a riesenia na pocet tlaceni. Co ma v sutazi na cas za ktory mate najst co najlepsie riesenie, velmi velky vyznam.
+Color Green
+Comment-End:

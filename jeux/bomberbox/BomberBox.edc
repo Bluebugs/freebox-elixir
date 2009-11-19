@@ -1,0 +1,741 @@
+/*****************************************************************************
+ * BomberBox.js : BomberMan clone for elixir
+ *****************************************************************************/
+
+images {
+   image, "background_blur.png" COMP;
+   image, "background_game.png" COMP;
+   image, "logo.png" COMP;
+   image, "help.png" COMP;
+
+#define TILE_IMAGE(Tile)               \
+   image, "tile/"Tile".png" COMP;
+   TILE_IMAGE("cement");
+   TILE_IMAGE("brick");
+   TILE_IMAGE("bonus-bomb");
+   TILE_IMAGE("bonus-delay");
+   TILE_IMAGE("bonus-glove");
+   TILE_IMAGE("bonus-radius");
+   TILE_IMAGE("bonus-speed");
+   TILE_IMAGE("dirty-left");
+   TILE_IMAGE("dirty-right");
+   TILE_IMAGE("dirty-all");
+   TILE_IMAGE("explosion-0");
+   TILE_IMAGE("explosion-1");
+   TILE_IMAGE("explosion-2");
+   TILE_IMAGE("explosion-3");
+   TILE_IMAGE("explosion-4");
+   TILE_IMAGE("explosion-5");
+   TILE_IMAGE("explosion-6");
+   TILE_IMAGE("explosion-7");
+   TILE_IMAGE("explosion-8");
+   TILE_IMAGE("explosion-9");
+   TILE_IMAGE("explosion-10");
+   TILE_IMAGE("explosion-11");
+   TILE_IMAGE("explosion-12");
+   TILE_IMAGE("explosion-13");
+   
+#define BOMB_IMAGE(Bomb)               \
+   image, "bomb/"Bomb".png" COMP;
+   BOMB_IMAGE("bomb-0");
+   BOMB_IMAGE("bomb-1");
+   BOMB_IMAGE("bomb-2");
+   BOMB_IMAGE("bomb-3");
+   BOMB_IMAGE("bomb-4");
+   BOMB_IMAGE("bomb-5");
+   BOMB_IMAGE("bomb-6");
+   BOMB_IMAGE("bomb-7");
+   BOMB_IMAGE("bomb-8");
+   BOMB_IMAGE("button-0");
+   BOMB_IMAGE("button-1");
+
+#define PLAYER_IMAGE(Player, Direction)            \
+   image, "player-"Player"/"Direction"-0.png" COMP;\
+   image, "player-"Player"/"Direction"-1.png" COMP;\
+   image, "player-"Player"/"Direction"-2.png" COMP;\
+   image, "player-"Player"/"Direction"-3.png" COMP;\
+   image, "player-"Player"/"Direction"-4.png" COMP;
+#define PLAYER(Player)                             \
+   PLAYER_IMAGE(Player, "up");                     \
+   PLAYER_IMAGE(Player, "down");                   \
+   PLAYER_IMAGE(Player, "left");                   \
+   PLAYER_IMAGE(Player, "right");                  \
+   PLAYER_IMAGE(Player, "die");
+   PLAYER(0);
+   PLAYER(1);
+#undef PLAYER
+}
+
+collections {
+   group {
+      name, "wait";
+      min, 720 576;
+      max, 720 576;
+
+      parts {
+         part {
+            name, "background";
+            type, IMAGE;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel2.relative, 1.0 1.0;
+               image.normal, "background_blur.png";
+            }
+         }
+
+         part {
+            name, "help";
+            type, IMAGE;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.5 0.5;
+               rel1.offset, -288 -180;
+               rel2.relative, 0.5 0.5;
+               rel2.offset, +288 +180;
+               image.normal, "help.png";
+            }
+         }
+      }
+   }
+
+   group {
+      name, "game";
+      min, 720 576;
+      max, 720 576;
+
+      parts {
+         part {
+            name, "background";
+            type, IMAGE;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel2.relative, 1.0 1.0;
+               image.normal, "background_game.png";
+            }
+         }
+
+         part {
+            name, "grid";
+            type, RECT;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+/*                color, 255 255 255 255; */
+               visible, 0;
+               color, 0 0 0 0;
+               rel1.relative, 0.5 0.5;
+               rel1.offset, -286 -190;
+               rel2.relative, 0.5 0.5;
+               rel2.offset, 290 194;
+            }
+         }
+
+         part {
+            name, "score-0";
+            type, TEXT;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               color, 255 205 25 255; /* yellow */
+               rel1.to, "grid";
+               rel1.relative, 0.0 1.0;
+               rel1.offset, 15 25;
+               rel2.to, "grid";
+               rel2.relative, 0.0 1.0;
+               rel2.offset, 120 55;
+               text {
+                  font, "VeraBd";
+                  text, "0";
+                  size, 24;
+                  align, 0.0 0.5;
+               }
+            }
+         }
+
+         part {
+            name, "score-1";
+            type, TEXT;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               color, 255 25 25 255; /* red */
+               rel1.to, "grid";
+               rel1.relative, 1.0 1.0;
+               rel1.offset, -120 25;
+               rel2.to, "grid";
+               rel2.offset, -10 55;
+               text {
+                  font, "VeraBd";
+                  text, "0";
+                  size, 24;
+                  align, 1.0 0.5;
+               }
+            }
+         }
+
+         part {
+            name, "time";
+            type, GROUP;
+            source, "time";
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               color, 255 255 255 255;
+               rel1.to, "grid";
+               rel1.relative, 0.5 1.0;
+               rel1.offset, -200 25;
+               rel2.to, "grid";
+               rel2.relative, 0.5 1.0;
+               rel2.offset, 200 55;
+            }
+         }
+
+#define CELL(Name, X, Y)                        \
+         part {                                 \
+            name, Name;                         \
+            type, GROUP;                        \
+            source, "tile";                     \
+            mouse_events, 0;                    \
+                                                \
+            description {                       \
+               state, "default" 0.0;            \
+               min, 48 48;                      \
+               max, 48 48;                      \
+               rel1.to, "grid";                 \
+               rel1.relative, 0.0 0.0;          \
+               rel1.offset, X Y;                \
+               rel2.to, "grid";                 \
+               rel2.relative, 0.0 0.0;          \
+               rel2.offset, (X+48) (Y+48);      \
+            }                                   \
+         }
+
+#define COLUMN(Name, X)                         \
+         CELL(Name"/0", X, 0);                  \
+         CELL(Name"/1", X, 48);                 \
+         CELL(Name"/2", X, 96);                 \
+         CELL(Name"/3", X, 144);                \
+         CELL(Name"/4", X, 192);                \
+         CELL(Name"/5", X, 240);                \
+         CELL(Name"/6", X, 288);                \
+         CELL(Name"/7", X, 336);
+
+         COLUMN("0", 0);
+         COLUMN("1", 48);
+         COLUMN("2", 96);
+         COLUMN("3", 144);
+         COLUMN("4", 192);
+         COLUMN("5", 240);
+         COLUMN("6", 288);
+         COLUMN("7", 336);
+         COLUMN("8", 384);
+         COLUMN("9", 432);
+         COLUMN("10", 480);
+         COLUMN("11", 528);
+      }
+   }
+
+   group {
+      name, "time";
+
+      parts {
+         part {
+            name, "time";
+            type, "TEXT";
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               color, 255 255 255 255;
+               text {
+                  font, "VeraBd";
+                  text, "2:00";
+                  size, 24;
+                  align, 0.5 0.5;
+               }
+            }
+         }
+      }
+   }
+
+   group {
+      name, "tile";
+
+      parts {
+         part {
+            name, "main";
+            type, IMAGE;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel1.offset, 0 -19;
+               rel2.relative, 1.0 1.0;
+               rel2.offset, 0 +10;
+               visible, 0;
+               image.normal, "tile/brick.png";
+            }
+            description {
+               state, "empty" 0.0;
+               inherit, "default" 0.0;
+            }
+
+#define TILE_DESC(Tile)                            \
+            description {                          \
+               state, Tile 0.0;                    \
+               inherit, "default" 0.0;             \
+               visible, 1;                         \
+               image.normal, "tile/"Tile".png";    \
+            }
+            TILE_DESC("brick");
+            TILE_DESC("cement");
+
+#define BONUS_DESC(Bonus)                          \
+            description {                          \
+               state, Bonus 0.0;                   \
+               inherit, "default" 0.0;             \
+               rel1.offset, 0 -11;                 \
+               rel2.offset, 0 -19;                 \
+               visible, 1;                         \
+               image.normal, "tile/"Bonus".png";   \
+            }
+            BONUS_DESC("bonus-bomb");
+            BONUS_DESC("bonus-delay");
+            BONUS_DESC("bonus-glove");
+            BONUS_DESC("bonus-radius");
+            BONUS_DESC("bonus-speed");
+         }
+
+         part {
+            name, "dirty";
+            type, IMAGE;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.to, "main";
+               rel2.to, "main";
+               visible, 0;
+               image.normal, "tile/dirty-all.png";
+            }
+            description {
+               state, "dirty-none" 0.0;
+               inherit, "default" 0.0;
+            }
+
+#define DIRTY_DESC(Dirty)                          \
+            description {                          \
+               state, Dirty 0.0;                   \
+               inherit, "default" 0.0;             \
+               visible, 1;                         \
+               image.normal, "tile/"Dirty".png";   \
+            }
+            DIRTY_DESC("dirty-left");
+            DIRTY_DESC("dirty-right");
+            DIRTY_DESC("dirty-all");
+         }
+
+         part {
+            name, "explosion";
+            type, IMAGE;
+            mouse_events, 1;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel1.offset, 0 -16;
+               rel2.relative, 1.0 1.0;
+               rel2.offset, 0 -16;
+               visible, 0;
+               image.normal, "tile/explosion-0.png";
+            }
+
+            description {
+               state, "explode" 0.0;
+               inherit, "default" 0.0;
+               visible, 1;
+               image.tween, "tile/explosion-1.png";
+               image.tween, "tile/explosion-2.png";
+               image.tween, "tile/explosion-3.png";
+               image.normal, "tile/explosion-4.png";
+            }
+
+            description {
+               state, "implode" 0.0;
+               inherit, "default" 0.0;
+               visible, 1;
+               image.tween, "tile/explosion-5.png";
+               image.tween, "tile/explosion-6.png";
+               image.tween, "tile/explosion-7.png";
+               image.tween, "tile/explosion-8.png";
+               image.tween, "tile/explosion-9.png";
+               image.tween, "tile/explosion-10.png";
+               image.tween, "tile/explosion-11.png";
+               image.tween, "tile/explosion-12.png";
+               image.tween, "tile/explosion-13.png";
+               image.normal, "tile/explosion-0.png";
+            }
+         }
+      }
+
+      programs {
+#define TILE_PROG(Tile)                            \
+         program {                                 \
+            name, Tile;                            \
+            signal, Tile;                          \
+            source, "js";                          \
+            action, STATE_SET Tile 0.0;            \
+            target, "main";                        \
+            after, "dirty-none";                   \
+         }
+         TILE_PROG("empty");
+         TILE_PROG("brick");
+         TILE_PROG("cement");
+         TILE_PROG("bonus-bomb");
+         TILE_PROG("bonus-delay");
+         TILE_PROG("bonus-glove");
+         TILE_PROG("bonus-radius");
+         TILE_PROG("bonus-speed");
+
+#define DIRTY_PROG(Dirty)                          \
+         program {                                 \
+            name, Dirty;                           \
+            signal, Dirty;                         \
+            source, "js";                          \
+            action, STATE_SET Dirty 0.0;           \
+            target, "dirty";                       \
+         }
+         DIRTY_PROG("dirty-none");
+         DIRTY_PROG("dirty-left");
+         DIRTY_PROG("dirty-right");
+         DIRTY_PROG("dirty-all");
+
+#define EXPLODE_PROG(Tile)                         \
+         program {                                 \
+            name, Tile"/explode";                  \
+            signal, Tile"/explode";                \
+            source, "js";                          \
+            action, STATE_SET "explode" 0.0;       \
+            transition, LINEAR 0.120;              \
+            target, "explosion";                   \
+            after, Tile"/explode/2";               \
+         }                                         \
+         program {                                 \
+            name, Tile"/explode/2";                \
+            signal, Tile"/explode/2";              \
+            source, "js";                          \
+            action, STATE_SET Tile 0.0;            \
+            target, "main";                        \
+            after, "explode/3";                    \
+         }
+         program {
+            name, "explode/3";
+            signal, "explode/3";
+            source, "js";
+            action, STATE_SET "dirty-none" 0.0;
+            target, "dirty";
+            after, "explode/4";
+         }
+         program {
+            name, "explode/4";
+            signal, "explode/4";
+            source, "js";
+            action, STATE_SET "implode" 0.0;
+            transition, LINEAR 0.360;
+            target, "explosion";
+         }
+         EXPLODE_PROG("empty");
+         EXPLODE_PROG("bonus-bomb");
+         EXPLODE_PROG("bonus-delay");
+         EXPLODE_PROG("bonus-glove");
+         EXPLODE_PROG("bonus-radius");
+         EXPLODE_PROG("bonus-speed");
+         EXPLODE_PROG("cement");
+      }
+   }
+
+   group {
+      name, "bomb-swallowed";
+
+      parts {
+         part {
+            name, "main";
+            type, IMAGE;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel1.offset, 0 -18;
+               rel2.relative, 1.0 1.0;
+               rel2.offset, 0 -18;
+               image.normal, "bomb/bomb-0.png";
+               visible, 0;
+            }
+            description {
+               state, "bomb" 0.0;
+               inherit, "default" 0.0;
+               image.tween, "bomb/bomb-0.png";
+               image.tween, "bomb/bomb-1.png";
+               image.tween, "bomb/bomb-2.png";
+               image.tween, "bomb/bomb-3.png";
+               image.tween, "bomb/bomb-4.png";
+               image.tween, "bomb/bomb-5.png";
+               image.tween, "bomb/bomb-6.png";
+               image.tween, "bomb/bomb-7.png";
+               image.normal, "bomb/bomb-8.png";
+               visible, 1;
+            }
+            description {
+               state, "button" 0.0;
+               inherit, "default" 0.0;
+               image.tween, "bomb/button-0.png";
+               image.normal, "bomb/button-1.png";
+               visible, 1;
+            }
+         }
+      }
+
+      programs {
+         program {
+            name, "bomb";
+            signal, "bomb";
+            source, "js";
+            action, STATE_SET "bomb" 0.0;
+            transition, LINEAR 3.0;
+            target, "main";
+         }
+
+         program {
+            name, "button";
+            signal, "button";
+            source, "js";
+            action, STATE_SET "button" 0.0;
+            target, "main";
+            after, "button/2";
+         }
+         program {
+            name, "button/2";
+            signal, "button/2";
+            source, "js";
+            action, STATE_SET "button" 0.0;
+            transition, LINEAR 0.480;
+            target, "main";
+            after, "button/2";
+         }
+      }
+   }
+
+   group {
+      name, "bomb";
+
+      parts {
+         part {
+            name, "main";
+            type, GROUP;
+            source, "bomb-swallowed";
+
+            description {
+               state, "default" 0.0;
+               rel1.offset, 0 0;
+               rel2.offset, 0 0;
+               min, 50 50;
+               max, 50 50;
+            }
+
+#define BOMB_DESC(Name, SHIFT_X, SHIFT_Y)                      \
+            description {                                      \
+               state, Name"-1" 0.0;                            \
+               rel1.offset, (SHIFT_X*48) (SHIFT_Y*48);         \
+               rel2.offset, (SHIFT_X*48) (SHIFT_Y*48);         \
+               min, 50 50;                                     \
+               max, 50 50;                                     \
+            }                                                  \
+            description {                                      \
+               state, Name"-2" 0.0;                            \
+               rel1.offset, (SHIFT_X*96) (SHIFT_Y*96);         \
+               rel2.offset, (SHIFT_X*96) (SHIFT_Y*96);         \
+               min, 50 50;                                     \
+               max, 50 50;                                     \
+            }                                                  \
+            description {                                      \
+               state, Name"-2" 1.0;                            \
+               rel1.offset, (SHIFT_X*48) (SHIFT_Y*48);         \
+               rel2.offset, (SHIFT_X*48) (SHIFT_Y*48);         \
+               min, 100 100;				       \
+               max, 100 100;				       \
+            }
+            BOMB_DESC("left", 1, 0);
+            BOMB_DESC("right", -1, 0);
+            BOMB_DESC("up", 0, 1);
+            BOMB_DESC("down", 0, -1);
+         }
+      }
+
+      programs {
+         program {
+            name, "move-1";
+            signal, "move-1";
+            source, "js";
+            action, STATE_SET "default" 0.0;
+            transition, LINEAR 0.160;
+            target, "main";
+         }
+         program {
+            name, "move-2";
+            signal, "move-2";
+            source, "js";
+            action, STATE_SET "default" 0.0;
+            transition, LINEAR 0.080;
+            target, "main";
+         }
+#define BOMB_PROG(Name)                                        \
+         program {                                             \
+            name, Name"-1";                                    \
+            signal, Name"-1";                                  \
+            source, "js";                                      \
+            action, STATE_SET Name"-1" 0.0;                    \
+            target, "main";                                    \
+            after, "move-1";                                   \
+         }                                                     \
+         program {                                             \
+            name, Name"-2";                                    \
+            signal, Name"-2";                                  \
+            source, "js";                                      \
+            action, STATE_SET Name"-2" 0.0;                    \
+            target, "main";                                    \
+            after, Name"-2/2";                                 \
+         }                                                     \
+         program {                                             \
+            name, Name"-2/2";                                  \
+            signal, Name"-2/2";                                \
+            source, "js";                                      \
+            action, STATE_SET Name"-2" 1.0;                    \
+            transition, LINEAR 0.080;                          \
+            target, "main";                                    \
+            after, "move-2";                                   \
+         }
+         BOMB_PROG("left");
+         BOMB_PROG("right");
+         BOMB_PROG("up");
+         BOMB_PROG("down");
+      }
+   }
+
+#define PLAYER_DESC(Name, Player)                             \
+   description {                                              \
+      state, Name 0.0;                                        \
+      inherit, "default" 0.0;                                 \
+      image.tween, "player-"Player"/"Name"-3.png";            \
+      image.tween, "player-"Player"/"Name"-0.png";            \
+      image.tween, "player-"Player"/"Name"-4.png";            \
+      image.normal, "player-"Player"/"Name"-1.png";           \
+   }                                                          \
+   description {                                              \
+      state, Name"-suspend" 0.0;                              \
+      inherit, "default" 0.0;                                 \
+      image.tween, "player-"Player"/"Name"-0.png";            \
+      image.tween, "player-"Player"/"Name"-1.png";            \
+      image.normal, "player-"Player"/"Name"-2.png";           \
+   }
+
+#define PLAYER_PROG(Name)                       \
+   program {                                    \
+      name, Name;                               \
+      signal, Name;                             \
+      source, "js";                             \
+      action, STATE_SET Name 0.0;               \
+      transition, LINEAR 0.280;                 \
+      target, "main";                           \
+      after, Name;                              \
+   }                                            \
+   program {                                    \
+      name, Name"-suspend";                     \
+      signal, Name"-suspend";                   \
+      source, "js";                             \
+      action, STATE_SET Name"-suspend" 0.0;     \
+      transition, LINEAR 0.200;                 \
+      target, "main";                           \
+      after, Name"-suspend";                    \
+   }
+
+#define PLAYER(Player)                                          \
+   group {                                                      \
+      name, "player,"Player;                                    \
+                                                                \
+      parts {                                                   \
+         part {                                                 \
+            name, "main";                                       \
+            type, IMAGE;                                        \
+            mouse_events, 0;                                    \
+            description {                                       \
+               state, "default" 0.0;                            \
+               rel1.relative, 0.0 0.0;                          \
+               rel2.relative, 1.0 1.0;                          \
+               visible, 1;                                      \
+               image.normal, "player-"Player"/down-4.png";      \
+            }                                                   \
+                                                                \
+            PLAYER_DESC("up", Player);                          \
+            PLAYER_DESC("down", Player);                        \
+            PLAYER_DESC("left", Player);                        \
+            PLAYER_DESC("right", Player);                       \
+                                                                \
+            description {                                       \
+               state, "die" 0.0;                                \
+               inherit, "default" 0.0;                          \
+               image.tween, "player-"Player"/die-0.png";        \
+               image.tween, "player-"Player"/die-1.png";        \
+               image.tween, "player-"Player"/die-2.png";        \
+               image.tween, "player-"Player"/die-3.png";        \
+               image.normal, "player-"Player"/die-4.png";       \
+            }                                                   \
+            description {                                       \
+               state, "dead" 0.0;                               \
+               inherit, "dead" 0.0;                             \
+               visible, 0;                                      \
+            }                                                   \
+         }                                                      \
+      }                                                         \
+                                                                \
+      programs {                                                \
+         PLAYER_PROG("up");                                     \
+         PLAYER_PROG("down");                                   \
+         PLAYER_PROG("left");                                   \
+         PLAYER_PROG("right");                                  \
+                                                                \
+         program {                                              \
+            name, "die";                                        \
+            signal, "die";                                      \
+            source, "js";                                       \
+            action, STATE_SET "die" 0.0;                        \
+            transition, LINEAR 0.320;                           \
+            target, "main";                                     \
+            after, "dead";                                      \
+         }                                                      \
+         program {                                              \
+            name, "dead";                                       \
+            signal, "dead";                                     \
+            source, "js";                                       \
+            action, STATE_SET "dead" 0.0;                       \
+            target, "main";                                     \
+         }                                                      \
+      }                                                         \
+   }
+
+   PLAYER("0");
+   PLAYER("1");
+}

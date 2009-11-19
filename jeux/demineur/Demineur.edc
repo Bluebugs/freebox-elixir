@@ -1,0 +1,1729 @@
+images {
+	image: "bloc_vide.jpg" LOSSY 90;
+	image: "BigClock.png" COMP;
+	image: "BigFlag.png" COMP;
+
+	image: "out_0.png" COMP;
+	image: "out_1.png" COMP;
+	image: "out_2.png" COMP;
+	image: "over_0.png" COMP;
+	image: "over_1.png" COMP;
+	image: "over_2.png" COMP;
+
+	image: "bloc_4x4.png" COMP;
+	image: "bomb.png" COMP;
+	image: "flag.png" COMP;
+        image: "case_cube_selected_flag.png" COMP;
+	image: "case_cube_selected.png" COMP;
+	image: "case_selected.png" COMP;
+	image: "cube.png" COMP;
+	image: "cube_solo.png" COMP;
+	image: "degat_1.png" COMP;
+	image: "degat_2.png" COMP;
+
+        image: "btBleu.png" COMP;
+        image: "btGreen.png" COMP;
+        image: "btYellow.png" COMP;
+        image: "btRed.png" COMP;
+}
+
+collections {
+	group {
+		name, "menu";
+		min, 720 576;
+		max, 720 576;
+
+                script {
+                        public btn;
+
+                        public update_btn(pos) {
+                                if (pos < 0) {
+                                        pos = 2;
+                                }
+                                if (pos > 2) {
+                                        pos = 0;
+                                }
+                                if (pos == 0) {
+                                        set_state(PART:"btn/0", "focus", 0.0);
+                                } else {
+                                        set_state(PART:"btn/0", "default", 0.0);
+                                }
+                                if (pos == 1) {
+                                        set_state(PART:"btn/1", "focus", 0.0);
+                                } else {
+					set_state(PART:"btn/1", "default", 0.0);
+				}
+				if (pos == 2) {
+					set_state(PART:"btn/2", "focus", 0.0);
+				} else {
+					set_state(PART:"btn/2", "default", 0.0);
+				}
+				set_int(btn, pos);
+                        }
+
+                        public message(Msg_Type:type, id, ...) {
+                                if (type == MSG_INT) {
+                                        if (id == 1) {
+                                                update_btn(getarg(2) + get_int(btn));
+                                        } else if (id == 2) {
+                                                send_message(MSG_INT, 1, get_int(btn));
+                                        } else if (id == 3) {
+						update_btn(getarg(2));
+					}
+                                }
+                        }
+                }
+
+                parts {
+			part {
+				name, "background";
+				type, IMAGE;
+				mouse_events, 0;
+
+				description {
+					state, "default" 0.0;
+
+					rel1.relative, 0.0 0.0;
+					rel2.relative, 1.0 1.0;
+
+					image {
+						normal, "bloc_vide.jpg";
+					}
+				}
+			}
+
+			part {
+				name, "btn/0";
+                                type, IMAGE;
+                                mouse_events, 1;
+
+                                description {
+                                        state, "default" 0.0;
+
+                                        rel1 {
+                                                relative, 0.13889 0.28645;
+                                                offset, 0 0;
+                                        }
+                                        rel2 {
+                                                relative, 0.48329 0.42185;
+                                                offset, 0 0;
+                                        }
+                                        image {
+                                                normal, "out_0.png";
+                                        }
+                                }
+                                description {
+                                        state, "focus" 0.0;
+                                        inherit, "default" 0.0;
+                                        image {
+                                                normal, "over_0.png";
+                                        }
+                                }
+			}
+                        part {
+                                name, "timing/text/0";
+                                type, TEXT;
+                                effect, SOFT_SHADOW;
+                                mouse_events, 0;
+
+                                description {
+                                        state, "default" 0.0;
+
+                                        rel1 {
+                                                relative, 0.52778 0.33;
+                                                offset, 0.0 0.0;
+                                        }
+                                        text {
+                                                font, "Vera";
+                                                text, "Meilleur temps";
+                                                size, 20;
+                                                align, 0.0 0.0;
+                                        }
+                                        color, 0 100 32 255;
+                                        color3, 0 25 8 128;
+                                }
+                        }
+                        part {
+                                name, "timing/score/0";
+                                type, TEXT;
+                                effect, SOFT_SHADOW;
+                                mouse_events, 0;
+
+                                description {
+                                        state, "default" 0.0;
+
+                                        rel1 {
+                                                relative, 0.757 0.33;
+                                                offset, 0.0 0.0;
+                                        }
+                                        text {
+                                                font, "Vera";
+                                                text, "--:--";
+                                                size, 20;
+                                                align, 0.0 0.0;
+                                        }
+                                        color, 0 100 32 255;
+                                        color3, 0 25 8 128;
+                                }
+                        }
+
+                        part {
+				name, "btn/1";
+                                type, IMAGE;
+                                mouse_events, 1;
+
+                                description {
+                                        state, "default" 0.0;
+
+                                        rel1 {
+                                                relative, 0.13889 0.45138;
+                                                offset, 0 0;
+                                        }
+                                        rel2 {
+                                                relative, 0.48329 0.58678;
+                                                offset, 0 0;
+                                        }
+                                        image {
+                                                normal, "out_1.png";
+                                        }
+                                }
+                                description {
+                                        state, "focus" 0.0;
+                                        inherit, "default" 0.0;
+
+                                        image {
+                                                normal, "over_1.png";
+                                        }
+                                }
+			}
+                        part {
+                                name, "timing/text/1";
+                                type, TEXT;
+                                effect, SOFT_SHADOW;
+                                mouse_events, 0;
+
+                                description {
+                                        state, "default" 0.0;
+
+                                        rel1 {
+                                                relative, 0.52778 0.5;
+                                                offset, 0.0 0.0;
+                                        }
+                                        text {
+                                                font, "Vera";
+                                                text, "Meilleur temps";
+                                                size, 20;
+                                                align, 0.0 0.0;
+                                        }
+                                        color, 0 100 32 255;
+                                        color3, 0 25 8 128;
+                                }
+                        }
+                        part {
+                                name, "timing/score/1";
+                                type, TEXT;
+                                effect, SOFT_SHADOW;
+                                mouse_events, 0;
+
+                                description {
+                                        state, "default" 0.0;
+
+                                        rel1 {
+                                                relative, 0.757 0.5;
+                                                offset, 0.0 0.0;
+                                        }
+                                        text {
+                                                font, "Vera";
+                                                text, "--:--";
+                                                size, 20;
+                                                align, 0.0 0.0;
+                                        }
+                                        color, 0 100 32 255;
+                                        color3, 0 25 8 128;
+                                }
+                        }
+
+
+			part {
+				name, "btn/2";
+                                type, IMAGE;
+                                mouse_events, 1;
+
+                                description {
+                                        state, "default" 0.0;
+
+                                        rel1 {
+                                                relative, 0.13889 0.61631;
+                                                offset, 0 0;
+                                        }
+                                        rel2 {
+                                                relative, 0.48329 0.75171;
+                                                offset, 0 0;
+                                        }
+                                        image {
+                                                normal, "out_2.png";
+                                        }
+                                }
+                                description {
+                                        state, "focus" 0.0;
+                                        inherit, "default" 0.0;
+
+                                        image {
+                                                normal, "over_2.png";
+                                        }
+                                }
+			}
+                        part {
+                                name, "timing/text/2";
+                                type, TEXT;
+                                effect, SOFT_SHADOW;
+                                mouse_events, 0;
+
+                                description {
+                                        state, "default" 0.0;
+
+                                        rel1 {
+                                                relative, 0.52778 0.66;
+                                                offset, 0.0 0.0;
+                                        }
+                                        text {
+                                                font, "Vera";
+                                                text, "Meilleur temps";
+                                                size, 20;
+                                                align, 0.0 0.0;
+                                        }
+                                        color, 0 100 32 255;
+                                        color3, 0 25 8 128;
+                                }
+                        }
+                        part {
+                                name, "timing/score/2";
+                                type, TEXT;
+                                effect, SOFT_SHADOW;
+                                mouse_events, 0;
+
+                                description {
+                                        state, "default" 0.0;
+
+                                        rel1 {
+                                                relative, 0.757 0.66;
+                                                offset, 0.0 0.0;
+                                        }
+                                        text {
+                                                font, "Vera";
+                                                text, "--:--";
+                                                size, 20;
+                                                align, 0.0 0.0;
+                                        }
+                                        color, 0 100 32 255;
+                                        color3, 0 25 8 128;
+                                }
+                        }
+
+                        part {
+                                name, "help/bleu";
+                                type, IMAGE;
+                                mouse_events, 0;
+
+                                description {
+                                        state, "default" 0.0;
+
+                                        rel1 {
+                                                relative, 0.1667 0.7986;
+                                                offset, 0.0 0.0;
+                                        }
+                                        rel2 {
+                                                relative, 0.1888 0.82638;
+                                                offset, 0.0 0.0;
+                                        }
+                                        image {
+                                                normal, "btYellow.png";
+                                        }
+                                }
+                        }
+                        part {
+                                name, "help/vert";
+                                type, IMAGE;
+                                mouse_events, 0;
+
+                                description {
+                                        state, "default" 0.0;
+
+                                        rel1 {
+                                                relative, 0.1667 0.85069;
+                                                offset, 0.0 0.0;
+                                        }
+                                        rel2 {
+                                                relative, 0.1888 0.87847;
+                                                offset, 0.0 0.0;
+                                        }
+                                        image {
+                                                normal, "btGreen.png";
+                                        }
+                                }
+                        }
+                        part {
+                                name, "help/flags";
+                                type, TEXT;
+                                effect, SOFT_SHADOW;
+                                mouse_events, 0;
+
+                                description {
+                                        state, "default" 0.0;
+                                        rel1 {
+                                                relative, 0.19444 0.79167;
+                                                offset, 0.0 0.0;
+                                        }
+                                        text {
+                                                font, "Vera";
+                                                text, "Mettre un drapeau";
+                                                size, 18;
+                                                align, 0.0 0.0;
+                                        }
+                                        color, 0 100 32 255;
+                                        color3, 0 25 8 128;
+                                }
+                        }
+                        part {
+                                name, "help/display";
+                                type, TEXT;
+                                effect, SOFT_SHADOW;
+                                mouse_events, 0;
+
+                                description {
+                                        state, "default" 0.0;
+                                        rel1 {
+                                                relative, 0.19444 0.84375;
+                                                offset, 0.0 0.0;
+                                        }
+                                        text {
+                                                font, "Vera";
+                                                text, "Révéler la case";
+                                                size, 18;
+                                                align, 0.0 0.0;
+                                        }
+                                        color, 0 100 32 255;
+                                        color3, 0 25 8 128;
+                                }
+                        }
+		}
+
+                programs {
+                        program {
+                                name, "btn/0,inside";
+                                signal, "mouse,in";
+                                source, "btn/0";
+
+                                script {
+                                        update_btn(0);
+                                }
+                        }
+                        program {
+                                name, "btn/1,inside";
+                                signal, "mouse,in";
+                                source, "btn/1";
+
+                                script {
+                                        update_btn(1);
+                                }
+                        }
+                        program {
+                                name, "btn/2,inside";
+                                signal, "mouse,in";
+                                source, "btn/2";
+
+                                script {
+                                        update_btn(2);
+                                }
+                        }
+                        program {
+                                name, "btn/0,click";
+                                signal, "mouse,clicked,*";
+                                source, "btn/0";
+
+                                script {
+                                        send_message(MSG_INT, 1, 0);
+                                }
+                        }
+                        program {
+                                name, "btn/1,click";
+                                signal, "mouse,clicked,*";
+                                source, "btn/1";
+
+                                script {
+                                        send_message(MSG_INT, 1, 1);
+                                }
+                        }
+                        program {
+                                name, "btn/2,click";
+                                signal, "mouse,clicked,*";
+                                source, "btn/2";
+
+                                script {
+                                        send_message(MSG_INT, 1, 2);
+                                }
+                        }
+                }
+        }
+
+#define BACKGROUND \
+	part { \
+		name, "background"; \
+		type, IMAGE; \
+		mouse_events, 0; \
+		description { \
+			state, "default" 0.0; \
+			image.normal, "bloc_vide.jpg"; \
+		} \
+	}
+
+#define END \
+	part { \
+		name, "end"; \
+		type, TEXT; \
+		effect, SOFT_SHADOW; \
+		mouse_events, 0; \
+		description { \
+			state, "default" 0.0; \
+			rel1.relative, 0.6527 0.1215; \
+			color, 255 0 0 255; \
+			text { \
+				font, "Vera"; \
+				text, ""; \
+				size, 36; \
+				align, 0.0 0.0; \
+			} \
+		} \
+		description { \
+			state, "winner1" 0.0; \
+			inherit, "default" 0.0; \
+			visible, 1; \
+			color, 255 255 0 255; \
+			text { \
+				font, "Vera"; \
+				text, "Gagné !"; \
+				size, 36; \
+				align, 0.0 0.0; \
+			} \
+		} \
+		description { \
+			state, "winner2" 0.0; \
+			inherit, "default" 0.0; \
+			visible, 1; \
+			color, 255 0 0 255; \
+			text { \
+				font, "Vera"; \
+				text, "Gagné !"; \
+				size, 36; \
+				align, 0.0 0.0; \
+			} \
+		} \
+		description { \
+			state, "looser1" 0.0; \
+			inherit, "default" 0.0; \
+			visible, 1; \
+			color, 255 255 0 255; \
+			text { \
+				font, "Vera"; \
+				text, "Perdu !"; \
+				size, 36; \
+				align, 0.0 0.0; \
+			} \
+		} \
+		description { \
+			state, "looser2" 0.0; \
+			inherit, "default" 0.0; \
+			visible, 1; \
+			color, 255 0 0 255; \
+			text { \
+				font, "Vera"; \
+				text, "Perdu !"; \
+				size, 36; \
+				align, 0.0 0.0; \
+			} \
+		} \
+	}
+
+#define CLOCK \
+	part { \
+		name, "clock,display"; \
+		type, IMAGE; \
+		mouse_events, 0; \
+		description { \
+			state, "default" 0.0; \
+			rel1.relative, 0.0972 0.1215; \
+			rel2.relative, 0.1597 0.203; \
+			image.normal, "BigClock.png"; \
+		} \
+		description { \
+			state, "end" 0.0; \
+		} \
+	} \
+	part { \
+		name, "clock,count"; \
+		type, TEXT; \
+		effect, SOFT_SHADOW; \
+		mouse_events, 0; \
+		description { \
+			state, "default" 0.0; \
+			rel1.relative, 0.2013 0.1302; \
+			color, 255 0 0 255; \
+			color3, 0 0 0 128; \
+			text { \
+				font, "Vera"; \
+				text, "00:00"; \
+				size, 36; \
+				align, 0.0 0.0; \
+			} \
+		} \
+		description { \
+			state, "end" 0.0; \
+		} \
+	}
+
+#define FLAG \
+	part { \
+		name, "flag,display"; \
+		type, IMAGE; \
+		mouse_events, 0; \
+		description { \
+			state, "default" 0.0; \
+			rel1.relative, 0.5694 0.1215; \
+			rel2.relative, 0.6319 0.203; \
+			image.normal, "BigFlag.png"; \
+		} \
+		description { \
+			state, "end" 0.0; \
+		} \
+	} \
+	part { \
+		name, "flag,count"; \
+		type, TEXT; \
+		effect, SOFT_SHADOW; \
+		mouse_events, 0; \
+		description { \
+			state, "default" 0.0; \
+			rel1.relative, 0.7083 0.1302; \
+			color, 255 0 0 255; \
+			color3, 0 0 0 128; \
+			text { \
+				font, "Vera"; \
+				text, "9"; \
+				size, 36; \
+				align, 0.0 0.0; \
+			} \
+		} \
+		description { \
+			state, "end" 0.0; \
+			visible, 0; \
+		} \
+	}
+
+#define WINNER \
+	program { \
+		name, "winner,init"; \
+		signal, "setup,winner"; \
+		source, "js"; \
+		action, STATE_SET "end" 0.0; \
+		target, "flag,count"; \
+		after, "winner,enter"; \
+	} \
+	program { \
+		name, "winner,enter"; \
+		action, STATE_SET "winner1" 0.0; \
+		target, "end"; \
+		after, "winner,loop"; \
+	} \
+	program { \
+		name, "winner,start"; \
+		action, STATE_SET "winner1" 0.0; \
+		target, "end"; \
+		transition, SINUSOIDAL 2.0; \
+		after, "winner,loop"; \
+	} \
+	program { \
+		name, "winner,loop"; \
+		action, STATE_SET "winner2" 0.0; \
+		target, "end"; \
+		transition, SINUSOIDAL 2.0; \
+		after, "winner,start"; \
+	} \
+	program { \
+		name, "looser,init"; \
+		signal, "setup,looser"; \
+		source, "js"; \
+		action, STATE_SET "end" 0.0; \
+		target, "flag,count"; \
+		after, "looser,enter"; \
+	} \
+	program { \
+		name, "looser,enter"; \
+		action, STATE_SET "looser1" 0.0; \
+		target, "end"; \
+		after, "looser,loop"; \
+	} \
+	program { \
+		name, "looser,start"; \
+		action, STATE_SET "looser1" 0.0; \
+		target, "end"; \
+		transition, SINUSOIDAL 2.0; \
+		after, "looser,loop"; \
+	} \
+	program { \
+		name, "looser,loop"; \
+		action, STATE_SET "looser2" 0.0; \
+		target, "end"; \
+		transition, SINUSOIDAL 2.0; \
+		after, "looser,start"; \
+	} \
+	program { \
+		name, "setup,reset"; \
+		signal, "setup,reset"; \
+		source, "js"; \
+		action, STATE_SET "default" 0.0; \
+		target, "end"; \
+		after, "setup,count"; \
+	} \
+	program { \
+		name, "setup,count"; \
+		action, STATE_SET "default" 0.0; \
+		target, "flag,count"; \
+	}
+
+        group {
+                name, "cell";
+
+                parts {
+                        part {
+                                name, "bomb";
+                                type, IMAGE;
+                                mouse_events, 0;
+
+                                description {
+                                        state, "default" 0.0;
+                                        rel1.relative, 0.0 0.0;
+                                        rel2.relative, 1.0 1.0;
+                                        image.normal, "bomb.png";
+                                        visible, 0;
+                                }
+                                description {
+                                        state, "setup" 0.0;
+                                        inherit, "default" 0.0;
+                                        visible, 1;
+                                }
+                        }
+                        part {
+                                name, "cover";
+                                type, IMAGE;
+                                mouse_events, 0;
+
+                                description {
+                                        state, "default" 0.0;
+                                        rel1.relative, 0.0 0.0;
+                                        rel2.relative, 1.0 1.0;
+                                        image.normal, "cube.png";
+                                        visible, 1;
+                                }
+                                description {
+                                        state, "reveal" 0.0;
+                                        inherit, "default" 0.0;
+                                        visible, 0;
+                                }
+                        }
+                        part {
+                                name, "count";
+                                type, TEXT;
+				effect, SOFT_SHADOW;
+                                mouse_events, 0;
+
+				description {
+					state, "default" 0.0;
+					rel1.relative, 0.0 0.0;
+					rel2.offset, 1.0 1.0;
+					visible, 0;
+
+					color, 0 0 0 255;
+
+					text {
+						font, "VeraBd";
+						size, 12;
+					}
+				}
+                                description {
+                                        state, "one" 0.0;
+					inherit, "default" 0.0;
+					visible, 1;
+                                        color, 164 250 255 255;
+
+					text {
+						font, "VeraBd";
+						size, 12;
+                                                text, "1";
+					}
+                                }
+                                description {
+                                        state, "two" 0.0;
+					inherit, "default" 0.0;
+					visible, 1;
+                                        color, 165 250 138 255;
+
+					text {
+						font, "VeraBd";
+						size, 12;
+                                                text, "2";
+					}
+                                }
+                                description {
+                                        state, "more" 0.0;
+					inherit, "default" 0.0;
+					visible, 1;
+                                        color, 255 255 0 255;
+
+					text {
+						font, "VeraBd";
+						size, 12;
+					}
+                                }
+                        }
+                        part {
+                                name, "protect";
+                                type, IMAGE;
+                                mouse_events, 0;
+
+                                description {
+                                        state, "default" 0.0;
+                                        rel1.relative, 0.0 0.0;
+                                        rel2.relative, 1.0 1.0;
+                                        image.normal, "flag.png";
+                                        visible, 0;
+                                }
+                                description {
+                                        state, "flagged" 0.0;
+                                        inherit, "default" 0.0;
+                                        visible, 1;
+                                }
+                        }
+                }
+                programs {
+                        program {
+                                name, "setup";
+                                signal, "setup";
+                                source, "code";
+
+                                action, STATE_SET "setup" 0.0;
+                                target, "bomb";
+                        }
+                        program {
+                                name, "flag,on";
+                                signal, "flag,on";
+                                source, "code";
+
+                                action, STATE_SET "flagged" 0.0;
+                                target, "protect";
+                        }
+                        program {
+                                name, "flag,off";
+                                signal, "flag,off";
+                                source, "code";
+
+                                action, STATE_SET "default" 0.0;
+                                target, "protect";
+                        }
+                        program {
+                                name, "reveal";
+                                signal, "reveal";
+                                source, "code";
+
+                                action, STATE_SET "reveal" 0.0;
+                                target, "cover";
+                        }
+                        program {
+                                name, "count,1";
+                                signal, "1";
+                                source, "code";
+
+                                action, STATE_SET "one" 0.0;
+                                target, "count";
+                        }
+                        program {
+                                name, "count,2";
+                                signal, "2";
+                                source, "code";
+
+                                action, STATE_SET "two" 0.0;
+                                target, "count";
+                        }
+                        program {
+                                name, "count,more";
+                                signal, "more";
+                                source, "code";
+
+                                action, STATE_SET "more" 0.0;
+                                target, "count";
+                        }
+                        program {
+                                name, "reset";
+                                signal, "reset";
+                                source, "code";
+
+                                action, STATE_SET "default" 0.0;
+                                target, "bomb";
+                                target, "cover";
+                                target, "count";
+                        }
+                }
+        }
+
+#define GRIDCELL(X, Y)                          \
+        part {                                  \
+           name, #X"/"#Y;                       \
+           type, GROUP;                         \
+           source, "cell";                      \
+           mouse_events, 0;                     \
+           repeat_events, 0;                    \
+           description {                        \
+              state, "default" 0.0;             \
+              rel1.relative, 0.0 0.0;           \
+              rel2.relative, 0.0 0.0;           \
+              rel1.offset, (X*20) (Y*20);       \
+              rel2.offset, (X*20+19) (Y*20+19); \
+           }                                    \
+        }
+
+#define CURSOR(Name)                                            \
+	description {                                           \
+           state, Name 0.0;                                     \
+           rel1.to, "detect-"Name;                              \
+           rel1.offset, -4 -4;                                  \
+           rel2.to, "detect-"Name;                              \
+           rel2.offset, 3 3;                                    \
+           image.normal, "case_selected.png";                   \
+	}                                                       \
+	description {                                           \
+           state, Name"-cube" 0.0;                              \
+           inherit, Name 0.0;                                   \
+           image.normal, "case_cube_selected.png";              \
+	}                                                       \
+	description {                                           \
+           state, Name"-flag" 0.0;                              \
+           inherit, Name 0.0;                                   \
+           image.normal, "case_cube_selected_flag.png";         \
+	}
+
+#define DETECT(Name, X, Y)                      \
+	part {                                  \
+           name, "detect-"Name;                 \
+           type, RECT;                          \
+           mouse_events, 1;                     \
+           description {                        \
+              state, "default" 0.0;             \
+              rel1.relative, X Y;               \
+              rel1.offset, -10 -10;             \
+              rel2.relative, X Y;               \
+              rel2.offset, 9 9;                 \
+              color, 0 0 0 0;                   \
+           }                                    \
+	}
+
+#define Yeasy0 0.4704861111111111
+#define Yeasy1 0.5052083333333334
+#define Yeasy2 0.5399305555555556
+#define Yeasy3 0.5746527777777778
+#define Yeasy4 0.609375
+#define Yeasy5 0.6440972222222222
+#define Xeasy0 0.30694444444444446
+#define Xeasy1 0.335
+#define Xeasy2 0.3625
+#define Xeasy3 0.3902777777777778
+#define Xeasy4 0.41805555555555557
+#define Xeasy5 0.44583333333333336
+#define Xeasy6 0.4736111111111111
+#define Xeasy7 0.5013888888888889
+#define Xeasy8 0.5291666666666667
+#define Xeasy9 0.5569444444444445
+#define Xeasy10 0.5847222222222223
+#define Xeasy11 0.6125
+#define Xeasy12 0.641
+#define Xeasy13 0.669
+#define Xeasy14 0.6958333333333333
+
+#define CURSOR_LINEeasy(Name)                   \
+	CURSOR(Name"/0");                       \
+        CURSOR(Name"/1");                       \
+        CURSOR(Name"/2");                       \
+        CURSOR(Name"/3");                       \
+        CURSOR(Name"/4");                       \
+        CURSOR(Name"/5");
+
+#define DETECT_LINEeasy(Name, X1)               \
+	DETECT(Name"/0", X1, Yeasy0);           \
+        DETECT(Name"/1", X1, Yeasy1);           \
+        DETECT(Name"/2", X1, Yeasy2);           \
+        DETECT(Name"/3", X1, Yeasy3);           \
+        DETECT(Name"/4", X1, Yeasy4);           \
+        DETECT(Name"/5", X1, Yeasy5);
+
+#define EASY_COLUMN(X)                          \
+        GRIDCELL(X, 0);                         \
+        GRIDCELL(X, 1);                         \
+        GRIDCELL(X, 2);                         \
+        GRIDCELL(X, 3);                         \
+        GRIDCELL(X, 4);                         \
+        GRIDCELL(X, 5);
+
+        group {
+           name, "grid,easy";
+
+           parts {
+              EASY_COLUMN(0);
+              EASY_COLUMN(1);
+              EASY_COLUMN(2);
+              EASY_COLUMN(3);
+              EASY_COLUMN(4);
+              EASY_COLUMN(5);
+              EASY_COLUMN(6);
+              EASY_COLUMN(7);
+              EASY_COLUMN(8);
+              EASY_COLUMN(9);
+              EASY_COLUMN(10);
+              EASY_COLUMN(11);
+              EASY_COLUMN(12);
+              EASY_COLUMN(13);
+              EASY_COLUMN(14);
+           }
+        }
+
+	group {
+		name, "level,easy";
+		min, 720 576;
+		max, 720 576;
+		script {
+			new target[12];
+			public set_target(index, x, y) {
+				if (index == 0) {
+					snprintf(target, 12, "%i/%i", x, y);
+				} else {
+					if (index == 1) {
+						snprintf(target, 12, "%i/%i-flag", x, y);
+					} else {
+					snprintf(target, 12, "%i/%i-cube", x, y);
+					}
+				}
+			}
+
+			public message(Msg_Type:type, id, ...) {
+				if (type == MSG_INT_SET) {
+					if (id == 4) {
+						new state;
+						new x;
+						new y;
+
+						state = getarg(2);
+						x = getarg(3);
+						y = getarg(4);
+
+						set_target(state, x, y);
+						set_state(PART:"cursor", target, 0.0);
+					}
+				}
+			}
+
+		}
+		parts {
+			BACKGROUND;
+			part {
+				name, "border";
+				type, IMAGE;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+
+					rel1.relative, 0.2902777777777778 0.4496527777777778;
+					rel2.relative, 0.7125 0.6649305555555556;
+					image {
+						normal, "bloc_4x4.png";
+						border, 4 4 4 4;
+						middle, 0;
+					}
+				}
+			}
+                        part {
+                           name, "tile";
+                           type, IMAGE;
+                           mouse_events, 0;
+                           description {
+                              state, "default" 0.0;
+
+                              rel1.relative, 0.2902777777777778 0.4496527777777778;
+                              rel1.offset, 2 2;
+                              rel2.relative, 0.7125 0.6649305555555556;
+                              rel2.offset, -2 -2;
+
+                              image.normal, "cube_solo.png";
+
+                              fill {
+                                 smooth, 0;
+                                 origin.relative, 0.0 0.0;
+                                 size {
+                                    relative, 0.0 0.0;
+                                    offset, 20 20;
+                                 }
+                              }
+                           }
+                        }
+                        part {
+                           name, "grid";
+                           type, GROUP;
+                           source, "grid,easy";
+                           mouse_events, 0;
+                           repeat_events, 0;
+                           description {
+                              state, "default" 0.0;
+
+                              rel1.relative, 0.2902777777777778 0.4496527777777778;
+                              rel1.offset, 2 2;
+                              rel2.relative, 0.7125 0.6649305555555556;
+                              rel2.offset, -2 -2;
+                           }
+                        }
+			part {
+				name, "cursor";
+				type, IMAGE;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+					visible, 0;
+				}
+				CURSOR_LINEeasy("0");
+				CURSOR_LINEeasy("1");
+				CURSOR_LINEeasy("2");
+				CURSOR_LINEeasy("3");
+				CURSOR_LINEeasy("4");
+				CURSOR_LINEeasy("5");
+				CURSOR_LINEeasy("6");
+				CURSOR_LINEeasy("7");
+				CURSOR_LINEeasy("8");
+				CURSOR_LINEeasy("9");
+				CURSOR_LINEeasy("10");
+				CURSOR_LINEeasy("11");
+				CURSOR_LINEeasy("12");
+				CURSOR_LINEeasy("13");
+				CURSOR_LINEeasy("14");
+			}
+			DETECT_LINEeasy("0", Xeasy0);
+			DETECT_LINEeasy("1", Xeasy1);
+			DETECT_LINEeasy("2", Xeasy2);
+			DETECT_LINEeasy("3", Xeasy3);
+			DETECT_LINEeasy("4", Xeasy4);
+			DETECT_LINEeasy("5", Xeasy5);
+			DETECT_LINEeasy("6", Xeasy6);
+			DETECT_LINEeasy("7", Xeasy7);
+			DETECT_LINEeasy("8", Xeasy8);
+			DETECT_LINEeasy("9", Xeasy9);
+			DETECT_LINEeasy("10", Xeasy10);
+			DETECT_LINEeasy("11", Xeasy11);
+			DETECT_LINEeasy("12", Xeasy12);
+			DETECT_LINEeasy("13", Xeasy13);
+			DETECT_LINEeasy("14", Xeasy14);
+			END;
+			CLOCK;
+			FLAG;
+		}
+		programs {
+			WINNER
+			program {
+				name, "cursor,hide";
+				signal, "cursor,hide";
+				source, "";
+				action, STATE_SET "default" 0.0;
+				target, "cursor";
+			}
+		}
+	}
+
+#define Ymiddle0 0.3298611111111111
+#define Ymiddle1 0.3645833333333333
+#define Ymiddle2 0.3993055555555556
+#define Ymiddle3 0.4340277777777778
+#define Ymiddle4 0.46875
+#define Ymiddle5 0.5034722222222222
+#define Ymiddle6 0.5381944444444444
+#define Ymiddle7 0.5729166666666666
+#define Ymiddle8 0.6076388888888888
+#define Ymiddle9 0.6423611111111112
+#define Ymiddle10 0.6770833333333334
+#define Ymiddle11 0.7118055555555556
+#define Ymiddle12 0.7465277777777778
+#define Ymiddle13 0.78125
+#define Xmiddle0 0.20972222222222223
+#define Xmiddle1 0.2375
+#define Xmiddle2 0.2652777777777778
+#define Xmiddle3 0.29305555555555557
+#define Xmiddle4 0.32083333333333336
+#define Xmiddle5 0.3486111111111111
+#define Xmiddle6 0.3763888888888889
+#define Xmiddle7 0.4041666666666667
+#define Xmiddle8 0.43194444444444446
+#define Xmiddle9 0.4597222222222222
+#define Xmiddle10 0.4875
+#define Xmiddle11 0.516
+#define Xmiddle12 0.544
+#define Xmiddle13 0.5708333333333333
+#define Xmiddle14 0.5986111111111111
+#define Xmiddle15 0.6263888888888889
+#define Xmiddle16 0.6541666666666667
+#define Xmiddle17 0.6819444444444445
+#define Xmiddle18 0.7097222222222223
+#define Xmiddle19 0.7375
+#define Xmiddle20 0.7652777777777777
+
+#define CURSOR_LINEmiddle(Name)                 \
+	CURSOR(Name"/0");                       \
+        CURSOR(Name"/1");                       \
+        CURSOR(Name"/2");                       \
+        CURSOR(Name"/3");                       \
+        CURSOR(Name"/4");                       \
+        CURSOR(Name"/5");                       \
+        CURSOR(Name"/6");                       \
+        CURSOR(Name"/7");                       \
+        CURSOR(Name"/8");                       \
+        CURSOR(Name"/9");                       \
+        CURSOR(Name"/10");                      \
+        CURSOR(Name"/11");                      \
+        CURSOR(Name"/12");                      \
+        CURSOR(Name"/13")
+
+#define DETECT_LINEmiddle(Name, X1)             \
+	DETECT(Name"/0", X1, Ymiddle0);         \
+        DETECT(Name"/1", X1, Ymiddle1);         \
+        DETECT(Name"/2", X1, Ymiddle2);         \
+        DETECT(Name"/3", X1, Ymiddle3);         \
+        DETECT(Name"/4", X1, Ymiddle4);         \
+        DETECT(Name"/5", X1, Ymiddle5);         \
+        DETECT(Name"/6", X1, Ymiddle6);         \
+        DETECT(Name"/7", X1, Ymiddle7);         \
+        DETECT(Name"/8", X1, Ymiddle8);         \
+        DETECT(Name"/9", X1, Ymiddle9);         \
+        DETECT(Name"/10", X1, Ymiddle10);       \
+        DETECT(Name"/11", X1, Ymiddle11);       \
+        DETECT(Name"/12", X1, Ymiddle12);       \
+        DETECT(Name"/13", X1, Ymiddle13)
+
+
+#define MIDDLE_COLUMN(X)                        \
+        GRIDCELL(X, 0);                         \
+        GRIDCELL(X, 1);                         \
+        GRIDCELL(X, 2);                         \
+        GRIDCELL(X, 3);                         \
+        GRIDCELL(X, 4);                         \
+        GRIDCELL(X, 5);                         \
+        GRIDCELL(X, 6);                         \
+        GRIDCELL(X, 7);                         \
+        GRIDCELL(X, 8);                         \
+        GRIDCELL(X, 9);                         \
+        GRIDCELL(X, 10);                        \
+        GRIDCELL(X, 11);                        \
+        GRIDCELL(X, 12);                        \
+        GRIDCELL(X, 13);
+
+        group {
+           name, "grid,middle";
+
+           parts {
+              MIDDLE_COLUMN(0);
+              MIDDLE_COLUMN(1);
+              MIDDLE_COLUMN(2);
+              MIDDLE_COLUMN(3);
+              MIDDLE_COLUMN(4);
+              MIDDLE_COLUMN(5);
+              MIDDLE_COLUMN(6);
+              MIDDLE_COLUMN(7);
+              MIDDLE_COLUMN(8);
+              MIDDLE_COLUMN(9);
+              MIDDLE_COLUMN(10);
+              MIDDLE_COLUMN(11);
+              MIDDLE_COLUMN(12);
+              MIDDLE_COLUMN(13);
+              MIDDLE_COLUMN(14);
+              MIDDLE_COLUMN(15);
+              MIDDLE_COLUMN(16);
+              MIDDLE_COLUMN(17);
+              MIDDLE_COLUMN(18);
+              MIDDLE_COLUMN(19);
+              MIDDLE_COLUMN(20);
+           }
+        }
+
+	group {
+		name, "level,middle";
+		min, 720 576;
+		max, 720 576;
+		script {
+			new target[12];
+			public set_target(index, x, y) {
+				if (index == 0) {
+					snprintf(target, 12, "%i/%i", x, y);
+				} else {
+					if (index == 1) {
+						snprintf(target, 12, "%i/%i-flag", x, y);
+					} else {
+					snprintf(target, 12, "%i/%i-cube", x, y);
+					}
+				}
+			}
+
+			public message(Msg_Type:type, id, ...) {
+				if (type == MSG_INT_SET) {
+					if (id == 4) {
+						new state;
+						new x;
+						new y;
+
+						state = getarg(2);
+						x = getarg(3);
+						y = getarg(4);
+
+						set_target(state, x, y);
+						set_state(PART:"cursor", target, 0.0);
+					}
+				}
+			}
+
+		}
+		parts {
+			BACKGROUND;
+			part {
+				name, "border";
+				type, IMAGE;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+
+					rel1.relative, 0.19305555555555556 0.3090277777777778;
+					rel2.relative, 0.7819444444444444 0.8020833333333334;
+					image {
+						normal, "bloc_4x4.png";
+						border, 4 4 4 4;
+						middle, 0;
+					}
+				}
+			}
+                        part {
+                           name, "tile";
+                           type, IMAGE;
+                           mouse_events, 0;
+                           description {
+                              state, "default" 0.0;
+
+                              rel1.relative, 0.19305555555555556 0.3090277777777778;
+                              rel1.offset, 2 2;
+                              rel2.relative, 0.7819444444444444 0.8020833333333334;
+                              rel2.offset, -2 -2;
+
+                              image.normal, "cube_solo.png";
+
+                              fill {
+                                 smooth, 0;
+                                 origin.relative, 0.0 0.0;
+                                 size {
+                                    relative, 0.0 0.0;
+                                    offset, 20 20;
+                                 }
+                              }
+                           }
+                        }
+                        part {
+                           name, "grid";
+                           type, GROUP;
+                           source, "grid,middle";
+                           mouse_events, 0;
+                           repeat_events, 0;
+                           description {
+                              state, "default" 0.0;
+
+                              rel1.relative, 0.19305555555555556 0.3090277777777778;
+                              rel1.offset, 2 2;
+                              rel2.relative, 0.7819444444444444 0.8020833333333334;
+                              rel2.offset, -2 -2;
+                           }
+                        }
+			part {
+				name, "cursor";
+				type, IMAGE;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+					visible, 0;
+				}
+				CURSOR_LINEmiddle("0");
+				CURSOR_LINEmiddle("1");
+				CURSOR_LINEmiddle("2");
+				CURSOR_LINEmiddle("3");
+				CURSOR_LINEmiddle("4");
+				CURSOR_LINEmiddle("5");
+				CURSOR_LINEmiddle("6");
+				CURSOR_LINEmiddle("7");
+				CURSOR_LINEmiddle("8");
+				CURSOR_LINEmiddle("9");
+				CURSOR_LINEmiddle("10");
+				CURSOR_LINEmiddle("11");
+				CURSOR_LINEmiddle("12");
+				CURSOR_LINEmiddle("13");
+				CURSOR_LINEmiddle("14");
+				CURSOR_LINEmiddle("15");
+				CURSOR_LINEmiddle("16");
+				CURSOR_LINEmiddle("17");
+				CURSOR_LINEmiddle("18");
+				CURSOR_LINEmiddle("19");
+				CURSOR_LINEmiddle("20");
+			}
+			DETECT_LINEmiddle("0", Xmiddle0);
+			DETECT_LINEmiddle("1", Xmiddle1);
+			DETECT_LINEmiddle("2", Xmiddle2);
+			DETECT_LINEmiddle("3", Xmiddle3);
+			DETECT_LINEmiddle("4", Xmiddle4);
+			DETECT_LINEmiddle("5", Xmiddle5);
+			DETECT_LINEmiddle("6", Xmiddle6);
+			DETECT_LINEmiddle("7", Xmiddle7);
+			DETECT_LINEmiddle("8", Xmiddle8);
+			DETECT_LINEmiddle("9", Xmiddle9);
+			DETECT_LINEmiddle("10", Xmiddle10);
+			DETECT_LINEmiddle("11", Xmiddle11);
+			DETECT_LINEmiddle("12", Xmiddle12);
+			DETECT_LINEmiddle("13", Xmiddle13);
+			DETECT_LINEmiddle("14", Xmiddle14);
+			DETECT_LINEmiddle("15", Xmiddle15);
+			DETECT_LINEmiddle("16", Xmiddle16);
+			DETECT_LINEmiddle("17", Xmiddle17);
+			DETECT_LINEmiddle("18", Xmiddle18);
+			DETECT_LINEmiddle("19", Xmiddle19);
+			DETECT_LINEmiddle("20", Xmiddle20);
+			END;
+			CLOCK;
+			FLAG;
+		}
+		programs {
+			WINNER
+			program {
+				name, "cursor,hide";
+				signal, "cursor,hide";
+				source, "";
+				action, STATE_SET "default" 0.0;
+				target, "cursor";
+			}
+		}
+	}
+
+#define Yexpert0 0.25
+#define Yexpert1 0.2847222222222222
+#define Yexpert2 0.3194444444444444
+#define Yexpert3 0.3541666666666667
+#define Yexpert4 0.3888888888888889
+#define Yexpert5 0.4236111111111111
+#define Yexpert6 0.4583333333333333
+#define Yexpert7 0.4930555555555556
+#define Yexpert8 0.5277777777777778
+#define Yexpert9 0.5625
+#define Yexpert10 0.5972222222222222
+#define Yexpert11 0.6319444444444444
+#define Yexpert12 0.6666666666666666
+#define Yexpert13 0.7013888888888888
+#define Yexpert14 0.7361111111111112
+#define Yexpert15 0.7708333333333334
+#define Yexpert16 0.8055555555555556
+#define Yexpert17 0.8402777777777778
+#define Xexpert0 0.12222222222222222
+#define Xexpert1 0.15
+#define Xexpert2 0.17777777777777778
+#define Xexpert3 0.20555555555555555
+#define Xexpert4 0.23333333333333334
+#define Xexpert5 0.2611111111111111
+#define Xexpert6 0.289
+#define Xexpert7 0.31666666666666665
+#define Xexpert8 0.34444444444444444
+#define Xexpert9 0.37222222222222223
+#define Xexpert10 0.4
+#define Xexpert11 0.42777777777777776
+#define Xexpert12 0.45555555555555555
+#define Xexpert13 0.48333333333333334
+#define Xexpert14 0.5111111111111111
+#define Xexpert15 0.5388888888888889
+#define Xexpert16 0.5666666666666667
+#define Xexpert17 0.5944444444444444
+#define Xexpert18 0.6222222222222222
+#define Xexpert19 0.65
+#define Xexpert20 0.6777777777777778
+#define Xexpert21 0.7055555555555556
+#define Xexpert22 0.7333333333333333
+#define Xexpert23 0.7611111111111111
+#define Xexpert24 0.7888888888888889
+#define Xexpert25 0.8166666666666667
+#define Xexpert26 0.8444444444444444
+
+#define CURSOR_LINEexpert(Name)                 \
+	CURSOR(Name"/0");                       \
+        CURSOR(Name"/1");                       \
+        CURSOR(Name"/2");                       \
+        CURSOR(Name"/3");                       \
+        CURSOR(Name"/4");                       \
+        CURSOR(Name"/5");                       \
+        CURSOR(Name"/6");                       \
+        CURSOR(Name"/7");                       \
+        CURSOR(Name"/8");                       \
+        CURSOR(Name"/9");                       \
+        CURSOR(Name"/10");                      \
+        CURSOR(Name"/11");                      \
+        CURSOR(Name"/12");                      \
+        CURSOR(Name"/13");                      \
+        CURSOR(Name"/14");                      \
+        CURSOR(Name"/15");                      \
+        CURSOR(Name"/16");                      \
+        CURSOR(Name"/17")
+
+#define DETECT_LINEexpert(Name, X1)             \
+	DETECT(Name"/0", X1, Yexpert0);         \
+        DETECT(Name"/1", X1, Yexpert1);         \
+        DETECT(Name"/2", X1, Yexpert2);         \
+        DETECT(Name"/3", X1, Yexpert3);         \
+        DETECT(Name"/4", X1, Yexpert4);         \
+        DETECT(Name"/5", X1, Yexpert5);         \
+        DETECT(Name"/6", X1, Yexpert6);         \
+        DETECT(Name"/7", X1, Yexpert7);         \
+        DETECT(Name"/8", X1, Yexpert8);         \
+        DETECT(Name"/9", X1, Yexpert9);         \
+        DETECT(Name"/10", X1, Yexpert10);       \
+        DETECT(Name"/11", X1, Yexpert11);       \
+        DETECT(Name"/12", X1, Yexpert12);       \
+        DETECT(Name"/13", X1, Yexpert13);       \
+        DETECT(Name"/14", X1, Yexpert14);       \
+        DETECT(Name"/15", X1, Yexpert15);       \
+        DETECT(Name"/16", X1, Yexpert16);       \
+        DETECT(Name"/17", X1, Yexpert17)
+
+#define EXPERT_COLUMN(X)                        \
+        GRIDCELL(X, 0);                         \
+        GRIDCELL(X, 1);                         \
+        GRIDCELL(X, 2);                         \
+        GRIDCELL(X, 3);                         \
+        GRIDCELL(X, 4);                         \
+        GRIDCELL(X, 5);                         \
+        GRIDCELL(X, 6);                         \
+        GRIDCELL(X, 7);                         \
+        GRIDCELL(X, 8);                         \
+        GRIDCELL(X, 9);                         \
+        GRIDCELL(X, 10);                        \
+        GRIDCELL(X, 11);                        \
+        GRIDCELL(X, 12);                        \
+        GRIDCELL(X, 13);                        \
+        GRIDCELL(X, 14);                        \
+        GRIDCELL(X, 15);                        \
+        GRIDCELL(X, 16);                        \
+        GRIDCELL(X, 17);
+
+        group {
+           name, "grid,expert";
+
+           parts {
+              EXPERT_COLUMN(0);
+              EXPERT_COLUMN(1);
+              EXPERT_COLUMN(2);
+              EXPERT_COLUMN(3);
+              EXPERT_COLUMN(4);
+              EXPERT_COLUMN(5);
+              EXPERT_COLUMN(6);
+              EXPERT_COLUMN(7);
+              EXPERT_COLUMN(8);
+              EXPERT_COLUMN(9);
+              EXPERT_COLUMN(10);
+              EXPERT_COLUMN(11);
+              EXPERT_COLUMN(12);
+              EXPERT_COLUMN(13);
+              EXPERT_COLUMN(14);
+              EXPERT_COLUMN(15);
+              EXPERT_COLUMN(16);
+              EXPERT_COLUMN(17);
+              EXPERT_COLUMN(18);
+              EXPERT_COLUMN(19);
+              EXPERT_COLUMN(20);
+              EXPERT_COLUMN(21);
+              EXPERT_COLUMN(22);
+              EXPERT_COLUMN(23);
+              EXPERT_COLUMN(24);
+              EXPERT_COLUMN(25);
+              EXPERT_COLUMN(26);
+           }
+        }
+
+	group {
+		name, "level,expert";
+		min, 720 576;
+		max, 720 576;
+		script {
+			new target[12];
+			public set_target(index, x, y) {
+				if (index == 0) {
+					snprintf(target, 12, "%i/%i", x, y);
+				} else {
+					if (index == 1) {
+						snprintf(target, 12, "%i/%i-flag", x, y);
+					} else {
+					snprintf(target, 12, "%i/%i-cube", x, y);
+					}
+				}
+			}
+
+			public message(Msg_Type:type, id, ...) {
+				if (type == MSG_INT_SET) {
+					if (id == 4) {
+						new state;
+						new x;
+						new y;
+
+						state = getarg(2);
+						x = getarg(3);
+						y = getarg(4);
+
+						set_target(state, x, y);
+						set_state(PART:"cursor", target, 0.0);
+					}
+				}
+			}
+
+		}
+		parts {
+			BACKGROUND;
+			part {
+				name, "border";
+				type, IMAGE;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+
+					rel1.relative, 0.10555555555555556 0.22916666666666666;
+					rel2.relative, 0.8611111111111112 0.8611111111111112;
+					image {
+						normal, "bloc_4x4.png";
+						border, 4 4 4 4;
+						middle, 0;
+					}
+				}
+			}
+                        part {
+                           name, "tile";
+                           type, IMAGE;
+                           mouse_events, 0;
+                           description {
+                              state, "default" 0.0;
+
+                              rel1.relative, 0.10555555555555556 0.22916666666666666;
+                              rel1.offset, 2 2;
+                              rel2.relative, 0.8611111111111112 0.8611111111111112;
+                              rel2.offset, -2 -2;
+
+                              image.normal, "cube_solo.png";
+
+                              fill {
+                                 smooth, 0;
+                                 origin.relative, 0.0 0.0;
+                                 size {
+                                    relative, 0.0 0.0;
+                                    offset, 20 20;
+                                 }
+                              }
+                           }
+                        }
+                        part {
+                           name, "grid";
+                           type, GROUP;
+                           source, "grid,expert";
+                           mouse_events, 0;
+                           repeat_events, 0;
+                           description {
+                              state, "default" 0.0;
+
+                              rel1.relative, 0.10555555555555556 0.22916666666666666;
+                              rel1.offset, 2 2;
+                              rel2.relative, 0.8611111111111112 0.8611111111111112;
+                              rel2.offset, -2 -2;
+                           }
+                        }
+			part {
+				name, "cursor";
+				type, IMAGE;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+					visible, 0;
+				}
+				CURSOR_LINEexpert("0");
+				CURSOR_LINEexpert("1");
+				CURSOR_LINEexpert("2");
+				CURSOR_LINEexpert("3");
+				CURSOR_LINEexpert("4");
+				CURSOR_LINEexpert("5");
+				CURSOR_LINEexpert("6");
+				CURSOR_LINEexpert("7");
+				CURSOR_LINEexpert("8");
+				CURSOR_LINEexpert("9");
+				CURSOR_LINEexpert("10");
+				CURSOR_LINEexpert("11");
+				CURSOR_LINEexpert("12");
+				CURSOR_LINEexpert("13");
+				CURSOR_LINEexpert("14");
+				CURSOR_LINEexpert("15");
+				CURSOR_LINEexpert("16");
+				CURSOR_LINEexpert("17");
+				CURSOR_LINEexpert("18");
+				CURSOR_LINEexpert("19");
+				CURSOR_LINEexpert("20");
+				CURSOR_LINEexpert("21");
+				CURSOR_LINEexpert("22");
+				CURSOR_LINEexpert("23");
+				CURSOR_LINEexpert("24");
+				CURSOR_LINEexpert("25");
+				CURSOR_LINEexpert("26");
+			}
+			DETECT_LINEexpert("0", Xexpert0);
+			DETECT_LINEexpert("1", Xexpert1);
+			DETECT_LINEexpert("2", Xexpert2);
+			DETECT_LINEexpert("3", Xexpert3);
+			DETECT_LINEexpert("4", Xexpert4);
+			DETECT_LINEexpert("5", Xexpert5);
+			DETECT_LINEexpert("6", Xexpert6);
+			DETECT_LINEexpert("7", Xexpert7);
+			DETECT_LINEexpert("8", Xexpert8);
+			DETECT_LINEexpert("9", Xexpert9);
+			DETECT_LINEexpert("10", Xexpert10);
+			DETECT_LINEexpert("11", Xexpert11);
+			DETECT_LINEexpert("12", Xexpert12);
+			DETECT_LINEexpert("13", Xexpert13);
+			DETECT_LINEexpert("14", Xexpert14);
+			DETECT_LINEexpert("15", Xexpert15);
+			DETECT_LINEexpert("16", Xexpert16);
+			DETECT_LINEexpert("17", Xexpert17);
+			DETECT_LINEexpert("18", Xexpert18);
+			DETECT_LINEexpert("19", Xexpert19);
+			DETECT_LINEexpert("20", Xexpert20);
+			DETECT_LINEexpert("21", Xexpert21);
+			DETECT_LINEexpert("22", Xexpert22);
+			DETECT_LINEexpert("23", Xexpert23);
+			DETECT_LINEexpert("24", Xexpert24);
+			DETECT_LINEexpert("25", Xexpert25);
+			DETECT_LINEexpert("26", Xexpert26);
+			END;
+			CLOCK;
+			FLAG;
+		}
+		programs {
+			WINNER
+			program {
+				name, "cursor,hide";
+				signal, "cursor,hide";
+				source, "";
+				action, STATE_SET "default" 0.0;
+				target, "cursor";
+			}
+		}
+	}
+}
+

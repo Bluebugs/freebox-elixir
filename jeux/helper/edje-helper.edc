@@ -1,0 +1,253 @@
+images {
+	image, "btRed.png" COMP;
+	image, "btGreen.png" COMP;
+}
+
+fonts {
+	font, "Vera.ttf" "vera";
+}
+
+collections {
+	group {
+		name, "out";
+		min, 720 576;
+		max, 720 576;
+
+		script {
+			public btn = 0;
+
+			public update_btn(move) {
+				new tmp = get_int(btn) + move;
+
+				if (tmp > 1)
+					tmp = 0;
+				if (tmp < 0)
+					tmp = 1;
+
+				set_state(PART:"txt/yes", "default", 0.0);
+				set_state(PART:"txt/no", "default", 0.0);
+
+				if (tmp == 0) {
+					emit("helper,yes", "");
+				}
+				if (tmp == 1) {
+					emit("helper,no", "");
+				}
+
+				set_int(btn, tmp);
+			}
+
+			public message(Msg_Type:type, id, ...) {
+				if (type == MSG_INT) {
+					if (id == 1) {
+						send_message(MSG_INT, 1, get_int(btn));
+					}
+					if (id == 2) {
+						send_message(MSG_INT, 1, 1);
+					}
+                                        if (id == 3) {
+                                                send_message(MSG_INT, 1, 0);
+                                        }
+				}
+			}
+		}
+
+		parts {
+			part {
+				name, "background";
+				type, RECT;
+				mouse_events, 0;
+
+				description {
+					state, "default" 0.0;
+
+					rel1.relative, 0.0 0.0;
+					rel2.relative, 1.0 1.0;
+
+					color, 0 0 16 175;
+				}
+			}
+			part {
+				name, "txt/title";
+				type, TEXT;
+				effect, SOFT_SHADOW;
+				mouse_events, 0;
+
+				description {
+					state, "default" 0.0;
+					rel1.relative, 0.0 0.0;
+					rel2.relative, 1.0 1.0;
+					color, 255 255 255 255;
+					color3, 0 0 0 255;
+
+					text {
+						font, "vera";
+						text, "Voulez-vous quitter ?";
+						size, 36;
+					}
+				}
+			}
+			part {
+				name, "txt/yes";
+				type, TEXT;
+				effect, SOFT_SHADOW;
+				mouse_events, 1;
+
+				description {
+					state, "default" 0.0;
+					rel1.relative, 0.0 0.0;
+					rel1.offset, 0.0 80.0;
+					rel2.relative, 1.0 1.0;
+					color, 255 255 255 255;
+					color3, 0 0 0 255;
+
+					text {
+						font, "vera";
+						text, "Oui";
+						size, 36;
+					}
+				}
+				description {
+					state, "glow0" 0.0;
+					inherit, "default" 0.0;
+					color, 245 245 0 255;
+					color3, 0 0 0 255;
+				}
+				description {
+					state, "glow1" 0.0;
+					inherit, "default" 0.0;
+					color, 10 10 0 255;
+					color3, 0 0 0 255;
+				}
+			}
+			part {
+				name, "img/yes";
+				type, IMAGE;
+				mouse_events, 1;
+
+				description {
+					state, "default" 0.0;
+
+					rel1.relative, 0.42 0.617;
+					rel2.relative, 0.4422 0.6448;
+
+					image.normal, "btGreen.png";
+				}
+			}
+			part {
+				name, "txt/no";
+				type, TEXT;
+				effect, SOFT_SHADOW;
+				mouse_events, 1;
+
+				description {
+					state, "default" 0.0;
+					rel1.relative, 0.0 0.0;
+					rel1.offset, 15.0 160.0;
+					rel2.relative, 1.0 1.0;
+
+					text {
+						font, "vera";
+						text, "Non";
+						size, 36;
+					}
+				}
+				description {
+					state, "glow0" 0.0;
+					inherit, "default" 0.0;
+					color, 245 245 0 255;
+					color3, 0 0 0 255;
+				}
+				description {
+					state, "glow1" 0.0;
+					inherit, "default" 0.0;
+					color, 10 10 0 255;
+					color3, 0 0 0 255;
+				}
+			}
+			part {
+				name, "img/no";
+				type, IMAGE;
+				mouse_events, 1;
+
+				description {
+					state, "default" 0.0;
+
+					rel1.relative, 0.42 0.55;
+					rel2.relative, 0.4422 0.5778;
+
+					image.normal, "btRed.png";
+				}
+			}
+		}
+		programs {
+			program {
+				name, "focus,yes,0";
+				signal, "helper,yes";
+				source, "";
+
+				action, STATE_SET "glow0" 0.0;
+				target, "txt/yes";
+				transition, SINUSOIDAL 2.0;
+				after, "focus,yes,1";
+			}
+			program {
+				name, "focus,yes,1";
+
+				action, STATE_SET "glow1" 0.0;
+				target, "txt/yes";
+				transition, SINUSOIDAL 2.0;
+				after, "focus,yes,0";
+			}
+
+			program {
+				name, "focus,no,0";
+				signal, "helper,no";
+				source, "";
+
+				action, STATE_SET "glow0" 0.0;
+				target, "txt/no";
+				transition, SINUSOIDAL 2.0;
+				after, "focus,no,1";
+			}
+			program {
+				name, "focus,no,1";
+
+				action, STATE_SET "glow1" 0.0;
+				target, "txt/no";
+				transition, SINUSOIDAL 2.0;
+				after, "focus,no,0";
+			}
+
+			program {
+				name, "up";
+				signal, "helper,up";
+				source, "";
+
+				script {
+					update_btn(1);
+				}
+			}
+			program {
+				name, "down";
+				signal, "helper,down";
+				source, "";
+
+				script {
+					update_btn(-1);
+				}
+			}
+			program {
+				name, "warmup";
+				signal, "show";
+				source, "";
+
+				script {
+					set_int(btn, 0);
+					update_btn(0);
+				}
+			}
+		}
+	}
+}
+

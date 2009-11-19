@@ -1,0 +1,20 @@
+3 3#
+3 #.#
+3 #.#
+3 #.#
+3 #.#
+3 #.#
+4#.#
+#4 11#
+#3 $#9 #
+#  $@  $ $ $ $ #
+#4 11#
+#4 #
+6#
+Title:3 Pripravne posunutie 03
+Author:  Vladimir Zahoransky
+Limit4 146-65
+Comment:
+Cielom tejto strategie je ukazat ako casto efektivne usetrit tahy ak mame vela tehal v "uzavretom priestore" a jednu "pred dverami". Pri tejto strategii, ked vysuvame jednu a potom pripravenu presunieme na cielovu poziciu, usetrime na "otacani" sa skladnika po tom, ako dostane balik z "uzavretej" casti. Tato strategia je vhodna, ak prilozeny balik je v smere v akom sa bude tebla posuvat k cielovym polickam. Je to jedna zo strategii, na ktoru sa casto zabuda. Ak je vo vnutornej strane vela balikov, casto sa da na tom riesenie znizit o dost vela tahov.
+Color Green
+Comment-End:

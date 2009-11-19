@@ -1,0 +1,948 @@
+images {
+ image: "background.png" COMP;
+ image: "interface.png" COMP;
+ image: "bt_jouer.png" COMP;
+ image: "bt_jouer_a2.png" COMP;
+ image: "bt_quitter.png" COMP;
+ image: "rock_n_roll.png" COMP;
+ image: "game_over.png" COMP;
+ image: "niveau_sup.png" COMP;
+ 
+#define BLOCKIMAGE(block_name) \
+	image: block_name".png" COMP;
+
+#define BLOCKIMAGEBODY(name) \
+ BLOCKIMAGE("b_"name);
+
+#define BLOCKIMAGEHT(name) \
+ BLOCKIMAGE("h_"name);     \
+ BLOCKIMAGE("t_"name);
+
+ BLOCKIMAGEHT("up");
+ BLOCKIMAGEHT("down");
+ BLOCKIMAGEHT("left");
+ BLOCKIMAGEHT("right");
+
+ BLOCKIMAGEBODY("hg");
+ BLOCKIMAGEBODY("bg");
+ BLOCKIMAGEBODY("hd");
+ BLOCKIMAGEBODY("bd");
+ BLOCKIMAGEBODY("v");
+ BLOCKIMAGEBODY("h");
+
+ BLOCKIMAGE("bang");
+ BLOCKIMAGE("wall");
+ BLOCKIMAGE("tux");
+ BLOCKIMAGE("apple");
+ BLOCKIMAGE("rasta_ball");
+ BLOCKIMAGE("beer");
+}
+
+collections {
+  group {
+    name, "menu";
+    min, 720 576;
+    max, 720 576;
+
+    script {
+      public btn;
+      public hof;
+
+      public update_btn(btnarg) {
+	if (btnarg == 0) {
+	  if (get_int(btn) == 0) {
+	    set_state(PART:"btn/jouer/1", "mid", 0.0);
+	    set_state(PART:"btn/jouer/2", "mid", 0.0);
+	    emit("menu,jouer,1,stop", "edc");
+	    emit("menu,jouer,2,stop", "edc");
+	    emit("menu,quitter", "edc");
+	    set_int(btn, 2);
+	  } else if (get_int(btn) == 1) {
+	    set_state(PART:"btn/jouer/2", "mid", 0.0);
+	    set_state(PART:"btn/quitter", "mid", 0.0);
+	    emit("menu,jouer,1", "edc");
+	    emit("menu,jouer,2,stop", "edc");
+	    emit("menu,quitter,stop", "edc");
+	    set_int(btn, 0);
+	  } else if (get_int(btn) == 2) {
+	    set_state(PART:"btn/jouer/1", "mid", 0.0);
+	    set_state(PART:"btn/quitter", "mid", 0.0);
+	    emit("menu,jouer,1,stop", "edc");
+	    emit("menu,jouer,2", "edc");
+	    emit("menu,quitter,stop", "edc");
+	    set_int(btn, 1);
+	  } else {
+	    set_state(PART:"btn/quitter", "mid", 0.0);
+	    emit("menu,quitter,stop", "edc");
+	    emit("menu,jouer,1", "edc");
+	    set_int(btn, 0);
+	  }
+	} else if (btnarg == 1) {
+	  if (get_int(btn) == 1) {
+	    set_state(PART:"btn/jouer/1", "mid", 0.0);
+	    set_state(PART:"btn/jouer/2", "mid", 0.0);
+	    emit("menu,jouer,1,stop", "edc");
+	    emit("menu,jouer,2,stop", "edc");
+	    emit("menu,quitter", "edc");
+	    set_int(btn, 2);
+	  } else if (get_int(btn) == 2) {
+	    set_state(PART:"btn/jouer/2", "mid", 0.0);
+	    set_state(PART:"btn/quitter", "mid", 0.0);
+	    emit("menu,jouer,1", "edc");
+	    emit("menu,jouer,2,stop", "edc");
+	    emit("menu,quitter,stop", "edc");
+	    set_int(btn, 0);
+	  } else if (get_int(btn) == 0) {
+	    set_state(PART:"btn/jouer/1", "mid", 0.0);
+	    set_state(PART:"btn/quitter", "mid", 0.0);
+	    emit("menu,jouer,1,stop", "edc");
+	    emit("menu,jouer,2", "edc");
+	    emit("menu,quitter,stop", "edc");
+	    set_int(btn, 1);
+	  } else {
+	    set_state(PART:"btn/quitter", "mid", 0.0);
+	    emit("menu,quitter,stop", "edc");
+	    emit("menu,jouer,1", "edc");
+	    set_int(btn, 0);
+	  }
+	} else {
+	  emit("menu,background,appear", "edc");
+	  set_int(btn, 0);
+	}
+      }
+
+      public message(Msg_Type:type, id, ...) {
+	if (type == MSG_INT) {
+	  if (id == 1) {
+	    update_btn(getarg(2));
+	  } else if (id == 2) {
+	    emit("menu,jouer,1,disappear", "edc");
+	  } else if (id == 3) {
+	    hof = getarg(2);
+	    if (hof == 1)
+	      send_message(MSG_INT, 1, get_int(btn));
+	    else
+	      send_message(MSG_INT, 1, 3);
+	  } else if (id == 4) {
+	    emit("menu,background,disappear,quit", "edc");
+	  } else if (id == 5) {
+	    emit("menu,background,disappear,hof", "edc");
+	  }
+	}
+      }
+    }
+
+    parts {
+      part {
+	name, "background";
+	type, IMAGE;
+
+	description {
+	  state, "default" 0.0;
+
+	  rel1.relative, 0.0 0.0;
+	  rel2.relative, 1.0 1.0;
+
+	  image {
+	    normal, "background.png";
+	  }
+
+	  color, 0 0 0 0;
+	}
+
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 255 255 255 255;
+	}
+      }
+
+      part {
+	name, "btn/jouer/1";
+	type, IMAGE;
+
+	description {
+	  state, "default" 0.0;
+
+	  rel1 {
+	    relative, 0.05 0.05;
+	    offset, 0 0;
+	  }
+
+	  rel2 {
+	    relative, 0.05 0.05;
+	    offset, 174 64;
+	  }
+
+	  image {
+	    normal, "bt_jouer.png";
+	  }
+
+	  color, 0 0 0 0;
+	}
+
+	description {
+	  state, "mid" 0.0;
+	  inherit, "default" 0.0;
+	  color, 168 168 168 168;
+	}
+
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 255 255 255 255;
+	}
+      }
+
+      part {
+	name, "btn/jouer/2";
+	type, IMAGE;
+
+	description {
+	  state, "default" 0.0;
+
+	  rel1 {
+	    relative, 0.05 0.2;
+	    offset, 0 0;
+	  }
+
+	  rel2 {
+	    relative, 0.05 0.2;
+	    offset, 174 64;
+	  }
+
+	  image {
+	    normal, "bt_jouer_a2.png";
+	  }
+
+	  color, 0 0 0 0;
+	}
+
+	description {
+	  state, "mid" 0.0;
+	  inherit, "default" 0.0;
+	  color, 168 168 168 168;
+	}
+
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 255 255 255 255;
+	}
+      }
+
+      part {
+	name, "btn/quitter";
+	type, IMAGE;
+
+	description {
+	  state, "default" 0.0;
+
+	  rel1 {
+	    relative, 0.95 0.95;
+	    offset, -174 -64;
+	  }
+	  rel2 {
+	    relative, 0.95 0.95;
+	    offset, 0 0;
+	  }
+
+	  image {
+	    normal, "bt_quitter.png";
+
+	  }
+
+	  color, 0 0 0 0;
+	}
+
+	description {
+	  state, "mid" 0.0;
+	  inherit, "default" 0.0;
+	  color, 168 168 168 168;
+	}
+
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 255 255 255 255;
+	}
+      }
+    }
+
+    programs {
+      program {
+	name, "menu_disappeared";
+	action, SIGNAL_EMIT "menu_disappeared" "edc";
+      }
+      program {
+	name, "background_disappeared_hof";
+	action, SIGNAL_EMIT "background_disappeared_hof" "edc";
+      }
+      program {
+	name, "background_disappeared_quit";
+	action, SIGNAL_EMIT "background_disappeared_quit" "edc";
+      }
+
+      program {
+	name, "animate_background/appear";
+	signal, "menu,background,appear";
+	source, "edc";
+	action, STATE_SET "focus" 0.0;
+	transition, LINEAR 0.4;
+	target, "background";
+	after, "animate_btn_jouer_1/appear";
+      }
+      program {
+	name, "animate_background/disappear/hof";
+	signal, "menu,background,disappear,hof";
+	source, "edc";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "background";
+	after, "background_disappeared_hof";
+      }
+      program {
+	name, "animate_background/disappear/quit";
+	signal, "menu,background,disappear,quit";
+	source, "edc";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "background";
+	after, "background_disappeared_quit";
+      }
+
+      program {
+	name, "animate_btn_jouer_1/appear";
+	signal, "menu,jouer,1,appear";
+	source, "edc";
+	action, STATE_SET "focus" 0.0;
+	transition, LINEAR 0.4;
+	target, "btn/jouer/1";
+	after, "animate_btn_jouer_2/appear";
+      }
+      program {
+	name, "animate_btn_jouer_2/appear";
+	signal, "menu,jouer,2,appear";
+	source, "edc";
+	action, STATE_SET "focus" 0.0;
+	transition, LINEAR 0.4;
+	target, "btn/jouer/2";
+	after, "animate_btn_quitter/appear";
+      }
+      program {
+	name, "animate_btn_jouer_1/disappear";
+	signal, "menu,jouer,1,disappear";
+	source, "edc";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "btn/jouer/1";
+	after, "animate_btn_jouer_2/disappear";
+      }
+      program {
+	name, "animate_btn_jouer_2/disappear";
+	signal, "menu,jouer,2,disappear";
+	source, "edc";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "btn/jouer/2";
+	after, "animate_btn_quitter/disappear";
+      }
+      program {
+	name, "animate_btn_jouer_1";
+	signal, "menu,jouer,1";
+	source, "edc";
+	action, STATE_SET "focus" 0.0;
+	transition, SINUSOIDAL 0.4;
+	target, "btn/jouer/1";
+	after, "animate_btn_jouer_1/back";
+      }
+      program {
+	name, "animate_btn_jouer_2";
+	signal, "menu,jouer,2";
+	source, "edc";
+	action, STATE_SET "focus" 0.0;
+	transition, SINUSOIDAL 0.4;
+	target, "btn/jouer/2";
+	after, "animate_btn_jouer_2/back";
+      }
+      program {
+	name, "animate_btn_jouer_1/back";
+	action, STATE_SET "mid" 0.0;
+	transition, SINUSOIDAL 0.4;
+	target, "btn/jouer/1";
+	after, "animate_btn_jouer_1";
+      }
+      program {
+	name, "animate_btn_jouer_2/back";
+	action, STATE_SET "mid" 0.0;
+	transition, SINUSOIDAL 0.4;
+	target, "btn/jouer/2";
+	after, "animate_btn_jouer_2";
+      }
+      program {
+	name, "animate_btn_jouer_1/stop";
+	signal, "menu,jouer,1,stop";
+	source, "edc";
+	action, ACTION_STOP;
+	target, "animate_btn_jouer_1";
+      }
+
+      program {
+	name, "animate_btn_jouer_2/stop";
+	signal, "menu,jouer,2,stop";
+	source, "edc";
+	action, ACTION_STOP;
+	target, "animate_btn_jouer_2";
+      }
+
+      program {
+	name, "animate_btn_quitter/appear";
+	signal, "menu,quitter,appear";
+	source, "edc";
+	action, STATE_SET "mid" 0.0;
+	transition, LINEAR 0.4;
+	target, "btn/quitter";
+	after, "animate_btn_jouer_1";
+      }
+      program {
+	name, "animate_btn_quitter/disappear";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "btn/quitter";
+	after, "menu_disappeared";
+      }
+      program {
+	name, "animate_btn_quitter";
+	signal, "menu,quitter";
+	source, "edc";
+	action, STATE_SET "focus" 0.0;
+	transition, SINUSOIDAL 0.4;
+	target, "btn/quitter";
+	after, "animate_btn_quitter/back";
+      }
+      program {
+	name, "animate_btn_quitter/back";
+	action, STATE_SET "mid" 0.0;
+	transition, SINUSOIDAL 0.4;
+	target, "btn/quitter";
+	after, "animate_btn_quitter";
+      }
+      program {
+	name, "animate_btn_quitter/stop";
+	signal, "menu,quitter,stop";
+	source, "edc";
+	action, ACTION_STOP;
+	target, "animate_btn_quitter";
+      }
+    }
+  }
+
+  group {
+    name, "game";
+    min, 720 576;
+    max, 720 576;
+
+    parts {
+      part {
+	name, "interface";
+	type, IMAGE;
+
+	description {
+	  state, "default" 0.0;
+
+	  rel1.relative, 0.0 0.0;
+	  rel2.relative, 1.0 1.0;
+
+	  image {
+	    normal, "interface.png";
+	  }
+
+	  color, 0 0 0 0;
+	}
+
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 255 255 255 255;
+	}
+      }
+
+      part {
+	name, "score_1";
+	type, TEXT;
+	mouse_events, 0;
+	description {
+	  state, "default" 0.0;
+	  color, 0 0 0 0;
+	  text {
+	    font, "Vera";
+	    text, "";
+	    size, 20;
+	    align, 0.0 1.0;
+	  }
+	  rel1.relative, 0.0 0.0;
+	  rel1.offset, 190 0;
+	  rel2.relative, 0.0 0.0;
+	  rel2.offset, 320 84;
+	}
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 180 180 0 255;
+	}
+      }
+
+      part {
+	name, "score_2";
+	type, TEXT;
+	mouse_events, 0;
+	description {
+	  state, "default" 0.0;
+	  color, 0 0 0 0;
+	  text {
+	    font, "Vera";
+	    text, "";
+	    size, 20;
+	    align, 0.0 1.0;
+	  }
+	  rel1.relative, 0.0 0.0;
+	  rel1.offset, 605 0;
+	  rel2.relative, 0.0 0.0;
+	  rel2.offset, 720 84;
+	}
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 180 180 0 255;
+	}
+      }
+
+      part {
+	name, "level";
+	type, TEXT;
+	mouse_events, 0;
+	description {
+	  state, "default" 0.0;
+	  color, 0 0 0 0;
+	  text {
+	    font, "Vera";
+	    text, "";
+	    size, 20;
+	    align, 0.0 0.0;
+	  }
+	  rel1.relative, 0.0 0.0;
+	  rel1.offset, 190 490;
+	  rel2.relative, 0.0 0.0;
+	  rel2.offset, 320 576;
+	}
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 255 100 0 255;
+	}
+      }
+
+      part {
+	name, "hi_score";
+	type, TEXT;
+	mouse_events, 0;
+	description {
+	  state, "default" 0.0;
+	  color, 0 0 0 0;
+	  text {
+	    font, "Vera";
+	    text, "";
+	    size, 20;
+	    align, 0.0 0.0;
+	  }
+	  rel1.relative, 0.0 0.0;
+	  rel1.offset, 605 490;
+	  rel2.relative, 0.0 0.0;
+	  rel2.offset, 720 576;
+	}
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 255 100 0 255;
+	}
+      }
+    }
+    programs {
+      program {
+	name, "animate_interface/appear";
+	signal, "play,interface,appear";
+	source, "js";
+	action, STATE_SET "focus" 0.0;
+	transition, LINEAR 0.4;
+	target, "interface";
+      }
+      program {
+	name, "animate_interface/disappear";
+	signal, "play,interface,disappear";
+	source, "js";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "interface";
+	after, "animate_interface/disappeared";
+      }
+      program {
+        name, "animate_interface/disappeared";
+	action, SIGNAL_EMIT "interface_disappeared" "edc";
+      }
+
+      program {
+	name, "animate_score_1/appear";
+	signal, "play,score,1,appear";
+	source, "js";
+	action, STATE_SET "focus" 0.0;
+	transition, LINEAR 0.4;
+	target, "score_1";
+      }
+      program {
+	name, "animate_score_1/disappear";
+	signal, "play,score,1,disappear";
+	source, "js";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "score_1";
+      }
+      program {
+	name, "animate_score_2/appear";
+	signal, "play,score,2,appear";
+	source, "js";
+	action, STATE_SET "focus" 0.0;
+	transition, LINEAR 0.4;
+	target, "score_2";
+      }
+      program {
+	name, "animate_score_2/disappear";
+	signal, "play,score,2,disappear";
+	source, "js";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "score_2";
+      }
+      program {
+	name, "animate_level/appear";
+	signal, "play,level,appear";
+	source, "js";
+	action, STATE_SET "focus" 0.0;
+	transition, LINEAR 0.4;
+	target, "level";
+      }
+      program {
+	name, "animate_level/disappear";
+	signal, "play,level,disappear";
+	source, "js";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "level";
+      }
+      program {
+	name, "animate_hi_score/appear";
+	signal, "play,hi_score,appear";
+	source, "js";
+	action, STATE_SET "focus" 0.0;
+	transition, LINEAR 0.4;
+	target, "hi_score";
+      }
+      program {
+	name, "animate_hi_score/disappear";
+	signal, "play,hi_score,disappear";
+	source, "js";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "hi_score";
+      }
+    }
+  }
+      
+  group {
+    name, "image_text";
+    min, 720 576;
+    max, 720 576;
+
+    parts {
+      part {
+	name, "image_text";
+	type, IMAGE;
+	mouse_events, 0;
+	description {
+	  state, "default" 0.0;
+	  image.normal, "rock_n_roll.png";
+	  rel1.relative, 0.5 0.5;
+	  rel2.relative, 0.5 0.5;
+	  fixed, 1 1;
+	  align, 0.5 0.5;
+	  visible, 0;
+	}
+	description {
+	  state, "start" 0.0;
+	  inherit, "default" 0.0;
+	  image.normal, "rock_n_roll.png";
+	  min, 363 46;
+	  max, 363 46;
+	  visible, 1;
+	}
+	description {
+	  state, "start/hidden" 0.0;
+	  inherit, "default" 0.0;
+	  image.normal, "rock_n_roll.png";
+	  visible, 1;
+	}
+	description {
+	  state, "over" 0.0;
+	  inherit, "default" 0.0;
+	  image.normal, "game_over.png";
+	  min, 478 68;
+	  max, 478 68;
+	  visible, 1;
+	}
+	description {
+	  state, "over/hidden" 0.0;
+	  inherit, "default" 0.0;
+	  image.normal, "game_over.png";
+	  visible, 1;
+	}
+	description {
+	  state, "niveau_sup" 0.0;
+	  inherit, "default" 0.0;
+	  image.normal, "niveau_sup.png";
+	  min, 478 68;
+	  max, 478 68;
+	  visible, 1;
+	}
+	description {
+	  state, "niveau_sup/hidden" 0.0;
+	  inherit, "default" 0.0;
+	  image.normal, "niveau_sup.png";
+	  visible, 1;
+	}
+      }
+    }
+  
+    programs {
+      program {
+	name, "default";
+	signal, "default";
+	source, "js";
+	action, STATE_SET "default" 0.0;
+	target, "image_text";
+      }
+	   
+#define EVENT_PROG(Event)                         \
+      program {                                   \
+        name, Event;                              \
+        signal, Event;                            \
+        source, "js";                             \
+        action, STATE_SET Event"/hidden" 0.0;     \
+        target, "image_text";                     \
+        after, Event"/2";                         \
+      }                                           \
+      program {                                   \
+        name, Event"/2";                          \
+        signal, Event"/2";                        \
+        source, "js";                             \
+        action, STATE_SET Event 0.0;              \
+        transition, SINUSOIDAL 0.5;               \
+        target, "image_text";                     \
+        after, Event"/3";                         \
+      }                                           \
+      program {                                   \
+        name, Event"/3";                          \
+        signal, Event"/3";                        \
+        source, "js";                             \
+        action, STATE_SET Event 0.0;              \
+        transition, LINEAR 1.0;                   \
+        target, "image_text";                     \
+        after, Event"/4";                         \
+      }                                           \
+      program {                                   \
+        name, Event"/4";                          \
+        signal, Event"/4";                        \
+        source, "js";                             \
+        action, STATE_SET Event"/hidden" 0.0;     \
+        transition, SINUSOIDAL 0.5;               \
+        target, "image_text";                     \
+        after, Event"/5";                         \
+      }                                           \
+      program {                                   \
+        name, Event"/5";                          \
+        signal, Event"/5";                        \
+        source, "js";                             \
+       	action, SIGNAL_EMIT "im_text_end" "edc";  \
+        after, "default";                         \
+      }
+
+      EVENT_PROG("start");
+      EVENT_PROG("over");
+      EVENT_PROG("niveau_sup");
+    }
+  }
+
+#define BLOCK(block_name)				\
+							\
+  group {						\
+    name, block_name;					\
+							\
+    parts {						\
+      part {						\
+        name, block_name"part";				\
+        type, IMAGE;					\
+							\
+        description {					\
+          state, "default" 0.0;				\
+							\
+          rel1.relative, 0.0 0.0;			\
+          rel2.relative, 1.0 1.0;			\
+							\
+          image {					\
+            normal, block_name".png";			\
+          }						\
+							\
+          color, 255 255 255 0;				\
+        }						\
+        description {					\
+          state, "hidden" 0.0;				\
+          inherit, "default" 0.0;			\
+							\
+          color, 0 0 0 0;				\
+        }						\
+        description {					\
+          state, "mid" 0.0;				\
+          inherit, "default" 0.0;			\
+							\
+          color, 168 168 168 168;			\
+        }						\
+        description {					\
+          state, "plain" 0.0;				\
+          inherit, "default" 0.0;			\
+							\
+          color, 255 255 255 255;			\
+        }						\
+      }							\
+    }							\
+							\
+    programs {						\
+      program {						\
+        name, "animate_block_"block_name"/appear";	\
+        signal, "play,block,appear";			\
+        source, "js";					\
+        action, STATE_SET "plain" 0.0;			\
+        transition, SINUSOIDAL 0.3;			\
+        target, block_name"part";			\
+	after, "animate_block_"block_name"/appeared";	\
+      }							\
+      program {						\
+        name, "animate_block_"block_name"/appearfast";	\
+        signal, "play,block,appear,fast";		\
+        source, "js";					\
+        action, STATE_SET "plain" 1.0;			\
+        target, block_name"part";			\
+	after, "animate_block_"block_name"/appeared";	\
+      }							\
+      program {						\
+        name, "animate_block_"block_name"/appearslow";	\
+        signal, "play,block,appear,slow";		\
+        source, "js";					\
+        action, STATE_SET "plain" 1.0;			\
+        transition, SINUSOIDAL 0.6;			\
+        target, block_name"part";			\
+	after, "animate_block_"block_name"/appeared";	\
+      }							\
+      program {						\
+        name, "animate_block_"block_name"/disappear";	\
+        signal, "play,block,disappear";			\
+        source, "js";					\
+        action, STATE_SET "default" 0.0;		\
+        transition, SINUSOIDAL 0.2;			\
+        target, block_name"part";			\
+	after, "animate_block_"block_name"/disappeared";	\
+      }							\
+      program {						\
+        name, "animate_block_"block_name"/disappearslow";	\
+        signal, "play,block,disappear,slow";		\
+        source, "js";					\
+        action, STATE_SET "default" 0.0;		\
+        transition, SINUSOIDAL 0.6;			\
+        target, block_name"part";			\
+	after, "animate_block_"block_name"/disappeared";	\
+      }							\
+      program {						\
+        name, "animate_block_"block_name"/disappeared";	\
+	action, SIGNAL_EMIT "block_disappeared" "edc";	\
+      }							\
+      program {						\
+        name, "animate_block_"block_name"/appeared";	\
+	action, SIGNAL_EMIT "block_appeared" "edc";	\
+      }							\
+      program {						\
+        name, "ghost_block_"block_name"/hidden";		\
+        signal, "play,block,ghost";			\
+        source, "js";					\
+        action, STATE_SET "hidden" 0.0;			\
+        transition, SINUSOIDAL 0.25;			\
+        target, block_name"part";			\
+	after, "ghost_block_"block_name"/done";		\
+      }							\
+      program {						\
+        name, "ghost_block_"block_name"/done";		\
+	action, SIGNAL_EMIT "block_ghosted" "edc";	\
+      }							\
+      program {						\
+        name, "unghost_block_"block_name"/hidden";	\
+        signal, "play,block,unghost";			\
+        source, "js";					\
+        action, STATE_SET "plain" 0.0;			\
+        transition, SINUSOIDAL 0.25;			\
+        target, block_name"part";			\
+	after, "unghost_block_"block_name"/done";		\
+      }							\
+      program {						\
+        name, "unghost_block_"block_name"/done";		\
+	action, SIGNAL_EMIT "block_unghosted" "edc";	\
+      }							\
+      program {						\
+        name, "blink_block_"block_name"/mid";		\
+        signal, "play,block,blink";			\
+        source, "js";					\
+        action, STATE_SET "mid" 0.0;			\
+        transition, SINUSOIDAL 0.5;			\
+        target, block_name"part";			\
+	after, "blink_block_"block_name"/plain";		\
+      }							\
+      program {						\
+        name, "blink_block_"block_name"/plain";		\
+        action, STATE_SET "plain" 0.0;			\
+        transition, SINUSOIDAL 0.5;			\
+        target, block_name"part";			\
+	after, "blink_block_"block_name"/mid";		\
+      }							\
+    }							\
+  }
+
+#define BLOCKBODY(name) \
+ BLOCK("b_"name);
+
+#define BLOCKHT(name) \
+ BLOCK("h_"name);     \
+ BLOCK("t_"name);
+
+ BLOCKHT("up");
+ BLOCKHT("down");
+ BLOCKHT("left");
+ BLOCKHT("right");
+
+ BLOCKBODY("hg");
+ BLOCKBODY("bg");
+ BLOCKBODY("hd");
+ BLOCKBODY("bd");
+ BLOCKBODY("v");
+ BLOCKBODY("h");
+
+ BLOCK("bang");
+ BLOCK("wall");
+ BLOCK("tux");
+ BLOCK("apple");
+ BLOCK("rasta_ball");
+ BLOCK("beer");

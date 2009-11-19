@@ -1,0 +1,1173 @@
+/*****************************************************************************
+ * TetriBox : Tetris clone for elixir
+ *****************************************************************************/
+
+images {
+   image, "menu-background.png" LOSSY 90;
+   image, "button/green.png" COMP;
+   image, "button/red.png" COMP;
+   image, "button/play.png" COMP;
+   image, "button/play-focus.png" COMP;
+   image, "button/leave.png" COMP;
+   image, "button/leave-focus.png" COMP;
+
+#define CHECK_BOX(Color, Number)			\
+   image, "checkbox/"Color"/"Number".png" COMP;
+
+   CHECK_BOX("green", 1);
+   CHECK_BOX("green", 2);
+   CHECK_BOX("green", 3);
+   CHECK_BOX("green", 4);
+   CHECK_BOX("green", 5);
+   CHECK_BOX("green", 6);
+   CHECK_BOX("green", 7);
+   CHECK_BOX("green", 8);
+   CHECK_BOX("green", 9);
+   CHECK_BOX("green", 10);
+   CHECK_BOX("green", 11);
+
+   CHECK_BOX("red", 1);
+   CHECK_BOX("red", 2);
+   CHECK_BOX("red", 3);
+   CHECK_BOX("red", 4);
+   CHECK_BOX("red", 5);
+   CHECK_BOX("red", 6);
+   CHECK_BOX("red", 7);
+   CHECK_BOX("red", 8);
+   CHECK_BOX("red", 9);
+   CHECK_BOX("red", 10);
+   CHECK_BOX("red", 11);
+
+   image, "game-background.png" LOSSY 90;
+
+#define COLOR_IMAGE(Name) \
+   image, "cube/"Name".png" COMP;
+
+   COLOR_IMAGE("white");
+   COLOR_IMAGE("cyan");
+   COLOR_IMAGE("blue");
+   COLOR_IMAGE("yellow");
+   COLOR_IMAGE("black");
+   COLOR_IMAGE("red");
+   COLOR_IMAGE("orange");
+   COLOR_IMAGE("green");
+   COLOR_IMAGE("pink");
+
+#define DIRTY_IMAGE(Name) \
+   image, "cube/dirty-"Name".png" COMP;
+
+   DIRTY_IMAGE("bottom");
+   DIRTY_IMAGE("top");
+   DIRTY_IMAGE("right");
+   DIRTY_IMAGE("left");
+
+#define BONUS_IMAGE(Name) \
+   image, "cube/bonus-"Name".png" COMP;
+
+   BONUS_IMAGE("bomb");
+   BONUS_IMAGE("boom");
+   BONUS_IMAGE("ghost");
+   BONUS_IMAGE("plus");
+   BONUS_IMAGE("mirror");
+   BONUS_IMAGE("toilet");
+   BONUS_IMAGE("random");
+
+#define EVENT_IMAGE(Name) \
+   image, "event/"Name".png" COMP;
+
+   EVENT_IMAGE("start");
+   EVENT_IMAGE("next");
+   EVENT_IMAGE("over");
+   EVENT_IMAGE("pause");
+}
+
+collections {
+   group {
+      name, "menu";
+      min, 720 576;
+      max, 720 576;
+
+      parts {
+         part {
+            name, "background";
+            type, IMAGE;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel2.relative, 1.0 1.0;
+               image.normal, "menu-background.png";
+            }
+         }
+
+         part {
+            name, "play";
+            type, IMAGE;
+            mouse_events, 1;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.5 0.5;
+               rel1.offset, -134 -34;
+               rel2.relative, 0.5 0.5;
+               rel2.offset, 134 34;
+               image.normal, "button/play.png";
+            }
+
+            description {
+               state, "focus" 0.0;
+               inherit, "default" 0.0;
+               image.normal, "button/play-focus.png";
+               color, 255 255 255 255;
+            }
+
+            description {
+               state, "focus/2" 0.0;
+               inherit, "focus" 0.0;
+               color, 127 127 127 127;
+            }
+         }
+
+         part {
+            name, "leave";
+            type, IMAGE;
+            mouse_events, 1;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.5 0.65;
+               rel1.offset, -134 -34;
+               rel2.relative, 0.5 0.65;
+               rel2.offset, 134 34;
+               image.normal, "button/leave.png";
+            }
+
+            description {
+               state, "focus" 0.0;
+               inherit, "default" 0.0;
+               image.normal, "button/leave-focus.png";
+               color, 255 255 255 255;
+            }
+
+            description {
+               state, "focus/2" 0.0;
+               inherit, "focus" 0.0;
+               color, 127 127 127 127;
+            }
+         }
+
+/*          part { */
+/*             name, "img-red"; */
+/*             type, IMAGE; */
+/*             mouse_events, 0; */
+
+/*             description { */
+/*                state, "default" 0.0; */
+/*                rel1.relative, 0.5 0.775; */
+/*                rel1.offset, -174 -8; */
+/*                rel2.relative, 0.5 0.775; */
+/*                rel2.offset, -158 8; */
+/*                image.normal, "button/red.png"; */
+/*             } */
+/*          } */
+
+	 part {
+	    name, "checkbox-shadow";
+	    type, IMAGE;
+	    mouse_events, 0;
+
+	    description {
+	       state, "default" 0.0;
+	       rel1.relative, 0.5 0.775;
+	       rel1.offset, -174 -8;
+	       rel2.relative, 0.5 0.775;
+	       rel2.offset, -158 8;
+
+	       image.normal, "checkbox/red/1.png";
+	       image.tween, "checkbox/red/6.png";
+	       image.tween, "checkbox/red/7.png";
+	       image.tween, "checkbox/red/8.png";
+	       image.tween, "checkbox/red/9.png";
+	       image.tween, "checkbox/red/10.png";
+	       image.tween, "checkbox/red/11.png";
+	    }
+	    description {
+	       state, "no" 0.0;
+	       rel1.relative, 0.5 0.775;
+	       rel1.offset, -174 -8;
+	       rel2.relative, 0.5 0.775;
+	       rel2.offset, -158 8;
+
+	       image.normal, "checkbox/red/6.png";
+	       image.tween, "checkbox/red/1.png";
+	       image.tween, "checkbox/red/2.png";
+	       image.tween, "checkbox/red/3.png";
+	       image.tween, "checkbox/red/4.png";
+	       image.tween, "checkbox/red/5.png";
+	       image.tween, "checkbox/red/6.png";
+	    }
+	 }
+
+         part {
+            name, "text-shadow";
+            type, TEXT;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.5 0.775;
+               rel1.offset, -146 -34;
+               rel2.relative, 0.5 0.775;
+               rel2.offset, 174 34;
+               color, 255 255 192 255;
+               text {
+                  text, "Avec ombres portées";
+                  font, "VeraBd";
+                  size, 26;
+                  align, 0.0 0.5;
+               }
+            }
+
+            description {
+               state, "no" 0.0;
+               rel1.relative, 0.5 0.775;
+               rel1.offset, -146 -34;
+               rel2.relative, 0.5 0.775;
+               rel2.offset, 174 34;
+               color, 255 255 192 255;
+               text {
+                  text, "Sans ombres portées";
+                  font, "VeraBd";
+                  size, 26;
+                  align, 0.0 0.5;
+               }
+            }
+         }
+
+/*          part { */
+/*             name, "img-green"; */
+/*             type, IMAGE; */
+/*             mouse_events, 0; */
+
+/*             description { */
+/*                state, "default" 0.0; */
+/*                rel1.relative, 0.5 0.85; */
+/*                rel1.offset, -174 -8; */
+/*                rel2.relative, 0.5 0.85; */
+/*                rel2.offset, -158 8; */
+/*                image.normal, "button/green.png"; */
+/*             } */
+/*          } */
+
+	 part {
+            name, "checkbox-bonus";
+            type, IMAGE;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.5 0.85;
+               rel1.offset, -174 -8;
+               rel2.relative, 0.5 0.85;
+               rel2.offset, -158 8;
+
+	       image.normal, "checkbox/green/1.png";
+	       image.tween, "checkbox/green/6.png";
+	       image.tween, "checkbox/green/7.png";
+	       image.tween, "checkbox/green/8.png";
+	       image.tween, "checkbox/green/9.png";
+	       image.tween, "checkbox/green/10.png";
+	       image.tween, "checkbox/green/11.png";
+            }
+
+	    description {
+	       state, "no" 0.0;
+               rel1.relative, 0.5 0.85;
+               rel1.offset, -174 -8;
+               rel2.relative, 0.5 0.85;
+               rel2.offset, -158 8;
+
+               image.normal, "checkbox/green/6.png";
+	       image.tween, "checkbox/green/1.png";
+	       image.tween, "checkbox/green/2.png";
+	       image.tween, "checkbox/green/3.png";
+	       image.tween, "checkbox/green/4.png";
+	       image.tween, "checkbox/green/5.png";
+	       image.tween, "checkbox/green/6.png";
+	    }
+         }
+
+         part {
+            name, "text-bonus";
+            type, TEXT;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.5 0.85;
+               rel1.offset, -146 -34;
+               rel2.relative, 0.5 0.85;
+               rel2.offset, 174 34;
+               color, 255 255 192 255;
+               text {
+                  text, "Avec bonus";
+                  font, "VeraBd";
+                  size, 26;
+                  align, 0.0 0.5;
+               }
+            }
+
+            description {
+               state, "no" 0.0;
+               rel1.relative, 0.5 0.85;
+               rel1.offset, -146 -34;
+               rel2.relative, 0.5 0.85;
+               rel2.offset, 174 34;
+               color, 255 255 192 255;
+               text {
+                  text, "Sans bonus";
+                  font, "VeraBd";
+                  size, 26;
+                  align, 0.0 0.5;
+               }
+            }
+         }
+      }
+
+      programs {
+#define FADE_FOCUS(Name)                                 \
+         program {                                       \
+            name, Name"-focus";                          \
+            signal, Name"-focus";                        \
+            source, "code";                              \
+            action, STATE_SET "focus" 0.0;               \
+            transition, SINUSOIDAL 0.240;                \
+            target, Name;                                \
+            after, Name"-focus/2";                       \
+         }                                               \
+         program {                                       \
+            name, Name"-focus/2";                        \
+            signal, Name"-focus/2";                      \
+            source, "code";                              \
+            action, STATE_SET "focus/2" 0.0;             \
+            transition, SINUSOIDAL 0.240;                \
+            target, Name;                                \
+            after, Name"-focus";                         \
+         }
+
+         FADE_FOCUS("play");
+         FADE_FOCUS("leave");
+
+         program {
+            name, "shadow-yes";
+            signal, "shadow-yes";
+            source, "code";
+            action, STATE_SET "default" 0.0;
+            target, "text-shadow";
+	    after, "shadow-yes-anim";
+         }
+	 program {
+	    name, "shadow-yes-anim";
+            action, STATE_SET "default" 0.0;
+	    transition, LINEAR 0.280;
+	    target, "checkbox-shadow";
+	 }
+         program {
+            name, "shadow-no";
+            signal, "shadow-no";
+            source, "code";
+            action, STATE_SET "no" 0.0;
+            target, "text-shadow";
+	    after, "shadow-no-anim";
+         }
+	 program {
+	    name, "shadow-no-anim";
+            action, STATE_SET "no" 0.0;
+	    transition, LINEAR 0.280;
+	    target, "checkbox-shadow";
+	 }
+
+         program {
+            name, "bonus-yes";
+            signal, "bonus-yes";
+            source, "code";
+            action, STATE_SET "default" 0.0;
+            target, "text-bonus";
+            after, "bonus-yes-anim";
+         }
+         program {
+            name, "bonus-yes-anim";
+            action, STATE_SET "default" 0.0;
+	    transition, LINEAR 0.280;
+	    target, "checkbox-bonus";
+	 }
+	 program {
+            name, "bonus-no";
+            signal, "bonus-no";
+            source, "code";
+            action, STATE_SET "no" 0.0;
+            target, "text-bonus";
+            after, "bonus-no-anim";
+         }
+	 program {
+            name, "bonus-no-anim";
+            action, STATE_SET "no" 0.0;
+	    transition, LINEAR 0.280;
+	    target, "checkbox-bonus";
+	 }
+      }
+
+      script {
+         public btn;
+
+         public update_btn(pos)
+         {
+            if (pos < 0) {
+               pos = 1;
+            }
+            if (pos > 1) {
+               pos = 0;
+            }
+            if (pos == 0) {
+               run_program(PROGRAM:"play-focus");
+            } else {
+               set_state(PART:"play", "default", 0.0);
+            }
+            if (pos == 1) {
+               run_program(PROGRAM:"leave-focus");
+            } else {
+               set_state(PART:"leave", "default", 0.0);
+            }
+            set_int(btn, pos);
+         }
+
+         public message(Msg_Type:type, id, ...)
+         {
+            if (type == MSG_INT) {
+               if (id == 1) {
+                  update_btn(getarg(2) + get_int(btn));
+               } else if (id == 2) {
+                  send_message(MSG_INT, 1, get_int(btn));
+               }
+            }
+         }
+      }
+   }
+
+   group {
+      name, "cube";
+
+      parts {
+         part {
+            name, "color";
+            type, IMAGE;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel2.relative, 1.0 1.0;
+               image.normal, "cube/white.png";
+               visible, 0;
+            }
+
+#define COLOR(Name)                             \
+            description {                       \
+               state, Name 0.0;                 \
+               inherit, "default" 0.0;          \
+               visible, 1;                      \
+               image.normal, "cube/"Name".png"; \
+            }                                   \
+            description {                       \
+               state, Name"/shadow1" 0.0;       \
+               inherit, "default" 0.0;          \
+               visible, 1;                      \
+               image.normal, "cube/"Name".png"; \
+               color, 255 255 255 64;           \
+            }                                   \
+            description {                       \
+               state, Name"/shadow2" 0.0;       \
+               inherit, "default" 0.0;          \
+               visible, 1;                      \
+               image.normal, "cube/"Name".png"; \
+               color, 255 255 255 32;           \
+            }                                   \
+            description {                       \
+               state, Name"/fadeout" 0.0;       \
+               inherit, "default" 0.0;          \
+               visible, 1;                      \
+               image.normal, "cube/"Name".png"; \
+               color, 255 255 255 0;            \
+            }
+
+            COLOR("white");
+            COLOR("cyan");
+            COLOR("blue");
+            COLOR("yellow");
+            COLOR("black");
+            COLOR("red");
+            COLOR("orange");
+            COLOR("green");
+            COLOR("pink");
+         }
+
+         part {
+            name, "fade";
+            type, IMAGE;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel2.relative, 1.0 1.0;
+               visible, 0;
+               image.normal, "cube/white.png";
+               color, 255 255 255 0;
+            }
+
+#define FADE(Name)                              \
+            description {                       \
+               state, Name 0.0;                 \
+               inherit, "default" 0.0;          \
+               visible, 1;                      \
+               image.normal, "cube/"Name".png"; \
+               color, 255 255 255 0;            \
+            }                                   \
+            description {                       \
+               state, Name 1.0;                 \
+               inherit, "default" 0.0;          \
+               visible, 1;                      \
+               image.normal, "cube/"Name".png"; \
+               color, 255 255 255 255;          \
+            }
+
+            FADE("white");
+            FADE("cyan");
+            FADE("blue");
+            FADE("yellow");
+            FADE("black");
+            FADE("red");
+            FADE("orange");
+            FADE("green");
+            FADE("pink");
+         }
+
+         part {
+            name, "dirty";
+            type, IMAGE;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel2.relative, 1.0 1.0;
+               image.normal, "cube/dirty-bottom.png";
+               visible, 0;
+            }
+#define DIRTY(Name)                                   \
+            description {                             \
+               state, Name 0.0;                       \
+               inherit, "default" 0.0;                \
+               visible, 1;                            \
+               image.normal, "cube/dirty-"Name".png"; \
+            }
+
+            DIRTY("bottom");
+            DIRTY("top");
+            DIRTY("right");
+            DIRTY("left");
+         }
+
+         part {
+            name, "bonus";
+            type, IMAGE;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel2.relative, 1.0 1.0;
+               image.normal, "cube/bonus-bomb.png";
+               visible, 0;
+            }
+#define BONUS(Name)                                   \
+            description {                             \
+               state, Name 0.0;                       \
+               inherit, "default" 0.0;                \
+               visible, 1;                            \
+               color, 255 255 255 255;                \
+               image.normal, "cube/bonus-"Name".png"; \
+            }                                         \
+            description {                             \
+               state, Name"/flash" 0.0;               \
+               inherit, "default" 0.0;                \
+               visible, 1;                            \
+               color, 255 255 255 0;                  \
+               image.normal, "cube/bonus-"Name".png"; \
+            }
+
+            BONUS("bomb");
+            BONUS("boom");
+            BONUS("ghost");
+            BONUS("plus");
+            BONUS("mirror");
+            BONUS("toilet");
+            BONUS("random");
+         }
+      }
+
+      programs {
+         program {
+            name, "hide-fade";
+            signal, "hide-fade";
+            source, "code";
+            action, STATE_SET "default" 0.0;
+            target, "fade";
+         }
+
+#define COLOR_PROG(Name)                                 \
+         program {                                       \
+            name, Name;                                  \
+            signal, Name;                                \
+            source, "code";                              \
+            action, STATE_SET Name 0.0;                  \
+            target, "color";                             \
+            after, "hide-fade";                          \
+         }                                               \
+         program {                                       \
+            name, Name"/shadow";                         \
+            signal, Name"/shadow";                       \
+            source, "code";                              \
+            action, STATE_SET Name"/shadow1" 0.0;        \
+            target, "color";                             \
+            after, Name"/shadow2";                       \
+         }                                               \
+         program {                                       \
+            name, Name"/shadow2";                        \
+            signal, Name"/shadow2";                      \
+            source, "code";                              \
+            action, STATE_SET Name"/shadow2" 0.0;        \
+            transition, SINUSOIDAL 0.520;                \
+            target, "color";                             \
+            after, Name"/shadow1";                       \
+         }                                               \
+         program {                                       \
+            name, Name"/shadow1";                        \
+            signal, Name"/shadow1";                      \
+            source, "code";                              \
+            action, STATE_SET Name"/shadow1" 0.0;        \
+            transition, SINUSOIDAL 0.520;                \
+            target, "color";                             \
+            after, Name"/shadow2";                       \
+         }
+
+         COLOR_PROG("default");
+         COLOR_PROG("white");
+         COLOR_PROG("cyan");
+         COLOR_PROG("blue");
+         COLOR_PROG("yellow");
+         COLOR_PROG("black");
+         COLOR_PROG("red");
+         COLOR_PROG("orange");
+         COLOR_PROG("green");
+         COLOR_PROG("pink");
+
+#define FADE_PROG(Name)                                  \
+         program {                                       \
+            name, Name"/fade";                           \
+            signal, Name"/fade";                         \
+            source, "code";                              \
+            action, STATE_SET Name 0.0;                  \
+            target, "fade";                              \
+            after, Name"/fade2";                         \
+         }                                               \
+         program {                                       \
+            name, Name"/fade2";                          \
+            signal, Name"/fade2";                        \
+            source, "code";                              \
+            action, STATE_SET Name 1.0;                  \
+            transition, SINUSOIDAL 0.320;                \
+            target, "fade";                              \
+            after, Name;                                 \
+         }                                               \
+         program {                                       \
+            name, Name"/fadeout";                        \
+            signal, Name"/fadeout";                      \
+            source, "code";                              \
+            action, STATE_SET Name"/fadeout" 0.0;        \
+            transition, SINUSOIDAL 0.320;                \
+            target, "color";                             \
+            after, "default";                            \
+         }
+         FADE_PROG("white");
+         FADE_PROG("cyan");
+         FADE_PROG("blue");
+         FADE_PROG("yellow");
+         FADE_PROG("black");
+         FADE_PROG("red");
+         FADE_PROG("orange");
+         FADE_PROG("green");
+         FADE_PROG("pink");
+
+#define DIRTY_PROG(Name)                                 \
+         program {                                       \
+            name, "dirty/"Name;                          \
+            signal, "dirty/"Name;                        \
+            source, "code";                              \
+            action, STATE_SET Name 0.0;                  \
+            target, "dirty";                             \
+         }
+
+         DIRTY_PROG("default");
+         DIRTY_PROG("bottom");
+         DIRTY_PROG("top");
+         DIRTY_PROG("right");
+         DIRTY_PROG("left");
+
+#define BONUS_PROG(Name)                                 \
+         program {                                       \
+            name, "bonus/"Name;                          \
+            signal, "bonus/"Name;                        \
+            source, "code";                              \
+            action, STATE_SET Name 0.0;                  \
+            target, "bonus";                             \
+         }                                               \
+         program {                                       \
+            name, "bonus/"Name"/flash";                  \
+            signal, "bonus/"Name"/flash";                \
+            source, "code";                              \
+            action, STATE_SET Name"/flash" 0.0;          \
+            transition, SINUSOIDAL 0.040;                \
+            target, "bonus";                             \
+            after, "bonus/"Name"/flash2";                \
+         }                                               \
+         program {                                       \
+            name, "bonus/"Name"/flash2";                 \
+            signal, "bonus/"Name"/flash2";               \
+            source, "code";                              \
+            action, STATE_SET Name 0.0;                  \
+            transition, SINUSOIDAL 0.040;                \
+            target, "bonus";                             \
+            after, "bonus/"Name"/flash";                 \
+         }
+
+         BONUS_PROG("default");
+         BONUS_PROG("bomb");
+         BONUS_PROG("boom");
+         BONUS_PROG("ghost");
+         BONUS_PROG("plus");
+         BONUS_PROG("mirror");
+         BONUS_PROG("toilet");
+         BONUS_PROG("random");
+      }
+   }
+
+   group {
+      name, "preview";
+      min, 80 80;
+      max, 80 80;
+
+      parts {
+#define PREVIEW_CELL(X, Y)                         \
+         part {                                    \
+            name, #X"/"#Y;                         \
+            type, GROUP;                           \
+            source, "cube";                        \
+            description {                          \
+               state, "default" 0.0;               \
+               min, 20 20;                         \
+               max, 20 20;                         \
+               rel1.relative, 0.0 0.0;             \
+               rel1.offset, (X*20) (Y*20);         \
+               rel2.relative, 0.0 0.0;             \
+               rel2.offset, ((X+1)*20) ((Y+1)*20); \
+            }                                      \
+         }
+
+#define PREVIEW_LINE(Y)                         \
+         PREVIEW_CELL(0, Y);                    \
+         PREVIEW_CELL(1, Y);                    \
+         PREVIEW_CELL(2, Y);                    \
+         PREVIEW_CELL(3, Y);
+
+         PREVIEW_LINE(0);
+         PREVIEW_LINE(1);
+      }
+   }
+
+   group {
+      name, "line";
+      min, 200 0;
+      max, 200 20;
+
+      parts {
+#define CELL(X)                                 \
+         part {                                 \
+            name, #X;                           \
+            type, GROUP;                        \
+            source, "cube";                     \
+            description {                       \
+               state, "default" 0.0;            \
+               rel1.relative, (X*0.1) 0.0;      \
+               rel2.relative, ((X+1)*0.1) 1.0;  \
+            }                                   \
+         }
+
+         CELL(0);
+         CELL(1);
+         CELL(2);
+         CELL(3);
+         CELL(4);
+         CELL(5);
+         CELL(6);
+         CELL(7);
+         CELL(8);
+         CELL(9);
+      }
+   }
+
+   group {
+      name, "grid";
+      max, 200 400;
+      min, 200 400;
+
+      parts {
+         part {
+            name, "20";
+            type, RECT;
+            description {
+               state, "default" 0.0;
+               min, 20 0;
+               max, 20 0;
+               rel1.relative, 0.0 0.0;
+               rel1.offset, 0 400;
+               rel2.relative, 1.0 1.0;
+               rel2.offset, 0 0;
+            }
+         }
+
+#define LINE(Y, Y1)                             \
+         part {                                 \
+            name, #Y;                           \
+            type, GROUP;                        \
+            source, "line";                     \
+            description {                       \
+               state, "default" 0.0;            \
+               min, 200 20;                     \
+               max, 200 20;                     \
+               rel1.to, #Y1;                    \
+               rel2.to, #Y1;                    \
+               rel1.relative, 0.0 0.0;          \
+               rel2.relative, 1.0 0.0;          \
+               rel1.offset, 0 -20;              \
+               rel2.offset, 0 0;                \
+            }                                   \
+            description {                       \
+               state, "shrunk" 0.0;             \
+               min, 200 0;                      \
+               max, 200 0;                      \
+               rel1.to, #Y1;                    \
+               rel2.to, #Y1;                    \
+               rel1.relative, 0.0 0.0;          \
+               rel2.relative, 1.0 0.0;          \
+               rel1.offset, 0 0;                \
+               rel2.offset, 0 -1;               \
+            }                                   \
+         }
+
+         LINE(19, 20);
+         LINE(18, 19);
+         LINE(17, 18);
+         LINE(16, 17);
+         LINE(15, 16);
+         LINE(14, 15);
+         LINE(13, 14);
+         LINE(12, 13);
+         LINE(11, 12);
+         LINE(10, 11);
+         LINE(9, 10);
+         LINE(8, 9);
+         LINE(7, 8);
+         LINE(6, 7);
+         LINE(5, 6);
+         LINE(4, 5);
+         LINE(3, 4);
+         LINE(2, 3);
+         LINE(1, 2);
+         LINE(0, 1);
+      }
+
+      programs {
+#define SHRINK(Y)                               \
+         program {                              \
+            name, "shrink/"#Y;                  \
+            signal, "shrink/"#Y;                \
+            source, "code";                     \
+            /* Should be "DO_NOTHING" */        \
+            action, STATE_SET "default" 0.0;    \
+            transition, LINEAR 0.320;           \
+            target, #Y;                         \
+            after, "shrink2/"#Y;                \
+         }                                      \
+         program {                              \
+            name, "shrink2/"#Y;                 \
+            signal, "shrink2/"#Y;               \
+            source, "code";                     \
+            action, STATE_SET "shrunk" 0.0;     \
+            transition, SINUSOIDAL 0.280;       \
+            target, #Y;                         \
+         }                                      \
+         program {                              \
+            name, "unshrink/"#Y;                \
+            signal, "unshrink/"#Y;              \
+            source, "code";                     \
+            action, STATE_SET "default" 0.0;    \
+            target, #Y;                         \
+         }
+
+         SHRINK(19);
+         SHRINK(18);
+         SHRINK(17);
+         SHRINK(16);
+         SHRINK(15);
+         SHRINK(14);
+         SHRINK(13);
+         SHRINK(12);
+         SHRINK(11);
+         SHRINK(10);
+         SHRINK(9);
+         SHRINK(8);
+         SHRINK(7);
+         SHRINK(6);
+         SHRINK(5);
+         SHRINK(4);
+         SHRINK(3);
+         SHRINK(2);
+         SHRINK(1);
+         SHRINK(0);
+      }
+   }
+
+   group {
+      name, "game";
+      min, 720 576;
+      max, 720 576;
+
+      parts {
+         part {
+            name, "background";
+            type, IMAGE;
+            mouse_events, 0;
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel2.relative, 1.0 1.0;
+               image.normal, "game-background.png";
+            }
+         }
+
+         part {
+            name, "grid";
+            type, GROUP;
+            source, "grid";
+            mouse_events, 0;
+            description {
+               state, "default" 0.0;
+               color, 255 255 255 255;
+               rel1.relative, 0.0 0.0;
+               rel1.offset, 270 110;
+               rel2.relative, 1.0 1.0;
+               rel2.offset, -250 -66;
+            }
+         }
+
+         part {
+            name, "preview";
+            type, GROUP;
+            source, "preview";
+            mouse_events, 0;
+            description {
+               state, "default" 0.0;
+               color, 255 255 255 255;
+               rel1.relative, 0.0 0.0;
+               rel1.offset, 520 100;
+               rel2.relative, 1.0 1.0;
+               rel2.offset, -120 -396;
+            }
+         }
+
+         part {
+            name, "score";
+            type, TEXT;
+            mouse_events, 0;
+            description {
+               state, "default" 0.0;
+               color, 255 255 100 255;
+               text {
+                  font, "Vera";
+                  text, "";
+                  size, 32;
+                  align, 1.0 0.5;
+               }
+               rel1.relative, 0.0 0.0;
+               rel1.offset, 110 200;
+               rel2.relative, 1.0 1.0;
+               rel2.offset, -500 -316;
+            }
+         }
+
+         part {
+            name, "level";
+            type, TEXT;
+            mouse_events, 0;
+            description {
+               state, "default" 0.0;
+               color, 255 255 100 255;
+               text {
+                  font, "Vera";
+                  text, "";
+                  size, 32;
+                  align, 1.0 0.5;
+               }
+               rel1.relative, 0.0 0.0;
+               rel1.offset, 110 290;
+               rel2.relative, 1.0 1.0;
+               rel2.offset, -500 -226;
+            }
+         }
+
+         part {
+            name, "high-score";
+            type, TEXT;
+            mouse_events, 0;
+            description {
+               state, "default" 0.0;
+               color, 255 255 100 255;
+               text {
+                  font, "Vera";
+                  text, "";
+                  size, 32;
+                  align, 1.0 0.5;
+               }
+               rel1.relative, 0.0 0.0;
+               rel1.offset, 110 380;
+               rel2.relative, 1.0 1.0;
+               rel2.offset, -500 -136;
+            }
+         }
+
+         part {
+            name, "event";
+            type, IMAGE;
+            mouse_events, 0;
+            description {
+               state, "default" 0.0;
+               image.normal, "event/start.png";
+               rel1.relative, 0.5 0.5;
+               rel2.relative, 0.5 0.5;
+               fixed, 1 1;
+               align, 0.5 0.5;
+               visible, 0;
+            }
+
+#define EVENT(Name, X, Y)                          \
+            description {                          \
+               state, Name 0.0;                    \
+               inherit, "default" 0.0;             \
+               image.normal, "event/"Name".png";   \
+               visible, 1;                         \
+               min, X Y;                           \
+               max, X Y;                           \
+            }                                      \
+            description {                          \
+               state, Name"/hidden" 0.0;           \
+               inherit, "default" 0.0;             \
+               image.normal, "event/"Name".png";   \
+               visible, 1;                         \
+            }
+
+            EVENT("start", 363, 46);
+            EVENT("next", 533, 57);
+            EVENT("over", 478, 68);
+            EVENT("pause", 205, 48);
+         }
+      }
+
+      programs {
+         program {
+            name, "default";
+            signal, "default";
+            source, "code";
+            action, STATE_SET "default" 0.0;
+            target, "event";
+         }
+
+#define EVENT_PROG(Event)                             \
+         program {                                    \
+            name, Event;                              \
+            signal, Event;                            \
+            source, "code";                           \
+            action, STATE_SET Event"/hidden" 0.0;     \
+            target, "event";                          \
+            after, Event"/2";                         \
+         }                                            \
+         program {                                    \
+            name, Event"/2";                          \
+            signal, Event"/2";                        \
+            source, "code";                           \
+            action, STATE_SET Event 0.0;              \
+            transition, SINUSOIDAL 0.440;             \
+            target, "event";                          \
+            after, Event"/3";                         \
+         }                                            \
+         program {                                    \
+            name, Event"/3";                          \
+            signal, Event"/3";                        \
+            source, "code";                           \
+            action, STATE_SET Event 0.0;              \
+            transition, LINEAR 1.0;                   \
+            target, "event";                          \
+            after, Event"/4";                         \
+         }                                            \
+         program {                                    \
+            name, Event"/4";                          \
+            signal, Event"/4";                        \
+            source, "code";                           \
+            action, STATE_SET Event"/hidden" 0.0;     \
+            transition, SINUSOIDAL 0.440;             \
+            target, "event";                          \
+            after, "default";                         \
+         }
+         EVENT_PROG("start");
+         EVENT_PROG("next");
+         EVENT_PROG("over");
+
+         program {
+            name, "pause";
+            signal, "pause";
+            source, "code";
+            action, STATE_SET "pause/hidden" 0.0;
+            target, "event";
+            after, "pause""/2";
+         }
+         program {
+            name, "pause/2";
+            signal, "pause/2";
+            source, "code";
+            action, STATE_SET "pause" 0.0;
+            transition, SINUSOIDAL 0.440;
+            target, "event";
+         }
+         program {
+            name, "resume";
+            signal, "resume";
+            source, "code";
+            action, STATE_SET "pause/hidden" 0.0;
+            transition, SINUSOIDAL 0.440;
+            target, "event";
+            after, "default";
+         }
+      }
+   }
+}

@@ -1,0 +1,24 @@
+3 12#
+3 #10 #
+3 #  $ $ $ $ #
+3 # $6#  #
+3 #  6#$ #
+3 # $##  ##  #
+3 #  ## $##$ #
+3 # $##  ##  #
+3 #  ## $##$ #
+3 # $##  ##  #
+3 #  ## $ $$ #
+3 ## ##6 #
+3 #3 8#
+4# @ 4#
+#4.*4.#
+#4.*4.#
+11#
+Title:3 Cielove rozlozenie 03
+Author:  Vladimir Zahoransky
+Limit:3 835-364
+Comment:
+Tato strategia na cielove rozlozenie balikov by sa dala strucne nazvat hore-dole, hore-dole. Jej princip je v tom, ze sa postavime o jedno pole na vrch "kopca" a potom posunieme na koniec balik, klesneme o policko nadol a pojdeme do druhej strany, potom opat klesneme a opat sa pohneme do druhej strany. Potom znovu postavite "kopec" a pouzijete strategiu. Tato strategia da najlepsie riesenia ak su policka v presuvanych castiach "uzavrete" murmi. Tento postup ukoncte ak zostane zostava 3xN policok. Na ne pouzite strategiu z levelu 3, ktora je na taketo rozlozenie univerzalna. Tato strategia je dobra aj na "neuzavrete" cielove policka, no nemusi by vzdy ta najlepsia. Casto je vsak vhodna pre sutaze s casovym limitom pocas ktoreho mate co najlepsie vyriesit level.
+Color Green
+Comment-End:

@@ -1,0 +1,862 @@
+images {
+ image: "background.png" COMP;
+ image: "bt_jouer.png" COMP;
+ image: "bt_quitter.png" COMP;
+ image: "fond_central.png" COMP;
+ image: "pause.png" COMP;
+ image: "rock_n_roll.png" COMP;
+ image: "casse_brique.png" COMP;
+ image: "niveau_sup.png" COMP;
+ image: "game_over.png" COMP;
+
+#define CUBEIMAGE(cube_name) \
+	image: cube_name".png" COMP;
+
+ CUBEIMAGE("cube_blanc");
+ CUBEIMAGE("cube_bleu");
+ CUBEIMAGE("cube_bleu2");
+ CUBEIMAGE("cube_rouge");
+ CUBEIMAGE("cube_rouge2");
+ CUBEIMAGE("cube_violet");
+ CUBEIMAGE("cube_jaune");
+ CUBEIMAGE("cube_vert");
+ CUBEIMAGE("cube_noir");
+ CUBEIMAGE("ball");
+ CUBEIMAGE("crado_1");
+ CUBEIMAGE("crado_2");
+ CUBEIMAGE("crado_3");
+ CUBEIMAGE("crado_4");
+ CUBEIMAGE("bomb");
+ CUBEIMAGE("boom");
+ CUBEIMAGE("intero");
+ CUBEIMAGE("bonus_ball");
+ CUBEIMAGE("plus");
+ CUBEIMAGE("fantome");
+}
+
+collections {
+  group {
+    name, "menu";
+    min, 720 576;
+    max, 720 576;
+
+    script {
+      public btn;
+      public hof;
+
+      public update_btn(btnarg) {
+	if (btnarg == 1) {
+	  if (get_int(btn) == 0) {
+	    set_state(PART:"btn/jouer", "mid", 0.0);
+	    emit("menu,jouer,stop", "edc");
+	    emit("menu,quitter", "edc");
+	    set_int(btn, 1);
+	  } else {
+	    set_state(PART:"btn/quitter", "mid", 0.0);
+	    emit("menu,quitter,stop", "edc");
+	    emit("menu,jouer", "edc");
+	    set_int(btn, 0);
+	  }
+	} else {
+	  emit("menu,background,appear", "edc");
+	  set_int(btn, 0);
+	}
+      }
+
+      public message(Msg_Type:type, id, ...) {
+	if (type == MSG_INT) {
+	  if (id == 1) {
+	    update_btn(getarg(2));
+	  } else if (id == 2) {
+	    emit("menu,jouer,disappear", "edc");
+	  } else if (id == 3) {
+	    hof = getarg(2);
+	    if (hof == 1)
+	      send_message(MSG_INT, 1, get_int(btn));
+	    else
+	      send_message(MSG_INT, 1, 2);
+	  } else if (id == 4) {
+	    emit("menu,background,disappear,quit", "edc");
+	  } else if (id == 5) {
+	    emit("menu,background,disappear,hof", "edc");
+	  }
+	}
+      }
+    }
+
+    parts {
+      part {
+	name, "background";
+	type, IMAGE;
+
+	description {
+	  state, "default" 0.0;
+
+	  rel1.relative, 0.0 0.0;
+	  rel2.relative, 1.0 1.0;
+
+	  image {
+	    normal, "background.png";
+	  }
+
+	  color, 0 0 0 0;
+	}
+
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 255 255 255 255;
+	}
+      }
+
+      part {
+	name, "btn/jouer";
+	type, IMAGE;
+
+	description {
+	  state, "default" 0.0;
+
+	  rel1 {
+	    relative, 0.5 0.5;
+	    offset, -134 0;
+	  }
+
+	  rel2 {
+	    relative, 0.5 0.5;
+	    offset, 134 68;
+	  }
+
+	  image {
+	    normal, "bt_jouer.png";
+	  }
+
+	  color, 0 0 0 0;
+	}
+
+	description {
+	  state, "mid" 0.0;
+	  inherit, "default" 0.0;
+	  color, 168 168 168 168;
+	}
+
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 255 255 255 255;
+	}
+      }
+
+      part {
+	name, "btn/quitter";
+	type, IMAGE;
+
+	description {
+	  state, "default" 0.0;
+
+	  rel1 {
+	    relative, 0.5 0.7;
+	    offset, -134 0;
+	  }
+	  rel2 {
+	    relative, 0.5 0.7;
+	    offset, 134 68;
+	  }
+	  image {
+	    normal, "bt_quitter.png";
+
+	  }
+
+	  color, 0 0 0 0;
+	}
+
+	description {
+	  state, "mid" 0.0;
+	  inherit, "default" 0.0;
+	  color, 168 168 168 168;
+	}
+
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 255 255 255 255;
+	}
+      }
+    }
+
+    programs {
+      program {
+	name, "menu_disappeared";
+	action, SIGNAL_EMIT "menu_disappeared" "edc";
+      }
+
+      program {
+	name, "background_disappeared/quit";
+	action, SIGNAL_EMIT "background_disappeared_quit" "edc";
+      }
+
+      program {
+	name, "background_disappeared/hof";
+	action, SIGNAL_EMIT "background_disappeared_hof" "edc";
+      }
+
+      program {
+	name, "animate_background/appear";
+	signal, "menu,background,appear";
+	source, "edc";
+	action, STATE_SET "focus" 0.0;
+	transition, LINEAR 0.4;
+	target, "background";
+	after, "animate_btn_jouer/appear";
+      }
+      program {
+	name, "animate_background/disappear/quit";
+	signal, "menu,background,disappear,quit";
+	source, "edc";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "background";
+	after, "background_disappeared/quit";
+      }
+      program {
+	name, "animate_background/disappear/hof";
+	signal, "menu,background,disappear,hof";
+	source, "edc";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "background";
+	after, "background_disappeared/hof";
+      }
+
+      program {
+	name, "animate_btn_jouer/appear";
+	signal, "menu,jouer,appear";
+	source, "edc";
+	action, STATE_SET "focus" 0.0;
+	transition, LINEAR 0.4;
+	target, "btn/jouer";
+	after, "animate_btn_quitter/appear";
+      }
+      program {
+	name, "animate_btn_jouer/disappear";
+	signal, "menu,jouer,disappear";
+	source, "edc";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "btn/jouer";
+	after, "animate_btn_quitter/disappear";
+      }
+      program {
+	name, "animate_btn_jouer";
+	signal, "menu,jouer";
+	source, "edc";
+	action, STATE_SET "focus" 0.0;
+	transition, SINUSOIDAL 0.4;
+	target, "btn/jouer";
+	after, "animate_btn_jouer/back";
+      }
+      program {
+	name, "animate_btn_jouer/back";
+	action, STATE_SET "mid" 0.0;
+	transition, SINUSOIDAL 0.4;
+	target, "btn/jouer";
+	after, "animate_btn_jouer";
+      }
+      program {
+	name, "animate_btn_jouer/change";
+	signal, "menu,jouer";
+	source, "edc";
+	action, STATE_SET "focus" 0.0;
+	transition, SINUSOIDAL 0.4;
+	target, "btn/jouer";
+	after, "animate_btn_jouer/back";
+      }
+      program {
+	name, "animate_btn_jouer/stop";
+	signal, "menu,jouer,stop";
+	source, "edc";
+	action, ACTION_STOP;
+	target, "animate_btn_jouer";
+      }
+
+      program {
+	name, "animate_btn_quitter/appear";
+	signal, "menu,quitter,appear";
+	source, "edc";
+	action, STATE_SET "mid" 0.0;
+	transition, LINEAR 0.4;
+	target, "btn/quitter";
+	after, "animate_btn_jouer";
+      }
+      program {
+	name, "animate_btn_quitter/disappear";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "btn/quitter";
+	after, "menu_disappeared";
+      }
+      program {
+	name, "animate_btn_quitter";
+	signal, "menu,quitter";
+	source, "edc";
+	action, STATE_SET "focus" 0.0;
+	transition, SINUSOIDAL 0.4;
+	target, "btn/quitter";
+	after, "animate_btn_quitter/back";
+      }
+      program {
+	name, "animate_btn_quitter/back";
+	action, STATE_SET "mid" 0.0;
+	transition, SINUSOIDAL 0.4;
+	target, "btn/quitter";
+	after, "animate_btn_quitter";
+      }
+      program {
+	name, "animate_btn_quitter/change";
+	signal, "menu,quitter";
+	source, "edc";
+	action, STATE_SET "focus" 0.0;
+	transition, SINUSOIDAL 0.4;
+	target, "btn/quitter";
+	after, "animate_btn_quitter/back";
+      }
+      program {
+	name, "animate_btn_quitter/stop";
+	signal, "menu,quitter,stop";
+	source, "edc";
+	action, ACTION_STOP;
+	target, "animate_btn_quitter";
+      }
+    }
+  }
+
+  group {
+    name, "game";
+    min, 720 576;
+    max, 720 576;
+
+    parts {
+      part {
+	name, "fond";
+	type, IMAGE;
+
+	description {
+	  state, "default" 0.0;
+
+	  rel1.relative, 0.0 0.0;
+	  rel2.relative, 1.0 1.0;
+
+	  image {
+	    normal, "fond_central.png";
+	  }
+
+	  color, 0 0 0 0;
+	}
+
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 255 255 255 255;
+	}
+      }
+
+      part {
+	name, "score";
+	type, TEXT;
+	effect, SOFT_SHADOW;
+	mouse_events, 0;
+	description {
+	  state, "default" 0.0;
+	  color, 0 0 0 0;
+	  text {
+	    font, "Vera";
+	    text, "";
+	    size, 32;
+	    align, 1.0 0.5;
+	  }
+	  rel1.relative, 0.0 0.0;
+	  rel1.offset, 110 200;
+	  rel2.relative, 1.0 1.0;
+	  rel2.offset, -500 -316;
+	}
+
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 255 255 100 255;
+	}
+      }
+      
+      part {
+	name, "level";
+	type, TEXT;
+	effect, SOFT_SHADOW;
+	mouse_events, 0;
+	description {
+	  state, "default" 0.0;
+	  color, 0 0 0 0;
+	  text {
+	    font, "Vera";
+	    text, "";
+	    size, 32;
+	    align, 1.0 0.5;
+	  }
+	  rel1.relative, 0.0 0.0;
+	  rel1.offset, 110 290;
+	  rel2.relative, 1.0 1.0;
+	  rel2.offset, -500 -226;
+	}
+
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 255 255 100 255;
+	}
+      }
+      
+      part {
+	name, "high-score";
+	type, TEXT;
+	effect, SOFT_SHADOW;
+	mouse_events, 0;
+	description {
+	  state, "default" 0.0;
+	  color, 0 0 0 0;
+	  text {
+	    font, "Vera";
+	    text, "";
+	    size, 32;
+	    align, 1.0 0.5;
+	  }
+	  rel1.relative, 0.0 0.0;
+	  rel1.offset, 110 380;
+	  rel2.relative, 1.0 1.0;
+	  rel2.offset, -500 -136;
+	}
+
+	description {
+	  state, "focus" 0.0;
+	  inherit, "default" 0.0;
+	  color, 255 255 100 255;
+	}
+      }
+    }
+    programs {
+      program {
+	name, "animate_fond/appear";
+	signal, "play,fond,appear";
+	source, "js";
+	action, STATE_SET "focus" 0.0;
+	transition, LINEAR 0.4;
+	target, "fond";
+      }
+      program {
+	name, "animate_fond/disappear";
+	signal, "play,fond,disappear";
+	source, "js";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "fond";
+	after, "animate_fond/disappeared";
+      }
+      program {
+        name, "animate_fond/disappeared";
+	action, SIGNAL_EMIT "fond_disappeared" "edc";
+      }
+      program {
+	name, "animate_score/appear";
+	signal, "play,score,appear";
+	source, "js";
+	action, STATE_SET "focus" 0.0;
+	transition, LINEAR 0.4;
+	target, "score";
+      }
+      program {
+	name, "animate_score/disappear";
+	signal, "play,score,disappear";
+	source, "js";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "score";
+      }
+      program {
+	name, "animate_level/appear";
+	signal, "play,level,appear";
+	source, "js";
+	action, STATE_SET "focus" 0.0;
+	transition, LINEAR 0.4;
+	target, "level";
+      }
+      program {
+	name, "animate_level/disappear";
+	signal, "play,level,disappear";
+	source, "js";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "level";
+      }
+      program {
+	name, "animate_high-score/appear";
+	signal, "play,high-score,appear";
+	source, "js";
+	action, STATE_SET "focus" 0.0;
+	transition, LINEAR 0.4;
+	target, "high-score";
+      }
+      program {
+	name, "animate_high-score/disappear";
+	signal, "play,high-score,disappear";
+	source, "js";
+	action, STATE_SET "default" 0.0;
+	transition, LINEAR 0.4;
+	target, "high-score";
+      }
+    }
+  }
+      
+  group {
+    name, "image_text";
+    min, 720 576;
+    max, 720 576;
+
+    parts {
+      part {
+	name, "image_text";
+	type, IMAGE;
+	mouse_events, 0;
+	description {
+	  state, "default" 0.0;
+	  image.normal, "rock_n_roll.png";
+	  rel1.relative, 0.5 0.5;
+	  rel2.relative, 0.5 0.5;
+	  fixed, 1 1;
+	  align, 0.5 0.5;
+	  visible, 0;
+	}
+	description {
+	  state, "start" 0.0;
+	  inherit, "default" 0.0;
+	  image.normal, "rock_n_roll.png";
+	  min, 239 28;
+	  max, 239 28;
+	  visible, 1;
+	}
+	description {
+	  state, "start/hidden" 0.0;
+	  inherit, "default" 0.0;
+	  image.normal, "rock_n_roll.png";
+	  visible, 1;
+	}
+	description {
+	  state, "next" 0.0;
+	  inherit, "default" 0.0;
+	  image.normal, "niveau_sup.png";
+	  min, 352 32;
+	  max, 352 32;
+	  visible, 1;
+	}
+	description {
+	  state, "next/hidden" 0.0;
+	  inherit, "default" 0.0;
+	  image.normal, "niveau_sup.png";
+	  visible, 1;
+	}
+	description {
+	  state, "breakout" 0.0;
+	  inherit, "default" 0.0;
+	  image.normal, "casse_brique.png";
+	  min, 281 32;
+	  max, 281 32;
+	  visible, 1;
+	}
+	description {
+	  state, "breakout/hidden" 0.0;
+	  inherit, "default" 0.0;
+	  image.normal, "casse_brique.png";
+	  visible, 1;
+	}
+	description {
+	  state, "over" 0.0;
+	  inherit, "default" 0.0;
+	  image.normal, "game_over.png";
+	  min, 265 28;
+	  max, 265 28;
+	  visible, 1;
+	}
+	description {
+	  state, "over/hidden" 0.0;
+	  inherit, "default" 0.0;
+	  image.normal, "game_over.png";
+	  visible, 1;
+	}
+	description {
+	  state, "pause" 0.0;
+	  inherit, "default" 0.0;
+	  image.normal, "pause.png";
+	  min, 159 28;
+	  max, 159 28;
+	  visible, 1;
+	}
+	description {
+	  state, "pause/hidden" 0.0;
+	  inherit, "default" 0.0;
+	  image.normal, "pause.png";
+	  visible, 1;
+	}
+      }
+    }
+  
+    programs {
+      program {
+	name, "default";
+	signal, "default";
+	source, "js";
+	action, STATE_SET "default" 0.0;
+	target, "image_text";
+      }
+	   
+#define EVENT_PROG(Event)                         \
+      program {                                   \
+        name, Event;                              \
+        signal, Event;                            \
+        source, "js";                             \
+        action, STATE_SET Event"/hidden" 0.0;     \
+        target, "image_text";                     \
+        after, Event"/2";                         \
+      }                                           \
+      program {                                   \
+        name, Event"/2";                          \
+        signal, Event"/2";                        \
+        source, "js";                             \
+        action, STATE_SET Event 0.0;              \
+        transition, SINUSOIDAL 0.5;               \
+        target, "image_text";                     \
+        after, Event"/3";                         \
+      }                                           \
+      program {                                   \
+        name, Event"/3";                          \
+        signal, Event"/3";                        \
+        source, "js";                             \
+        action, STATE_SET Event 0.0;              \
+        transition, LINEAR 1.0;                   \
+        target, "image_text";                     \
+        after, Event"/4";                         \
+      }                                           \
+      program {                                   \
+        name, Event"/4";                          \
+        signal, Event"/4";                        \
+        source, "js";                             \
+        action, STATE_SET Event"/hidden" 0.0;     \
+        transition, SINUSOIDAL 0.5;               \
+        target, "image_text";                     \
+        after, Event"/5";                         \
+      }                                           \
+      program {                                   \
+        name, Event"/5";                          \
+        signal, Event"/5";                        \
+        source, "js";                             \
+       	action, SIGNAL_EMIT "im_text_end" "edc";  \
+        after, "default";                         \
+      }
+
+      EVENT_PROG("start");
+      EVENT_PROG("next");
+      EVENT_PROG("breakout");
+      EVENT_PROG("over");
+
+      program {
+        name, "pause";
+        signal, "pause";
+        source, "js";
+        action, STATE_SET "pause/hidden" 0.0;
+        target, "image_text";
+        after, "pause""/2";
+      }
+      program {
+        name, "pause/2";
+        signal, "pause/2";
+        source, "js";
+        action, STATE_SET "pause" 0.0;
+        transition, SINUSOIDAL 0.5;
+        target, "image_text";
+      }
+      program {
+        name, "resume";
+        signal, "resume";
+        source, "js";
+	action, STATE_SET "pause/hidden" 0.0;
+	transition, SINUSOIDAL 0.5;
+	target, "image_text";
+	after, "default";
+      }
+    }
+  }
+
+#define CUBE(cube_name)					\
+							\
+  group {						\
+    name, cube_name;					\
+							\
+    parts {						\
+      part {						\
+        name, cube_name"part";				\
+        type, IMAGE;					\
+							\
+        description {					\
+          state, "default" 0.0;				\
+							\
+          rel1.relative, 0.0 0.0;			\
+          rel2.relative, 1.0 1.0;			\
+							\
+          image {					\
+            normal, cube_name".png";			\
+          }						\
+							\
+          color, 255 255 255 0;				\
+        }						\
+        description {					\
+          state, "mid" 0.0;				\
+          inherit, "default" 0.0;			\
+							\
+          color, 168 168 168 168;			\
+        }						\
+        description {					\
+          state, "plain" 0.0;				\
+          inherit, "default" 0.0;			\
+							\
+          color, 255 255 255 255;			\
+        }						\
+      }							\
+    }							\
+							\
+    programs {						\
+      program {						\
+        name, "animate_cube_"cube_name"/appear";	\
+        signal, "play,cube,appear";			\
+        source, "js";					\
+        action, STATE_SET "plain" 0.0;			\
+        transition, SINUSOIDAL 0.3;			\
+        target, cube_name"part";			\
+	after, "animate_cube_"cube_name"/appeared";	\
+      }							\
+      program {						\
+        name, "animate_cube_"cube_name"/appearfast";	\
+        signal, "play,cube,appear,fast";		\
+        source, "js";					\
+        action, STATE_SET "plain" 1.0;			\
+        target, cube_name"part";			\
+	after, "animate_cube_"cube_name"/appeared";	\
+      }							\
+      program {						\
+        name, "animate_cube_"cube_name"/appearslow";	\
+        signal, "play,cube,appear,slow";		\
+        source, "js";					\
+        action, STATE_SET "plain" 1.0;			\
+        transition, SINUSOIDAL 0.6;			\
+        target, cube_name"part";			\
+	after, "animate_cube_"cube_name"/appeared";	\
+      }							\
+      program {						\
+        name, "animate_cube_"cube_name"/disappear";	\
+        signal, "play,cube,disappear";			\
+        source, "js";					\
+        action, STATE_SET "default" 0.0;		\
+        transition, SINUSOIDAL 0.2;			\
+        target, cube_name"part";			\
+	after, "animate_cube_"cube_name"/disappeared";	\
+      }							\
+      program {						\
+        name, "animate_cube_"cube_name"/disappearslow";	\
+        signal, "play,cube,disappear,slow";		\
+        source, "js";					\
+        action, STATE_SET "default" 0.0;		\
+        transition, SINUSOIDAL 0.6;			\
+        target, cube_name"part";			\
+	after, "animate_cube_"cube_name"/disappeared";	\
+      }							\
+      program {						\
+        name, "animate_cube_"cube_name"/disappeared";	\
+	action, SIGNAL_EMIT "cube_disappeared" "edc";	\
+      }							\
+      program {						\
+        name, "animate_cube_"cube_name"/appeared";	\
+	action, SIGNAL_EMIT "cube_appeared" "edc";	\
+      }							\
+      program {						\
+        name, "blink_bonus_"cube_name"/mid1";		\
+        signal, "play,bonus,blink";			\
+        source, "js";					\
+        action, STATE_SET "mid" 0.0;			\
+        transition, SINUSOIDAL 0.1;			\
+        target, cube_name"part";			\
+	after, "blink_bonus_"cube_name"/plain1";	\
+      }							\
+      program {						\
+        name, "blink_bonus_"cube_name"/plain1";		\
+        action, STATE_SET "plain" 0.0;			\
+        transition, SINUSOIDAL 0.1;			\
+        target, cube_name"part";			\
+	after, "blink_bonus_"cube_name"/mid2";		\
+      }							\
+      program {						\
+        name, "blink_bonus_"cube_name"/mid2";		\
+        action, STATE_SET "mid" 0.0;			\
+        transition, SINUSOIDAL 0.1;			\
+        target, cube_name"part";			\
+	after, "blink_bonus_"cube_name"/plain2";	\
+      }							\
+      program {						\
+        name, "blink_bonus_"cube_name"/plain2";		\
+        action, STATE_SET "plain" 0.0;			\
+        transition, SINUSOIDAL 0.1;			\
+        target, cube_name"part";			\
+	after, "blink_bonus_"cube_name"/mid3";		\
+      }							\
+      program {						\
+        name, "blink_bonus_"cube_name"/mid3";		\
+        action, STATE_SET "mid" 0.0;			\
+        transition, SINUSOIDAL 0.1;			\
+        target, cube_name"part";			\
+	after, "blink_bonus_"cube_name"/plain3";	\
+      }							\
+      program {						\
+        name, "blink_bonus_"cube_name"/plain3";		\
+        action, STATE_SET "plain" 0.0;			\
+        transition, SINUSOIDAL 0.1;			\
+        target, cube_name"part";			\
+	after, "blink_bonus_"cube_name"/default";	\
+      }							\
+      program {						\
+        name, "blink_bonus_"cube_name"/default";	\
+        action, STATE_SET "default" 0.0;		\
+        transition, SINUSOIDAL 0.1;			\
+        target, cube_name"part";			\
+	after, "blink_bonus_"cube_name"/done";		\
+      }							\
+      program {						\
+        name, "blink_bonus_"cube_name"/done";		\
+	action, SIGNAL_EMIT "bonus_blinked" "edc";	\
+      }							\
+    }							\
+  }							\
+
+  CUBE("cube_blanc");
+  CUBE("cube_bleu");
+  CUBE("cube_bleu2");
+  CUBE("cube_rouge");
+  CUBE("cube_rouge2");
+  CUBE("cube_violet");
+  CUBE("cube_jaune");
+  CUBE("cube_vert");
+  CUBE("cube_noir");
+  CUBE("ball");
+  CUBE("crado_1");
+  CUBE("crado_2");
+  CUBE("crado_3");
+  CUBE("crado_4");
+  CUBE("boom");
+  CUBE("bomb");
+  CUBE("intero");
+  CUBE("bonus_ball");
+  CUBE("plus");
+  CUBE("fantome");
+}
