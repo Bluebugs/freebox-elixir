@@ -1,0 +1,23 @@
+10 3#
+10 #.#
+10 #.#
+10 #.#
+10 #.#
+10 #.#
+10 #.#
+10 #.4#
+11#4 #
+#7 # @$## #
+# $ $ $3 $ ## #
+# $7# 3# #
+#  #5 # 3# #
+# $#5 #5 #
+#  #5 7#
+4#
+Title:3 Pripravne posunutie 05
+Author:  Vladimir Zahoransky
+Limit4 268-97
+Comment:
+Cielom tohto levelu je Vam ukazat prvu strategiu na setrenie tahov. Jej princip je v tom, ze pri tlaceni tehly pod druhom sa dostanete na jej poziciu tak, ze tlacenu tehlu posuniete o pole dalej. Tu dotlacite do ciela a pri navrate z dola si pripravite opat tuto tehlu nad hlavou. A to opakujete az do konca. Ak uz nebude volna tehla, tak jednu co najblizsie nechate a pokracujete dalej. Prijemne hranie. VZ
+Color Green
+Comment-End:

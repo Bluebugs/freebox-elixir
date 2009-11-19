@@ -1,0 +1,18 @@
+18#
+#12 #3 #
+#  $ $ $ $ $ @$  #
+# $12#  #
+#  #9 #3 #
+# $#9 #3.#
+#  #9 #3.#
+# $7#3 #3.#
+#  $ $ $ #3 #*..#
+#8 #3 #.**#
+10#3 5#
+Title:3 Cielove rozlozenie 04
+Author:  Vladimir Zahoransky
+Limit:3 505-218
+Comment:
+Cielom tejto strategie je ukazat cielove rozlozenie na Nx3 policka. Na toto rozlozenie existuje viacero pristupov. Jeden z nich je taky, ze odsuvame na jednu stranu balik, prinesieme dalsi a "zarovname" dieru. Potom zalozime na druhu stranu balik. A tak postupujeme az nahor pokial sa len da. Je to strategia, ktora sa da casto vyuzit ak rozlozenie tehal neumoznuje pouzit strategiu z Levelu 03. Tato odsuvacia strategia na cielove rozlozenie je casto vyhodna ako pomerne optimalne riesenie aj na vacsie zostavy cielovych policok. Je optimalna hlavne pre sutaze, v ktorych mate za urcity cas najst co najlepsie riesenie pre dany level. Pri tejto strategii caso nestratite vela tahov. Pripadne sa da vyuzit aj pri niektorych "heterogennych" cielovych rozlozeniach. Tie budu uvedene v dalsich leveloch. Zapamatajte si, ze tato strategia sa da vyuzit na cielove a tak aj na ine rozlozenia na leveli a je to casto optimalna a uzitocna strategia.
+Color Green
+Comment-End:

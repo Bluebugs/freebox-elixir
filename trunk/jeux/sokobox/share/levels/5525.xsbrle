@@ -1,0 +1,171 @@
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::9 Sokoban (c) by Falcon Co., Ltd., Japan9 ::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::20 File Format 0.0420 ::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+::56 ::
+:: File Header44 ::
+::3 Raw File Notes28 Optional3 ::
+::3 File Notes32 Optional3 ::
+::3 Game Type33 Optional3 ::
+::3 Macros36 Optional3 ::
+:: Level 137 Required3 ::
+::4 Title36 Optional*  ::
+::4 Board36 See legend ::
+::4 Level Notes30 Optional3 ::
+::4 Game 135 Optional3 ::
+::6 Title34 Optional*  ::
+::6 Moves34 See legend ::
+::6 Game Notes29 Optional3 ::
+::4 Game 235 Optional3 ::
+::4 3. (more games)36 ::
+:: Level 237 Optional3 ::
+:: 3. (more levels)38 ::
+::56 ::
+:: Remarks:47 ::
+::56 ::
+:: File Header44 ::
+::3 The different types of information may be written in ::
+::3 any order.43 ::
+::56 ::
+:: Raw File Notes41 ::
+::3 Raw file notes are only intended for someone looking ::
+::3 at the raw file in a text editor. These lines begin  ::
+::3 with "::".43 ::
+::56 ::
+:: File Notes45 ::
+::3 File notes are the remaining lines when all other4 ::
+::3 information is removed from the file header, e.g.,3 ::
+::3 raw file notes and macros.27 ::
+::56 ::
+::3 As an example, file notes can contain general8 ::
+::3 information written as key/value pairs like10 ::
+::3 "Author: NN".40 ::
+::56 ::
+:: Game Type46 ::
+::3 The type applies to all levels in the file. If it is ::
+::3 not specified, the default value is "Sokoban".7 ::
+::56 ::
+::3 The type is written as "Game: X" or "Game=X".8 ::
+::3 An example: "Game: Hexoban".25 ::
+::56 ::
+:: Macros49 ::
+::3 Macros are key/value pairs separated by "=".9 ::
+::3 An example: "Copyright=These levels are (c) by NN".  ::
+::56 ::
+::3 The value of a key/value pair can be inserted in5 ::
+::3 level notes and game notes by writing the key8 ::
+::3 enclosed by "<#" 3. "#/>". This applies to both5 ::
+::3 types of key/value pairs, ":" and "=", but in8 ::
+::3 contrast to ":" pairs, macros are not considered5 ::
+::3 a part of the file notes.28 ::
+::56 ::
+::3 An example of macro usage: "<#Copyright#/>".9 ::
+::3 The use of key/value pairs is case-insensitive.6 ::
+::56 ::
+::3 Macro-definitions are single-lined. To insert a6 ::
+::3 line-break in the expanded text, write "\n".9 ::
+::56 ::
+:: Titles49 ::
+::3 A title line is the last non-blank text line before  ::
+::3 a level or a game, provided the line is preceded5 ::
+::3 by a blank line or it is the only text line at this  ::
+::3 position in the file.32 ::
+::56 ::
+::3 Title lines are optional unless a single or a last3 ::
+::3 text line from a preceding level, game, or file6 ::
+::3 header can be mistaken for a title line.13 ::
+::56 ::
+:: Level Notes44 ::
+::3 Two special key/value pairs are supported in level3 ::
+::3 notes: "Title" and "Author", hence, titles can7 ::
+::3 either come from a title line or from a key/value4 ::
+::3 pair.48 ::
+::56 ::
+::::::::::::::::::::::::::: Board ::::::::::::::::::::::::::
+:: Legend17.:6 :17.Legend ::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: Wall19.: #  # :19.Wall ::
+:: Player17.: @  p :17.Player ::
+:: Player on goal square..: +  P :..Player on goal square ::
+:: Box20.: $  b :20.Box ::
+:: Box on goal square5.: *  B :5.Box on goal square ::
+:: Goal square12.: .  o :12.Goal square ::
+:: Floor18.:4 _ :18.Floor ::
+::56 ::
+:: Remarks:47 ::
+::56 ::
+::3 First non-empty square in each row must be a wall,3 ::
+::3 and a board cannot have empty rows.18 ::
+::56 ::
+::::::::::::::::::::::::::: Moves ::::::::::::::::::::::::::
+:: Legend17.:6 :17.Legend ::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+:: Move player up9.: u  U :7.Push/pull box up ::
+:: Move player down7.: d  D :5.Push/pull box down ::
+:: Move player left7.: l  L :5.Push/pull box left ::
+:: Move player right6.: r  R :4.Push/pull box right ::
+:: Move player north6.: n  N :4.Push/pull box north ::
+:: Move player south6.: s  S :4.Push/pull box south ::
+:: Combined move start4.: (  ) :6.Combined move end ::
+:: Jump start13.: <  > :15.Jump end ::
+:: Current position7.: *  * :7.Current position ::
+::56 ::
+:: Remarks:47 ::
+::56 ::
+::3 Moves may be run-length encoded, e.g., "3r3U4d"6 ::
+::3 means "rrrUUUdddd". Each line must, however, have at ::
+::3 least one proper non-digit character.16 ::
+::56 ::
+::3 Directions 'north' and 'south': Not used in10 ::
+::3 Sokoban but in variants like Hexoban and Trioban5 ::
+::56 ::
+::3 Jumps and pulls: Only in reverse mode games.9 ::
+::56 ::
+::3 Reverse mode games must start with a jump, even if3 ::
+::3 it is empty. An example: "<>UU<ddlll>DDllR".9 ::
+::56 ::
+::3 Current position is optional and defaults to the5 ::
+::3 position after the last move.24 ::
+::56 ::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+Date Created: 
+Date of Last Change: 2006-04-03  19:40:35
+::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+spiros1344b
+
+4 10#
+4 #8 #
+5# 6# #
+#  $6 $  #
+#  #$ 4#$3#
+#4 $ $.*3.#
+##$# #  5.#
+ #@# 6# ##
+ 3# $6 #
+3 3#$# #  #
+5 #3 4#
+5 5#
+
+Title: spiros1344b
+Author: spiros mantzoukis
+Comment:
+color aqua
+Comment-End:
+
+Solution/Moves 661/74 (YASS 2.32)
+UUrrdddRRRRRRdrUUUluRdllluRdllluRdrrrrddllllllluuullluurRllddrrrRuuuur
+rrrrrrddlLLLLrrrrruulllllllddddldddrrrrrrruulluRdllluRdrrrddllllllluuu
+rRluuuurrrrrrrddllDDuurruulllllllddddlllluurrRlllddrrrrrdrrrRuuurruull
+llllldDDuuurrrrrrrddlllllLrrrrdddRluuurruullllllldDrrrrrdddrddlllddllU
+drruurrruuluuulllllllllddrrrdddrRddrruurrruullluRdllluRRdrrrddlllddllu
+ulluuullluurrrrrrrrrdDuulllllllllddrrrdddrrddrruurrruuLrddlllddlluullu
+uuRRdrruRldllulldddrrddrruurrruulLrrddlllddlluulluuullluurrrrrrrrrdDuu
+lllllllllddrrrdddrrddrruurrruuLrddlllddlluuRRRRdrUUdllllllluuurrRRRlll
+llllluurrrrDullllddrrrRRluurrrrrdDuullllllllDldRRluurrrddrRRRlllluulll
+ddrRRRluulDrdrRRlllulullddrRRRR
+
+Solver: YASS 2.32
+Time: 00:01:26

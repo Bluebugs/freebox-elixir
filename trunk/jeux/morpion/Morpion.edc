@@ -1,0 +1,444 @@
+images {
+   image, "background2.jpg" LOSSY 85;
+   image, "grille.png" COMP;
+   image, "select.png" COMP;
+   image, "croix.png" COMP;
+   image, "rond.png" COMP;
+   image, "bouton.png" COMP;
+}
+
+#define CELL(Pos, X1, Y1, X2, Y2)               \
+  part {                                        \
+     name, Pos;                                 \
+     type, GROUP;                               \
+     source, "choice";                          \
+     mouse_events, 0;                           \
+     repeat_events, 0;                          \
+     description {                              \
+        state, "default" 0.0;                   \
+        rel1.relative, X1 Y1;                   \
+        rel2.relative, X2 Y2;                   \
+     }                                          \
+  }                                             \
+  part {                                        \
+     name, "detect-"Pos;                        \
+     type, RECT;                                \
+     mouse_events, 1;                           \
+     description {                              \
+        state, "default" 0.0;                   \
+        rel1.to, Pos;                           \
+        rel2.to, Pos;                           \
+        color, 0 0 0 0;                         \
+     }                                          \
+  }
+
+#define CELLL1(Pos, X1, X2) CELL(Pos"/0", X1, 0.09375, X2, 0.31076)
+#define CELLL2(Pos, X1, X2) CELL(Pos"/1", X1, 0.32986, X2, 0.54687)
+#define CELLL3(Pos, X1, X2) CELL(Pos"/2", X1, 0.55555, X2, 0.77256)
+
+#define CELLC(Pos, X1, X2)   \
+  CELLL1(Pos, X1, X2);       \
+  CELLL2(Pos, X1, X2);       \
+  CELLL3(Pos, X1, X2);
+
+#define CURSOR(Pos, X1, Y1, X2, Y2)             \
+  description {                                 \
+     state, Pos 0.0;                            \
+     inherit, "default" 0.0;                    \
+     visible, 1;                                \
+     rel1.relative, X1 Y1;                      \
+     rel2.relative, X2 Y2;                      \
+  }
+
+#define CURSORL1(Pos, X1, X2) CURSOR(Pos"/0", X1, 0.09375, X2, 0.31076)
+#define CURSORL2(Pos, X1, X2) CURSOR(Pos"/1", X1, 0.32986, X2, 0.54687)
+#define CURSORL3(Pos, X1, X2) CURSOR(Pos"/2", X1, 0.55555, X2, 0.77256)
+
+#define CURSORC(Pos, X1, X2) \
+  CURSORL1(Pos, X1, X2);     \
+  CURSORL2(Pos, X1, X2);     \
+  CURSORL3(Pos, X1, X2);
+
+#define TEXT(Name, Text, X1, Y1, X2, Y2)        \
+  part {                                        \
+     name, "text/"Name;                         \
+     type, TEXT;                                \
+     description {                              \
+        state, "default" 0.0;                   \
+        rel1.relative, X1 Y1;                   \
+        rel2.relative, X2 Y2;                   \
+        text {                                  \
+           font, "VeraBd";                      \
+           text, Text;                          \
+           size, 30;                            \
+           align, 0.5 0.5;                      \
+        }                                       \
+        color, 64 64 64 255;                    \
+     }                                          \
+     description {                              \
+        state, "focus1" 0.0;                    \
+        inherit, "default" 0.0;                 \
+        color, 200 0 0 255;                     \
+     }                                          \
+     description {                              \
+        state, "focus2" 0.0;                    \
+        inherit, "default" 0.0;                 \
+        color, 64 0 0 255;                      \
+     }                                          \
+  }                                             \
+  part {                                        \
+     name, "rect/"Name;                         \
+     type, IMAGE;                               \
+     mouse_events, 0;                           \
+     description {                              \
+        state, "default" 0.0;                   \
+        rel1.relative, X1 Y1;                   \
+        rel2.relative, X2 Y2;                   \
+        visible, 0;                             \
+     }                                          \
+     description {                              \
+        state, "activ" 0.0;                     \
+        inherit, "default" 0.0;                 \
+        visible, 1;                             \
+        image.normal, "bouton.png";             \
+     }                                          \
+  }
+
+#define PRGTEXT(Name, Index)                    \
+  program {                                     \
+     name, "script/"Name;                       \
+     signal, "mouse,in";                        \
+     source, "text/"Name;                       \
+     script {                                   \
+        update_btn(Index);                      \
+     }                                          \
+  }                                             \
+  program {                                     \
+     name, "focus/"Name;                        \
+     action, STATE_SET "activ" 0.0;             \
+     target, "rect/"Name;                       \
+     after, "focus/"Name"/1";                   \
+  }                                             \
+  program {                                     \
+     name, "focus/"Name"/1";                    \
+     action, STATE_SET "focus1" 0.0;            \
+     target, "text/"Name;                       \
+     transition, SINUSOIDAL 1.0;                \
+     after, "focus/"Name"/2";                   \
+  }                                             \
+  program {                                     \
+     name, "focus/"Name"/2";                    \
+     action, STATE_SET "focus2" 0.0;            \
+     target, "text/"Name;                       \
+     transition, SINUSOIDAL 1.0;                \
+     after, "focus/"Name"/1";                   \
+  }                                             \
+  program {                                     \
+     name, "unfocus/"Name;                      \
+     action, STATE_SET "default" 0.0;           \
+     target, "rect/"Name;                       \
+     action, STATE_SET "default" 0.0;           \
+     target, "text/"Name;                       \
+  }
+
+collections {
+   group {
+      name, "menu";
+
+      script {
+         public btn;
+
+         public update_btn(pos) {
+            if (pos < 0) {
+               pos = 2;
+            }
+            if (pos > 2) {
+               pos = 0;
+            }
+            if (pos == 0) {
+               run_program(PROGRAM:"focus/ai");
+            } else {
+               run_program(PROGRAM:"unfocus/ai");
+            }
+            if (pos == 1) {
+               run_program(PROGRAM:"focus/local");
+            } else {
+               run_program(PROGRAM:"unfocus/local");
+            }
+            if (pos == 2) {
+               run_program(PROGRAM:"focus/leave");
+            } else {
+               run_program(PROGRAM:"unfocus/leave");
+            }
+            set_int(btn, pos);
+         }
+
+         public message(Msg_Type:type, id, ...) {
+            new b = get_int(btn);
+            if (type == MSG_INT) {
+               if (id == 1) {
+                  update_btn(getarg(2) + get_int(btn));
+               } else if (id == 2) {
+                  if (b == 0) {
+                     emit("mouse,clicked,1", "text/ai");
+                  } else if (b == 1) {
+                     emit("mouse,clicked,1", "text/local");
+                  } else if (b == 2) {
+                     emit("mouse,clicked,1", "text/leave");
+                  }
+               } else if (id == 3) {
+                  update_btn(getarg(2));
+               }
+            }
+         }
+      }
+
+      parts {
+         part {
+            name, "main";
+            type, IMAGE;
+            mouse_events, 0;
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel2.relative, 1.0 1.0;
+               image.normal, "background2.jpg";
+            }
+         }
+         part {
+            name, "text/croix";
+            type, TEXT;
+            mouse_events, 0;
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.78 0.085486;
+               rel2.relative, 0.89 0.173611;
+
+               text {
+                  font, "VeraBd";
+                  text, "--";
+                  size, 52;
+                  align, 0.0 0.0;
+               }
+
+               color, 222 0 0 255;
+            }
+         }
+         part {
+            name, "text/rond";
+            type, TEXT;
+            mouse_events, 0;
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.78 0.206013;
+               rel2.relative, 0.89 0.294138;
+
+               text {
+                  font, "VeraBd";
+                  text, "--";
+                  size, 52;
+                  align, 0.0 0.0;
+               }
+
+               color, 222 0 0 255;
+            }
+         }
+         part {
+            name, "text/play";
+            type, TEXT;
+            mouse_events, 0;
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.25 0.08;
+               rel2.relative, 0.5 0.22;
+
+               text {
+                  font, "VeraBd";
+                  text, "Jouer";
+                  size, 52;
+                  align, 0.0 0.0;
+               }
+
+               color, 200 0 0 255;
+            }
+         }
+         TEXT("ai", "contre la Freebox", 0.11, 0.3, 0.63, 0.4);
+         TEXT("local", "un contre un", 0.11, 0.4, 0.63, 0.5);
+/*          TEXT("network", "a deux en reseaux", 0.11, 0.5, 0.63, 0.6); */
+         TEXT("leave", "Quitter", 0.11, 0.65, 0.63, 0.75);
+      }
+      programs {
+         PRGTEXT("ai", 0);
+         PRGTEXT("local", 1);
+/*          PRGTEXT("network"); */
+         PRGTEXT("leave", 2);
+      }
+   }
+   group {
+      name, "game";
+
+      script {
+         new target[10];
+         public cursor(x, y) {
+            snprintf(target, 10, "%i/%i", x, y);
+            set_state(PART:"cursor", target, 0.0);
+         }
+
+         public message(Msg_Type:type, id, ...) {
+            if (type == MSG_INT_SET) {
+               if (id == 4)
+                 cursor(getarg(2), getarg(3));
+            }
+         }
+      }
+      parts {
+         part {
+            name, "main";
+            type, IMAGE;
+            mouse_events, 0;
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel2.relative, 1.0 1.0;
+               image.normal, "background2.jpg";
+            }
+         }
+         part {
+            name, "grille";
+            type, IMAGE;
+            mouse_events, 0;
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.085 0.079;
+               rel2.relative, 0.65722 0.78427;
+               image.normal, "grille.png";
+            }
+         }
+         part {
+            name, "text/rond";
+            type, TEXT;
+            mouse_events, 0;
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.78 0.085486;
+               rel2.relative, 0.91 0.173611;
+
+               text {
+                  font, "VeraBd";
+                  text, "00";
+                  size, 52;
+                  align, 0.0 0.0;
+               }
+
+               color, 222 0 0 255;
+            }
+         }
+         part {
+            name, "text/croix";
+            type, TEXT;
+            mouse_events, 0;
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.78 0.206013;
+               rel2.relative, 0.91 0.294138;
+
+               text {
+                  font, "VeraBd";
+                  text, "00";
+                  size, 52;
+                  align, 0.0 0.0;
+               }
+
+               color, 222 0 0 255;
+            }
+         }
+         part {
+            name, "cursor";
+            type, IMAGE;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               image {
+                  normal, "select.png";
+                  border, 15 15 15 15;
+                  middle, 0;
+               }
+               visible, 0;
+            }
+            CURSORC("0", 0.09722, 0.27083);
+            CURSORC("1", 0.28472, 0.45833);
+            CURSORC("2", 0.47222, 0.64583);
+         }
+         CELLC("0", 0.09722, 0.27083);
+         CELLC("1", 0.28472, 0.45833);
+         CELLC("2", 0.47222, 0.64583);
+      }
+      programs {
+/*          program { */
+/*             name, "cursor,hide"; */
+/*             signal, "cursor,hide"; */
+/*             source, ""; */
+/*             action, STATE_SET "default" 0.0; */
+/*             target, "cursor"; */
+/*          } */
+      }
+   }
+
+   group {
+      name, "choice";
+
+      parts {
+         part {
+            name, "color";
+            type, IMAGE;
+            mouse_events, 0;
+
+            description {
+               state, "default" 0.0;
+               rel1.relative, 0.0 0.0;
+               rel2.relative, 1.0 1.0;
+               visible, 0;
+            }
+            description {
+               state, "croix" 0.0;
+               inherit, "default" 0.0;
+               visible, 1;
+               image.normal, "croix.png";
+            }
+            description {
+               state, "rond" 0.0;
+               inherit, "default" 0.0;
+               visible, 1;
+               image.normal, "rond.png";
+            }
+         }
+      }
+      programs {
+         program {
+            name, "cd";
+            signal, "default";
+            source, "js";
+
+            action, STATE_SET "default" 0.0;
+            target, "color";
+         }
+         program {
+            name, "cc";
+            signal, "croix";
+            source, "js";
+
+            action, STATE_SET "croix" 0.0;
+            target, "color";
+         }
+         program {
+            name, "cr";
+            signal, "rond";
+            source, "js";
+
+            action, STATE_SET "rond" 0.0;
+            target, "color";
+         }
+      }
+   }
+}

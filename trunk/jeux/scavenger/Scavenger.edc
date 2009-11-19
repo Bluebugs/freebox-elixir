@@ -1,0 +1,813 @@
+/*****************************************************************************
+ * Scavenger.edc : Meta-data file
+ *****************************************************************************
+ * Copyright (C) 2008 Freebox S.A.
+ *
+ * Author: Christophe Massiot <massiot@via.ecp.fr>
+ *
+ * This program is free software; you can redistribute it and/or modify
+ * it under the terms of the GNU General Public License as published by
+ * the Free Software Foundation; either version 2 of the License, or
+ * (at your option) any later version.
+ *
+ * This program is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ * GNU General Public License for more details.
+ *
+ * You should have received a copy of the GNU General Public License
+ * along with this program; if not, write to the Free Software
+ * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston MA 02110-1301, USA.
+ *****************************************************************************/
+
+#define IMAGE6(Name)						\
+	image, Name"-1.png" COMP;				\
+	image, Name"-2.png" COMP;				\
+	image, Name"-3.png" COMP;				\
+	image, Name"-4.png" COMP;				\
+	image, Name"-5.png" COMP;				\
+	image, Name"-6.png" COMP;
+
+#define IMAGE5(Name)						\
+	image, Name"-1.png" COMP;				\
+	image, Name"-2.png" COMP;				\
+	image, Name"-3.png" COMP;				\
+	image, Name"-4.png" COMP;				\
+	image, Name"-5.png" COMP;
+
+#define IMAGE4(Name)						\
+	image, Name"-1.png" COMP;				\
+	image, Name"-2.png" COMP;				\
+	image, Name"-3.png" COMP;				\
+	image, Name"-4.png" COMP;
+
+images {
+	image, "background.png" COMP;
+	image, "help.png" COMP;
+
+	image, "tile/empty.png" COMP;
+	image, "tile/brick.png" COMP;
+	image, "tile/fake.png" COMP;
+	image, "tile/cement.png" COMP;
+	image, "tile/ladder.png" COMP;
+	image, "tile/rail.png" COMP;
+	image, "tile/gold.png" COMP;
+	IMAGE5("tile/dig");
+	image, "tile/dug.png" COMP;
+
+	image, "player/stand.png" COMP;
+	IMAGE6("player/left");
+	IMAGE6("player/right");
+	IMAGE6("player/rail-left");
+	IMAGE6("player/rail-right");
+	IMAGE4("player/dig-left");
+	IMAGE4("player/dig-right");
+	IMAGE5("player/climb");
+	image, "player/fall.png" COMP;
+
+	image, "robot/stand.png" COMP;
+	IMAGE6("robot/left");
+	IMAGE6("robot/right");
+	IMAGE6("robot/rail-left");
+	IMAGE6("robot/rail-right");
+	IMAGE5("robot/climb");
+	image, "robot/fall.png" COMP;
+}
+
+styles {
+	style {
+		name, "left";
+		base, "font=VeraMoBd font_size=20 text_class=tb_plain align=left color=#ffffffff style=shadow wrap=word";
+		tag, "br" "\n";
+	}
+
+	style {
+		name, "right";
+		base, "font=VeraMoBd font_size=20 text_class=tb_plain align=right color=#ffffffff style=shadow wrap=word";
+		tag, "br" "\n";
+	}
+}
+
+collections {
+	group {
+		name, "game";
+		min, 720 576;
+		max, 720 576;
+
+		parts {
+			part {
+				name, "background";
+				type, IMAGE;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+					image.normal, "background.png";
+				}
+			}
+
+			part {
+				name, "grid";
+				type, RECT;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+					color, 255 255 255 255;
+					rel1.relative, 0.5 0.5;
+					rel1.offset, -288 -180;
+					rel2.relative, 0.5 0.5;
+					rel2.offset, 288 180;
+				}
+			}
+
+#define CELL(Name, X, Y)					\
+			part {					\
+				name, Name;			\
+				type, GROUP;			\
+				source, "tile";			\
+				mouse_events, 0;		\
+				repeat_events, 0;		\
+				clip_to, "grid";		\
+				description {			\
+					state, "default" 0.0;	\
+					min, 24 24;		\
+					max, 24 24;		\
+					rel1.to, "grid";	\
+					rel1.offset, X Y;	\
+					rel2.to, "grid";	\
+					rel2.offset, (X+23) (Y+23);\
+				}				\
+			}
+
+#define COLUMN(Name, X)						\
+			CELL(Name"/0", X, -180);		\
+			CELL(Name"/1", X, -156);		\
+			CELL(Name"/2", X, -132);		\
+			CELL(Name"/3", X, -108);		\
+			CELL(Name"/4", X, -84);			\
+			CELL(Name"/5", X, -60);			\
+			CELL(Name"/6", X, -36);			\
+			CELL(Name"/7", X, -12);			\
+			CELL(Name"/8", X, 12);			\
+			CELL(Name"/9", X, 36);			\
+			CELL(Name"/10", X, 60);			\
+			CELL(Name"/11", X, 84);			\
+			CELL(Name"/12", X, 108);		\
+			CELL(Name"/13", X, 132);		\
+			CELL(Name"/14", X, 156);
+
+			COLUMN("0", -288);
+			COLUMN("1", -264);
+			COLUMN("2", -240);
+			COLUMN("3", -216);
+			COLUMN("4", -192);
+			COLUMN("5", -168);
+			COLUMN("6", -144);
+			COLUMN("7", -120);
+			COLUMN("8", -96);
+			COLUMN("9", -72);
+			COLUMN("10", -48);
+			COLUMN("11", -24);
+			COLUMN("12", 0);
+			COLUMN("13", 24);
+			COLUMN("14", 48);
+			COLUMN("15", 72);
+			COLUMN("16", 96);
+			COLUMN("17", 120);
+			COLUMN("18", 144);
+			COLUMN("19", 168);
+			COLUMN("20", 192);
+			COLUMN("21", 216);
+			COLUMN("22", 240);
+			COLUMN("23", 264);
+
+			part {
+				name, "foreground";
+				type, IMAGE;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+					image.normal, "background.png";
+				}
+				description {
+					state, "hidden" 0.0;
+					inherit, "default" 0.0;
+					visible, 0;
+				}
+			}
+
+			part {
+				name, "help";
+				type, IMAGE;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+					image.normal, "help.png";
+					rel1.relative, 0.5 0.5;
+					rel1.offset, -288 -180;
+					rel2.relative, 0.5 0.5;
+					rel2.offset, 288 180;
+				}
+				description {
+					state, "hidden" 0.0;
+					inherit, "default" 0.0;
+					visible, 0;
+				}
+			}
+
+			part {
+				name, "scores-text";
+				type, TEXTBLOCK;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+					visible, 1;
+					color, 255 255 255 255;
+					rel1.relative, 0.5 0.5;
+					rel1.offset, -160 -100;
+					rel2.relative, 0.5 0.5;
+					rel2.offset, 160 110;
+                                        visible, 1;
+					text {
+						style, "left";
+						text, "";
+					}
+				}
+				description {
+					state, "hidden" 0.0;
+					inherit, "default" 0.0;
+					visible, 0;
+				}
+			}
+
+			part {
+				name, "scores-figures";
+				type, TEXTBLOCK;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+					visible, 1;
+					color, 255 255 255 255;
+					rel1.relative, 0.5 0.5;
+					rel1.offset, -160 -100;
+					rel2.relative, 0.5 0.5;
+					rel2.offset, 160 110;
+                                        visible, 1;
+					text {
+						style, "right";
+						text, "";
+					}
+				}
+				description {
+					state, "hidden" 0.0;
+					inherit, "default" 0.0;
+					visible, 0;
+				}
+			}
+
+			part {
+				name, "level";
+				type, TEXT;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+					color, 255 255 255 255;
+					rel1.to, "grid";
+					rel1.offset, 10 -30;
+					rel2.to, "grid";
+					rel2.offset, -384 -360;
+					text {
+						font, "VeraMoBd";
+						text, "Niveau 1";
+						size, 16;
+						align, 0.0 0.0;
+					}
+				}
+			}
+
+			part {
+				name, "time";
+				type, SWALLOW;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+					color, 255 255 255 255;
+					rel1.to, "grid";
+					rel1.offset, 192 -30;
+					rel2.to, "grid";
+					rel2.offset, -192 -360;
+				}
+			}
+
+			part {
+				name, "saphirs";
+				type, SWALLOW;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+					color, 255 255 255 255;
+					rel1.to, "grid";
+					rel1.offset, 384 -30;
+					rel2.to, "grid";
+					rel2.offset, -10 -360;
+				}
+			}
+		}
+
+		programs {
+			program {
+				name, "hide";
+				signal, "hide";
+				source, "code";
+				action, STATE_SET "hidden" 0.0;
+				target, "scores-text";
+				target, "scores-figures";
+				target, "help";
+				target, "foreground";
+			}
+
+			program {
+				name, "show";
+				signal, "show";
+				source, "code";
+				action, STATE_SET "default" 0.0;
+				target, "scores-text";
+				target, "scores-figures";
+				target, "foreground";
+			}
+		}
+	}
+
+	/* Kludge to work around refresh bug in edje */
+	group {
+		name, "text-centered";
+
+		parts {
+			part {
+				name, "content";
+				type, TEXT;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+					color, 255 255 255 255;
+					text {
+						font, "VeraMoBd";
+						text, "";
+						size, 16;
+						align, 0.5 0.0;
+					}
+				}
+			}
+		}
+	}
+
+	group {
+		name, "text-right";
+
+		parts {
+			part {
+				name, "content";
+				type, TEXT;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+					color, 255 255 255 255;
+					text {
+						font, "VeraMoBd";
+						text, "";
+						size, 16;
+						align, 1.0 0.0;
+					}
+				}
+			}
+		}
+	}
+
+	group {
+		name, "tile";
+		min, 24 24;
+		max, 24 24;
+
+		parts {
+			part {
+				name, "main";
+				type, IMAGE;
+				mouse_events, 0;
+				effect, SOFT_SHADOW;
+				description {
+					state, "default" 0.0;
+					rel1.relative, 0.0 0.0;
+					rel2.relative, 1.0 1.0;
+					visible, 0;
+				}
+				description {
+					state, "empty" 0.0;
+					inherit, "default" 0.0;
+				}
+#define TILE(Name, Rel)						\
+				description {			\
+					state, Name 0.0;	\
+					inherit, "empty" 0.0;	\
+					rel2.relative, Rel Rel;	\
+					visible, 1;		\
+					image.normal, "tile/"Name".png";\
+				}
+				TILE("gold", 1.0);
+				TILE("brick", 1.5);
+				TILE("fake", 1.5);
+				TILE("cement", 1.5);
+				TILE("ladder", 1.0);
+				TILE("rail", 1.0);
+				TILE("dug", 1.5);
+
+				description {
+					state, "digging" 0.0;
+					inherit, "brick" 0.0;
+					image.tween, "tile/dig-1.png";
+					image.tween, "tile/dig-2.png";
+					image.tween, "tile/dig-3.png";
+					image.tween, "tile/dig-4.png";
+					image.tween, "tile/dig-5.png";
+					image.normal, "tile/dug.png";
+				}
+
+				description {
+					state, "closing" 0.0;
+					inherit, "brick" 0.0;
+					image.tween, "tile/dig-5.png";
+					image.tween, "tile/dig-4.png";
+					image.tween, "tile/dig-3.png";
+					image.tween, "tile/dig-2.png";
+					image.tween, "tile/dig-1.png";
+					image.normal, "tile/brick.png";
+				}
+			}
+		}
+
+		programs {
+#define TILEPROG(Name)						\
+			program {				\
+				name, Name;			\
+				signal, Name;			\
+				source, "code";			\
+				action, STATE_SET Name 0.0;	\
+				target, "main";	       		\
+			}
+
+                        TILEPROG("empty");
+                        TILEPROG("gold");
+			TILEPROG("brick");
+			TILEPROG("fake");
+			TILEPROG("cement");
+			TILEPROG("ladder");
+			TILEPROG("rail");
+			TILEPROG("dug");
+
+			program {
+				name, "digging";
+				signal, "digging";
+				source, "code";
+				action, STATE_SET "digging" 0.0;
+				transition, LINEAR 0.5;
+				target, "main";
+				after, "dug";
+			}
+
+			program {
+				name, "closing";
+				signal, "closing";
+				source, "code";
+				action, STATE_SET "closing" 0.0;
+				transition, LINEAR 0.5;
+				target, "main";
+				after, "brick";
+			}
+		}
+	}
+
+	group {
+		name, "player";
+		parts {
+			part {
+				name, "main";
+				type, IMAGE;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+					rel1.relative, 0.0 0.0;
+					rel2.relative, 1.0 1.0;
+					visible, 1;
+					image.normal, "player/stand.png";
+				}
+				description {
+					state, "stand" 0.0;
+					inherit, "default" 0.0;
+				}
+				description {
+					state, "stand-pause" 0.0;
+					inherit, "default" 0.0;
+					color, 255 255 255 0;
+				}
+
+#define PLAYER6(Direction)					\
+				description {			\
+					state, Direction 0.0;	\
+					inherit, "stand" 0.0;	\
+					image.tween, "player/"Direction"-1.png";\
+					image.tween, "player/"Direction"-2.png";\
+					image.tween, "player/"Direction"-2.png";\
+					image.tween, "player/"Direction"-3.png";\
+					image.tween, "player/"Direction"-4.png";\
+					image.tween, "player/"Direction"-5.png";\
+					image.tween, "player/"Direction"-5.png";\
+					image.normal, "player/"Direction"-6.png";\
+				}				\
+				description {			\
+					state, Direction"-suspend" 0.0; \
+					inherit, "stand" 0.0;	\
+					image.normal, "player/"Direction"-1.png";\
+				}				\
+				description {			\
+					state, Direction"-pause" 0.0; \
+					inherit, "stand" 0.0;	\
+					image.normal, "player/"Direction"-1.png";\
+					color, 255 255 255 0;	\
+				}
+
+				PLAYER6("left");
+				PLAYER6("right");
+				PLAYER6("rail-left");
+				PLAYER6("rail-right");
+
+#define PLAYER4(Direction)					\
+				description {			\
+					state, Direction 0.0;	\
+					inherit, "stand" 0.0;	\
+					image.tween, "player/"Direction"-1.png";\
+					image.tween, "player/"Direction"-1.png";\
+					image.tween, "player/"Direction"-2.png";\
+					image.tween, "player/"Direction"-2.png";\
+					image.tween, "player/"Direction"-3.png";\
+					image.normal, "player/"Direction"-4.png";\
+				}
+				PLAYER4("dig-left");
+				PLAYER4("dig-right");
+
+				description {
+					state, "climb" 0.0;
+					inherit, "stand" 0.0;
+					image.tween, "player/climb-1.png";
+					image.tween, "player/climb-1.png";
+					image.tween, "player/climb-1.png";
+					image.tween, "player/climb-2.png";
+					image.tween, "player/climb-3.png";
+					image.tween, "player/climb-3.png";
+					image.tween, "player/climb-3.png";
+					image.tween, "player/climb-2.png";
+					image.tween, "player/climb-1.png";
+					image.tween, "player/climb-1.png";
+					image.tween, "player/climb-1.png";
+					image.tween, "player/climb-4.png";
+					image.tween, "player/climb-5.png";
+					image.tween, "player/climb-5.png";
+					image.tween, "player/climb-5.png";
+					image.normal, "player/climb-4.png";
+				}
+				description {
+					state, "climb-suspend" 0.0;
+					inherit, "stand" 0.0;
+					image.normal, "player/climb-1.png";
+				}
+				description {
+					state, "climb-pause" 0.0;
+					inherit, "stand" 0.0;
+					image.normal, "player/climb-1.png";
+					color, 255 255 255 0;
+				}
+
+				description {
+					state, "fall" 0.0;
+					inherit, "stand" 0.0;
+					image.normal, "player/fall.png";
+				}
+				description {
+					state, "fall-pause" 0.0;
+					inherit, "stand" 0.0;
+					image.normal, "player/fall.png";
+					color, 255 255 255 0;
+				}
+			}
+		}
+
+		programs {
+#define PLAYERANIM(Name, Duration)				\
+			program {				\
+				name, Name;			\
+				signal, Name;			\
+				source, "code";			\
+				action, STATE_SET Name 0.0;	\
+				transition, LINEAR Duration;	\
+				target, "main";	       		\
+				after, Name;			\
+			}					\
+			program {				\
+				name, Name"-suspend";		\
+				signal, Name"-suspend";		\
+				source, "code";			\
+				action, STATE_SET Name"-suspend" 0.0;\
+				target, "main";	       		\
+			}					\
+			program {				\
+				name, Name"-pause";		\
+				signal, Name"-pause";		\
+				source, "code";			\
+				action, STATE_SET Name"-suspend" 0.0;\
+				transition, SINUSOIDAL 0.25;	\
+				target, "main";	       		\
+				after, Name"-pause2";		\
+			}					\
+			program {				\
+				name, Name"-pause2";		\
+				signal, Name"-pause2";		\
+				source, "code";			\
+				action, STATE_SET Name"-pause" 0.0;\
+				transition, SINUSOIDAL 0.25;	\
+				target, "main";	       		\
+				after, Name"-pause";		\
+			}
+			PLAYERANIM("left", 0.280);
+			PLAYERANIM("right", 0.280);
+			PLAYERANIM("rail-left", 0.280);
+			PLAYERANIM("rail-right", 0.280);
+			PLAYERANIM("climb", 0.600);
+
+#define PLAYEREVENT(Name, Duration)				\
+			program {				\
+				name, Name;			\
+				signal, Name;			\
+				source, "code";			\
+				action, STATE_SET Name 0.0;	\
+				transition, LINEAR Duration;	\
+				target, "main";	       		\
+				after, "stand";			\
+			}
+			PLAYEREVENT("dig-left", 0.5);
+			PLAYEREVENT("dig-right", 0.5);
+
+#define PLAYERPROG(Name)					\
+			program {				\
+				name, Name;			\
+				signal, Name;			\
+				source, "code";			\
+				action, STATE_SET Name 0.0;	\
+				target, "main";	       		\
+			}					\
+			program {				\
+				name, Name"-pause";		\
+				signal, Name"-pause";		\
+				source, "code";			\
+				action, STATE_SET Name 0.0;\
+				transition, SINUSOIDAL 0.25;	\
+				target, "main";	       		\
+				after, Name"-pause2";		\
+			}					\
+			program {				\
+				name, Name"-pause2";		\
+				signal, Name"-pause2";		\
+				source, "code";			\
+				action, STATE_SET Name"-pause" 0.0;\
+				transition, SINUSOIDAL 0.25;	\
+				target, "main";	       		\
+				after, Name"-pause";		\
+			}
+			PLAYERPROG("stand");
+			PLAYERPROG("fall");
+		}
+	}
+
+	group {
+		name, "robot";
+		parts {
+			part {
+				name, "main";
+				type, IMAGE;
+				mouse_events, 0;
+				description {
+					state, "default" 0.0;
+					rel1.relative, 0.0 0.0;
+					rel2.relative, 1.0 1.0;
+					visible, 1;
+					image.normal, "robot/stand.png";
+				}
+				description {
+					state, "stand" 0.0;
+					inherit, "default" 0.0;
+				}
+
+#define ROBOT6(Direction)					\
+				description {			\
+					state, Direction 0.0;	\
+					inherit, "stand" 0.0;	\
+					image.tween, "robot/"Direction"-1.png";\
+					image.tween, "robot/"Direction"-1.png";\
+					image.tween, "robot/"Direction"-2.png";\
+					image.tween, "robot/"Direction"-2.png";\
+					image.tween, "robot/"Direction"-3.png";\
+					image.tween, "robot/"Direction"-3.png";\
+					image.tween, "robot/"Direction"-4.png";\
+					image.tween, "robot/"Direction"-4.png";\
+					image.tween, "robot/"Direction"-5.png";\
+					image.tween, "robot/"Direction"-5.png";\
+					image.tween, "robot/"Direction"-6.png";\
+					image.normal, "robot/"Direction"-6.png";\
+				}				\
+				description {			\
+					state, Direction"-suspend" 0.0; \
+					inherit, "stand" 0.0;	\
+					image.normal, "robot/"Direction"-1.png";\
+				}
+
+				ROBOT6("left");
+				ROBOT6("right");
+				ROBOT6("rail-left");
+				ROBOT6("rail-right");
+
+				description {
+					state, "climb" 0.0;
+					inherit, "stand" 0.0;
+					image.tween, "robot/climb-1.png";
+					image.tween, "robot/climb-1.png";
+					image.tween, "robot/climb-2.png";
+					image.tween, "robot/climb-2.png";
+					image.tween, "robot/climb-3.png";
+					image.tween, "robot/climb-3.png";
+					image.tween, "robot/climb-3.png";
+					image.tween, "robot/climb-3.png";
+					image.tween, "robot/climb-3.png";
+					image.tween, "robot/climb-3.png";
+					image.tween, "robot/climb-2.png";
+					image.tween, "robot/climb-2.png";
+					image.tween, "robot/climb-1.png";
+					image.tween, "robot/climb-1.png";
+					image.tween, "robot/climb-4.png";
+					image.tween, "robot/climb-4.png";
+					image.tween, "robot/climb-5.png";
+					image.tween, "robot/climb-5.png";
+					image.tween, "robot/climb-5.png";
+					image.tween, "robot/climb-5.png";
+					image.tween, "robot/climb-5.png";
+					image.tween, "robot/climb-5.png";
+					image.tween, "robot/climb-4.png";
+					image.normal, "robot/climb-4.png";
+				}
+				description {
+					state, "climb-suspend" 0.0;
+					inherit, "stand" 0.0;
+					image.normal, "robot/climb-1.png";
+				}
+
+				description {
+					state, "fall" 0.0;
+					inherit, "stand" 0.0;
+					image.normal, "robot/fall.png";
+				}
+			}
+		}
+
+		programs {
+#define ROBOTANIM(Name, Duration)				\
+			program {				\
+				name, Name;			\
+				signal, Name;			\
+				source, "code";			\
+				action, STATE_SET Name 0.0;	\
+				transition, LINEAR Duration;	\
+				target, "main";	       		\
+				after, Name;			\
+			}					\
+			program {				\
+				name, Name"-suspend";		\
+				signal, Name"-suspend";		\
+				source, "code";			\
+				action, STATE_SET Name"-suspend" 0.0;\
+				target, "main";	       		\
+			}
+                        ROBOTANIM("left", 0.440);
+                        ROBOTANIM("right", 0.440);
+                        ROBOTANIM("rail-left", 0.440);
+                        ROBOTANIM("rail-right", 0.440);
+                        ROBOTANIM("climb", 0.920);
+
+#define ROBOTPROG(Name)						\
+			program {				\
+				name, Name;			\
+				signal, Name;			\
+				source, "code";			\
+				action, STATE_SET Name 0.0;	\
+				target, "main";	       		\
+			}
+			ROBOTPROG("stand");
+			ROBOTPROG("fall");
+		}
+	}
+}
+

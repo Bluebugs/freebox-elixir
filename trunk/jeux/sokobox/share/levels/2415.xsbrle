@@ -1,0 +1,22 @@
+ 6#
+ #  #.#
+ #$ #.#
+ #  #.#
+ #$ #.#
+ #  #.#
+ #$ # #
+ #  # #
+ #$ # #
+##@ # #
+# $3 #
+#5 #
+#5 #
+#5 #
+7#
+Title:3 Rohove otacanie 01
+Author:  Vladimir Zahoransky
+Limit4 162-80
+Comment:
+Tato strategia je jedna z najpouzivanejsich na minimalizaciu tahov, no nieje dobra na minimum posunuti. Je to prave miesto, kde sa najcastejsie lisia riesenia na minimum tahov a tlaceni. Pri "zatacani" sa skladnika sice usetrime na dvoch "toceniach" do strany, no stratime tym, ze posunieme balik viackrat. Ak mate uz velmi dobre riesenie, robte toto zatacanie co najneskor, aby ste mali co najneskorsi moment sa riesenia na pocet tahov a posunuti lisia. Casto to pomaha v sutazach ked mate dve dobre riesenia a potrebujete z riesenia na minimum tahov pri znalosti strategie na mimimum tlaceni optimalizovat toto riesenie, aby pocet tlaceni zostal ale pocet pohybov bol co najmensi.
+Color Green
+Comment-End:

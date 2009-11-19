@@ -1,0 +1,18 @@
+17#
+#11 #3 #
+# $ $ $ $ $  @$ #
+15# ##
+13 ##  #
+13 #  $#
+13 #3 #
+13 3# ##
+9 7#  #
+9 #7. #
+9 10#
+Title:3 Pripravne posunutie 02
+Author:  Vladimir Zahoransky
+Limit:3 277-119
+Comment:38 
+Tato strategia minimalizuje nadbytocne tocenia tak ako v leveli 01 tym, ze prisuva a zasuva spravnu tehlu. Tym, ze sa skladnik posuva iba v smere k "ustiu", setri zatacanie, co su dve tahy. Takze, skladnik da tehlu na pripravnu poziciu, zajde po dalsi balik, ktory prilozi, posunie sa k baliku "pri usti", ktory premiestni na cielove policko. A potom pri navrate presunie policko do "pripravnej" pozicie. Je to strategia, ktora casto dobre zlepsuje riesenia. Taketo strategie pouzivajte, ak mate dobre mapu "nastudovanu" z hladiska hladania riesenia, mate ju dobre analyzovanu a mate najdene riesenie. Potom vyuzivajte taketo strategie. Casto v case, ked hladate nejake riesenie a pouzivate taketo vychytralosti, stratite pri tom vela casu na hladanie riesenia a naviac, casto pri tom sa da urobit vela dost neprijemnych riesitelskych chyb, ktore v sutazi na cas mozu byt velmi neprijemne. No ak vsak mate riesenie dobre "prekukane", potom tato strategia casto velmi dobre usetri vela tahov.
+Color Green
+Comment-End:
