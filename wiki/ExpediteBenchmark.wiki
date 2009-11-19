@@ -1,0 +1,60 @@
+#summary Resultat de benchmark graphique
+
+= Introduction =
+
+Juste pour donner une idee des performances des EFL sur Freebox HD, voici une comparaison entre une Freebox HD v5, un PC (AMD Athlon(tm) 64 X2 Dual Core Processor 4600+) en soft et avec OpenGL (driver proprietaire NVidia).
+
+= Details =
+
+||Tests||Freebox HD||PC Soft||x||PC OpenGL||x||
+||Widgets File Icons||1,13||83,31||_74_||141,53||_125_||
+||Widgets File Icons 2||17,08||229,11||_13_||633,12||_37_||
+||Widgets File Icons 3||5,04||156,27||_31_||157,72||_31_||
+||Widgets File Icons 4||19,67||222,57||_11_||834,20||_42_||
+||Image Blend Unscaled||15,09||97,75||_6_||340,75||_23_||
+||Image Blend Solid Middle Unscaled||3,47||81,24||_23_||160,53||_46_||
+||Image Blend Fade Unscaled||11,64||74,22||_6_||315,22||_27_||
+||Image Blend Fade Power 2 Unscaled||11,90||76,08||_6_||311,47||_26_||
+||Image Blend Solid Unscaled||14,15||398,24||_28_||919,72||_65_||
+||Image Blend Solid Fade Unscaled||11,65||112,50||_10_||258,17||_22_||
+||Image Blend Solid Fade Power 2 Unscaled||11,76||113,02||_10_||254,50||_22_||
+||Image Blend Nearest Scaled||8,51||32,93||_4_||247,08||_29_||
+||Image Blend Nearest Solid Scaled||9,25||317,64||_34_||923,71||_100_||
+||Image Blend Smooth Scaled||8,48||10,73||_1_||243,79||_29_||
+||Image Blend Smooth Solid Scaled||9,33||190,00||_20_||873,35||_94_||
+||Image Blend Nearest Same Scaled||17,43||121,74||_7_||421,90||_24_||
+||Image Blend Nearest Solid Same Scaled||17,77||569,30||_32_||1059,21||_60_||
+||Image Blend Smooth Same Scaled||17,52||31,42||_2_||421,54||_24_||
+||Image Blend Smooth Solid Same Scaled||15,92||762,20||_48_||1058,19||_66_||
+||Image Blend Border||6,53||12,23||_2_||419,51||_64_||
+||Image Blend Solid Middle Border||6,20||148,07||_24_||470,38||_76_||
+||Image Blend Solid Border||6,76||197,85||_29_||560,07||_83_||
+||Image Blend Border Recolor||6,39||13,27||_2_||445,25||_70_||
+||Image Quality Scale||24,81||166,50||_7_||1655,91||_67_||
+||Image Data ARGB||34,19||297,26||_9_||270,88||_8_||
+||Image Crossfade||29,93||238,50||_8_||800,22||_27_||
+||Text Basic||8,36||227,62||_27_||425,99||_51_||
+||Text Styles||0,51||18,93||_37_||14,78||_29_||
+||Text Styles Different Strings||0,40||13,59||_34_||11,86||_30_||
+||Text Change||6,16||111,38||_18_||298,47||_48_||
+||Textblock Basic||4,83||155,94||_32_||246,72||_51_||
+||Textblock Intl||16,72||60,29||_4_||287,43||_17_||
+||Rect Blend||9,32||92,54||_10_||265,32||_28_||
+||Rect Blend Power 2||9,16||93,26||_10_||263,58||_29_||
+||Rect Solid||13,07||326,57||_25_||1085,77||_83_||
+||Rect Blend Few||42,09||2833,93||_67_||1903,15||_45_||
+||Rect Blend Power 2 Few||42,95||2679,1||_62_||1901,99||_44_||
+||Rect Solid Few||43,43||3326,59||_77_||2250,79||_52_||
+||Image Blend Occlude 1 Few||37,73||1944,70||_52_||1832,34||_49_||
+||Image Blend Occlude 2 Few||35,18||778,05||_22_||1550,65||_44_||
+||Image Blend Occlude 3 Few||36,59||619,99||_17_||1313,98||_36_||
+||Image Blend Occlude 1||21,03||974,76||_46_||1280,64||_61_||
+||Image Blend Occlude 2||23,37||447,06||_19_||1437,41||_62_||
+||Image Blend Occlude 3||20,71||168,17||_8_||579,28||_28_||
+||Image Blend Occlude 1 Many||5,17||455,84||_88_||311,16||_60_||
+||Image Blend Occlude 2 Many||6,73||193,17||_29_||411,19||_61_||
+||Image Blend Occlude 3 Many||7,51||73,86||_10_||276,56||_37_||
+||Image Blend Occlude 1 Very Many||0,27||68,41||_253_||11,80||_44_||
+||Image Blend Occlude 2 Very Many||0,39||20,74||_53_||19,35||_50_||
+||Image Blend Occlude 3 Very Many||0,68||12,46||_18_||37,13||_55_||
+
