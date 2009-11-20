@@ -83,6 +83,7 @@ Le processus est plutôt simple :
 ./configure
 make
 sudo make install
+sudo ldconfig
 }}}
 
 Et voilà ! Vous pouvez maintenant tester Elixir.
