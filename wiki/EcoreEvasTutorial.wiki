@@ -242,6 +242,6 @@ On teste quelques touches qui, si elles sont relâchées, vont déclencher la fi
 
 Et voila notre premier programme _Elixir_ terminé. Vous pouvez vous amuser à ajouter plus de rectangles qui bougent, à changer la vitesse de rafraichissement, à animer la couleur des rectangles aussi...
 
-Vous trouverez toute la source de cet exemple [http://code.google.com/p/freebox-elixir/source/browse/trunk/exemples/ecore_evas/Simple.js ici]
+Vous trouverez toute la source de cet exemple [http://code.google.com/p/freebox-elixir/source/browse/trunk/exemples/ecore_evas/Simple.js ici]. Et il suffira d'executer la ligne de commande suivante: `elixir Simple.js` pour pouvoir voir le résultat final.
 
 Have fun !
