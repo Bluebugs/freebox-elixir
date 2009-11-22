@@ -6,7 +6,7 @@ Actuellement, le seul environnement de développement officiellement supporté e
 
 = Depuis les paquets source =
 
-Cette partie du tutoriel décrit le processus d'installation depuis le dernier snapshot des EFL et d'Elixir.
+Cette partie du tutoriel décrit le processus d'installation depuis le dernier snapshot des EFL et d'Elixir. Vous pouvez les télécharger [http://code.google.com/p/freebox-elixir/downloads/list ici].
 
 == Dépendances ==
 
