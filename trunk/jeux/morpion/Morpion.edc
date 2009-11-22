@@ -5,6 +5,67 @@ images {
    image, "croix.png" COMP;
    image, "rond.png" COMP;
    image, "bouton.png" COMP;
+   image, "bloc_load.png" COMP;
+   image, "loading/Loading_00000.png" COMP;
+   image, "loading/Loading_00001.png" COMP;
+   image, "loading/Loading_00002.png" COMP;
+   image, "loading/Loading_00003.png" COMP;
+   image, "loading/Loading_00004.png" COMP;
+   image, "loading/Loading_00005.png" COMP;
+   image, "loading/Loading_00006.png" COMP;
+   image, "loading/Loading_00007.png" COMP;
+   image, "loading/Loading_00008.png" COMP;
+   image, "loading/Loading_00009.png" COMP;
+   image, "loading/Loading_00010.png" COMP;
+   image, "loading/Loading_00011.png" COMP;
+   image, "loading/Loading_00012.png" COMP;
+   image, "loading/Loading_00013.png" COMP;
+   image, "loading/Loading_00014.png" COMP;
+   image, "loading/Loading_00015.png" COMP;
+   image, "loading/Loading_00016.png" COMP;
+   image, "loading/Loading_00017.png" COMP;
+   image, "loading/Loading_00018.png" COMP;
+   image, "loading/Loading_00019.png" COMP;
+   image, "loading/Loading_00020.png" COMP;
+   image, "loading/Loading_00021.png" COMP;
+   image, "loading/Loading_00022.png" COMP;
+   image, "loading/Loading_00023.png" COMP;
+   image, "loading/Loading_00024.png" COMP;
+   image, "loading/Loading_00025.png" COMP;
+   image, "loading/Loading_00026.png" COMP;
+   image, "loading/Loading_00027.png" COMP;
+   image, "loading/Loading_00028.png" COMP;
+   image, "loading/Loading_00029.png" COMP;
+   image, "loading/Loading_00030.png" COMP;
+   image, "loading/Loading_00031.png" COMP;
+   image, "loading/Loading_00032.png" COMP;
+   image, "loading/Loading_00033.png" COMP;
+   image, "loading/Loading_00034.png" COMP;
+   image, "loading/Loading_00035.png" COMP;
+   image, "loading/Loading_00036.png" COMP;
+   image, "loading/Loading_00037.png" COMP;
+   image, "loading/Loading_00038.png" COMP;
+   image, "loading/Loading_00039.png" COMP;
+   image, "loading/Loading_00040.png" COMP;
+   image, "loading/Loading_00041.png" COMP;
+   image, "loading/Loading_00042.png" COMP;
+   image, "loading/Loading_00043.png" COMP;
+   image, "loading/Loading_00044.png" COMP;
+   image, "loading/Loading_00045.png" COMP;
+   image, "loading/Loading_00046.png" COMP;
+   image, "loading/Loading_00047.png" COMP;
+   image, "loading/Loading_00048.png" COMP;
+   image, "loading/Loading_00049.png" COMP;
+   image, "loading/Loading_00050.png" COMP;
+   image, "loading/Loading_00051.png" COMP;
+   image, "loading/Loading_00052.png" COMP;
+   image, "loading/Loading_00053.png" COMP;
+   image, "loading/Loading_00054.png" COMP;
+   image, "loading/Loading_00055.png" COMP;
+   image, "loading/Loading_00056.png" COMP;
+   image, "loading/Loading_00057.png" COMP;
+   image, "loading/Loading_00058.png" COMP;
+   image, "loading/Loading_00059.png" COMP;
 }
 
 #define CELL(Pos, X1, Y1, X2, Y2)               \
@@ -142,6 +203,110 @@ images {
   }
 
 collections {
+   group {
+      name, "wait";
+      min, 82 82;
+      max, 82 82;
+
+      parts {
+	 part {
+	    name, "background";
+	    type, IMAGE;
+	    mouse_events, 0;
+	    description {
+	       state, "default" 0.0;
+	       rel1.relative, 0.0 0.0;
+	       rel2.relative, 1.0 1.0;
+	       image.normal, "bloc_load.png";
+	    }
+	 }
+	 part {
+	    name, "animation";
+	    type, IMAGE;
+	    mouse_events, 0;
+	    description {
+	       state, "default" 0.0;
+	       rel1.relative, 0.1951219 0.1951219;
+	       rel2.relative, 0.804878 0.804878;
+	       image {
+		  tween, "loading/Loading_00000.png";
+		  tween, "loading/Loading_00001.png";
+		  tween, "loading/Loading_00002.png";
+		  tween, "loading/Loading_00003.png";
+		  tween, "loading/Loading_00004.png";
+		  tween, "loading/Loading_00005.png";
+		  tween, "loading/Loading_00006.png";
+		  tween, "loading/Loading_00007.png";
+		  tween, "loading/Loading_00008.png";
+		  tween, "loading/Loading_00009.png";
+		  tween, "loading/Loading_00010.png";
+		  tween, "loading/Loading_00011.png";
+		  tween, "loading/Loading_00012.png";
+		  tween, "loading/Loading_00013.png";
+		  tween, "loading/Loading_00014.png";
+		  tween, "loading/Loading_00015.png";
+		  tween, "loading/Loading_00016.png";
+		  tween, "loading/Loading_00017.png";
+		  tween, "loading/Loading_00018.png";
+		  tween, "loading/Loading_00019.png";
+		  tween, "loading/Loading_00020.png";
+		  tween, "loading/Loading_00021.png";
+		  tween, "loading/Loading_00022.png";
+		  tween, "loading/Loading_00023.png";
+		  tween, "loading/Loading_00024.png";
+		  tween, "loading/Loading_00025.png";
+		  tween, "loading/Loading_00026.png";
+		  tween, "loading/Loading_00027.png";
+		  tween, "loading/Loading_00028.png";
+		  tween, "loading/Loading_00029.png";
+		  tween, "loading/Loading_00030.png";
+		  tween, "loading/Loading_00031.png";
+		  tween, "loading/Loading_00032.png";
+		  tween, "loading/Loading_00033.png";
+		  tween, "loading/Loading_00034.png";
+		  tween, "loading/Loading_00035.png";
+		  tween, "loading/Loading_00036.png";
+		  tween, "loading/Loading_00037.png";
+		  tween, "loading/Loading_00038.png";
+		  tween, "loading/Loading_00039.png";
+		  tween, "loading/Loading_00040.png";
+		  tween, "loading/Loading_00041.png";
+		  tween, "loading/Loading_00042.png";
+		  tween, "loading/Loading_00043.png";
+		  tween, "loading/Loading_00044.png";
+		  tween, "loading/Loading_00045.png";
+		  tween, "loading/Loading_00046.png";
+		  tween, "loading/Loading_00047.png";
+		  tween, "loading/Loading_00048.png";
+		  tween, "loading/Loading_00049.png";
+		  tween, "loading/Loading_00050.png";
+		  tween, "loading/Loading_00051.png";
+		  tween, "loading/Loading_00052.png";
+		  tween, "loading/Loading_00053.png";
+		  tween, "loading/Loading_00054.png";
+		  tween, "loading/Loading_00055.png";
+		  tween, "loading/Loading_00056.png";
+		  tween, "loading/Loading_00057.png";
+		  tween, "loading/Loading_00058.png";
+		  normal, "loading/Loading_00059.png";
+	       }
+	    }
+	 }
+      }
+      programs {
+	 program {
+	    name, "show";
+	    signal, "show";
+	    source, "";
+
+	    action, STATE_SET "default" 0.0;
+	    transition, LINEAR 2.0;
+	    target, "animation";
+
+	    after, "show";
+	 }
+      }
+   }
    group {
       name, "menu";
 
@@ -317,6 +482,7 @@ collections {
          part {
             name, "text/rond";
             type, TEXT;
+	    effect, SOFT_SHADOW;
             mouse_events, 0;
             description {
                state, "default" 0.0;
@@ -331,11 +497,13 @@ collections {
                }
 
                color, 222 0 0 255;
+	       color3, 128 128 128 128;
             }
          }
          part {
             name, "text/croix";
             type, TEXT;
+	    effect, SOFT_SHADOW;
             mouse_events, 0;
             description {
                state, "default" 0.0;
@@ -350,6 +518,7 @@ collections {
                }
 
                color, 222 0 0 255;
+	       color3, 128 128 128 128;
             }
          }
          part {
@@ -373,15 +542,112 @@ collections {
          CELLC("0", 0.09722, 0.27083);
          CELLC("1", 0.28472, 0.45833);
          CELLC("2", 0.47222, 0.64583);
+
+	 part {
+	    name, "wait";
+	    type, GROUP;
+	    source, "wait";
+	    mouse_events, 0;
+	    repeat_events, 0;
+	    clip_to, "clip_wait";
+	    description {
+	       state, "default" 0.0;
+	       rel1.relative, 0.74 0.4;
+	       rel2.relative, 0.853888 0.5423611;
+	       visible, 0;
+	    }
+	    description {
+	       state, "visible" 0.0;
+	       inherit, "default" 0.0;
+	       visible, 1;
+	    }
+	 }
+	 part {
+	    name, "clip_wait";
+	    type, RECT;
+	    mouse_events, 0;
+	    description {
+	       state, "default" 0.0;
+	       rel1.to, "wait";
+	       rel2.to, "wait";
+	       visible, 1;
+	       color, 0 0 0 0;
+	    }
+	    description {
+	       state, "visible" 0.0;
+	       inherit, "default" 0.0;
+	       color, 255 255 255 255;
+	    }
+	 }
+	 part {
+	    name, "locker";
+	    type, RECT;
+	    mouse_events, 1;
+	    description {
+	       state, "default" 0.0;
+	       rel1.relative, 0.0 0.0;
+	       rel2.relative, 1.0 1.0;
+	       color, 0 0 0 0;
+	       visible, 0;
+	    }
+	    description {
+	       state, "lock" 0.0;
+	       inherit, "default" 0.0;
+	       visible, 1;
+	    }
+	 }
       }
       programs {
-/*          program { */
-/*             name, "cursor,hide"; */
-/*             signal, "cursor,hide"; */
-/*             source, ""; */
-/*             action, STATE_SET "default" 0.0; */
-/*             target, "cursor"; */
-/*          } */
+	 program {
+	    name, "ia/show/0";
+	    source, "ia";
+	    signal, "think";
+
+	    action, STATE_SET "lock" 0.0;
+	    target, "locker";
+
+	    after, "ia/show/1";
+	 }
+	 program {
+	    name, "ia/show/1";
+
+	    action, STATE_SET "visible" 0.0;
+	    target, "wait";
+
+	    after, "ia/show/2";
+	 }
+	 program {
+	    name, "ia/show/2";
+
+	    action, STATE_SET "visible" 0.0;
+	    transition, SINUSOIDAL 0.5;
+	    target, "clip_wait";
+	 }
+	 program {
+	    name, "ia/hide/0";
+	    source, "ia";
+	    signal, "done";
+
+	    action, STATE_SET "default" 0.0;
+	    transition, LINEAR 0.5;
+	    target, "clip_wait";
+
+	    after, "ia/hide/1";
+	 }
+	 program {
+	    name, "ia/hide/1";
+
+	    action, STATE_SET "default" 0.0;
+	    target, "wait";
+
+	    after, "ia/hide/2";
+	 }
+	 program {
+	    name, "ia/hide/2";
+
+	    action, STATE_SET "default" 0.0;
+	    target, "locker";
+	 }
       }
    }
 
