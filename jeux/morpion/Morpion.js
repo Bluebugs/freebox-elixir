@@ -1,6 +1,6 @@
 var test = true;
 
-var sound = elx.load("fws");
+var sound = elx.load("mix");
 
 var shutdown;
 
@@ -44,6 +44,8 @@ var retry = 0;
 var callback = null;
 var start_callback = null;
 
+var thread = null;
+
 var memoizer = function(memo, fundamental) {
   var shell = function(n) {
     var result = memo[n];
@@ -62,6 +64,42 @@ var fact = memoizer([1, 1], function(shell, n) {
 
 var table = { "nnnnnnnnn" : null };
 var mm = {};
+
+function reverse(str)
+{
+   return str.replace(/c/g, "t").replace(/r/g, "c").replace(/t/g, "r");
+}
+
+function mirrorv(str)
+{
+   return str.substr(6, 3) + str.substr(3, 3) + str.substr(0, 3);
+}
+
+function mirrorh(str)
+{
+   return str.charAt(2) + str.charAt(1) + str.charAt(0)
+     + str.charAt(5) + str.charAt(4) + str.charAt(3)
+     + str.charAt(8) + str.charAt(7) + str.charAt(6);
+}
+
+function mirrorc1(str)
+{
+   return str.charAt(8) + str.charAt(5) + str.charAt(2)
+     + str.charAt(7) + str.charAt(4) + str.charAt(1)
+     + str.charAt(6) + str.charAt(3) + str.charAt(0);
+}
+
+function mirrorc2(str)
+{
+   return str.charAt(0) + str.charAt(3) + str.charAt(6)
+     + str.charAt(1) + str.charAt(4) + str.charAt(7)
+     + str.charAt(2) + str.charAt(5) + str.charAt(8);
+}
+
+function mirror(str)
+{
+   return [ str, mirrorv(str), mirrorh(str), mirrorc1(str), mirrorc2(str) ];
+}
 
 function Board(copy)
 {
@@ -106,8 +144,6 @@ function Board(copy)
    }
 
    this.empty = function(x, y) {
-//      elx.print("empty (", x, ", ", y, ") : ", this.play.charAt(x + y * 3) == "n", "\n");
-     elx.print("playground: (", this.play, ") at ", x + y * 3," '", this.play.charAt(x + y * 3),"'\n");
      return this.play.charAt(x + y * 3) == "n";
    }
 
@@ -135,11 +171,32 @@ function Board(copy)
          [ [ 2, 0 ], [ 1, 1 ], [ 0, 2 ] ]
      ];
 
-     var cache = table[this.play];
+     // If we already know the answer for any opposite situation
+     var m = mirror(reverse(this.play));
+     for (var i in m)
+       {
+	 var cache = table[m[i]];
+	 if (cache !== undefined) {
+	    // Just return the opposite result
+	    switch (cache)
+	      {
+	       case DRAW: return DRAW;
+	       case CROSS: return ROND;
+	       case ROND: return CROSS;
+	      }
+	 }
+       }
 
-     if (cache !== undefined) {
-	return cache;
-     }
+     // Check mirror possibility ofcourse
+     m = mirror(this.play);
+     for (var i in m)
+       {
+	 var cache = table[m[i]];
+	 if (cache !== undefined) {
+	    // Just return the result
+	    return cache;
+	 }
+       }
 
      var result = this.go == 0 ? DRAW : null;
 
@@ -164,8 +221,8 @@ function Board(copy)
 
 function mouse_wait_cb(data, e, obj, event)
 {
-   evas_object_event_callback_del(wait, EVAS_CALLBACK_MOUSE_DOWN, mouse_wait_cb);
-   evas_object_event_callback_del(wait, EVAS_CALLBACK_KEY_DOWN, key_wait_cb);
+   evas_object_event_callback_del(wait, EVAS_CALLBACK_MOUSE_DOWN, mouse_wait_cb, null);
+   evas_object_event_callback_del(wait, EVAS_CALLBACK_KEY_DOWN, key_wait_cb, null);
    evas_object_del(wait);
    wait = null;
 
@@ -178,8 +235,8 @@ function key_wait_cb(data, e, obj, event)
    if (timestamp == event.timestamp)
      return ;
 
-   evas_object_event_callback_del(wait, EVAS_CALLBACK_MOUSE_DOWN, mouse_wait_cb);
-   evas_object_event_callback_del(wait, EVAS_CALLBACK_KEY_DOWN, key_wait_cb);
+   evas_object_event_callback_del(wait, EVAS_CALLBACK_MOUSE_DOWN, mouse_wait_cb, null);
+   evas_object_event_callback_del(wait, EVAS_CALLBACK_KEY_DOWN, key_wait_cb, null);
    evas_object_del(wait);
    wait = null;
 
@@ -295,6 +352,28 @@ function minmax(nbd)
       return result;
    }
 
+   // If we already know the answer for any opposite situation
+   var m = mirror(reverse(nbd.play));
+   for (var i in m)
+     {
+	result = mm[m[i]];
+	if (result !== undefined) {
+	   // Just return the opposite result
+	   return [ result[1], result[0], result[2] ];
+	}
+     }
+
+   // Check other mirror possibility
+   m = mirror(nbd.play);
+   for (var i in m)
+     {
+	result = mm[m[i]];
+	if (result !== undefined) {
+	   // Just return the result
+	   return result;
+	}
+     }
+
    nbd.color();
    for (var i = 0; i < 3; ++i)
      for (var j = 0; j < 3; ++j)
@@ -322,16 +401,6 @@ function minmax(nbd)
                 }
 
             nbd.unset(i, j);
-
-//             count = sum[0] + sum[1] + sum[2];
-//             if (count > 30) {
-//                if (sum[0] / count > 0.4999) {
-//                   nbd.color();
-
-// 		  mm[nbd.play] = sum;
-//                   return sum;
-//                }
-//             }
          }
    nbd.color();
 
@@ -345,10 +414,11 @@ function next()
    var coord = [ -1, -1 ];
    var nbd = new Board(bd);
 
+   // Add some possibility for a human to win.
+   // Remove it, if you don't want to win.
    if (bd.count() > 5000)
      {
         var list = new Array();
-	elx.print("random case\n");
 
         for (var x = 0; x < 3; ++x)
           for (var y = 0; y < 3; ++y)
@@ -380,8 +450,8 @@ function next()
               }
             else
               {
-                 var mm = minmax(nbd);
-                 var score = mm[0] / (mm[0] + mm[1] + mm[2]);
+                 var tmp = minmax(nbd);
+                 var score = tmp[0] / (tmp[0] + tmp[1] + tmp[2]);
 
                  if (score < max)
                    {
@@ -435,17 +505,43 @@ function ai_game_start(obj)
    }
 }
 
-function ai_idler_cb(data)
+function ai_thread_cb(data)
 {
-   coord = next();
+   data.coord = next();
+}
 
-   o = edje_object_part_swallow_get(data, coord[0] + "/" + coord[1]);
+function ai_thread_done(data)
+{
+   var o;
+
+   thread = null;
+
+   edje_object_signal_emit(data.edje, "done", "ia");
+
+   evas_object_focus_set(eo_bg, 1);
+
+   o = edje_object_part_swallow_get(data.edje, data.coord[0] + "/" + data.coord[1]);
    edje_object_signal_emit(o, "croix", "js");
 
-   bd.set(coord[0], coord[1]);
+   bd.set(data.coord[0], data.coord[1]);
    bd.color();
 
-   ending(data, ai_game_cb);
+   ending(data.edje, ai_game_cb);
+
+}
+
+function ai_thread_cancel(data)
+{
+   thread = null;
+}
+
+function ai_idler_cb(data)
+{
+   edje_object_signal_emit(data, "think", "ia");
+
+   evas_object_focus_set(eo_bg, 0);
+
+   ecore_thread_run(ai_thread_cb, ai_thread_done, ai_thread_cancel, { edje: data, coord: null });
 
    return 0;
 }
@@ -534,7 +630,7 @@ function mouse_move_cb(data, e, obj, event)
      {
         mouse_call = false;
 
-        evas_object_event_callback_del(eo_bg, EVAS_CALLBACK_MOUSE_MOVE, mouse_move_cb);
+        evas_object_event_callback_del(eo_bg, EVAS_CALLBACK_MOUSE_MOVE, mouse_move_cb, null);
 
         ecore_evas_cursor_set(ee, "freebox-mouse.png", 200, 0, 0);
 
@@ -546,6 +642,9 @@ function menu_back(test)
 {
    if (!test)
      {
+	if (thread)
+	  ecore_thread_cancel(thread);
+
         key_up = key_menu_up;
         key_down = key_menu_down;
         edje_object_signal_callback_del(edje, "mouse,clicked,*", "*", callback);
@@ -775,9 +874,10 @@ function key_cb_up(data, e, obj, event)
 
 function sound_idler_cb(data)
 {
-   fws.stream_open(0, "file://Morpion.mp3");
-   fws.stream_loop_set(0, FWS_SET);
-   fws.stream_play(0);
+   Mix_OpenAudio(44100, 0x9010, 2, 1024);
+   sample = Mix_LoadWAV("Morpion.ogg");
+   if (sample)
+     Mix_PlayChannel(-1, sample, -1);
 
    return 0;
 }
@@ -838,6 +938,9 @@ function main()
    ecore_evas_show(ee);
 
    ecore_main_loop_begin();
+
+   if (thread)
+     ecore_thread_cancel(thread);
 
    edje_shutdown();
    ecore_evas_shutdown();
