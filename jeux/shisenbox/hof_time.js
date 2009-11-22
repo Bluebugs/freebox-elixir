@@ -262,7 +262,7 @@ function hof_on_key_down(data, e, obj, event)
 	case "KP8":
 	case "8":
 	case "KP9":
-	case "8":
+	case "9":
 	case "KP0":
 	case "0":
 	    if (hof_sample_btn)
