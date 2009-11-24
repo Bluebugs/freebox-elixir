@@ -1,0 +1,86 @@
+#summary Description des touches envoyes par la telecommande de la Freebox.
+
+= Introduction =
+
+Evas recois des events d'appuie de touche. Certain d'entre eux sont specifique a la Freebox. Vous trouverez ici une liste de ceux-ci.
+
+= FreeBox HD =
+
+== Front Panel ==
+
+|| Touche || Code ||
+|| Haut || FP/Up ||
+|| Bas || FP/Down ||
+|| Gauche || FP/Left ||
+|| Droite || FP/Ok ||
+
+== Remote Controler ==
+
+|| Touche || Code ||
+|| Liste || List ||
+|| TV || TV ||
+|| 0 || 0 ||
+|| 1 || 1 ||
+|| 2 || 2 ||
+|| 3 || 3 ||
+|| 4 || 4 ||
+|| 5 || 5 ||
+|| 6 || 6 ||
+|| 7 || 7 ||
+|| 8 || 8 ||
+|| 9 || 9 || 
+|| Info || Info || 
+|| Mail || Mail || 
+|| Aide (?) || Help || 
+|| PiP || PiP || 
+|| BackSpace || BackSpace || 
+|| Swap || Swap || 
+|| Volume + || Volume_Plus || 
+|| Volume - || Volume_Minus || 
+|| Program + || Programe_Plus || 
+|| Program - || Programe_Minus || 
+|| Haut || RC/Up ||
+|| Bas || RC/Down ||
+|| Gauche || RC/Left ||
+|| Droite || RC/Right ||
+|| Ok || RC/Ok ||
+|| Mute || Mute ||
+|| Free || Home ||
+|| Record || Record ||
+|| Backward || Backward ||
+|| Forward || Forward ||
+|| Next || Next ||
+|| Play || Play ||
+|| Stop || Stop ||
+
+== GamePad ==
+
+|| Touche || Code ||
+|| Haut || GP/Up ||
+|| Bas || GP/Down ||
+|| Gauche || GP/Left ||
+|| Droite || GP/Right ||
+|| L || l ||
+|| R || r ||
+|| A || a ||
+|| B || b ||
+|| X || x ||
+|| Y || y ||
+|| Start || Start ||
+|| Select || Select ||
+
+= Freebox Optique & Alice Box =
+
+|| Touche || Code ||
+|| Favoris || Favoris ||
+|| Options || Options ||
+|| Haut || RCL/Up ||
+|| Bas || RCL/Down ||
+|| Gauche || RCL/Left ||
+|| Droite || RCL/Right ||
+|| EPG || Liste ||
+|| Vert || Green ||
+|| Rouge || Red ||
+|| Bleu || Blue ||
+|| Jaune || Yellow ||
+|| AV || AV ||
