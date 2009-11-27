@@ -12,7 +12,8 @@ Evas recois des events d'appuie de touche. Certain d'entre eux sont specifique a
 || Haut || FP/Up ||
 || Bas || FP/Down ||
 || Gauche || FP/Left ||
-|| Droite || FP/Ok ||
+|| Droite || FP/Right ||
+|| Ok || FP/Ok ||
 
 == Remote Controler ==
 
