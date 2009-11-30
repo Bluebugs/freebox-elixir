@@ -51,6 +51,7 @@ Evas recois des events d'appuie de touche. Certain d'entre eux sont specifique a
 || Backward || Backward ||
 || Forward || Forward ||
 || Next || Next ||
+|| Previous || Previous ||
 || Play || Play ||
 || Stop || Stop ||
 
