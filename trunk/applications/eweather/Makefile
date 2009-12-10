@@ -1,4 +1,4 @@
-eweather.edj: EWeather.edc EWeather.js Makefile 
+eweather.edj: EWeather.edc EWeather.js EWeather_Smart.js LIBEWeather.js Google.js Makefile
 	edje_cc -v -id images EWeather.edc EWeather.edj
 	eet -i EWeather.edj "elixir/main" EWeather.js 1
 	eet -i EWeather.edj "EWeather_Smart" EWeather_Smart.js 1
