@@ -81,7 +81,6 @@ function google_init(eweather)
                 _server_data, eweather);
 
     eweather.google.check_timer = ecore_timer_add(0, _weather_cb_check, eweather);
-    elx.print("INIT\n");
 }
 
 function google_shutdown(eweather)
@@ -156,7 +155,6 @@ function _server_add(data, type, event)
     buf = "GET http://"+eweather.google.host+"/ig/api?weather="+s+" HTTP/1.1\r\nHost: "
         +eweather.google.host+"\r\n\r\n";
 
-    elx.print(buf+"\n");
     ecore_con_server_send(eweather.google.server, buf);
 
     return 0;
