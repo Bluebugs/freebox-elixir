@@ -89,6 +89,16 @@ function eweather_object_mode_set(obj, mode)
     _sizing_eval(obj);
 }
 
+function eweather_object_ready_callback_add(obj, done_cb, data)
+{
+   var sd = obj.data;
+
+   if (!sd) return ;
+
+   if (sd.preload) done_cb(obj, data);
+   else sd.done_cbs.push({ cb: done_cb, data: data } );
+}
+
 function _fullscreen_done_cb(data, _obj, emission, source)
 {
     var obj = data;
@@ -105,26 +115,77 @@ function _loaded_cb(data, _obj, emission, source)
 {
     var obj = data;
     var sd = obj.data;
+
     if (!sd) return;
 
     eweather_start(sd.eweather);
 }
 
-function _key_cb(data, evas, o_day, _event)
+function _preload_done_cb(sd, obj, emission, source)
+{
+   sd.preload = true;
+
+   for (var i in sd.done_cbs)
+     sd.done_cbs[i].cb(sd.smart, sd.done_cbs[i].data);
+   sd.done_cbs = [];
+
+   edje_object_signal_callback_del(sd.main, "preload,done", "", _preload_done_cb);
+}
+
+function _msg_cb(sd, obj, emission, source)
+{
+   elx.print(emission, ", ", source, "\n");
+}
+
+function _key_down_cb(data, evas, o_day, event)
+{
+   var obj = data;
+   var sd = obj.data;
+
+   if (event.timestamp == sd.timestamp) return ;
+
+   switch (event.keyname)
+     {
+      case "Left":
+      case "FP/Left":
+      case "RC/Left":
+	 if (sd.current_day > 0)
+	   {
+	      sd.current_day--;
+	      update_main(obj);
+	   }
+	 break;
+      case "Right":
+      case "FP/Right":
+      case "RC/Right":
+	 if (sd.current_day < sd.objs.length - 1)
+	   {
+	      sd.current_day++;
+	      update_main(obj);
+	   }
+	 break;
+     }
+}
+
+function _key_up_cb(data, evas, o_day, event)
 {
     var obj = data;
     var sd = obj.data;
 
-    if( (_event.key == "Left" || _event.key == "FP/Left") && sd.current_day > 0)
-    {
-        sd.current_day--;
-        update_main(obj);
-    }
-    else if( (_event.key == "Right" || _event.key == "FP/Right") && sd.current_day < sd.objs.length - 1)
-    {
-        sd.current_day++;
-        update_main(obj);
-    }
+    sd.timestamp = event.timestamp;
+
+    switch (event.keyname)
+      {
+       case "b":
+       case "Red":
+       case "equal":
+       case "Stop":
+       case "Home":
+       case "Escape":
+       case "Start":
+	  ecore_main_loop_quit();
+	  break;
+      }
 }
 
 
@@ -268,6 +329,7 @@ function _eweather_update_cb(data, eweather)
 
         signal = eweather_object_signal_type_get(eweather_data_type_get(e_data));
 
+	ecore_idler_add(animation_idler_cb, { obj: o_day, signal: signal });
         edje_object_signal_emit(o_day, signal, "");
 
         if(eweather_temp_type_get(eweather) == EWTEMP.EWEATHER_TEMP_FARENHEIT)
@@ -309,6 +371,13 @@ function _eweather_update_cb(data, eweather)
     _sizing_eval(obj);
 }
 
+function animation_idler_cb(data)
+{
+   elx.print("signal : ", data.signal, "\n");
+   edje_object_signal_emit(data.obj, data.signal, "");
+
+   return 0;
+}
 
 function update_main(obj)
 {
@@ -331,7 +400,7 @@ function update_main(obj)
 
     signal = eweather_object_signal_type_get(eweather_data_type_get(e_data));
 
-    edje_object_signal_emit(sd.main, signal, "");
+    ecore_idler_add(animation_idler_cb, { obj: sd.main, signal: signal });
 
     if(eweather_temp_type_get(eweather) == EWTEMP.EWEATHER_TEMP_FARENHEIT)
         buf = eweather_data_temp_get(e_data) + "°F";
@@ -471,8 +540,6 @@ function _smart_init()
     smart = evas_smart_class_new(sc);
 }
 
-
-
 function _smart_add(obj)
 {
     var sd = {};
@@ -490,7 +557,16 @@ function _smart_add(obj)
     edje_object_file_set(sd.obj, "EWeather.edj", "main");
     evas_object_smart_member_add(sd.obj, obj);
     sd.main = edje_object_add(evas_object_evas_get(obj));
+
+    sd.done_cbs = [];
+    sd.preloaded = false;
+    sd.smart = obj;
+
+    edje_object_signal_callback_add(sd.main, "preload,done", "", _preload_done_cb, sd);
+
     edje_object_file_set(sd.main, "EWeather.edj", "weather");
+    edje_object_preload(sd.main, true);
+
     evas_object_smart_member_add(sd.main, obj);
     sd.eweather = eweather_new();
     evas_object_focus_set(sd.main, 1);
@@ -504,12 +580,22 @@ function _smart_add(obj)
     evas_object_event_callback_add(sd.main, EVAS_CALLBACK_MOUSE_MOVE,
             _mouse_move_cb, obj);
     evas_object_event_callback_add(sd.main, EVAS_CALLBACK_KEY_UP,
-            _key_cb, obj);
+            _key_up_cb, obj);
+    evas_object_event_callback_add(sd.main, EVAS_CALLBACK_KEY_DOWN,
+            _key_down_cb, obj);
 
     edje_object_signal_callback_add(sd.obj, "fullscreen,done", "", _fullscreen_done_cb, obj);
     eweather_object_mode_set(obj, EWM.EWEATHER_OBJECT_MODE_FULLSCREEN);
 
     edje_object_signal_callback_add(sd.obj, "loaded", "", _loaded_cb, obj);
+
+    edje_object_part_text_set(sd.main, "text.temp", "? °C");
+    edje_object_part_text_set(sd.main, "text.temp_min", "? °C");
+    edje_object_part_text_set(sd.main, "text.temp_max", "? °C");
+    edje_object_part_text_set(sd.main, "text.city", "Unknown");
+    edje_object_part_text_set(sd.main, "text.date", "Unknown");
+
+    sd.timestamp = 0;
 }
 
 
