@@ -42,7 +42,6 @@ function _resize_cb(ee)
 
 function show_when_ready(obj, data)
 {
-   evas_object_show(obj);
 }
 
 function main()
@@ -79,6 +78,7 @@ function main()
    evas_object_resize(o_weather, win.w, win.h);
    evas_object_move(o_weather, 0, 0);
    eweather_object_ready_callback_add(o_weather, show_when_ready, null);
+   evas_object_show(o_weather);
 
    ecore_evas_show(ee);
    ecore_main_loop_begin();

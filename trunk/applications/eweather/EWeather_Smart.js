@@ -118,7 +118,12 @@ function _loaded_cb(data, _obj, emission, source)
 
     if (!sd) return;
 
-    eweather_start(sd.eweather);
+    eweather_object_ready_callback_add(obj,
+				       function (obj, sd) {
+					  eweather_object_mode_set(obj, EWM.EWEATHER_OBJECT_MODE_FULLSCREEN);
+					  eweather_start(sd.eweather);
+				       },
+				       sd);
 }
 
 function _preload_done_cb(sd, obj, emission, source)
@@ -585,7 +590,6 @@ function _smart_add(obj)
             _key_down_cb, obj);
 
     edje_object_signal_callback_add(sd.obj, "fullscreen,done", "", _fullscreen_done_cb, obj);
-    eweather_object_mode_set(obj, EWM.EWEATHER_OBJECT_MODE_FULLSCREEN);
 
     edje_object_signal_callback_add(sd.obj, "loaded", "", _loaded_cb, obj);
 
