@@ -565,7 +565,7 @@ function _smart_add(obj)
     edje_object_signal_callback_add(sd.main, "preload,done", "", _preload_done_cb, sd);
 
     edje_object_file_set(sd.main, "EWeather.edj", "weather");
-    edje_object_preload(sd.main, true);
+    edje_object_preload(sd.main, false);
 
     evas_object_smart_member_add(sd.main, obj);
     sd.eweather = eweather_new();
