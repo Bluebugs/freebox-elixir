@@ -3,8 +3,8 @@
 
 
 function strstr (haystack, needle, bool) {
-    // Finds first occurrence of a string within another  
-    // 
+    // Finds first occurrence of a string within another
+    //
     // version: 909.322
     // discuss at: http://phpjs.org/functions/strstr
     // +   original by: Kevin van Zonneveld (http://kevin.vanzonneveld.net)
@@ -56,6 +56,7 @@ function google_init(eweather)
     _google_tab[11] = new _google_tab_add("/ig/images/weather/storm.gif", EWT.EWEATHER_TYPE_SCATTERED_THUNDERSTORMS);
     _google_tab[12] = new _google_tab_add("/ig/images/weather/chance_of_tstorm.gif", EWT.EWEATHER_TYPE_ISOLATED_THUNDERSTORMS);
     _google_tab[13] = new _google_tab_add("/ig/images/weather/sleet.gif", EWT.EWEATHER_TYPE_RAIN_SNOW);
+    _google_tab[13] = new _google_tab_add("/ig/images/weather/rain_snow.gif", EWT.EWEATHER_TYPE_RAIN_SNOW);
     _google_tab[14] = new _google_tab_add("/ig/images/weather/snow.gif", EWT.EWEATHER_TYPE_SNOW);
     _google_tab[15] = new _google_tab_add("/ig/images/weather/icy.gif", EWT.EWEATHER_TYPE_SNOW);
     _google_tab[16] = new _google_tab_add("/ig/images/weather/dust.gif", EWT.EWEATHER_TYPE_FOGGY);
@@ -145,7 +146,7 @@ function _server_add(data, type, event)
     if(!eweather.code) return 0;
 
     ev = event;
-    if ((!eweather.google.server) || (eweather.google.server != ev.server)) 
+    if ((!eweather.google.server) || (eweather.google.server != ev.server))
         return 1;
     s = eweather.code;
     for(i=0; i<s.length; i++)
@@ -191,12 +192,12 @@ function _server_data(data, type, event)
     eweather = data;
     ev = event;
 
-    if ( !(eweather.google.server) || (eweather.google.server != ev.server)) 
+    if ( !(eweather.google.server) || (eweather.google.server != ev.server))
         return 1;
 
     eweather.google.buffer = eweather.google.buffer + ev.data;
     eweather.google.cursize += ev.size;
-    
+
     _parse(eweather);
     return 0;
 }
