@@ -1,0 +1,71 @@
+layout : "1_area" ;
+foot_text : " Elixir machin chose" ;
+foot_image : "" ;
+header_image : "../images/logoup_mini.png" ;
+title : "" ;
+subtitle : "" ;
+transition : "fade_content";
+slide {
+	ignore_area : "header_image" ;
+	ignore_area : "bottom" ;
+	layout : "title" ;
+	custom_area : "top" "0.0" "0.0" "1.0" "1.0" ;
+	custom_area : "right" "0.65" "0.744873" "0.994413" "0.968337" ;
+	custom_area : "left" "0.008377" "0.748571" "0.400840" "0.966451" ;
+	header_image : "" ;
+	foot_text : "" ;
+	area {
+		name : "top" ;
+		image {
+			image : "../images/logo_full.png" ;
+		}
+	}
+	area {
+		name : "left" ;
+		text : " Author: Cedric Bail" ;
+		text : " ............." ;
+	}
+	area {
+		name : "right" ;
+		text : " Author: Atton Jonathan, alias Watchwolf" ;
+		text : " ............." ;
+	}
+	area {
+		name : "pages" ;
+	}
+}
+slide {
+	layout : "summary" ;
+	title : " Summary" ;
+	subtitle : "" ;
+	transition_next : "fade" ;
+	area {
+		name : "center" ;
+		text : " item 1." ;
+		text : " item 2." ;
+	}
+}
+slide {
+	layout : "blank" ;
+	title : " General presentation" ;
+	subtitle : "" ;
+	transition_next : "fade" ;
+	custom_area : "top" "0.1" "0.2" "0.9" "0.4" ;
+	custom_area : "center" "0.1" "0.45" "0.9" "0.7" ;
+	custom_area : "bottom" "0.1" "0.71" "0.9" "0.85" ;
+	area {
+		name : "top" ;
+		text : " With Eyelight we can create a presentation from a simple ASCII file and get a beautiful presentation." ;
+	}
+	area {
+		name : "center" ;
+		layout : "horizontal" ;
+                image: "../images/logoup_mini.png";
+                image: "../images/logo_full.png";
+	}
+	area {
+		name : "bottom" ;
+		text : " <small>Eyelight homepage: http://watchwolf.fr/wiki/doku.php?id=eyelight</small>" ;
+		text : " <small>Enlightenment homepage: http://enlightenment.org</small>" ;
+	}
+}
