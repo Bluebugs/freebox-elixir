@@ -802,28 +802,40 @@ collections {
       max, 200 20;
 
       parts {
-#define CELL(X)                                 \
+#define CELL(X, Prev)				\
          part {                                 \
             name, #X;                           \
             type, GROUP;                        \
             source, "cube";                     \
             description {                       \
                state, "default" 0.0;            \
-               rel1.relative, (X*0.1) 0.0;      \
-               rel2.relative, ((X+1)*0.1) 1.0;  \
-            }                                   \
+	       rel1.to_x, #Prev;		\
+	       rel1.relative, 1.0 0.0;		\
+	       rel2.to_x, #Prev;		\
+	       rel2.relative, 2.0 1.0;		\
+            }					\
          }
 
-         CELL(0);
-         CELL(1);
-         CELL(2);
-         CELL(3);
-         CELL(4);
-         CELL(5);
-         CELL(6);
-         CELL(7);
-         CELL(8);
-         CELL(9);
+	 part {
+            name, "0";
+            type, GROUP;
+            source, "cube";
+            description {
+               state, "default" 0.0;
+	       rel1.relative, 0.0 0.0;
+	       rel2.relative, 0.1 1.0;
+            }
+         }
+
+         CELL(1, 0);
+         CELL(2, 1);
+         CELL(3, 2);
+         CELL(4, 3);
+         CELL(5, 4);
+         CELL(6, 5);
+         CELL(7, 6);
+         CELL(8, 7);
+         CELL(9, 8);
       }
    }
 
