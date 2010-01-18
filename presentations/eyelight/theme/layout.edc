@@ -20,6 +20,7 @@ part                            \
     type: BOX;                  \
                  \
     clip_to: "slide";           \
+    mouse_events: 0;		\
     repeat_events: 1;           \
     description                 \
     {                           \
@@ -118,6 +119,7 @@ part                            \
     name: "area_"area_name"_border";   \
     type: IMAGE;                \
                  \
+    mouse_events: 0;		\
     repeat_events: 1;           \
     description                 \
     {                           \
@@ -157,6 +159,7 @@ part                            \
     type: TEXT;                 \
     scale: 1;                    \
     effect: SOFT_OUTLINE;       \
+    mouse_events: 0;		\
     repeat_events: 1;           \
     description                 \
     {                           \
@@ -374,6 +377,7 @@ program                         \
             part {
                 name: "black_line";
                 type: RECT;
+	        mouse_events: 0;
                 clip_to: "slide";
                 description {
                     state: "default" 0.0;
