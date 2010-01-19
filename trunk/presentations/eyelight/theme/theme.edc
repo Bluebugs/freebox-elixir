@@ -10,6 +10,7 @@ tag: "i" "+ font=DejaVuSans_Oblique ";\
 tag: "strike" "+ style=strikethrough strikethrough_color=#000000ff";\
 tag: "outline" "+ style=soft_outline outline_color=#dea909 color=#d8e0e3";\
 tag: "shadow" "+ style=soft_shadow shadow_color=#2c272799";\
+tag: "shadow_light" "+ style=soft_shadow shadow_color=#FFFFFF0F";\
 tag: "outline_shadow" "+ style=outline_soft_shadow shadow_color=#2c272799 outline_color=#dea909  color=#c4d8e0";\
 tag: "c" "+ align=middle";\
 tag: "l" "+ align=left";\
@@ -290,6 +291,7 @@ fonts
 
 images
 {
+    image: "dot.png" COMP;
     image: "item_00.png" COMP;
     image: "item_01.png" COMP;
     image: "item_02.png" COMP;
@@ -301,7 +303,7 @@ images
     image: "expose_next.png" COMP;
     image: "black.png" COMP;
     image: "background_top.png" COMP;
-    image: "background.png" COMP;
+    image: "background.png" LOSSY 85;
     image: "background_bottom.png" COMP;
     image: "title_background.png" COMP;
     image: "subtitle_background.png" COMP;
@@ -345,12 +347,17 @@ styles {
     }
     style {
         name: "itemStyle";
-        base: "font=DejaVuSans font_size=22 align=0.0 valign=0 color=#000000  wrap=word style=glow glow_color=#ffffff ";
+        base: "font=DejaVuSans font_size=22 align=0.0 valign=0 color=#000000  wrap=word";  /* style=glow glow_color=#ffffff  */
+        tag_list();
+    }
+    style {
+        name: "fontStyle";
+        base: "font=DejaVuSans font_size=22 align=0.0 valign=0 color=#050505  wrap=word";  /* style=glow glow_color=#ffffff  */
         tag_list();
     }
     style {
         name: "numberingStyle";
-        base: "font=DejaVuSans font_size=22 align=0.0 valign=0 color=#000000  wrap=word style=glow glow_color=#ffffff style=soft_outline outline_color=#7fa3ed color=#d8e0e3";
+        base: "font=DejaVuSans font_size=22 align=0.0 valign=0 color=#000000  wrap=word color=#d8e0e3"; /* style=glow glow_color=#ffffff style=soft_outline outline_color=#7fa3ed */
     }
     style {
         name: "titleStyle";
@@ -641,7 +648,7 @@ collections
                     rel1.to_x: "depth";
                     rel1.offset: 0 7;
                     align: 0 0;
-                    image.normal: "item_00.png";
+                    image.normal: "dot.png";
                 }
             }
             part
@@ -1056,7 +1063,7 @@ collections
                 type: TEXT;
                 scale: 1;
                 clip_to: "main";
-                effect: SOFT_OUTLINE;
+/*                 effect: SOFT_OUTLINE; */
     	        mouse_events: 0;
                 description {
                     state: "default" 0.0;
@@ -1859,7 +1866,7 @@ collections
                     text
                     {
                         text: "TITLE";
-                        style: "itemStyle";
+                        style: "footStyle";
                         max: 1 1;
                     }
                 }
@@ -1892,7 +1899,7 @@ collections
                     text
                     {
                         text: "TITLE";
-                        style: "itemStyle";
+                        style: "footStyle";
                         max: 1 1;
                     }
                 }
