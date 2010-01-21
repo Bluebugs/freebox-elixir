@@ -14,6 +14,7 @@ tag: "shadow_light" "+ style=soft_shadow shadow_color=#FFFFFF0F";\
 tag: "outline_shadow" "+ style=outline_soft_shadow shadow_color=#2c272799 outline_color=#dea909  color=#c4d8e0";\
 tag: "c" "+ align=middle";\
 tag: "l" "+ align=left";\
+tag: "br" "\n";		\
 tag: "r" "+ align=right";
 
 #define edit() \
