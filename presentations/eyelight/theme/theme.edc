@@ -349,7 +349,7 @@ styles {
     }
     style {
         name: "itemStyle";
-        base: "font=DejaVuSans font_size=22 align=0.0 valign=0 color=#000000  wrap=word";  /* style=glow glow_color=#ffffff  */
+        base: "font=DejaVuSans font_size=20 align=0.0 valign=0 color=#000000  wrap=word";  /* style=glow glow_color=#ffffff  */
         tag_list();
     }
     style {
@@ -364,7 +364,7 @@ styles {
     }
     style {
         name: "numberingStyle";
-        base: "font=DejaVuSans font_size=22 align=0.0 valign=0 color=#000000  wrap=word color=#d8e0e3"; /* style=glow glow_color=#ffffff style=soft_outline outline_color=#7fa3ed */
+        base: "font=DejaVuSans font_size=22 align=0.0 valign=0 color=#000000 wrap=word"; /* style=glow glow_color=#ffffff style=soft_outline outline_color=#7fa3ed */
     }
     style {
         name: "titleStyle";
@@ -615,8 +615,8 @@ collections
                     text {
                         text: "TEXT";
                         style: "itemStyle";
-                        min: 0 0;
-                        max: 0 0;
+                        min: 1 1;
+                        max: 1 1;
                     }
                 }
             }
@@ -635,8 +635,8 @@ collections
                     visible: 1;
                     rel1.to: "object.text";
                     rel2.to: "object.text";
-                    rel1.offset: -3 -2;
-                    rel2.offset: 1 1;
+                    rel1.offset: -11 -10;
+                    rel2.offset: 8 8;
                     color: 100 100 100 255;
                 }
             }
@@ -647,7 +647,8 @@ collections
                 description {
                     state: "default" 0.0;
                     visible: 1;
-                    rel1.offset: -1 0;
+                    rel1.offset: -9 -9;
+                    rel2.offset: 7 7;
                     rel1.to: "object.text";
                     rel2.to: "object.text";
                     color: 160 160 160 255;
@@ -660,14 +661,14 @@ collections
                 scale: 1;
                 description {
                     state: "default" 0.0;
-                    aspect: 0 0;
-                    rel1.offset: 2 2;
-                    rel2.offset: -2 -2;
+                    rel1.offset: 10 10;
+                    rel2.offset: -11 -10;
+                    align: 0.0 0.0;
                     text {
                         text: "TEXT";
                         style: "itemCodeStyle";
                         min: 1 1;
-                        max: 1 1;
+                        max: 0 1;
                     }
                 }
             }
@@ -705,7 +706,7 @@ collections
                     rel1.relative: 1.0 0.0;
                     rel1.to_x: "depth";
                     rel1.offset: 0 7;
-                    align: 0 0;
+                    align: 0 0.5;
                     image.normal: "dot.png";
                 }
             }
@@ -733,8 +734,8 @@ collections
                     {
                         text: "TEXT";
                         style: "itemStyle";
-                        min: 0 0;
-                        max: 0 0;
+                        min: 1 1;
+                        max: 0 1;
                     }
                 }
             }
