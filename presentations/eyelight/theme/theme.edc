@@ -4,10 +4,11 @@
 #define tag_list() \
 tag: "big" "+ font_size=35 ";\
 tag: "small" "+ font_size=15 ";\
-tag: "u" "+ style=underline underline_color=#00ff00ff underline2_color=#00ff00ff";\
+tag: "u" "+ underline=on underline_color=#00ff00ff underline2_color=#00ff00ff";\
+tag: "url" "+ underline=on underline_color=#0000ffff underline2_color=#0000ffff color=#0000ffff";\
 tag: "b" "+ font=DejaVuSans_Bold ";\
 tag: "i" "+ font=DejaVuSans_Oblique ";\
-tag: "strike" "+ style=strikethrough strikethrough_color=#000000ff";\
+tag: "strike" "+ strikethrough=on strikethrough_color=#000000ff";\
 tag: "outline" "+ style=soft_outline outline_color=#dea909 color=#d8e0e3";\
 tag: "shadow" "+ style=soft_shadow shadow_color=#2c272799";\
 tag: "shadow_light" "+ style=soft_shadow shadow_color=#FFFFFF0F";\
@@ -353,7 +354,7 @@ styles {
     }
     style {
         name: "itemCodeStyle";
-        base: "left_margin=+10 font=DejaVuSansMono font_size=22 align=0.0 valign=0 color=#000000  wrap=word";  /* style=glow glow_color=#ffffff  */
+        base: "left_margin=+10 font=DejaVuSansMono font_size=18 align=0.0 valign=0 color=#000000  wrap=word";  /* style=glow glow_color=#ffffff  */
         tag_list();
     }
     style {
