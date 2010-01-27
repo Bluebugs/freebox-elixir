@@ -1,0 +1,573 @@
+layout : "1_area" ;
+foot_text : " " ;
+foot_image : "" ;
+header_image : "../images/logoup_mini.png" ;
+title : "" ;
+subtitle : "" ;
+transition : "fade_content" ;
+slide {
+	ignore_area : "header_image" ;
+	ignore_area : "bottom" ;
+	layout : "title" ;
+	custom_area : "top" "0.0" "0.0" "1.0" "1.0" ;
+	custom_area : "right" "0.65" "0.744873" "0.994413" "0.968337" ;
+	custom_area : "left" "0.008377" "0.748571" "0.400840" "0.966451" ;
+	header_image : "" ;
+	foot_text : "" ;
+	area {
+		name : "top" ;
+		image {
+			image : "../images/logo_full.png" ;
+		}
+	}
+	area {
+		name : "left" ;
+		text : " Author: Cedric Bail" ;
+		text : " ............." ;
+	}
+	area {
+		name : "right" ;
+		text : " Author: Atton Jonathan, alias Watchwolf" ;
+		text : " ............." ;
+	}
+}
+slide {
+	layout : "summary" ;
+	title : " Summary" ;
+	subtitle : "" ;
+	transition_next : "fade" ;
+	area {
+		name : "center" ;
+		items {
+			text : " Evas et les smart objects." ;
+			text : " Présentations de Edje." ;
+			items {
+				text : " Généralités." ;
+				text : " Une liste d'objets." ;
+				text : " Les programmes." ;
+				text : " Descriptions des objets." ;
+			}
+			text : " Conclusion." ;
+		}
+	}
+}
+slide {
+	layout : "blank" ;
+	title : " Evas : un canvas et des objets" ;
+	subtitle : " Carsten créa la vie !" ;
+	custom_area : "top" "0.1" "0.2" "0.9" "0.4" ;
+	custom_area : "left" "0.1" "0.45" "0.9" "0.7" ;
+	custom_area : "bottom" "0.465230" "0.233449" "0.974224" "0.836973" ;
+	area {
+		name : "top" ;
+		text : " Evas gère un <outline>canvas</outline>" ;
+		text : " et des <outline>objets</outline> y vivent." ;
+	}
+	area {
+		name : "left" ;
+		layout : "vertical" ;
+		items {
+			text : " Rectangle" ;
+			text : " Image" ;
+			text : " Texte (Text)" ;
+			text : " Bloc de texte (TextBlock)" ;
+		}
+	}
+	area {
+		name : "bottom" ;
+		edje {
+			file : "edje_rect/edje.edj" ;
+			group : "animation" ;
+		}
+	}
+}
+slide {
+	layout : "1_area" ;
+	title : " Evas : les smart objects" ;
+	subtitle : " Qui a dit widget ?" ;
+	custom_area : "center" "0.011425" "0.17" "0.980724" "0.906604" ;
+	area {
+		name : "center" ;
+		image {
+			image : "images/smart_object.png" ;
+		}
+	}
+}
+slide {
+	layout : "2_lines_top" ;
+	title : " Et Edje dans tous ca ?" ;
+	area {
+		name : "top" ;
+		items {
+			text : " Edje permet de créer un smart object." ;
+			text : " Description de la scène dans un fichier .edc." ;
+			text : " Pas besoin d'écrire du code C ou Python." ;
+		}
+	}
+	area {
+		name : "bottom" ;
+		edje {
+			file : "edje_diagramme_edje/edje.edj" ;
+			group : "main" ;
+		}
+	}
+	custom_area : "top" "0.100000" "0.200000" "0.918461" "0.451207" ;
+	custom_area : "bottom" "0.087737" "0.470796" "0.942586" "0.833914" ;
+}
+slide {
+	layout : "2_columns_left" ;
+	title : "Les grandes lignes." ;
+	area {
+		name : "left" ;
+		items {
+			text : " Une liste d'objets : image, rectangle, texte, box ..." ;
+			text : " Chaque objet a une liste d'états :" ;
+			items {
+				text : " Nom de l'état." ;
+				text : " Position : ( rel1, rel2 )." ;
+				text : " Couleur : RGBA." ;
+				text : " Visibilité : 0 ou 1." ;
+			}
+			text : " Les programmes permettent de passer d'un état à l'autre." ;
+		}
+	}
+	area {
+		name : "right" ;
+		edje {
+			file : "edje_demos/edje.edj" ;
+			group : "move" ;
+		}
+	}
+}
+slide {
+	layout : "2_columns" ;
+	title : " Composition d'un fichier edc ?" ;
+	area {
+		name : "left" ;
+		items {
+			text : " Des blocs :" ;
+			items {
+				text : " group" ;
+				text : " parts" ;
+				text : " ..." ;
+			}
+			text : " Et des propriétés" ;
+			items {
+				text : " Relative : 0.0 0.5" ;
+				text : " Text : &quot;un text&quot;" ;
+				text : " ..." ;
+			}
+		}
+	}
+	area {
+		name : "right" ;
+		code : "group {<br>    parts {<br>        ...<br>    }<br>}" ;
+		code : "text {<br>    text :  &quot;eviv Bulgroz !&quot;;<br>    font :  &quot;Verdana&quot;;<br>    size : 12;<br>}" ;
+	}
+}
+slide {
+	layout : "2_columns" ;
+	title : " Une liste d'objets" ;
+	area {
+		name : "left" ;
+		items {
+			text : " Un objet <b>Edje</b> est une liste d'objets." ;
+			text : " Un objet = un bloc <b>part</b>." ;
+			text : " L'ordre est important." ;
+			text : " Le premier objet est 'derrière'." ;
+			text : " Le dernier objet est 'devant'." ;
+		}
+	}
+	area {
+		name : "right" ;
+		edje {
+			file : "edje_demos/edje.edj" ;
+			group : "parts" ;
+		}
+	}
+}
+slide {
+	layout : "2_columns" ;
+	title : " Une liste d'objets" ;
+	area {
+		name : "left" ;
+		code : "group {<br>    name: &quot;parts&quot;;<br>    parts {<br>        part {<br>            name: &quot;rect&quot;;<br>            type: RECT;<br>            description {<br>                state: &quot;default&quot; 0.0;<br>                visible: 1;<br>                color: 255 0 0 255;<br>                rel1.relative: 0.01 0.01;<br>                rel2.relative: 0.7 0.7;<br>            }<br>        }" ;
+	}
+	area {
+		name : "right" ;
+		code : "        part {<br>            name: &quot;image&quot;;<br>            type: IMAGE;<br>            description {<br>                state: &quot;default&quot; 0.0;<br>                visible: 1;<br>                color: 255 255 255 255;<br>                rel1.relative: 0.5 0.5;<br>                rel2.relative: 0.95 0.95;<br>                image.normal: &quot;logo.png&quot;;<br>            }<br>        }<br>    }<br>}" ;
+	}
+	area {
+		name : "edje" ;
+		edje {
+			file : "edje_demos/edje.edj" ;
+			group : "parts" ;
+		}
+	}
+	custom_area : "left" "0.060000" "0.200000" "0.496094" "0.812188" ;
+	custom_area : "right" "0.513906" "0.194792" "0.942966" "0.806980" ;
+	custom_area : "edje" "0.674611" "0.645316" "0.933201" "0.876564" ;
+}
+slide {
+	layout : "2_columns" ;
+	title : " Le placement des objets" ;
+	area {
+		name : "left" ;
+		items {
+			text : " La propriété <b>relative</b>" ;
+			text : " Positionnement relatif et non absolue" ;
+			text : " rel1 -> coin haut gauche" ;
+			text : " rel2 -> coin bas droit" ;
+			text : " La propriété <b>to</b>" ;
+		}
+	}
+	area {
+		name : "right" ;
+		image : "images/relative.png" ;
+	}
+}
+slide {
+	layout : "2_columns" ;
+	title : " Le placement des objets" ;
+	area {
+		name : "left" ;
+		image : "images/relative.png" ;
+	}
+	area {
+		name : "right" ;
+		image : "images/relative2.png" ;
+	}
+}
+slide {
+	layout : "2_columns" ;
+	title : " Les programmes" ;
+	area {
+		name : "left" ;
+		items {
+			text : " Modifier l'état d'un objet." ;
+			text : " Durée de l'action." ;
+			text : " Interpolation de la position, taille, couleur, opacité ..." ;
+			text : " <b>Le résultat est une animation." ;
+		}
+	}
+	area {
+		name : "right" ;
+		code : "part {<br>    name: &quot;rect&quot;;<br>    type: RECT;<br>    <outline>description</outline> {<br>        state: &quot;default&quot; 0.0;<br>        color: 255 0 0 255;<br>        rel1.relative: 0.0 0.0;<br>        rel2.relative: 0.4 0.4;<br>    }<br>    <outline>description </outline>{<br>        state: &quot;bas_droit&quot; 0.0;<br>        inherit : &quot;default&quot; 0.0;<br>        rel1.relative: 0.5 0.5;<br>        rel2.relative: 0.9 0.9;<br>} }" ;
+	}
+	area {
+		name : "demo" ;
+		edje {
+			file : "edje_demos/edje.edj" ;
+			group : "move" ;
+		}
+	}
+	custom_area : "right" "0.547107" "0.202608" "0.937107" "0.822607" ;
+	custom_area : "demo" "0.84" "0.739575" "0.996077" "0.901052" ;
+}
+slide {
+	layout : "2_columns" ;
+	title : " Les programmes" ;
+	area {
+		name : "left" ;
+		items {
+			text : " Déclenchement par le nom." ;
+			text : " Ou par un <outline>signal</outline> :" ;
+			items {
+				text : " Un évènement clavier, souris ..." ;
+				text : " Un signal envoyé par le programme." ;
+			}
+			text : " Différente <outline>actions</outline> possible : " ;
+			items {
+				text : " STATE_SET : changer l'état." ;
+				text : " SIGNAL_EMIT : lancer un signal." ;
+				text : " ACTION_STOP : stopper un programme." ;
+			}
+		}
+	}
+	area {
+		name : "right" ;
+		code : "program {<br>    name : &quot;show&quot;;<br>    <outline>signal:</outline> &quot;show&quot;;<br>    <outline>action: STATE_SET</outline> &quot;default&quot; 0.0;<br>    <outline>target:</outline> &quot;rect&quot;;<br>    <outline>transition :</outline> LINEAR 2.0;<br>    after : &quot;move&quot;;<br>}<br>program {<br>    name : &quot;move&quot;;<br>    action : STATE_SET &quot;bas_droit&quot; 0.0;<br>    transition : LINEAR 2.0;<br>    target: &quot;rect&quot;;<br>    after : &quot;show&quot;;<br>}" ;
+	}
+	custom_area : "left" "0.018985" "0.202604" "0.572260" "0.827812" ;
+	custom_area : "right" "0.584214" "0.202604" "0.974215" "0.822604" ;
+	area {
+		name : "demo" ;
+		edje {
+			file : "edje_demos/edje.edj" ;
+			group : "move" ;
+		}
+	}
+	custom_area : "demo" "0.84" "0.739575" "0.994124" "0.895844" ;
+}
+slide {
+	layout : "2_columns" ;
+	title : " Part de type RECTANGLE" ;
+	area {
+		name : "left" ;
+		items {
+			text : " Permet d'afficher un rectangle." ;
+			text : " <b>color</b> - la couleur (RGBA)" ;
+			text : " La taille est définit par <b>(Rel1, Rel2)." ;
+		}
+	}
+	area {
+		name : "right" ;
+		code : "part {<br>    name: &quot;rect&quot;;<br>    type: RECT;<br>    description {<br>        state: &quot;default&quot; 0.0;<br>        visible: 1;<br>        <outline>color</outline>: 255 0 0 200;<br>        <outline>rel1.relative</outline>: 0.0 0.0;<br>        <outline>rel2.relative</outline>: 0.4 0.4;<br>    }<br>}" ;
+	}
+	custom_area : "left" "0.058047" "0.246872" "0.498047" "0.866872" ;
+	custom_area : "right" "0.513906" "0.246872" "0.903906" "0.866872" ;
+}
+slide {
+	layout : "2_columns" ;
+	title : " Part de type IMAGE" ;
+	area {
+		name : "left" ;
+		items {
+			text : " Permet d'afficher une image." ;
+			text : " <b>normal</b> - lien de l'image" ;
+			text : " Comment redimensionner :" ;
+			items {
+				text : " <b>aspect" ;
+				text : " <b>aspect_preference" ;
+			}
+		}
+	}
+	area {
+		name : "right" ;
+		code : "part {<br>    name: &quot;image&quot;;<br>    type: IMAGE;<br>    description {<br>        state: &quot;default&quot; 0.0;<br>        visible: 1;<br>        rel1.relative: 0.5 0.5;<br>        rel2.relative: 0.95 0.95;<br>        <outline>aspect</outline>: 1 1;<br>        <outline>aspect_preference</outline>: VERTICAL;<br>        image.normal: &quot;logo.png&quot;;<br>    }<br>}" ;
+	}
+}
+slide {
+	layout : "2_columns" ;
+	title : " Aspect et aspect_preference" ;
+	area {
+		name : "left" ;
+		items {
+			text : " Image 1 :" ;
+			items {
+				text : " aspect : 1 1;" ;
+				text : " aspect_preference : HORIZONTAL;" ;
+			}
+			text : " Image 2 :" ;
+			items {
+				text : " aspect : 5 1;" ;
+				text : " aspect_preference : BOTH;" ;
+			}
+		}
+	}
+	area {
+		name : "right" ;
+		edje {
+			file : "edje_demos/edje.edj" ;
+			group : "aspect1" ;
+		}
+	}
+	area {
+		name : "right2" ;
+		edje {
+			file : "edje_demos/edje.edj" ;
+			group : "aspect2" ;
+		}
+	}
+	custom_area : "right" "0.510000" "0.18" "0.896094" "0.52" ;
+	custom_area : "right2" "0.510000" "0.54" "0.896094" "0.88" ;
+}
+slide {
+	layout : "2_columns" ;
+	title : " Part de type TEXT" ;
+	area {
+		name : "left" ;
+		items {
+			text : " Un texte uni." ;
+			text : " Même effet sur tous les caractères." ;
+			items {
+				text : " <b>Texte." ;
+				text : " <b>Police." ;
+				text : " <b>Taille." ;
+				text : " <b>Shadow." ;
+				text : " <b>Outline." ;
+			}
+		}
+	}
+	area {
+		name : "right" ;
+		code : "part { name: &quot;text2&quot;;<br>    type: TEXT;<br>    <outline>effect: SOFT_SHADOW;</outline><br>    description { state: &quot;default&quot; 0.0;<br>        color: 0 0 0 255;<br>        <outline>color3: 200 200 0 255;</outline><br>        align: 0.0 0.0;<br>        <outline>text {</outline><br>            text: &quot;Ombre (shadow)!&quot;;<br>            font: &quot;Verdana&quot;;<br>            size: 20;<br>            align: 0.0 0.0;<br>            min: 0 1;<br>            max: 0 1;<br><outline>}</outline> }" ;
+	}
+	area {
+		name : "demo" ;
+		edje {
+			file : "edje_demos/edje.edj" ;
+			group : "text" ;
+		}
+	}
+	custom_area : "right" "0.513906" "0.197396" "0.903906" "0.817396" ;
+	custom_area : "demo" "0.722877" "0.696241" "0.983979" "0.874792" ;
+}
+slide {
+	layout : "2_columns" ;
+	title : " Part de type TEXTBLOCK" ;
+	area {
+		name : "left" ;
+		items {
+			text : " Un texte non <b>uni." ;
+			text : " Des tags comme en HTML." ;
+			items {
+				text : " <b>Shadow." ;
+				text : " <b>Outline." ;
+				text : " <b>Underline." ;
+				text : " <b>Glow." ;
+				text : " <b>..." ;
+			}
+		}
+	}
+	area {
+		name : "right" ;
+		edje {
+			file : "edje_demos/edje.edj" ;
+			group : "textblock" ;
+		}
+	}
+}
+slide {
+	layout : "1_area" ;
+	title : " Part de type TEXTBLOCK" ;
+	area {
+		name : "center" ;
+		code : "styles {<br>    style {<br>        name: &quot;styleDemo&quot;;<br>        base: &quot;font=DejaVuSans font_size=24 align=0.0 color=#000000  wrap=word&quot;;<br>        tag: &quot;outline&quot; &quot;+ style=soft_outline outline_color=#dea909 color=#d8e0e3&quot;;<br>        tag: &quot;shadow_light&quot; &quot;+ style=soft_shadow shadow_color=#FFFFFF0F&quot;;<br>        tag: &quot;big&quot; &quot;+ font_size=35 &quot;;<br>        tag: &quot;br&quot; &quot;\n&quot;;<br>} }<br>part { name: &quot;text&quot;;<br>    type: TEXTBLOCK;<br>    description { state: &quot;default&quot; 0.0;<br>        text {<br>            text: &quot;Un bloc de texte avec des <outline>tags</outline> et un <shadow_light>passage a la ligne</shadow_light> entre les mots.<br> On peut définir ces <big>propres tags</big>.&quot;;<br>            style: &quot;styleDemo&quot;;<br>} } }" ;
+	}
+	custom_area : "center" "0.027972" "0.158335" "0.978126" "0.892913" ;
+	custom_area : "subtitle" "0.603906" "0.144792" "0.993906" "0.194792" ;
+	area {
+		name : "subtitle" ;
+	}
+}
+slide {
+	layout : "2_columns" ;
+	title : " Part de type BOX" ;
+	subtitle : " et le layout" ;
+	area {
+		name : "left" ;
+		code : "part { name: &quot;box1&quot;;<br>    <outline>type: BOX;</outline><br>    description { state: &quot;default&quot; 0.0;<br>        rel1.relative : 0.0 0.0;<br>        rel2.relative : 0.5 1.0;<br>        box {<br>            <outline>layout : &quot;vertical&quot;;</outline><br>} } }<br>part { name: &quot;box2&quot;;<br>    <outline>type: BOX;</outline><br>    description { state: &quot;default&quot; 0.0;<br>        rel1.relative : 0.5 0.0;<br>        rel2.relative : 1.0 1.0;<br>        box {<br>            <outline>layout : &quot;vertical&quot;;</outline><br>} } }" ;
+	}
+	area {
+		name : "right" ;
+		image : "images/layout1.png" ;
+	}
+	custom_area : "left" "0.060000" "0.19" "0.500000" "0.85" ;
+}
+slide {
+	layout : "2_columns" ;
+	title : " Part de type BOX" ;
+	subtitle : " et le layout" ;
+	area {
+		name : "left" ;
+		code : "part { name: &quot;box1&quot;;<br>    type: BOX;<br>    description { state: &quot;default&quot; 0.0;<br>        rel1.relative : 0.0 0.0;<br>        <outline>rel2.relative : 1.0 0.2;</outline><br>        box {<br>            layout : <outline>&quot;horizontal&quot;;</outline><br>} } }<br>part { name: &quot;box2&quot;;<br>    type: BOX;<br>    description { state: &quot;default&quot; 0.0;<br>        <outline>rel1.relative : 0.0 0.2;</outline><br>        <outline>rel2.relative : 0.5 1.0;</outline><br>        box {<br>            layout : &quot;vertical&quot;;<br>} } }" ;
+	}
+	area {
+		name : "right" ;
+		image : "images/layout2.png" ;
+	}
+	custom_area : "left" "0.06" "0.19" "0.5" "0.85" ;
+}
+slide {
+	layout : "2_columns" ;
+	title : " Part de type SWALLOW" ;
+	area {
+		name : "right" ;
+		code : "Evas_Object *edje = <br>    edje_object_add(evas);<br><br>edje_object_file_set(edje,<br>    &quot;theme.edj&quot;,<br>    &quot;demo_swallow&quot;);<br><br>Evas_Object *button = <br>    elm_button_add(evas);<br><br><outline>edje_object_swallow</outline>(edje, &quot;swallow&quot;,<br>    button);" ;
+	}
+	area {
+		name : "left" ;
+		code : "part {<br>    name: &quot;swallow&quot;;<br>    <outline>type: SWALLOW;</outline><br>    description {<br>        state: &quot;default&quot; 0.0;<br>        rel1.relative : 0.1 0.9;<br>        rel2.relative : 0.2 0.3;<br>} }" ;
+	}
+	area {
+		name : "text" ;
+		items {
+			text : " Un container." ;
+			text : " Peut contenir un seul élément." ;
+			text : " L'élément occupe toute la place." ;
+		}
+	}
+	custom_area : "text" "0.052737" "0.609355" "0.480463" "0.812491" ;
+	custom_area : "left" "0.056094" "0.197395" "0.474611" "0.580409" ;
+}
+slide {
+	layout : "2_columns" ;
+	title : " Part de type SWALLOW" ;
+	subtitle : " Avec un clipper" ;
+	area {
+		name : "left" ;
+		code : "part {<br>    name: &quot;swallow&quot;;<br>    type: SWALLOW;<br>    <outline>clip_to</outline> : &quot;clipper&quot;;<br>    description {<br>        state: &quot;default&quot; 0.0;<br>        rel1.relative : 0.1 0.9;<br>        rel2.relative : 0.2 0.3;<br>} }" ;
+	}
+	area {
+		name : "right" ;
+		code : "part {<br>    name: &quot;clipper&quot;;<br>    type: RECT;<br>    description {<br>        state: &quot;default&quot; 0.0;<br>        rel1.relative : 0.1 0.9;<br>        rel2.relative : 0.2 0.3;<br>        color: 255 244 45 <outline>255</outline>;<br>    }<br>    description {<br>        state: &quot;transparent&quot; 0.0;<br>        inherit: &quot;default&quot; 0.0;<br>        color: 255 244 45 <outline>50</outline>;<br>    } }" ;
+	}
+	area {
+		name : "text" ;
+		items {
+			text : " Astuce : Utiliser un clipper." ;
+			text : " L'état du clipper est transmis à l'élément." ;
+		}
+	}
+	custom_area : "text" "0.052737" "0.62" "0.480463" "0.812491" ;
+	custom_area : "left" "0.056094" "0.197395" "0.474611" "0.60" ;
+}
+slide {
+	layout : "2_columns" ;
+	title : " Ce n'est pas tout" ;
+	area {
+		name : "left" ;
+		items {
+			text : " Il existe d'autres objets." ;
+			text : " D'autres propriétés." ;
+			text : " Beaucoup d'astuces." ;
+		}
+		text : "" ;
+		items {
+			text : " <b>Et certaines reste encore à écrire (vidéo)." ;
+		}
+	}
+	area {
+		name : "right" ;
+		edje {
+			file : "edje_demos/edje.edj" ;
+			group : "logos" ;
+		}
+	}
+}
+slide {
+	layout : "2_columns" ;
+	title : " Les hints" ;
+	subtitle : " Du temps ? Reste t'il du temps ?" ;
+	area {
+		name : "left" ;
+		items {
+			text : " C'est dans Evas et non Edje." ;
+			text : " Comment <outline>positionner</outline> ? <outline>Redimensionner</outline> un objet ?." ;
+			text : " Position : align, weight." ;
+			text : " Taille : min, max." ;
+		}
+	}
+	area {
+		name : "right" ;
+		items {
+			code : "evas_object_size_hint_align_set(<br>                            obj, 0.5, -1.0);<br><br>evas_object_size_hint_weight_set(<br>        obj, 0.0, 1.0);<br><br>evas_object_size_hint_min_set(<br>        obj, 100, -1);<br><br>evas_object_size_hint_max_set(<br>        obj, 43, -1);" ;
+		}
+	}
+	custom_area : "right" "0.560778" "0.257289" "0.972261" "0.762715" ;
+}
+
+
+slide {
+	layout : "1_area" ;
+	title : " Et pour finir" ;
+	subtitle : " Plus de temps gnark gnark !" ;
+	area {
+		name : "center" ;
+                text : "";
+		text : " <outline><c>Des questions ?" ;
+                text : "";
+	}
+}
+

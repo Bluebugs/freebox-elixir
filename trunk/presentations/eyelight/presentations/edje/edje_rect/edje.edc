@@ -1,0 +1,310 @@
+//edje_cc edje.edc
+images {
+    image: "../../images/logo_full.png" COMP;
+}
+
+collections {
+    group {
+        //Lorsqu'une application veut créer un objet Evas a partir d'un fichier Edje
+        //elle va en faite créer l'objet a partir d'un groupe définit dans le fichier edje.
+        //Il est ainsi possible de mettre plusieurs définitions d'objet dans un même fichier.
+        name: "animation";
+        parts {
+            //le fond noir
+            part {
+                name: "fond";
+                type: "RECT";
+                description {
+                    state: "default" 0.0;
+                    visible: 1;
+                    color: 0 0 0 150;
+                }
+            }
+            part {
+                name: "je_canvas";
+                type: TEXT;
+                description {
+                    state: "default" 0.0;
+                    visible: 1;
+                    color: 0 0 0 255;
+                    rel1.relative: 0.05 0.05;
+                    rel2.relative: 1.0 0.2;
+                    text {
+                        text: "Je suis un canvas !";
+                        font: "Verdana";
+                        size: 16;
+                        align: 0.0 0.0;
+                    }
+                }
+            }
+            part {
+                //le premier rectangle
+                name: "rect/1";
+                type: RECT;
+                description {
+                    //l'etat par defaut. Il s'agit de l'etat utilise
+                    //pour initialiser le rectangle.
+                    state: "default" 0.0;
+                    visible: 1;
+                    //couleur rouge avec de la transparence
+                    //color: R V B Alpha
+                    color: 255 0 0 130;
+                    //la position du coin haut/gauche du rectangle
+                    rel1.relative: 0.01 0.01;
+                    //la position du coin bas/droit de rectangle
+                    rel2.relative: 0.4 0.4;
+                }
+                description {
+                    //second etat du rectangle
+                    state: "vert" 0.0;
+                    //on herite de l'etat par defaut, Cela revient
+                    //a copier les proprietes de l'etat par defaut ici.
+                    inherit: "default" 0.0;
+                    //on change la couleur pour du rouge
+                    color: 0 255 0 130;
+                    //on change egalement la position
+                    rel1.relative: 0.9 0.9;
+                    rel2.relative: 1.0 1.0;
+                }
+                description {
+                    state: "bleu" 0.0;
+                    inherit: "default" 0.0;
+                    //couleur bleu
+                    color: 0 0 255 130;
+                    rel1.relative: 0.4 0.8;
+                    rel2.relative: 0.6 1.0;
+                }
+            }
+            part {
+                name: "je_objet";
+                type: TEXT;
+                description {
+                    state: "default" 0.0;
+                    visible: 1;
+                    color: 0 0 0 255;
+                    rel1.to: "rect/1";
+                    rel2.to: "rect/1";
+                    text {
+                        text: "Je suis un objet rectangle !";
+                        font: "Verdana";
+                        size: 16;
+                    }
+                }
+            }
+            part {
+                //Une image. Il possede egalement 3 etats.
+                name: "rect/2";
+                type: IMAGE;
+                description {
+                    state: "default" 0.0;
+                    visible: 1;
+                    color: 255 0 0 130;
+                    rel1.relative: 0.5 0.5;
+                    rel2.relative: 0.6 1.0;
+                    image.normal: "../../images/logo_full.png";
+                }
+                description {
+                    state: "vert" 0.0;
+                    inherit: "default" 0.0;
+                    color: 0 255 0 13;
+                    rel1.relative: 0.3 0.8;
+                    rel2.relative: 1.0 1.0;
+                }
+                description {
+                    state: "bleu" 0.0;
+                    inherit: "default" 0.0;
+                    color: 0 0 255 255;
+                    rel1.relative: 0.7 0.1;
+                    rel2.relative: 0.6 0.3;
+                }
+            }
+            part {
+                //Un texte pour spécifier l'état "Stop" de l'animation
+                name: "text_stop";
+                type: TEXT;
+                description {
+                    state: "default" 0.0;
+                    visible: 1;
+                    color: 0 0 255 255;
+                    rel1.relative: 0.8 0.1;
+                    rel2.relative: 1.0 0.2;
+                    text {
+                        text: "= Stop =";
+                        font: "Verdana";
+                        size: 16;
+                    }
+                }
+                description {
+                    state: "stop" 0.0;
+                    inherit: "default" 0.0;
+                }
+                description {
+                    state: "start" 0.0;
+                    inherit: "default" 0.0;
+                    color: 0 0 0 0;
+                }
+            }
+            part {
+                //Un texte pour spécifier l'état "Start" de l'animation
+                name: "text_start";
+                type: TEXT;
+                description {
+                    state: "default" 0.0;
+                    visible: 1;
+                    color: 0 0 0 0;
+                    rel1.relative: 0.8 0.1;
+                    rel2.relative: 1.0 0.2;
+                    text {
+                        text: "= Start =";
+                        font: "Verdana";
+                        size: 16;
+                    }
+                }
+                description {
+                    state: "stop" 0.0;
+                    inherit: "default" 0.0;
+                }
+                description {
+                    state: "start" 0.0;
+                    inherit: "default" 0.0;
+                    color: 0 0 255 255;
+                }
+            }
+            programs {
+                //Le programme qui va déplacer et changer
+                //la couleur des deux rectangles
+
+                //programme exécute lorsque l'objet est affiché (evas_objectshow())
+                program {
+                    signal: "show";
+                    after: "start";
+                }
+
+                //Le premier programme permet de lancer l'animation.
+                program {
+                    // un simple nom
+                    name: "start";
+                    //le signal et la source forme un identifiant qui permet de lancer le programme.
+                    //Il y a 2 méthodes pour lancer un programme :
+                    // - avec son nom. Le nom n'étant connu que dans le fichier Edje
+                    //      il ne peut pas être utilisée par une application.
+                    // - avec le couple (signal,source). L'application peut envoyer un signal
+                    //      a l'objet Edje ce qui permet de lancer des programmes. La source permet
+                    //      de trier les signaux suivant 2 niveaux, le premier étant la source et le second le signal.
+                    //      Ceci est utile si on possède beaucoup de programmes afin d'optimiser la recherche des programmes
+                    //      répondant a un signal. Dans notre cas l'application va lancer l'animation comme suit :
+                    //      edje_object_signal_emit(objet_edje, "start", "demo", une_data);
+                    //
+                    signal: "start";
+                    source: "demo";
+                    //une fois ce programme fini (a noter qu'il ne fait rien)
+                    //on exécute le programme "rouge" et "set_text_start"
+                    after: "rouge";
+                    after: "set_text_start";
+                    after: "stop_timing";
+                }
+                // le programme qui va afficher le texte "start"
+                // et caché le texte "stop"
+                program {
+                    name: "set_text_start";
+                    action: STATE_SET "start" 0.0;
+                    target: "text_stop";
+                    target: "text_start";
+                    transition: LINEAR 1.0;
+                }
+                //le programme qui va mettre nos deux rectangles dans l'état rouge
+                program {
+                    name: "rouge";
+                    // l'action que le programme va utiliser.
+                    // Ici il s'agit de mettre les targets (voir ci-dessous)
+                    // dans l'état "default" (il s'agit de la couleur rouge)
+                    action: STATE_SET "default" 0.0;
+                    // L'action sera appliquée a nos deux rectangles
+                    target: "rect/1";
+                    target: "rect/2";
+                    // Edje peut calculer un déplacement et/ou changement progressif
+                    // de couleurs. Pour cela on spécifie la durée de la transformation
+                    // ainsi que la méthodes utilisée pour extrapoler les états intermédiaires.
+                    // L'état de départ est l'état actuel de l'objet et l'état d'arrivé est celui
+                    // spécifie dans l'action.
+                    transition: LINEAR 1.0;
+                    // ensuite an execute le programme "vert"
+                    after: "vert";
+                }
+                // Le programme "vert" suit le même principe que le programme "rouge"
+                program {
+                    name: "vert";
+                    action: STATE_SET "vert" 0.0;
+                    target: "rect/1";
+                    target: "rect/2";
+                    transition: DECELERATE 1.5;
+                    after: "bleu";
+                }
+                // Le programme "bleu" suit le même principe que le programme "rouge"
+                program {
+                    name: "bleu";
+                    action: STATE_SET "bleu" 0.0;
+                    target: "rect/1";
+                    target: "rect/2";
+                    transition: SINUSOIDAL 0.9;
+                    // ensuite on exécute le programme "rouge".
+                    // On va ainsi boucler : rouge - vert - bleu - rouge ...
+                    after: "rouge";
+                }
+
+
+                // le programme qui va permettre de stopper l'animation.
+                program {
+                    name: "stop";
+                    signal: "stop";
+                    source: "demo";
+                    // l'action qui permet de stopper un programme
+                    action: ACTION_STOP;
+                    // comme on ne connait pas quel programme est actuellement exécuté
+                    // on envoie l'action à tous les programmes.
+                    target: "rouge";
+                    target: "vert";
+                    target: "bleu";
+                    after: "init";
+                    after: "set_text_stop";
+                    after: "start_timing";
+                }
+                // le programme qui va afficher le texte "stop"
+                // et caché le texte "start"
+                program {
+                    name: "set_text_stop";
+                    action: STATE_SET "stop" 0.0;
+                    target: "text_stop";
+                    target: "text_start";
+                    transition: LINEAR 1.0;
+                }
+                 //le programme qui permet de remettre les deux rectangles
+                 //dans l'état de départ.
+                program {
+                    name: "init";
+                    action: STATE_SET "default" 0.0;
+                    target: "rect/1";
+                    target: "rect/2";
+                    transition: LINEAR 0.5;
+                }
+
+
+                //Ces 2 programmes servent de timer pour stopper ou demarrer l'animation.
+                program {
+                    name: "stop_timing";
+                    //On entre dans le programme apres 7sec +- 3sec aleatoire
+                    in: 7.0 3.0;
+                    after: "stop";
+                }
+                program {
+                    name: "start_timing";
+                    //On entre dans le programme apres 2sec +- 3sec aleatoire
+                    in: 2.0 3.0;
+                    after: "start";
+                }
+
+            }
+        }
+    }
+}
+
