@@ -1,0 +1,1372 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2914"
+   version="1.1"
+   inkscape:version="0.47 r22583"
+   sodipodi:docname="demos.svg">
+  <defs
+     id="defs2916">
+    <inkscape:perspective
+       sodipodi:type="inkscape:persp3d"
+       inkscape:vp_x="0 : 526.18109 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_z="744.09448 : 526.18109 : 1"
+       inkscape:persp3d-origin="372.04724 : 350.78739 : 1"
+       id="perspective2922" />
+    <inkscape:perspective
+       id="perspective3708"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3744"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3744-6"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3744-5"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3799"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3799-6"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3799-0"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3799-5"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3799-8"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3857"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3882"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3917"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3917-5"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3917-51"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3917-9"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3917-90"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3917-97"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3917-8"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3917-55"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3917-0"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3917-59"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4022"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4022-5"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4022-3"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4022-0"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4022-8"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4022-7"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4022-02"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4022-9"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4022-03"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4022-77"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4149"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4174"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4199"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4199-4"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4232"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4256"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective4282"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective2995"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3086"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3111"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3111-8"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+    <inkscape:perspective
+       id="perspective3142"
+       inkscape:persp3d-origin="0.5 : 0.33333333 : 1"
+       inkscape:vp_z="1 : 0.5 : 1"
+       inkscape:vp_y="0 : 1000 : 0"
+       inkscape:vp_x="0 : 0.5 : 1"
+       sodipodi:type="inkscape:persp3d" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.98994949"
+     inkscape:cx="476.35116"
+     inkscape:cy="807.3495"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="true"
+     showguides="false"
+     inkscape:snap-grids="false"
+     inkscape:window-width="1680"
+     inkscape:window-height="988"
+     inkscape:window-x="0"
+     inkscape:window-y="40"
+     inkscape:window-maximized="1">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3728"
+       empspacing="39"
+       visible="true"
+       enabled="true"
+       snapvisiblegridlinesonly="true"
+       dotted="false" />
+  </sodipodi:namedview>
+  <metadata
+     id="metadata2919">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <g
+       id="g4117"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         id="path3907"
+         d="m 76.428572,77.362182 470.714288,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.50000000000000000;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+      <path
+         id="path3907-6"
+         d="m 75.285713,116.36218 470.714287,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-8"
+         d="m 75.28571,155.36218 470.71429,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-9"
+         d="m 75.28571,194.36218 470.71429,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-67"
+         d="m 75.28571,233.36218 470.71429,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-5"
+         d="m 75.28571,272.36218 470.71429,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-66"
+         d="m 75.28571,311.36218 470.71429,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-1"
+         d="m 75.28571,350.36218 470.71429,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-63"
+         d="m 75.28571,389.36218 470.71429,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-2"
+         d="m 75.28571,428.36218 470.71429,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-82"
+         d="m 75.28571,467.36218 470.71429,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012"
+         d="m 117,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:none" />
+      <path
+         id="path4012-1"
+         d="m 156,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-7"
+         d="m 195,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-5"
+         d="m 234,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-15"
+         d="m 273,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-6"
+         d="m 312,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-19"
+         d="m 351,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-8"
+         d="m 429,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-157"
+         d="m 468,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-0"
+         d="m 507,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-3"
+         d="m 390,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
+    <rect
+       style="opacity:0.60515021;fill:#e6e9ec;fill-opacity:1;stroke:#000000;stroke-width:1.50000000000000000;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2924"
+       width="390"
+       height="390"
+       x="116.28572"
+       y="77.362183"
+       rx="4.8428178"
+       ry="3.7561724"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="opacity:0.43347641;fill:#d8a60f;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3698-5"
+       width="155.99986"
+       height="155.99989"
+       x="273"
+       y="272.36218"
+       rx="0"
+       ry="0"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:8, 1;stroke-dashoffset:0"
+       d="m 351,350.36218 -78.74691,-0.42746"
+       id="path4222"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-opacity:1;stroke-miterlimit:4;stroke-dasharray:8,1;stroke-dashoffset:0"
+       d="m 351,350.36218 0,-78"
+       id="path4246"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cc" />
+    <rect
+       style="opacity:0.6523605;fill:#1a4ae9;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3730"
+       width="64.362946"
+       height="64.362938"
+       x="351"
+       y="350.36218"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="235.97432"
+       y="261.26257"
+       id="text3732-4"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3734-5"
+         x="235.97432"
+         y="261.26257">Rel1(0.40, 0.50)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="420.91278"
+       y="416.04868"
+       id="text3732-7"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3734-4"
+         x="420.91278"
+         y="416.04868">Rel2(0.833, 0.833)</tspan></text>
+    <path
+       sodipodi:type="star"
+       style="opacity:0.92703863;fill:#61af24;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3789-1"
+       sodipodi:sides="5"
+       sodipodi:cx="152.53304"
+       sodipodi:cy="114.94062"
+       sodipodi:r1="4.3448305"
+       sodipodi:r2="2.1724153"
+       sodipodi:arg1="0.62024949"
+       sodipodi:arg2="1.248568"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 156.06857,117.466 -2.84757,-0.46477 -1.99721,2.08227 -0.43791,-2.85183 -2.59753,-1.25599 2.57692,-1.29775 0.39184,-2.85852 2.03055,2.04977 2.8397,-0.51067 -1.32198,2.56458 1.36319,2.54291 z"
+       transform="translate(122.12796,156.05774)"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="opacity:0.92703863;fill:#61af24;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3789-6"
+       sodipodi:sides="5"
+       sodipodi:cx="152.53304"
+       sodipodi:cy="114.94062"
+       sodipodi:r1="4.3448305"
+       sodipodi:r2="2.1724153"
+       sodipodi:arg1="0.62024949"
+       sodipodi:arg2="1.248568"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 156.06857,117.466 -2.84757,-0.46477 -1.99721,2.08227 -0.43791,-2.85183 -2.59753,-1.25599 2.57692,-1.29775 0.39184,-2.85852 2.03055,2.04977 2.8397,-0.51067 -1.32198,2.56458 1.36319,2.54291 z"
+       transform="translate(-34.387271,-36.933217)"
+       inkscape:transform-center-x="27.779195"
+       inkscape:transform-center-y="120.71323"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="opacity:0.92703863;fill:#61af24;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3789-8"
+       sodipodi:sides="5"
+       sodipodi:cx="152.53304"
+       sodipodi:cy="114.94062"
+       sodipodi:r1="4.3448305"
+       sodipodi:r2="2.1724153"
+       sodipodi:arg1="0.62024949"
+       sodipodi:arg2="1.248568"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 156.06857,117.466 -2.84757,-0.46477 -1.99721,2.08227 -0.43791,-2.85183 -2.59753,-1.25599 2.57692,-1.29775 0.39184,-2.85852 2.03055,2.04977 2.8397,-0.51067 -1.32198,2.56458 1.36319,2.54291 z"
+       transform="translate(276.89052,313.54256)"
+       inkscape:transform-center-x="9.0913729"
+       inkscape:transform-center-y="-13.637059"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:8, 1;stroke-dashoffset:0"
+       d="M 414.22008,415.0783 272.67151,414.86908"
+       id="path4222-0"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:8, 1;stroke-dashoffset:0"
+       d="m 414.85786,413.71497 0.0765,-141.61382"
+       id="path4246-9"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="opacity:0.92703863;fill:#61af24;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3789-4"
+       sodipodi:sides="5"
+       sodipodi:cx="152.53304"
+       sodipodi:cy="114.94062"
+       sodipodi:r1="4.3448305"
+       sodipodi:r2="2.1724153"
+       sodipodi:arg1="0.62024949"
+       sodipodi:arg2="1.248568"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 156.06857,117.466 -2.84757,-0.46477 -1.99721,2.08227 -0.43791,-2.85183 -2.59753,-1.25599 2.57692,-1.29775 0.39184,-2.85852 2.03055,2.04977 2.8397,-0.51067 -1.32198,2.56458 1.36319,2.54291 z"
+       transform="translate(262.62582,299.01791)"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="opacity:0.92703863;fill:#61af24;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3789-5"
+       sodipodi:sides="5"
+       sodipodi:cx="152.53304"
+       sodipodi:cy="114.94062"
+       sodipodi:r1="4.3448305"
+       sodipodi:r2="2.1724153"
+       sodipodi:arg1="0.62024949"
+       sodipodi:arg2="1.248568"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 156.06857,117.466 -2.84757,-0.46477 -1.99721,2.08227 -0.43791,-2.85183 -2.59753,-1.25599 2.57692,-1.29775 0.39184,-2.85852 2.03055,2.04977 2.8397,-0.51067 -1.32198,2.56458 1.36319,2.54291 z"
+       transform="translate(198.89956,235.85978)"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="379.53235"
+       y="443.84271"
+       id="text3732-7-4"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3734-4-0"
+         x="379.53235"
+         y="443.84271">Rel2(0.80, 0.90)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="291.02765"
+       y="341.06464"
+       id="text3732-7-5"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3734-4-05"
+         x="291.02765"
+         y="341.06464">Rel1(0.5, 0.50)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="65.678009"
+       y="73.900551"
+       id="text3732-2"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3734-3"
+         x="65.678009"
+         y="73.900551">Rel1(0.0, 0.0)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="454.96375"
+       y="481.75769"
+       id="text3732-7-4-9"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3734-4-0-8"
+         x="454.96375"
+         y="481.75769">Rel2(1.0, 1.0)</tspan></text>
+    <path
+       sodipodi:type="star"
+       style="opacity:0.92703863;fill:#61af24;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3789-6-5"
+       sodipodi:sides="5"
+       sodipodi:cx="152.53304"
+       sodipodi:cy="114.94062"
+       sodipodi:r1="4.3448305"
+       sodipodi:r2="2.1724153"
+       sodipodi:arg1="0.62024949"
+       sodipodi:arg2="1.248568"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 156.06857,117.466 -2.84757,-0.46477 -1.99721,2.08227 -0.43791,-2.85183 -2.59753,-1.25599 2.57692,-1.29775 0.39184,-2.85852 2.03055,2.04977 2.8397,-0.51067 -1.32198,2.56458 1.36319,2.54291 z"
+       transform="translate(354.30012,350.98216)"
+       inkscape:transform-center-x="27.779195"
+       inkscape:transform-center-y="120.71323"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:12px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="352.26541"
+       y="391.28278"
+       id="text4270"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4272"
+         x="352.26541"
+         y="391.28278">to : yellow</tspan></text>
+    <g
+       transform="translate(548.7377,-2.8682217)"
+       id="g4117-2"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90">
+      <path
+         id="path3907-3"
+         d="m 76.428572,77.362182 470.714288,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-6-2"
+         d="m 75.285713,116.36218 470.714287,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-8-7"
+         d="m 75.28571,155.36218 470.71429,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-9-8"
+         d="m 75.28571,194.36218 470.71429,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-67-8"
+         d="m 75.28571,233.36218 470.71429,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-5-0"
+         d="m 75.28571,272.36218 470.71429,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-66-1"
+         d="m 75.28571,311.36218 470.71429,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-1-4"
+         d="m 75.28571,350.36218 470.71429,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-63-6"
+         d="m 75.28571,389.36218 470.71429,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-2-2"
+         d="m 75.28571,428.36218 470.71429,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path3907-82-5"
+         d="m 75.28571,467.36218 470.71429,0"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-9"
+         d="m 117,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-1-1"
+         d="m 156,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-7-8"
+         d="m 195,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-5-3"
+         d="m 234,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-15-9"
+         d="m 273,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-6-5"
+         d="m 312,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-19-7"
+         d="m 351,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-8-5"
+         d="m 429,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-157-9"
+         d="m 468,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-0-6"
+         d="m 507,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+      <path
+         id="path4012-3-6"
+         d="m 390,38.362183 0,467.999997"
+         style="fill:none;stroke:#303aac;stroke-width:0.5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+    </g>
+    <rect
+       style="opacity:0.60515023;fill:#e6e9ec;fill-opacity:1;stroke:#000000;stroke-width:1.5;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect2924-2"
+       width="390"
+       height="390"
+       x="665.02344"
+       y="74.493958"
+       rx="4.8428178"
+       ry="3.7561724"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="fill:#e91a26;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3698-9"
+       width="156"
+       height="117"
+       x="704.73767"
+       y="113.49397"
+       rx="0"
+       ry="0"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="opacity:0.43347641;fill:#d8a60f;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3698-5-9"
+       width="234.28568"
+       height="232.57161"
+       x="782.45197"
+       y="153.63681"
+       rx="0"
+       ry="0"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <rect
+       style="opacity:0.6523605;fill:#1a4ae9;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3730-7"
+       width="77.28582"
+       height="79.142799"
+       x="899.73767"
+       y="269.49396"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="673.31384"
+       y="106.42289"
+       id="text3732-41"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3734-6"
+         x="673.31384"
+         y="106.42289">Rel1(0.10, 0.10)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="833.19934"
+       y="244.2522"
+       id="text3732-4-7"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3734-5-6"
+         x="833.19934"
+         y="244.2522">Rel2(0.5, 0.40)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="728.65112"
+       y="145.45415"
+       id="text3732-3-9"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         x="728.65112"
+         y="145.45415"
+         id="tspan3772-2">Rel1(0.30, 0.20)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="909.04132"
+       y="365.19821"
+       id="text3732-7-57"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3734-4-058"
+         x="909.04132"
+         y="365.19821">Rel2(0.833, 0.833)</tspan></text>
+    <path
+       sodipodi:type="star"
+       style="opacity:0.92703863;fill:#61af24;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3789-7"
+       sodipodi:sides="5"
+       sodipodi:cx="152.53304"
+       sodipodi:cy="114.94062"
+       sodipodi:r1="4.3448305"
+       sodipodi:r2="2.1724153"
+       sodipodi:arg1="0.62024949"
+       sodipodi:arg2="1.248568"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 156.06857,117.466 -2.84757,-0.46477 -1.99721,2.08227 -0.43791,-2.85183 -2.59753,-1.25599 2.57692,-1.29775 0.39184,-2.85852 2.03055,2.04977 2.8397,-0.51067 -1.32198,2.56458 1.36319,2.54291 z"
+       transform="translate(552.27324,-1.8580687)"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="opacity:0.92703863;fill:#61af24;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3789-1-3"
+       sodipodi:sides="5"
+       sodipodi:cx="152.53304"
+       sodipodi:cy="114.94062"
+       sodipodi:r1="4.3448305"
+       sodipodi:r2="2.1724153"
+       sodipodi:arg1="0.62024949"
+       sodipodi:arg2="1.248568"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 156.06857,117.466 -2.84757,-0.46477 -1.99721,2.08227 -0.43791,-2.85183 -2.59753,-1.25599 2.57692,-1.29775 0.39184,-2.85852 2.03055,2.04977 2.8397,-0.51067 -1.32198,2.56458 1.36319,2.54291 z"
+       transform="translate(709.25146,114.80372)"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="opacity:0.92703863;fill:#61af24;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3789-6-2"
+       sodipodi:sides="5"
+       sodipodi:cx="152.53304"
+       sodipodi:cy="114.94062"
+       sodipodi:r1="4.3448305"
+       sodipodi:r2="2.1724153"
+       sodipodi:arg1="0.62024949"
+       sodipodi:arg2="1.248568"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 156.06857,117.466 -2.84757,-0.46477 -1.99721,2.08227 -0.43791,-2.85183 -2.59753,-1.25599 2.57692,-1.29775 0.39184,-2.85852 2.03055,2.04977 2.8397,-0.51067 -1.32198,2.56458 1.36319,2.54291 z"
+       transform="translate(514.35044,-39.801439)"
+       inkscape:transform-center-x="27.779195"
+       inkscape:transform-center-y="120.71323"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="opacity:0.92703863;fill:#61af24;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3789-8-2"
+       sodipodi:sides="5"
+       sodipodi:cx="152.53304"
+       sodipodi:cy="114.94062"
+       sodipodi:r1="4.3448305"
+       sodipodi:r2="2.1724153"
+       sodipodi:arg1="0.62024949"
+       sodipodi:arg2="1.248568"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 156.06857,117.466 -2.84757,-0.46477 -1.99721,2.08227 -0.43791,-2.85183 -2.59753,-1.25599 2.57692,-1.29775 0.39184,-2.85852 2.03055,2.04977 2.8397,-0.51067 -1.32198,2.56458 1.36319,2.54291 z"
+       transform="translate(864.51909,269.76316)"
+       inkscape:transform-center-x="9.0913729"
+       inkscape:transform-center-y="-13.637059"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:8, 1;stroke-dashoffset:0"
+       d="M 976.59485,348.06539 783.02341,347.3511"
+       id="path4222-0-2"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:8, 1;stroke-dashoffset:0"
+       d="m 977.30914,347.35111 0,-194.28572"
+       id="path4246-9-6"
+       sodipodi:nodetypes="cc"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="opacity:0.92703863;fill:#61af24;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3789-4-3"
+       sodipodi:sides="5"
+       sodipodi:cx="152.53304"
+       sodipodi:cy="114.94062"
+       sodipodi:r1="4.3448305"
+       sodipodi:r2="2.1724153"
+       sodipodi:arg1="0.62024949"
+       sodipodi:arg2="1.248568"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 156.06857,117.466 -2.84757,-0.46477 -1.99721,2.08227 -0.43791,-2.85183 -2.59753,-1.25599 2.57692,-1.29775 0.39184,-2.85852 2.03055,2.04977 2.8397,-0.51067 -1.32198,2.56458 1.36319,2.54291 z"
+       transform="translate(823.48535,233.52023)"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:8, 1;stroke-dashoffset:0"
+       d="m 898.7377,268.77968 0,-115.71429"
+       id="path4246-7"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="opacity:0.92703863;fill:#61af24;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3789-5-7"
+       sodipodi:sides="5"
+       sodipodi:cx="152.53304"
+       sodipodi:cy="114.94062"
+       sodipodi:r1="4.3448305"
+       sodipodi:r2="2.1724153"
+       sodipodi:arg1="0.62024949"
+       sodipodi:arg2="1.248568"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 156.06857,117.466 -2.84757,-0.46477 -1.99721,2.08227 -0.43791,-2.85183 -2.59753,-1.25599 2.57692,-1.29775 0.39184,-2.85852 2.03055,2.04977 2.8397,-0.51067 -1.32198,2.56458 1.36319,2.54291 z"
+       transform="translate(747.13218,154.70474)"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="969.68634"
+       y="401.57855"
+       id="text3732-7-4-8"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3734-4-0-5"
+         x="969.68634"
+         y="401.57855">Rel2(0.90, 0.80)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#ff0000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="850.37195"
+       y="286.67862"
+       id="text3732-7-5-3"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3734-4-05-9"
+         x="850.37195"
+         y="286.67862">Rel1(0.5, 0.50)</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6, 1;stroke-dashoffset:0"
+       d="m 665.16627,113.06539 39.64286,0.35714"
+       id="path3899-3"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4, 1;stroke-dashoffset:0"
+       d="m 704.80913,74.136816 0,39.285714"
+       id="path3901-1"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6, 1;stroke-dashoffset:0"
+       d="m 665.16627,230.56539 195.71429,0"
+       id="path3903-4"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6, 1;stroke-dashoffset:0"
+       d="m 861.2377,74.493959 0,156.071431"
+       id="path3905-2"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="614.41571"
+       y="71.032326"
+       id="text3732-2-0"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3734-3-1"
+         x="614.41571"
+         y="71.032326">Rel1(0.0, 0.0)</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="1003.7015"
+       y="478.88947"
+       id="text3732-7-4-9-6"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3734-4-0-8-4"
+         x="1003.7015"
+         y="478.88947">Rel2(1.0, 1.0)</tspan></text>
+    <path
+       sodipodi:type="star"
+       style="opacity:0.92703863;fill:#61af24;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3789-6-9-9"
+       sodipodi:sides="5"
+       sodipodi:cx="152.53304"
+       sodipodi:cy="114.94062"
+       sodipodi:r1="4.3448305"
+       sodipodi:r2="2.1724153"
+       sodipodi:arg1="0.62024949"
+       sodipodi:arg2="1.248568"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 156.06857,117.466 -2.84757,-0.46477 -1.99721,2.08227 -0.43791,-2.85183 -2.59753,-1.25599 2.57692,-1.29775 0.39184,-2.85852 2.03055,2.04977 2.8397,-0.51067 -1.32198,2.56458 1.36319,2.54291 z"
+       transform="translate(631.60925,40.256791)"
+       inkscape:transform-center-x="27.779195"
+       inkscape:transform-center-y="120.71323"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="opacity:0.92703863;fill:#61af24;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3789-6-5-5"
+       sodipodi:sides="5"
+       sodipodi:cx="152.53304"
+       sodipodi:cy="114.94062"
+       sodipodi:r1="4.3448305"
+       sodipodi:r2="2.1724153"
+       sodipodi:arg1="0.62024949"
+       sodipodi:arg2="1.248568"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 156.06857,117.466 -2.84757,-0.46477 -1.99721,2.08227 -0.43791,-2.85183 -2.59753,-1.25599 2.57692,-1.29775 0.39184,-2.85852 2.03055,2.04977 2.8397,-0.51067 -1.32198,2.56458 1.36319,2.54291 z"
+       transform="translate(903.03782,348.11394)"
+       inkscape:transform-center-x="27.779195"
+       inkscape:transform-center-y="120.71323"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:8, 1;stroke-dashoffset:0"
+       d="m 897.30913,268.77968 -115.71429,0"
+       id="path4222-08"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="903.02344"
+       y="332.35107"
+       id="text4270-7"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan4272-5"
+         x="903.02344"
+         y="332.35107">to : yellow</tspan></text>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4476"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Bitstream Vera Sans;font-style:normal;font-weight:normal;font-size:20"><flowRegion
+         id="flowRegion4478"><rect
+           id="rect4480"
+           width="18.182745"
+           height="113.64216"
+           x="1071.7719"
+           y="374.04474" /></flowRegion><flowPara
+         id="flowPara4482" /></flowRoot>    <rect
+       style="fill:#e91a26;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="rect3698-9-2"
+       width="141.71428"
+       height="115.57143"
+       x="170.34557"
+       y="117.56194"
+       rx="0"
+       ry="0"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="124.63602"
+       y="109.06228"
+       id="text3732-41-9"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3734-6-3"
+         x="124.63602"
+         y="109.06228">Rel1(0.10, 0.10)</tspan></text>
+    <path
+       sodipodi:type="star"
+       style="opacity:0.92703863;fill:#61af24;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3789-7-8"
+       sodipodi:sides="5"
+       sodipodi:cx="152.53304"
+       sodipodi:cy="114.94062"
+       sodipodi:r1="4.3448305"
+       sodipodi:r2="2.1724153"
+       sodipodi:arg1="0.62024949"
+       sodipodi:arg2="1.248568"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 156.06857,117.466 -2.84757,-0.46477 -1.99721,2.08227 -0.43791,-2.85183 -2.59753,-1.25599 2.57692,-1.29775 0.39184,-2.85852 2.03055,2.04977 2.8397,-0.51067 -1.32198,2.56458 1.36319,2.54291 z"
+       transform="translate(3.5954167,0.78132122)"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       sodipodi:type="star"
+       style="opacity:0.92703863;fill:#61af24;fill-opacity:1;stroke:#000000;stroke-width:1;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0"
+       id="path3789-1-3-8"
+       sodipodi:sides="5"
+       sodipodi:cx="152.53304"
+       sodipodi:cy="114.94062"
+       sodipodi:r1="4.3448305"
+       sodipodi:r2="2.1724153"
+       sodipodi:arg1="0.62024949"
+       sodipodi:arg2="1.248568"
+       inkscape:flatsided="false"
+       inkscape:rounded="0"
+       inkscape:randomized="0"
+       d="m 156.06857,117.466 -2.84757,-0.46477 -1.99721,2.08227 -0.43791,-2.85183 -2.59753,-1.25599 2.57692,-1.29775 0.39184,-2.85852 2.03055,2.04977 2.8397,-0.51067 -1.32198,2.56458 1.36319,2.54291 z"
+       transform="translate(160.57364,117.44311)"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6, 1;stroke-dashoffset:0"
+       d="m 116.48845,115.70478 39.64286,0.35714"
+       id="path3899-3-0"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4, 1;stroke-dashoffset:0"
+       d="m 156.13131,76.776206 0,39.285714"
+       id="path3901-1-9"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6, 1;stroke-dashoffset:0"
+       d="m 116.48845,233.20478 195.71428,0"
+       id="path3903-4-6"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6, 1;stroke-dashoffset:0"
+       d="m 312.55987,77.133349 0,156.071431"
+       id="path3905-2-3"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <text
+       xml:space="preserve"
+       style="font-size:14px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="272.27789"
+       y="246.0434"
+       id="text3732-4-7-4"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3734-5-6-4"
+         x="272.27789"
+         y="246.0434">Rel2(0.5, 0.40)</tspan></text>
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4, 1;stroke-dashoffset:0"
+       d="m 170.41842,233.93869 -0.12627,38.5281"
+       id="path3901-1-9-8"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:4, 1;stroke-dashoffset:0"
+       d="m 156.06857,233.68866 0,39.28571"
+       id="path3901-1-9-89"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90" />
+    <path
+       style="fill:none;stroke:#000000;stroke-width:1;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:6, 1;stroke-dashoffset:0"
+       d="m 156.07138,271.84077 14.76786,-0.0217"
+       id="path3899-3-0-4"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:16px;font-style:normal;font-weight:normal;fill:#000000;fill-opacity:1;stroke:none;font-family:Bitstream Vera Sans"
+       x="122.98608"
+       y="286.414"
+       id="text3156"
+       inkscape:export-filename="/home/watchwolf/Projects/freebox-elixir/presentations/eyelight/presentations/edje/images/relative2.png"
+       inkscape:export-xdpi="90"
+       inkscape:export-ydpi="90"><tspan
+         sodipodi:role="line"
+         id="tspan3158"
+         x="122.98608"
+         y="286.414">Offset: 10 px</tspan></text>
+  </g>
+</svg>

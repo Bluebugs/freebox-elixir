@@ -1,0 +1,175 @@
+//edje_cc edje.edc
+images {
+    image: "background.png" COMP;
+    image: "arrow.png" COMP;
+    image: "source.png" COMP;
+    image: "smart_object.png" COMP;
+}
+
+collections {
+    group {
+        name: "main";
+        parts {
+            part {
+                name: "background";
+                type: "IMAGE";
+                description {
+                    state: "default" 0.0;
+                    visible: 1;
+                    color: 255 255 255 255;
+                    aspect: 882/153 1;
+                    aspect_preference: BOTH;
+                    image.normal: "background.png";
+                }
+            }
+            part {
+                name: "arrow_source";
+                type: "IMAGE";
+                description {
+                    state: "default" 0.0;
+                    visible: 1;
+                    color: 255 255 255 255;
+                    rel1.relative: 0.116 0.803;
+                    rel2.relative: 0.419 0.802;
+                    rel2.offset: 0 27;
+                    image.normal: "arrow.png";
+                    image.border: 0 14 50 13;
+                }
+                description {
+                    state: "start" 0.0;
+                    inherit: "default" 0.0;
+                    rel1.relative: 0.116 0.803;
+                    rel2.relative: 0.116 0.802;
+                }
+                description {
+                    state: "hide" 0.0;
+                    inherit: "default" 0.0;
+                    color: 0 0 0 0;
+                }
+            }
+            part {
+                name: "arrow_sm";
+                type: "IMAGE";
+                description {
+                    state: "default" 0.0;
+                    visible: 1;
+                    color: 255 255 255 255;
+                    rel1.relative: 0.535 0.803;
+                    rel2.relative: 0.835 0.802;
+                    rel2.offset: 0 27;
+                    image.border: 0 14 50 13;
+                    image.normal: "arrow.png";
+                }
+                description {
+                    state: "start" 0.0;
+                    inherit: "default" 0.0;
+                    rel1.relative: 0.535 0.803;
+                    rel2.relative: 0.535 0.802;
+                    rel2.offset: -1 27;
+                }
+                description {
+                    state: "hide" 0.0;
+                    inherit: "default" 0.0;
+                    color: 0 0 0 0;
+                }
+            }
+            part {
+                name: "source";
+                type: "IMAGE";
+                description {
+                    state: "default" 0.0;
+                    visible: 1;
+                    color: 255 255 255 255;
+                    rel1.relative: 0.176 0.625;
+                    rel2.relative: 0.321 0.80;
+                    image.normal: "source.png";
+                }
+                description {
+                    state: "start" 0.0;
+                    inherit: "default" 0.0;
+                    color: 0 0 0 0;
+                }
+                description {
+                    state: "hide" 0.0;
+                    inherit: "start" 0.0;
+                    //TODO: BUG if remove image.normal !
+                    image.normal: "source.png";
+                }
+            }
+            part {
+                name: "sm";
+                type: "IMAGE";
+                description {
+                    state: "default" 0.0;
+                    visible: 1;
+                    color: 255 255 255 255;
+                    rel1.relative: 0.551 0.625;
+                    rel2.relative: 0.773 0.80;
+                    image.normal: "smart_object.png";
+                }
+                description {
+                    state: "start" 0.0;
+                    inherit: "default" 0.0;
+                    color: 0 0 0 0;
+                }
+                description {
+                    state: "hide" 0.0;
+                    inherit: "start" 0.0;
+                    //TODO: BUG if remove image.normal !
+                    image.normal: "smart_object.png";
+                }
+            }
+        }
+        programs {
+             program {
+                    in: 0.1 0.0;
+                    signal: "show";
+                    after: "start";
+                }
+
+                program {
+                    name: "start";
+                    signal: "start";
+                    source: "demo";
+                    action: STATE_SET "start" 0.0;
+                    target: "arrow_source";
+                    target: "source";
+                    target: "arrow_sm";
+                    target: "sm";
+                    after: "next";
+                }
+                program {
+                    name: "next";
+                    action: STATE_SET "default" 0.0;
+                    target: "arrow_source";
+                    target: "source";
+                    transition: LINEAR 3.0;
+                    after: "next2";
+                }
+                program {
+                    name: "next2";
+                    action: STATE_SET "default" 0.0;
+                    target: "arrow_sm";
+                    target: "sm";
+                    transition: LINEAR 3.0;
+                    after: "next3";
+                }
+                program {
+                    name: "next3";
+                    transition: LINEAR 3.0;
+                    after: "next4";
+                }
+                program {
+                    name: "next4";
+                    action: STATE_SET "hide" 0.0;
+                    target: "arrow_source";
+                    target: "source";
+                    target: "arrow_sm";
+                    target: "sm";
+                    transition: LINEAR 2.0;
+                    after: "start";
+                }
+        }
+    }
+}
+
