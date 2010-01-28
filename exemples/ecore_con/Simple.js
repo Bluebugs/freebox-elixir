@@ -55,6 +55,8 @@ function _elixir_data(data, type, event)
    data.count += event.size;
    evas_object_text_text_set(down, data.count + " octets");
    evas_textblock_cursor_text_append(cursor, event.data);
+
+   return 0;
 }
 
 function idler_cb(data)
@@ -65,7 +67,7 @@ function idler_cb(data)
       data: ecore_event_handler_add(ECORE_CON_EVENT_SERVER_DATA, _elixir_data, self)
    };
 
-   server = ecore_con_server_connect(ECORE_CON_REMOTE_SYSTEM, "www.google.com", 80, self);
+   server = ecore_con_server_connect(ECORE_CON_REMOTE_TCP, "www.google.com", 80, self);
    if (!server)
      evas_object_text_text_set(state, "Unable to setup connexion !");
 
