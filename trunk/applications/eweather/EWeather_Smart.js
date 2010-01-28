@@ -527,7 +527,7 @@ function _smart_init()
     var sc =
     {
         name: "name",
-      version: 3,
+      version: 4,
       add: _smart_add,
       del: _smart_del,
       move: _smart_move,
