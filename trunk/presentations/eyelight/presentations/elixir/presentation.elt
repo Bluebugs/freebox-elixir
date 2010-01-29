@@ -1,0 +1,210 @@
+layout: "1_area";
+foot_text: "Élixir Dev Days 2010";
+foot_image: "";
+header_image: "./logoup_mini.png";
+transition: "fade_content";
+
+slide {
+	layout: "title";
+    title: "Élixir Dev Days 2010";
+	ignore_area: "header_image";
+	ignore_area: "bottom";
+	custom_area: "top" "0.0" "0.0" "1.0" "1.0";
+	custom_area: "right" "0.65" "0.744873" "0.994413" "0.968337";
+	custom_area: "left" "0.008377" "0.748571" "0.400840" "0.966451";
+	header_image: "";
+	foot_text: "";
+	area {
+		name: "top";
+		image {
+			image: "./logo_full.png";
+		}
+	}
+	area {
+		name: "left";
+		text: " Auteur: Christophe Massiot";
+	}
+	area {
+		name: "pages";
+	}
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Objectifs";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Formation théorique sur Élixir et ses composants :";
+            items
+            {
+                text: " Javascript + extensions";
+                text: " Enlightenment Foundation Libraries : Evas, Edje, etc.";
+            }
+            text: " Formation pratique (tutoriaux)";
+            text: " Assistance pour le démarrage d'un projet personnel";
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Prérequis";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Maîtrise des concepts de base de la programmation";
+            items
+            {
+                text: " Fonctions, boucles, conditions";
+            }
+            text: " Expérience en Javascript";
+            text: " Maîtrise des concepts réseau";
+            items
+            {
+                text: " TCP/IP, UDP";
+            }
+        }
+    }
+}
+
+slide
+{
+    layout: 2_columns;
+    title: "Emploi du temps";
+    subtitle: "Samedi 30 janvier 2010";
+
+    area
+    {
+        name: left;
+        text: "<l><b>10h10 - 10h45</b> <i>Showroom</i></l>";
+        text: "<l><b>10h45 - 12h00</b> <i>TP</i></l>";
+        text: "<l><b>12h00 - 13h00</b></l>";
+        text: "<l><b>13h00 - 15h00</b> <i>Showroom</i></l>";
+        text: "<l><b>15h00 - 16h00</b> <i>TP</i></l>";
+        text: "<l><b>16h00 - 17h00</b> <i>TP</i></l>";
+        text: "<l><b>17h00 - 18h00</b> <i>TP</i></l>";
+    }
+    area
+    {
+        name: right;
+        text: "Structure d'Élixir";
+        text: "Hello World en Élixir";
+        text: "Pause déjeuner";
+        text: "Présentation d'Edje";
+        text: "Tutorial Edje";
+        text: "Tutorial Smart Objects";
+        text: "Atelier projet personnel";
+    }
+}
+
+slide
+{
+    layout: 2_columns;
+    title: "Emploi du temps";
+    subtitle: "Dimanche 31 janvier 2010";
+
+    area
+    {
+        name: left;
+        text: "<b>09h30 - 10h00</b>";
+        text: "<b>10h00 - 11h00</b> <i>Showroom</i>";
+        text: "<b>11h00 - 12h00</b> <i>TP</i>";
+        text: "<b>12h00 - 13h00</b>";
+        text: "<b>13h00 - 17h30</b> <i>TP</i>";
+        text: "<b>17h30 - 18h30</b> <i>Showroom</i>";
+    }
+    area
+    {
+        name: right;
+        text: "Petit déjeuner";
+        text: "Présentation API réseau";
+        text: "Tutorial API réseau";
+        text: "Pause déjeuner";
+        text: "Atelier projet personnel";
+        text: "Conclusions et questions/réponses";
+    }
+}
+
+slide
+{
+    layout: 2_lines_bottom;
+    title: "Emploi du temps";
+    subtitle: "Samedi 30 janvier 2010";
+	custom_area : "super_bottom" "0.25" "0.8" "1.0" "1.0" ;
+
+    area
+    {
+        name: top;
+        items {
+            text: " <b>18h30</b> <i>La Cantine Numérique</i>";
+            items {
+                text: " Présentation du Free Store";
+                text: " Cocktail dinatoire";
+            }
+        }
+    }
+    area
+    {
+        name: bottom;
+        image {
+            image: "lacantine.png";
+            shadow: 1;
+            border: 1;
+        }
+    }
+    area
+    {
+        name : super_bottom;
+        text: "<c><small>151 rue Montmartre, Passage des Panoramas, 12 Galerie Montmartre</small></c>";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Méthodologie des tutoriaux";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Utilisation d'une VirtualBox Élixir-enabled :";
+            items
+            {
+                text: " <url>http://www.virtualbox.org/</url>";
+                text: " <url>ftp://ftp.free.fr/pub/elixir/Elixir_virtualbox.tar.gz</url>";
+            }
+            text: " Répartition dans les salles de réunion du 1er étage";
+            text: " Test sur Freebox à l'aide d'une clé USB";
+        }
+    }
+}
+slide
+{
+    layout: 1_area;
+    title: "Intervenants";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Jonathan Atton <i>E project</i>";
+            text: " Cédric Bail <i>Freebox</i>";
+            text: " Alexandre Jousset <i>Free</i>";
+            text: " Christophe Massiot <i>Freebox</i>";
+            text: " Vincent Torri <i>E project</i>";
+            text: " Chidambar 'ilLogict' Zinnoury <i>E project</i>";
+        }
+    }
+}
