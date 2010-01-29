@@ -1,7 +1,7 @@
 //edje_cc edje.edc
 images {
     image: "../../images/logo_full.png" COMP;
-    image: "../../images/logo.png" COMP;
+    image: "../images/logo.png" COMP;
     image: "../images/logo_e.png" COMP;
 }
 
@@ -218,7 +218,7 @@ collections {
                     visible: 1;
                     aspect : 1 1;
                     aspect_preference: HORIZONTAL;
-                    image.normal: "../../images/logo.png";
+                    image.normal: "../images/logo.png";
                 }
             }
         }
@@ -244,7 +244,7 @@ collections {
                     visible: 1;
                     aspect : 5 1;
                     aspect_preference: BOTH;
-                    image.normal: "../../images/logo.png";
+                    image.normal: "../images/logo.png";
                 }
             }
         }
@@ -259,7 +259,7 @@ collections {
                     state: "default" 0.0;
                     visible: 1;
                     color: 255 255 255 255;
-                    image.normal: "../../images/logo.png";
+                    image.normal: "../images/logo.png";
                 }
                 description {
                     state: "e" 0.0;
