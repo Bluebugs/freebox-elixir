@@ -1,0 +1,732 @@
+layout: "1_area";
+foot_text: "Élixir Dev Days 2010";
+foot_image: "";
+header_image: "./logoup_mini.png";
+transition: "fade_content";
+
+slide {
+	layout: "title";
+    title: "Structure d'Élixir";
+	ignore_area: "header_image";
+	ignore_area: "bottom";
+	custom_area: "top" "0.0" "0.0" "1.0" "1.0";
+	custom_area: "right" "0.65" "0.744873" "0.994413" "0.968337";
+	custom_area: "left" "0.008377" "0.748571" "0.400840" "0.966451";
+	header_image: "";
+	foot_text: "";
+	area {
+		name: "top";
+		image {
+			image: "./logo_full.png";
+		}
+	}
+	area {
+		name: "left";
+		text: " Auteur: Christophe Massiot";
+	}
+	area {
+		name: "pages";
+	}
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Relations entre les modules";
+	custom_area : "super_bottom" "0.07" "0.815" "0.93" "1.0" ;
+
+    area
+    {
+        name: center;
+        image
+        {
+            image: "structure.png";
+        }
+    }
+    area
+    {
+        name : super_bottom;
+        text: "<c>Élixir est un moteur Javascript offrant des <b>bindings</b> vers diverses bibliothèques</c>";
+    }
+}
+
+
+slide
+{
+    layout: 1_area;
+    title: "Javascript en 4 slides #1";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Langage de script procédural";
+            text: " Pas forcément lié à HTML/DOM";
+            text: " Les structures du langage sont identiques au C";
+            text: " Exécution linéaire des commandes de portée globale";
+            text: " Déclaration d'une fonction :";
+            code: "function my_function(var1, var2) {<br>  return var1 + var2;<br>}";
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Javascript en 4 slides #2";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Déclaration d'une variable :";
+            code: " var my_variable = &quot;eviv Bulgroz!&quot;;";
+            text: " Pas de typage explicite";
+            text: " Une variable peut contenir un objet :";
+            code: "var my_object = {pos: 12, size: 42};<br>my_fonction(my_object.pos, my_object.size);";
+            text: " Un objet peut pointer vers une fonction :";
+            code: "my_object.resize_func = my_function;<br>my_object.result = my_object.resize_func(12, 42);";
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Javascript en 4 slides #3";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Une variable peut contenir un tableau :";
+            code: "var my_array = [42, 12];<br>my_function(my_array[0], my_array[1]);";
+            text: " Un tableau est aussi un objet :";
+            code: "var i = my_array.length;";
+            text: " Condition :";
+            code: "if (my_function(1, 2) &lt; 3)<br>  my_language_is_broken();<br>else start_program();";
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Javascript en 4 slides #4";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Boucle de répétition :";
+            code: "for (i = 0; i &lt; my_array.length; i++) {<br>  if (my_array[i] == 12 || i &lt; 2) continue;<br>  if (my_array[i] == 42 &amp;&amp; i == 3) break;<br>  my_array[i] += 42;<br>}";
+            text: " Boucle conditionnelle :";
+            code: "while (i &gt; 0)<br>  i--;";
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Enlightenment Foundation Libraries";
+	custom_area: "left" "0.035" "0.3" "0.16" "0.7";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Assurent la couche graphique d'Élixir";
+            text: " Historique :";
+            items
+            {
+                text: " Enlightenment e16 (1999) : X11 Window Manager innovant";
+                text: " Approfondit le concept de <b>thèmes</b>";
+                text: " Les EFL constituent la base de e17 (bientôt en alpha)</b>";
+            }
+            text: " Bibliothèques graphiques utilisées par des applications normales";
+            text: " Bonne performance => exploitées par des projets embarqués";
+        }
+    }
+    area
+    {
+        name: left;
+        image
+        {
+            image: "Enlightenment_logo_gold.png";
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Le module Evas";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Fournit un <b>canvas stateful</b>";
+            text: " Assure le rendu graphique";
+            text: " Méthodes pour créer et manipuler des objets";
+            text: " API en C disponible quasi-identiquement dans Élixir";
+            text: " Documentation : <url>http://docs.enlightenment.org/api/evas/html/</url>";
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Evas : création d'un rectangle";
+    subtitle: "Mise en place de l'objet";
+
+    area
+    {
+        name: center;
+        code: "<outline>var rectangle = evas_object_rectangle_add(evas);
+evas_object_resize(rectangle, 250, 200);
+evas_object_move(rectangle, 450, 350);</outline>
+evas_object_color_set(rectangle, 128, 64, 0, 180);
+evas_object_show(rectangle);";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Evas : création d'un rectangle";
+    subtitle: " Rectangle coloré, semi-transparent";
+
+    area
+    {
+        name: center;
+        code: "var rectangle = evas_object_rectangle_add(evas);
+evas_object_resize(rectangle, 250, 200);
+evas_object_move(rectangle, 450, 350);
+<outline>evas_object_color_set(rectangle, 128, 64, 0, 180);</outline>
+evas_object_show(rectangle);";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Evas : création d'un rectangle";
+    subtitle: "Affichage de l'objet";
+	custom_area: "bottom" "0.7" "0.6" "0.9" "0.9";
+
+    area
+    {
+        name: center;
+        code: "var rectangle = evas_object_rectangle_add(evas);
+evas_object_resize(rectangle, 250, 200);
+evas_object_move(rectangle, 450, 350);
+evas_object_color_set(rectangle, 128, 64, 0, 180);
+<outline>evas_object_show(rectangle);</outline>";
+    }
+    area
+    {
+        name: "bottom";
+        image
+        {
+            image: "rectangle.png";
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Evas : événements clavier/télécommande";
+    subtitle: "Fonction d'interception des événements";
+
+    area
+    {
+        name: center;
+        code: "<outline>function key_up_cb(data, e, obj, event) {
+    switch (event.keyname) {
+        case &quot;Escape&quot;:
+            quit_stuff();
+            break;
+        case &quot;Start&quot;:
+            pause_stuff();
+            break;
+    }
+}</outline>
+
+evas_object_event_callback_add(bg, EVAS_CALLBACK_KEY_UP, key_up_cb, null);
+evas_object_focus_set(bg, 1);";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Evas : événements clavier/télécommande";
+    subtitle: " Mise en place sur l'objet de fond";
+
+    area
+    {
+        name: center;
+        code: "function key_up_cb(data, e, obj, event) {
+    switch (event.keyname) {
+        case &quot;Escape&quot;:
+            quit_stuff();
+            break;
+        case &quot;Start&quot;:
+            pause_stuff();
+            break;
+    }
+}
+
+<outline>evas_object_event_callback_add(bg, EVAS_CALLBACK_KEY_UP, key_up_cb, null);</outline>
+evas_object_focus_set(bg, 1);";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Evas : événements clavier/télécommande";
+    subtitle: " On passe le focus à l'object de fond";
+
+    area
+    {
+        name: center;
+        code: "function key_up_cb(data, e, obj, event) {
+    switch (event.keyname) {
+        case &quot;Escape&quot;:
+            quit_stuff();
+            break;
+        case &quot;Start&quot;:
+            pause_stuff();
+            break;
+    }
+}
+
+evas_object_event_callback_add(bg, EVAS_CALLBACK_KEY_UP, key_up_cb, null);
+<outline>evas_object_focus_set(bg, 1);</outline>";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Le module Ecore";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Gère la partie <b>événementielle</b> :";
+            items
+            {
+                text: " timers";
+                text: " réseau";
+            }
+            text: " API en C partiellement disponible dans Élixir";
+            text: " Documentation : <url>http://docs.enlightenment.org/api/ecore/html/</url>";
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Ecore : création d'un animator";
+    subtitle: "Définition de la fonction d'animation";
+
+    area
+    {
+        name: center;
+        code: "var x = 2, y = 2;
+<outline>function anim_cb(obj) {
+    evas_object_move(obj, x, y);
+    x += 2; y += 2;
+    return 1; /* ré-arme l'animator pour le prochain tick */
+}</outline>
+
+ecore_animator_frametime_set(1 / 20); /* 20 appels/s */
+ecore_animator_add(anim_cb, rectangle);
+ecore_main_loop_begin();";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Ecore : création d'un animator";
+    subtitle: "Définition de la fréquence de répétition";
+
+    area
+    {
+        name: center;
+        code: "var x = 2, y = 2;
+function anim_cb(obj) {
+    evas_object_move(obj, x, y);
+    x += 2; y += 2;
+    return 1; /* ré-arme l'animator pour le prochain tick */
+}
+
+<outline>ecore_animator_frametime_set(1 / 20); /* 20 appels/s */</outline>
+ecore_animator_add(anim_cb, rectangle);
+ecore_main_loop_begin();";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Ecore : création d'un animator";
+    subtitle: "Mise en place de l'animator";
+
+    area
+    {
+        name: center;
+        code: "var x = 2, y = 2;
+function anim_cb(obj) {
+    evas_object_move(obj, x, y);
+    x += 2; y += 2;
+    return 1; /* ré-arme l'animator pour le prochain tick */
+}
+
+ecore_animator_frametime_set(1 / 20); /* 20 appels/s */
+<outline>ecore_animator_add(anim_cb, rectangle);</outline>
+ecore_main_loop_begin();";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Ecore : création d'un animator";
+    subtitle: "Entrée dans la boucle principale Ecore";
+
+    area
+    {
+        name: center;
+        code: "var x = 2, y = 2;
+function anim_cb(obj) {
+    evas_object_move(obj, x, y);
+    x += 2; y += 2;
+    return 1; /* ré-arme l'animator pour le prochain tick */
+}
+
+ecore_animator_frametime_set(1 / 20); /* 20 appels/s */
+ecore_animator_add(anim_cb, rectangle);
+<outline>ecore_main_loop_begin();</outline>";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Ecore : création d'un idler";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Symétriquement, notion d'&quot;idler&quot;";
+            text: " Évite de bloquer le programme en cas d'initialisation longue";
+            text: " L'idler est exécuté au premier moment libre après l'animator";
+            code: "ecore_idler_add(init_sound, null);";
+            text: " La boucle principale ne s'arrête que lorsqu'une fonction appelle :";
+            code: "ecore_main_loop_quit();";
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Ecore-Evas : initialisation";
+    subtitle: "Chargement et initialisation des modules";
+
+    area
+    {
+        name: center;
+        code: "<outline>elx.load(&quot;evas&quot;);
+elx.load(&quot;ecore&quot;);
+elx.load(&quot;ecore-evas&quot;);
+ecore_init();
+ecore_evas_init();</outline>
+var ee = ecore_evas_new(null, 0, 0, 720, 576, &quot;name=Test;&quot;);
+var evas = ecore_evas_get(ee);
+evas_image_cache_set(evas, 10 * 1024 * 1024);
+evas_font_path_prepend(evas, FN);
+evas_font_cache_set(evas, 512 * 1024);
+var obj = evas_object_rectangle_add(evas);
+evas_object_resize(obj, 720, 576);
+evas_object_color_set(obj, 0, 0, 0, 255);
+evas_object_show(obj);
+var bg = obj;";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Ecore-Evas : initialisation";
+    subtitle: "Initialisation de l'écran";
+
+    area
+    {
+        name: center;
+        code: "elx.load(&quot;evas&quot;);
+elx.load(&quot;ecore&quot;);
+elx.load(&quot;ecore-evas&quot;);
+ecore_init();
+ecore_evas_init();
+<outline>var ee = ecore_evas_new(null, 0, 0, 720, 576, &quot;name=Test;&quot;);
+var evas = ecore_evas_get(ee);
+evas_image_cache_set(evas, 10 * 1024 * 1024);
+evas_font_path_prepend(evas, FN);
+evas_font_cache_set(evas, 512 * 1024);</outline>
+var obj = evas_object_rectangle_add(evas);
+evas_object_resize(obj, 720, 576);
+evas_object_color_set(obj, 0, 0, 0, 255);
+evas_object_show(obj);
+var bg = obj;";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Ecore-Evas : initialisation";
+    subtitle: "Création d'un rectangle opaque de fond";
+
+    area
+    {
+        name: center;
+        code: "elx.load(&quot;evas&quot;);
+elx.load(&quot;ecore&quot;);
+elx.load(&quot;ecore-evas&quot;);
+ecore_init();
+ecore_evas_init();
+var ee = ecore_evas_new(null, 0, 0, 720, 576, &quot;name=Test;&quot;);
+var evas = ecore_evas_get(ee);
+evas_image_cache_set(evas, 10 * 1024 * 1024);
+evas_font_path_prepend(evas, FN);
+evas_font_cache_set(evas, 512 * 1024);
+<outline>var obj = evas_object_rectangle_add(evas);
+evas_object_resize(obj, 720, 576);
+evas_object_color_set(obj, 0, 0, 0, 255);
+evas_object_show(obj);
+var bg = obj;</outline>";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Autres modules EFL";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Edje : définit les effets graphiques/animations";
+            items
+            {
+                text: " Permet de séparer l'interface de la programmation";
+                text: " API quasi-intégralement disponible dans Élixir";
+                text: " Documentation : <url>http://docs.enlightenment.org/api/edje/html/</url>";
+            }
+            text: " Eet : gère la sérialisation de données";
+            items
+            {
+                text: " Une partie est utilisée pour l'API réseau";
+                text: " Documentation : <url>http://docs.enlightenment.org/api/eet/html/</url>";
+            }
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Le module Mix : initialisation du son";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Implémente partiellement l'API de <b>SDL mixer</b> (sans effets)";
+            text: " Doc : <url>http://www.libsdl.org/projects/SDL_mixer/docs/index.html</url>";
+            text: " Initialisation :";
+            items
+            {
+                code: "elx.load(&quot;mix&quot;); Mix_OpenAudio(44100, 0x9010, 1, 512);";
+                text: " (44100 Hz, S16MSB, mono, 512/2 échantillons de latence)";
+                text: " Paramètres par défaut optimisés pour l'embarqué";
+            }
+            text: " Chargement d'un fichier (WAV, OGG/Vorbis) :";
+            code: "var my_wav = Mix_LoadWAV(&quot;sound.wav&quot;);";
+            text: " Rééquilibrer les volumes sonores (0-128) :";
+            code: "Mix_VolumeChunk(my_wav, 64);";
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Le module Mix : lecture";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Notions de <b>canaux</b> virtuels : permettent de jouer plusieurs effets<br> simultanément (jusqu'à 4)";
+            text: " Lecture/arrêt :";
+            items
+            {
+                code: "var my_channel = Mix_PlayChannel(-1, my_wav, 0);";
+                text: " -1 : 1er canal disponible";
+                text: " 0 : nombre de répétitions (ou -1 boucle infinie)";
+                code: "Mix_HaltChannel(my_channel);";
+            }
+            text: " Fondu au noir sur tous les canaux en 1 seconde :";
+            code: "Mix_FadeOutChannel(-1, 1000);";
+            text: " Pause :";
+            code: "Mix_Pause(-1); Mix_Resume(-1);";
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Le module SQLite";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Permet de stocker des données <b>localement</b> (ex : scores)";
+            text: " Documentation : <url>http://www.sqlite.org/docs.html</url>";
+            code: "elx.load(&quot;sqlite&quot;);
+db = sqlite3_open(&quot;Scores.db&quot;);
+requete = &quot;select score, name from scores order by score;&quot;;
+sqlite3_exec(db, requete, callback, callback_arg);
+sqlite3_close(db);";
+            text: " helper/score-helper.js exporte des fonctions pratiques :";
+            items
+            {
+                text: " save_highscore(score, name)";
+                text: " load_highscore()";
+                text: " encodage de caractères dangereux (attaques possibles)";
+            }
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Le module file";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Binding des fonctions fopen/fclose/fread/etc. de la libc";
+            text: " Documentation : manpages de GNU/Linux";
+            text: " Exemple :";
+            code: "elx.load(&quot;file&quot;);
+var fl = fopen(&quot;toto.txt&quot;);
+if (fl) {
+  while (!feof(fl)) {
+    var line = fgets(fl);
+    elx.print(&quot;Ligne :&quot;, line);
+  }
+  fclose(fl);
+}";
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "L'objet elx #1";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " L'objet interne <b>elx</b> exporte des méthodes utiles";
+            text: " Déboguage :";
+            code: "elx.print(&quot;La version d'Elixir est : &quot;, elx.version(), &quot;\n&quot;)";
+            text: " Pause dans l'exécution :";
+            code: "elx.sleep(5); /* secondes */<br>elx.usleep(3000); /* microsecondes */";
+            text: " Identifiants uniques :";
+            code: "my_js = elx.usid(); /* script en cours */<br>my_gc = elx.gcid(); /* tous les scripts depuis le démarrage d'Élixir */";
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "L'objet elx #2";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Gestion des bibliothèques :";
+            code: "if (!elx.load(&quot;evas&quot;))<br>  elx.print(&quot;Qui a volé Evas ?&quot;);<br>else elx.unload(&quot;evas&quot;);";
+            text: " Récupération de données dans un fichier externe :";
+            code: "my_level = elx.include(&quot;levels.edj&quot;, &quot;level12&quot;);<br>my_text = elx.parse(&quot;toto.txt&quot;);";
+            text: " Forcer l'exécution du Garbage Collector :";
+            code: "gc();";
+            text: " Changer le répertoire courant (CWD) :";
+            code: "chdir(&quot;/Disque dur/Jeux&quot;);";
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Tutorial Élixir";
+
+    area
+    {
+        name: center;
+        items
+        {
+            numbering: "roman";
+            text: " Ouverture d'une fenêtre graphique 720x576";
+            text: " Création d'un rectangle 250x200 légèrement transparent";
+            text: " Création d'un animator pour déplacer le rectangle à l'écran";
+            text: " Interception des touches du clavier pour quitter/pauser le programme";
+            text: " Ajout et gestion d'une musique de fond (via un idler)";
+        }
+    }
+}
+
+slide {
+	layout: "title";
+    title: "Au boulot !";
+}
