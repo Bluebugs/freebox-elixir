@@ -1,0 +1,606 @@
+layout: "1_area";
+foot_text: "Élixir Dev Days 2010 - Réseau";
+foot_image: "";
+header_image: "../images/logoup_mini.png";
+transition: "fade_content";
+
+
+slide {
+	layout: "title";
+    	title: "Élixir Dev Days 2010 - Réseau";
+	ignore_area: "header_image";
+	ignore_area: "bottom";
+	custom_area: "top" "0.0" "0.0" "1.0" "1.0";
+	custom_area: "right" "0.65" "0.744873" "0.994413" "0.968337";
+	custom_area: "left" "0.008377" "0.748571" "0.400840" "0.966451";
+	header_image: "";
+	foot_text: "";
+	area {
+		name: "top";
+		image {
+			image: "../images/logo_full.png";
+		}
+	}
+	area {
+		name: "left";
+		text: " Auteur: Cedric BAIL";
+	}
+	area {
+		name: "pages";
+	}
+}
+
+slide
+{
+	layout: 1_area;
+    	title: "Plan";
+
+    	area
+    	{
+		name: center;
+        	items
+        	{
+			text: " Présentation théorique des protocoles Réseaux";
+			text: " Charactéristique du réseau accessible au Freebox HD";
+			text: " Charactéristique d'Ecore_Con";
+			text: " Les Events dans Ecore";
+			text: " Client TCP";
+			text: " Serveur TCP";
+			text: " Client/serveur UDP";
+			text: " Characteristique d'Ecore_Con_Url";
+			text: " Exemple d'utilisation d'Ecore_Con_Url";
+			text: " Client HTTP";
+            		text: " What next ?";
+        	}
+    	}
+}
+
+slide
+{
+	layout: 1_area;
+    	title: "Protocoles Réseaux";
+
+    	area
+    	{
+		name: center;
+        	items
+        	{
+			text: " Transmettre des données d'une machine à une autre";
+			item
+			{
+				text: " texte";
+				text: " JSON";
+				text: " Eet_Data";
+			}
+			text: " Plusieurs modes :";
+			item
+			{
+				text: " Connecté - TCP";
+				text: " Paquet - UDP";
+				text: " Annonce - UDP Multicast";
+			}
+			text: " IPv4 => nat";
+			text: " IPv6 <small><url>http://www.ripe.net/ripe/meetings/ripe-58/content/presentations/ipv6-free.pdf</url></small>";
+        	}
+    	}
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Le réseau pour les Freebox HD";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " <strike>IPv4 => bridge ?</strike>";
+	    text: " IPv6";
+	    items
+	    {
+		text: " Sous-réseau specifique à l'abonnée";
+		text: " 2A01:0E3x:xxxx:xxxF:yyyy:yyyy:yyyy:yyyy";
+		text: " Une addresse par boitier HD";
+		text: " Traffic bidirectionnel";
+	    }
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Ecore_Con";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Assynchrone";
+	    text: " Plusieurs protocoles supportés:";
+            items
+            {
+                text: " TCP (+SSL)";
+                text: " UDP";
+		text: " HTTP (Ecore_Con_Url)";
+		text: " FTP (Ecore_Con_Url)";
+            }
+            text: " Build Freebox avec le backend C-Ares pour le DNS";
+	    text: " Support Client et Serveur";
+        }
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Ecore_Event";
+
+    area
+    {
+        name: center;
+        items
+        {
+            text: " Création de son propre type";
+	    code: "type = ecore_event_type_new();";
+	    text: " Broadcast d'événement";
+	    code: "Ecore_Event ecore_event_add(type, Event, free_cb(Event, data), data);";
+	    text: " Récuperer les événements";
+	    code: "Ecore_Event_Handler ecore_event_handler_add(type,<br>		event_cb(<outline>Data</outline>, type, Event), <outline>Data</outline>);";
+	    text: " Retour de <i>'event_cb'</i>";
+	    items
+	    {
+		text: "0 => Evenement peu être détruit";
+		text: "1 => Passer l'evenement aux autres handler";
+	    }
+        }
+    }
+}
+
+/* Client TCP */
+
+slide
+{
+    layout: 1_area;
+    title: "Client TCP";
+    subtitle: "Creation d'une connexion";
+
+    area
+    {
+        name: center;
+	text: "";
+	code: "function idler_cb(data)
+{
+   server = <outline>ecore_con_server_connect</outline>(<outline>ECORE_CON_REMOTE_TCP</outline>,<br>            &quot;www.google.com&quot;, 80, self);
+   if (!server)
+      elx.print(&quot;Unable to setup connexion !&quot;);
+
+   return 0;
+}";
+	text: "";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Client TCP";
+    subtitle: "Instantiation des handler";
+
+    area
+    {
+        name: center;
+	text: "";
+	code: "server_add_handler = ecore_event_handler_add(<br>            <outline>ECORE_CON_EVENT_SERVER_ADD</outline>,<br>            server_add,<br>            self);
+server_del_handler = ecore_event_handler_add(<br>            <outline>ECORE_CON_EVENT_SERVER_DEL</outline>,<br>            server_del,<br>            self);
+server_data_handler = ecore_event_handler_add(<br>            <outline>ECORE_CON_EVENT_SERVER_DATA</outline>,<br>            server_data,<br>            self);";
+	text: "";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Client TCP";
+    subtitle: "Etablissement de la connexion";
+
+    area
+    {
+        name: center;
+	code: "function server_add(data, type, event)
+{
+   var header;
+
+   if (event.<outline>server</outline> != server)
+     return 1;
+
+   header = &quot;GET http://www.google.com/ig/api?weather=Paris HTTP/1.1\r\n&quot;;
+   header += &quot;Host: www.google.com\r\n\r\n&quot;;
+
+   <outline>ecore_con_server_send</outline>(server, header);
+
+   elx.print(&quot;Sending header\n&quot;);
+
+   return 0;
+}
+";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Client TCP";
+    subtitle: "Réception des données";
+
+    area
+    {
+        name: center;
+	text: "";
+	code: "function server_data(data, type, event)
+{
+   if (event.<outline>server</outline> != server)
+     return 1;
+
+   data.count += event.<outline>size</outline>;
+   elx.print(&quot;Deja recu &quot; + data.count + &quot; octets\n&quot;);
+   elx.print(&quot;[&quot; + event.<outline>data</outline> + &quot;]\n&quot;);
+
+   return 0;
+}";
+	text: "";
+    }
+}
+
+/* Serveur TCP */
+
+slide
+{
+    layout: 1_area;
+    title: "Serveur TCP";
+    subtitle: "Instantiation des handler";
+
+    area
+    {
+        name: center;
+	text: "";
+	code: "client_add_handler = ecore_event_handler_add(<br>            <outline>ECORE_CON_EVENT_CLIENT_ADD</outline>,<br>            server_add,<br>            self);
+client_del_handler = ecore_event_handler_add(<br>            <outline>ECORE_CON_EVENT_CLIENT_DEL</outline>,<br>            server_del,<br>            self);
+client_data_handler = ecore_event_handler_add(<br>            <outline>ECORE_CON_EVENT_CLIENT_DATA</outline>,<br>            server_data,<br>            self);";
+	text: "";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Serveur TCP";
+    subtitle: "Nouvelle connexion";
+
+    area
+    {
+        name: center;
+	code: "function client_add(data, type, event)
+{
+   var tmp;
+
+   tmp = <outline>ecore_con_client_server_get</outline>(event.<outline>client</outline>);
+   if (tmp != server)
+       return 1;
+
+   elx.print(&quot;client &quot + <outline>ecore_con_client_ip_get</outline>(event.<outline>client</outline>) + &quot just connected\n&quot;);
+
+   <outline>ecore_con_client_send</outline>(event.client, &quot;you are: &quot; 
+                                 + <outline>ecore_con_client_ip_get</outline>(event.<outline>client</outline>) + &quot;\n&quot;);
+}
+";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Serveur TCP";
+    subtitle: "Réception des données";
+
+    area
+    {
+        name: center;
+	text: "";
+	code: "function client_data(data, type, event)
+{
+   var tmp;
+
+   tmp = <outline>ecore_con_client_server_get</outline>(event.<outline>client</outline>);
+   if (tmp != server)
+       return 1;
+
+   data.count += event.<outline>size</outline>;
+   elx.print(&quot;Deja recu &quot; + data.count + &quot; octets\n&quot;);
+   elx.print(&quot;[&quot; + event.<outline>data</outline> + &quot;]\n&quot;);
+
+   return 0;
+}";
+	text: "";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Serveur TCP";
+    subtitle: "Déconnexion d'un client";
+
+    area
+    {
+        name: center;
+	text: "";
+	code: "function client_del(data, type, event)
+{
+   var tmp;
+
+   tmp = <outline>ecore_con_client_server_get</outline>(event.<outline>client</outline>);
+   if (tmp != server)
+       return 1;
+
+   elx.print(&quot;client &quot + <outline>ecore_con_client_ip_get</outline>(event.<outline>client</outline>)
+             + &quot disconnected\n&quot;);
+
+   return 0;
+}";
+	text: "";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Serveur TCP";
+    subtitle: "Creation du serveur";
+
+    area
+    {
+        name: center;
+	text: "";
+	code: "function idler_cb(data)
+{
+   server = <outline>ecore_con_server_add</outline>(<outline>ECORE_CON_REMOTE_TCP</outline>, &quot;0::0&quot;, 42000, self);
+   if (!server)
+      elx.print(&quot;Unable to setup connexion !&quot;);
+
+   return 0;
+}";
+	text: "";
+    }
+}
+
+/* Client/serveur UDP */
+
+slide
+{
+    layout: 1_area;
+    title: "Ecore_Con";
+    subtitle: "UDP";
+
+    area
+    {
+        name: center;
+	items
+	{
+		text: " ECORE_CON_REMOTE_TCP => ECORE_CON_REMOTE_UCP";
+		text: " Plus d'évenement *_DEL";
+		text: " <outline>NE PAS OUBLIER DE GERER UN TIMEOUT SUR LA CONNEXTION !!!</outline>";
+		text: " Faire attention a la taille des données que vous envoyez";
+		text: " Attention vous pouvez perdre des paquets";
+	}
+    }
+}
+
+/* Ecore_Con_Url */
+
+slide
+{
+    layout: 1_area;
+    title: "Ecore_Con_Url";
+    subtitle: "Charactéristique";
+
+    area
+    {
+        name: center;
+	items
+	{
+		text: " Assynchrone !";
+		text: " Requête DNS non bloquante";
+		text: " HTTP/HTTPS";
+		text: " <outline>NE BLOQUERA PAS VOTRE AFFICHAGE GRAPHIQUE !!!</outline>";
+		text: " GET+POST";
+	}
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Client HTTP";
+    subtitle: "Creation d'une connexion";
+
+    area
+    {
+        name: center;
+	text: "";
+	code: "function idler_cb()
+{
+	<outline>ecore_con_url_init</outline>();
+	ecu = <outline>ecore_con_url_new</outline>(&quot;http://www.google.com/ig/api?weather=Paris&quot;);
+	<outline>ecore_con_url_send</outline>(ecu, null, null);
+
+	return 0;
+}";
+	text: "";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Client HTTP";
+    subtitle: "Instantiation des handler";
+
+    area
+    {
+        name: center;
+	text: "";
+	code: "handler_complete = ecore_event_handler_add(
+			<outline>ECORE_CON_EVENT_URL_COMPLETE</outline>,
+			complete_cb,
+			null);
+handler_data = ecore_event_handler_add(
+			<outline>ECORE_CON_EVENT_URL_DATA</outline>,
+			data_cb,
+			null);
+handler_complete = ecore_event_handler_add(
+			<outline>ECORE_CON_EVENT_URL_COMPLETE</outline>,
+			complete_cb,
+			null);";
+	text: "";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Client HTTP";
+    subtitle: "Transfert terminé/coupé";
+
+    area
+    {
+        name: center;
+	code: "function complete_cb(Data, type, Event)
+{
+	if (Event.<outline>url_con</outline> != ecu) {
+		elx.print(&quot;Not our own connection\n&quot;);
+		return 1;
+	}
+
+	if (Event.<outline>status</outline> != 200) {
+		elx.print(&quot;Something goes wrong !\n&quot;);
+	} else {
+		elx.print(&quot;It works !\n&quot;);
+	}
+
+	return 0;
+}";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Client HTTP";
+    subtitle: "Réception des données";
+
+    area
+    {
+        name: center;
+	text: "";
+	code: "function data_cb(Data, type, Event)
+{
+	if (Event.<outline>url_con</outline> != ecu) {
+		elx.print(&quot;Not our own connection&quot;);
+		return 1;
+	}
+
+	elx.print(&quot;We received &quot; + Event.<outline>size</outline> + &quot; data.\n&quot;);
+	elx.print(&quot;[&quot;, Event.<outline>data</outline>, &quot;]\n&quot;);
+
+	return 0;
+}";
+	text: "";
+    }
+}
+
+slide
+{
+    layout: 1_area;
+    title: "Client HTTP";
+    subtitle: "Progression du téléchargement";
+
+    area
+    {
+	name: center;
+	text: "";
+	code: "function progress_cb(Data, type, Event)
+{
+	if (Event.<outline>url_con</outline> != ecu) {
+		elx.print(&quot;Not our own connection\n&quot;);
+		return 1;
+	}
+
+	elx.print(&quot;Download &quot;, Event.<outline>down.now</outline>, &quot; / &quot;, Event.<outline>down.total</outline>, &quot; Bytes\n&quot;);
+	elx.print(&quot;Upload &quot;, Event.<outline>up.now</outline>, &quot; / &quot;, Event.<outline>down.total</outline>, &quot; Bytes\n&quot;);
+
+	return 0;
+}";
+	text: "";
+    }
+}
+
+/* What next ? */
+slide
+{
+    layout: 1_area;
+    title: "What next ?";
+    subtitle: "Qu'y a-t'il encore à découvrir ?";
+
+    area
+    {
+        name: center;
+	items
+	{
+		text: " Eet_Data => Sérialisation";
+		items
+		{
+			text: " Efficace coté serveur en C";
+			text: " A benchmarker entre Freebox";
+			text: " <outline>eet_data_encode</outline>, <outline>eet_data_decode</outline>";
+		}
+		text: " explicit => Téléchargement de ressource graphique";
+		items
+		{
+			text: " <outline>explicit_callback_add</outline>(Evas_Object, Type, Func, Data);";
+			text: " <outline>explicit_request_url(Evas_Object, Url, Key);";
+		}
+	}
+   }
+}
+
+slide {
+    layout: "title";
+    title: "Des questions !";
+}
+
+slide
+{
+    layout: 1_area;
+    title: "What next ?";
+    subtitle: "Qu'y a-t'il encore à découvrir ?";
+
+    area
+    {
+        name: center;
+	items
+	{
+		text: " Serveur TCP qui vous repond quelle est votre adresse IP.";
+		text: " Client TCP qui se connecte a un serveur TCP pour apprendre son adresse.";
+		text: " Client Ecore_Con TCP qui se connecte à Google Weather pour obtenir la météo.";
+		text: " Client Ecore_Con_Url qui se connecte à Google Weather pour obtenir la météo.";
+	}
+    }
+}
+
+slide {
+	layout: "title";
+    title: "Au boulot !";
+}
