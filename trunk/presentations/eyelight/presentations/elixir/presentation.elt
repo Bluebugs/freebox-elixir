@@ -199,12 +199,12 @@ slide
         name: center;
         items
         {
-            text: " Jonathan Atton <i>E project</i>";
-            text: " Cédric Bail <i>Freebox</i>";
-            text: " Alexandre Jousset <i>Free</i>";
-            text: " Christophe Massiot <i>Freebox</i>";
-            text: " Vincent Torri <i>E project</i>";
-            text: " Chidambar 'ilLogict' Zinnoury <i>E project</i>";
+            text: " <b>Jonathan Atton</b> <i>E project</i>";
+            text: " <b>Cédric Bail</b> <i>Freebox</i>";
+            text: " <b>Alexandre Jousset</b> <i>Free</i>";
+            text: " <b>Christophe Massiot</b> <i>Freebox</i>";
+            text: " <b>Vincent Torri</b> <i>E project</i>";
+            text: " <b>Chidambar Zinnoury</b> <i>E project</i>";
         }
     }
 }
