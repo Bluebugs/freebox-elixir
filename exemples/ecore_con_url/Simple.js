@@ -19,6 +19,8 @@ function url_complete_cb(data, type, event)
 
    message = "Complete '" + ecore_con_url_data_get(event.url_con) + "' with status: " + event.status;
    evas_object_text_text_set(state, message);
+
+   return 0;
 }
 
 function url_data_cb(data, type, event)
@@ -26,6 +28,8 @@ function url_data_cb(data, type, event)
    evas_object_text_text_set(state, event.size + " data for '" + ecore_con_url_data_get(event.url_con) + "'\n");
    // As we will get html with markup, we can feed it in the markup stuff (this will display garbage, but who cares ?)
    evas_textblock_cursor_text_append(cursor, event.data);
+
+   return 0;
 }
 
 function url_progress_cb(data, type, event)
@@ -33,11 +37,13 @@ function url_progress_cb(data, type, event)
    evas_object_text_text_set(down, event.down.now + "/" + event.down.total);
    evas_object_text_text_set(up, event.up.now + "/" + event.up.total);
    evas_object_text_text_set(state, "Progress for '" + ecore_con_url_data_get(event.url_con) + "'");
+
+   return 0;
 }
 
 function idler_cb(data)
 {
-   azer = ecore_con_url_new("http://portail.free.fr");
+   azer = ecore_con_url_new("http://www.google.com/");
    ecore_con_url_data_set(azer, "azer");
    ecore_con_url_send(azer, null, null);
 
