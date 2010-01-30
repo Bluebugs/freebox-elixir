@@ -21,13 +21,8 @@ slide {
 		}
 	}
 	area {
-		name : "left" ;
-		text : " Author: Cedric Bail" ;
-		text : " ............." ;
-	}
-	area {
 		name : "right" ;
-		text : " Author: Atton Jonathan, alias Watchwolf" ;
+		text : " Author: Atton Jonathan" ;
 		text : " ............." ;
 	}
 }
@@ -128,7 +123,7 @@ slide {
 				text : " Couleur : RGBA." ;
 				text : " Visibilité : 0 ou 1." ;
 			}
-			text : " Les programmes permettent de passer d'un état à l'autre." ;
+			text : " Les programmes permettent de passer<br> d'un état à l'autre." ;
 		}
 	}
 	area {
@@ -171,7 +166,7 @@ slide {
 	area {
 		name : "left" ;
 		items {
-			text : " Un objet <b>Edje</b> est une liste d'objets." ;
+			text : " Un <b>Edje</b> est une liste d'objets" ;
 			text : " Un objet = un bloc <b>part</b>." ;
 			text : " L'ordre est important." ;
 			text : " Le premier objet est 'derrière'." ;
@@ -215,7 +210,7 @@ slide {
 		name : "left" ;
 		items {
 			text : " La propriété <b>relative</b>" ;
-			text : " Positionnement relatif et non absolue" ;
+			text : " Positionnement relatif<br> et non absolue" ;
 			text : " rel1 -> coin haut gauche" ;
 			text : " rel2 -> coin bas droit" ;
 			text : " La propriété <b>to</b>" ;
@@ -246,7 +241,7 @@ slide {
 		items {
 			text : " Modifier l'état d'un objet." ;
 			text : " Durée de l'action." ;
-			text : " Interpolation de la position, taille, couleur, opacité ..." ;
+			text : " Interpolation de la position,<br> taille, couleur, opacité ..." ;
 			text : " <b>Le résultat est une animation." ;
 		}
 	}
@@ -307,7 +302,7 @@ slide {
 		items {
 			text : " Permet d'afficher un rectangle." ;
 			text : " <b>color</b> - la couleur (RGBA)" ;
-			text : " La taille est définit par <b>(Rel1, Rel2)." ;
+			text : " La taille est définit par <b>Rel1, Rel2</b>" ;
 		}
 	}
 	area {
@@ -327,8 +322,8 @@ slide {
 			text : " <b>normal</b> - lien de l'image" ;
 			text : " Comment redimensionner :" ;
 			items {
-				text : " <b>aspect" ;
-				text : " <b>aspect_preference" ;
+				text : " <b>aspect</b>" ;
+				text : " <b>aspect_preference</b>" ;
 			}
 		}
 	}
@@ -345,13 +340,13 @@ slide {
 		items {
 			text : " Image 1 :" ;
 			items {
-				text : " aspect : 1 1;" ;
-				text : " aspect_preference : HORIZONTAL;" ;
+				text : " aspect: 1 1;" ;
+				text : " aspect_preference:<br> <outline>HORIZONTAL</outline>;" ;
 			}
 			text : " Image 2 :" ;
 			items {
-				text : " aspect : 5 1;" ;
-				text : " aspect_preference : BOTH;" ;
+				text : " aspect: 5 1;" ;
+				text : " aspect_preference: <outline>BOTH</outline>;" ;
 			}
 		}
 	}
@@ -378,8 +373,8 @@ slide {
 	area {
 		name : "left" ;
 		items {
-			text : " Un texte uni." ;
-			text : " Même effet sur tous les caractères." ;
+			text : " Un texte uni" ;
+			text : " Même effet sur tous les<br> caractères" ;
 			items {
 				text : " <b>Texte." ;
 				text : " <b>Police." ;
@@ -507,7 +502,7 @@ slide {
 		name : "text" ;
 		items {
 			text : " Astuce : Utiliser un clipper." ;
-			text : " L'état du clipper est transmis à l'élément." ;
+			text : " L'état du clipper est<br> transmis à l'élément." ;
 		}
 	}
 	custom_area : "text" "0.052737" "0.62" "0.480463" "0.812491" ;
@@ -525,7 +520,7 @@ slide {
 		}
 		text : "" ;
 		items {
-			text : " <b>Et certaines reste encore à écrire (vidéo)." ;
+			text : " <b>Et certaines reste encore<br> à écrire (vidéo).</b>" ;
 		}
 	}
 	area {
@@ -544,7 +539,7 @@ slide {
 		name : "left" ;
 		items {
 			text : " C'est dans Evas et non Edje." ;
-			text : " Comment <outline>positionner</outline> ? <outline>Redimensionner</outline> un objet ?." ;
+			text : " Comment <outline>positionner</outline> ?<br> <outline>Redimensionner</outline> un objet ?." ;
 			text : " Position : align, weight." ;
 			text : " Taille : min, max." ;
 		}
@@ -560,14 +555,8 @@ slide {
 
 
 slide {
-	layout : "1_area" ;
-	title : " Et pour finir" ;
+	layout : "title" ;
+	title : " Des questions" ;
 	subtitle : " Plus de temps gnark gnark !" ;
-	area {
-		name : "center" ;
-                text : "";
-		text : " <outline><c>Des questions ?" ;
-                text : "";
-	}
 }
 

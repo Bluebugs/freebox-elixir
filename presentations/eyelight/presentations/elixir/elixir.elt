@@ -33,7 +33,7 @@ slide
 {
     layout: 1_area;
     title: "Relations entre les modules";
-	custom_area : "super_bottom" "0.07" "0.815" "0.93" "1.0" ;
+	custom_area : "super_bottom" "0.07" "0.815" "0.93" "0.9" ;
 
     area
     {
@@ -191,11 +191,13 @@ slide
     area
     {
         name: center;
+	text: "";
         code: "<outline>var rectangle = evas_object_rectangle_add(evas);
 evas_object_resize(rectangle, 250, 200);
 evas_object_move(rectangle, 450, 350);</outline>
 evas_object_color_set(rectangle, 128, 64, 0, 180);
 evas_object_show(rectangle);";
+	text: "";
     }
 }
 
@@ -208,11 +210,13 @@ slide
     area
     {
         name: center;
+	text: "";
         code: "var rectangle = evas_object_rectangle_add(evas);
 evas_object_resize(rectangle, 250, 200);
 evas_object_move(rectangle, 450, 350);
 <outline>evas_object_color_set(rectangle, 128, 64, 0, 180);</outline>
 evas_object_show(rectangle);";
+	text: "";
     }
 }
 
@@ -226,11 +230,13 @@ slide
     area
     {
         name: center;
+	text: "";
         code: "var rectangle = evas_object_rectangle_add(evas);
 evas_object_resize(rectangle, 250, 200);
 evas_object_move(rectangle, 450, 350);
 evas_object_color_set(rectangle, 128, 64, 0, 180);
 <outline>evas_object_show(rectangle);</outline>";
+	text: "";
     }
     area
     {
@@ -245,12 +251,13 @@ evas_object_color_set(rectangle, 128, 64, 0, 180);
 slide
 {
     layout: 1_area;
-    title: "Evas : événements clavier/télécommande";
-    subtitle: "Fonction d'interception des événements";
+    title: "Evas : clavier/télécommande";
+    subtitle: "Interception des événements";
 
     area
     {
         name: center;
+	text: "";
         code: "<outline>function key_up_cb(data, e, obj, event) {
     switch (event.keyname) {
         case &quot;Escape&quot;:
@@ -264,18 +271,20 @@ slide
 
 evas_object_event_callback_add(bg, EVAS_CALLBACK_KEY_UP, key_up_cb, null);
 evas_object_focus_set(bg, 1);";
+	text: "";
     }
 }
 
 slide
 {
     layout: 1_area;
-    title: "Evas : événements clavier/télécommande";
+    title: "Evas : clavier/télécommande";
     subtitle: " Mise en place sur l'objet de fond";
 
     area
     {
         name: center;
+	text: "";
         code: "function key_up_cb(data, e, obj, event) {
     switch (event.keyname) {
         case &quot;Escape&quot;:
@@ -289,18 +298,20 @@ slide
 
 <outline>evas_object_event_callback_add(bg, EVAS_CALLBACK_KEY_UP, key_up_cb, null);</outline>
 evas_object_focus_set(bg, 1);";
+	text: "";
     }
 }
 
 slide
 {
     layout: 1_area;
-    title: "Evas : événements clavier/télécommande";
+    title: "Evas : clavier/télécommande";
     subtitle: " On passe le focus à l'object de fond";
 
     area
     {
         name: center;
+	text: "";
         code: "function key_up_cb(data, e, obj, event) {
     switch (event.keyname) {
         case &quot;Escape&quot;:
@@ -314,6 +325,7 @@ slide
 
 evas_object_event_callback_add(bg, EVAS_CALLBACK_KEY_UP, key_up_cb, null);
 <outline>evas_object_focus_set(bg, 1);</outline>";
+	text: "";
     }
 }
 
@@ -343,11 +355,12 @@ slide
 {
     layout: 1_area;
     title: "Ecore : création d'un animator";
-    subtitle: "Définition de la fonction d'animation";
+    subtitle: "Fonction d'animation";
 
     area
     {
         name: center;
+	text: "";
         code: "var x = 2, y = 2;
 <outline>function anim_cb(obj) {
     evas_object_move(obj, x, y);
@@ -358,6 +371,7 @@ slide
 ecore_animator_frametime_set(1 / 20); /* 20 appels/s */
 ecore_animator_add(anim_cb, rectangle);
 ecore_main_loop_begin();";
+	text: "";
     }
 }
 
@@ -365,11 +379,12 @@ slide
 {
     layout: 1_area;
     title: "Ecore : création d'un animator";
-    subtitle: "Définition de la fréquence de répétition";
+    subtitle: "Fréquence de répétition";
 
     area
     {
         name: center;
+	text: "";
         code: "var x = 2, y = 2;
 function anim_cb(obj) {
     evas_object_move(obj, x, y);
@@ -380,6 +395,7 @@ function anim_cb(obj) {
 <outline>ecore_animator_frametime_set(1 / 20); /* 20 appels/s */</outline>
 ecore_animator_add(anim_cb, rectangle);
 ecore_main_loop_begin();";
+	text: "";
     }
 }
 
@@ -392,6 +408,7 @@ slide
     area
     {
         name: center;
+	text: "";
         code: "var x = 2, y = 2;
 function anim_cb(obj) {
     evas_object_move(obj, x, y);
@@ -402,6 +419,7 @@ function anim_cb(obj) {
 ecore_animator_frametime_set(1 / 20); /* 20 appels/s */
 <outline>ecore_animator_add(anim_cb, rectangle);</outline>
 ecore_main_loop_begin();";
+	text: "";
     }
 }
 
@@ -414,6 +432,7 @@ slide
     area
     {
         name: center;
+	text: "";
         code: "var x = 2, y = 2;
 function anim_cb(obj) {
     evas_object_move(obj, x, y);
@@ -424,6 +443,7 @@ function anim_cb(obj) {
 ecore_animator_frametime_set(1 / 20); /* 20 appels/s */
 ecore_animator_add(anim_cb, rectangle);
 <outline>ecore_main_loop_begin();</outline>";
+	text: "";
     }
 }
 
@@ -451,7 +471,7 @@ slide
 {
     layout: 1_area;
     title: "Ecore-Evas : initialisation";
-    subtitle: "Chargement et initialisation des modules";
+    subtitle: "Chargement et initialisation";
 
     area
     {
@@ -505,7 +525,7 @@ slide
 {
     layout: 1_area;
     title: "Ecore-Evas : initialisation";
-    subtitle: "Création d'un rectangle opaque de fond";
+    subtitle: "Création du fond opaque";
 
     area
     {
@@ -621,16 +641,14 @@ slide
         {
             text: " Permet de stocker des données <b>localement</b> (ex : scores)";
             text: " Documentation : <url>http://www.sqlite.org/docs.html</url>";
-            code: "elx.load(&quot;sqlite&quot;);
-db = sqlite3_open(&quot;Scores.db&quot;);
-requete = &quot;select score, name from scores order by score;&quot;;
-sqlite3_exec(db, requete, callback, callback_arg);
-sqlite3_close(db);";
+            code: "elx.load(&quot;sqlite&quot;); db = <outline>sqlite3_open</outline>(&quot;Scores.db&quot;);
+requete = &quot;SELECT score, name FROM scores ORDER BY score;&quot;;
+<outline>sqlite3_exec</outline>(db, requete, callback, callback_arg);
+<outline>sqlite3_close</outline>(db);";
             text: " helper/score-helper.js exporte des fonctions pratiques :";
             items
             {
-                text: " save_highscore(score, name)";
-                text: " load_highscore()";
+                text: " save_highscore(score, name), load_highscore()";
                 text: " encodage de caractères dangereux (attaques possibles)";
             }
         }
@@ -647,17 +665,15 @@ slide
         name: center;
         items
         {
-            text: " Binding des fonctions fopen/fclose/fread/etc. de la libc";
-            text: " Documentation : manpages de GNU/Linux";
-            text: " Exemple :";
+            text: " Binding des fonctions fopen/fclose/fread/etc. de la libc (manpages)";
             code: "elx.load(&quot;file&quot;);
-var fl = fopen(&quot;toto.txt&quot;);
+var fl = <outline>fopen</outline>(&quot;toto.txt&quot;);
 if (fl) {
-  while (!feof(fl)) {
-    var line = fgets(fl);
+  while (!<outline>feof</outline>(fl)) {
+    var line = <outline>fgets</outline>(fl);
     elx.print(&quot;Ligne :&quot;, line);
   }
-  fclose(fl);
+  <outline>fclose</outline>(fl);
 }";
         }
     }
