@@ -2,7 +2,7 @@
 
 = Introduction =
 
-Dans EFL, l'API evas permet d'afficher des éléments graphiques à l'écran. Cauldron propose une classe Javascript pour encapsuler ces objets :
+Dans EFL, l'API evas permet d'afficher des éléments graphiques à l'écran. [Cauldron] propose une classe Javascript pour encapsuler ces objets :
 
   * rectangle : [TRectangle]
   * zone de texte simple : [TText]
