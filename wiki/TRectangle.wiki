@@ -1,0 +1,21 @@
+#summary objet rectangle de Cauldron
+
+= Introduction =
+
+TRectangle est une surface rectangulaire affichée par Elixir
+
+= Objet TRectangle =
+
+Cet objet n'a pas de propriété particulières, mais il hérite de toutes les propriétés et méthodes de son ancêtre [TEvasObject].
+
+
+= Details =
+
+TRectangle est un [TEvasObject] dont le *handle* est obtenu par un appel à *evas_object_rectangle_add*
+
+{{{
+function TRectangle(x, y, w, h, color, alpha) {
+  this.init(evas_object_rectangle_add(screen.canvas), x, y, w, h, color, alpha);
+}
+TRectangle.prototype = new TEvasObject;
+}}}
