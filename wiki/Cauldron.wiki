@@ -4,8 +4,37 @@
 
 Ce wiki présent les classes Javascript qui composent le framework Cauldron.
 
-
 = Details =
 
-Documentation à venir...
-pour l'instant ça se passe [http://lookinside.free.fr/produits.php?Cauldron Cauldron]
+Cauldron ne remplace pas le binding EFL de Elixir, bien au contraire il l'exploite. Cependant, en ajoutant le script Cauldron.js à vos projets Elixir, vous pouvez programmer sur votre Freebox sans rien connaitre de EFL.
+
+Inversement, si vous connaissez l'API EFL, Cauldron vous laisse la possibilité de l'utiliser en publiant les informations dont vous aurez besoin.
+
+= Installation =
+
+Cauldron se présente sous la forme d'un unique script Javascript [http://lookinside.free.fr/zip/Cauldron.js Cauldron.js].
+
+(_Il sera sur la SVN dès que j'aurais compris son usage :)_)
+
+= Architecture =
+
+Pour utiliser Cauldron, il suffit d'ajouter une ligne dans votre script :
+{{{
+elx.include('Cauldron.js');
+}}}
+
+le script crée automatiquement la variable global screen de type [TScreen] et prépare les prototype des objets suivants :
+  * [TRectangle]
+  * [TText]
+  * [TTextBlock]
+  * [TAnimator]
+  * [TMixer]
+  * [TClientSocket]
+
+en interne Cauldron utilise également les prototypes suivants :
+  * [TEvasObject]
+  * [TServerHandler]
+
+= Liens externes =
+
+La page initiale de Cauldron [http://lookinside.free.fr/produits.php?Cauldron Cauldron]
