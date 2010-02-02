@@ -110,14 +110,30 @@ TTextBlock.prototype = new TEvasObject;
  * Création d'un animateur
  *
  */
-function TAnimator(target, rate) {
-  ecore_animator_frametime_set(rate);
-  this.target = target;
-  this.handle = ecore_animator_add(this.handler, target);
+function TAnimator() {
+  this.status = 0;
 }
-TAnimator.prototype.handler = function(target) {
-  if (target.onChange) target.onChange();
-  return 1;
+TAnimator.prototype = {
+  start : function() {
+    if (this.status == 0) {
+      this.status = 1;
+      this.handle = ecore_animator_add(this.handler, this);
+    }
+  },
+  stop : function() {
+    if (this.status == 1) {
+      ecore_animator_del(this.handle);
+      this.status = 0;
+      this.handle = 0;
+    }
+  },
+  handler : function(self) {
+    if (self.onChange) self.onChange();
+    return self.status;
+  },
+  setSpeed : function(rate) {
+    ecore_animator_frametime_set(rate);
+  }
 }
 
 /**
