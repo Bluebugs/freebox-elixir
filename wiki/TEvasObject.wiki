@@ -1,0 +1,84 @@
+#summary objet de base des éléments visuel de Cauldron
+
+= Introduction =
+
+Dans EFL, l'API evas permet d'afficher des éléments graphiques à l'écran. Cauldron propose une classe Javascript pour encapsuler ces objets :
+
+  * rectangle : [TRectangle]
+  * zone de texte simple : [TText]
+  * zone de texte riche : [TTextBlock]
+
+TEvasObject est un ancêtre commun à tous ces objets, il n'a pas vocation à être utilisé directement dans vos scripts Elixir, mais toutes ses propriétés sont utilisables dans les objets qui en descendent.
+
+= Objet TEvasObject =
+
+== Propriétés ==
+
+  * *handle* : objet evas créé par l'API evas
+  * *x* : position horizontale de l'objet en pixels
+  * *y*  : position verticale de l'objet en pixels
+  * *width*  : largeur de l'objet en pixels
+  * *height* : hauteur de l'objet en pixels
+
+Les objets Cauldron sont positionnés en coordonnées absolues en pixel à l'écran.
+Evas ne gérant pas de notion de hiérarchie d'objets, il n'existe pas de relation parent/enfant entre les différents objets Cauldron, l'ordre d'affichage des objets est simplement celui de leur création.
+
+== Méthodes ==
+
+  * *move(x, y)* : place l'objet à la position indiquée en pixels
+  * *setColor(color, alpha)* : défini la couleur RGB de l'objet et son canal alpha (optionel)
+  * *setVisibility(visible)* : affiche ou cache l'objet à l'écran
+
+== Evènements ==
+
+_pas d'évènements_
+
+= Details =
+
+L'objet TEvasObject possède une méthode supplémentaire *init()* qui permet à ses descendant de l'initialiser.
+
+{{{
+TEvasObject.prototype.init = function(handle, x, y, w, h, color, alpha) {
+  this.handle = handle;
+  this.move(x, y);
+  this.width = w;
+  this.height = h;
+  evas_object_resize(this.handle, w, h);
+  this.setColor(color, alpha);
+  this.setVisibility(true);  
+}
+}}}
+
+Contrairement à l'API evas, TEvasObject utilise une couleur au format RGB (0xRRGGBB)
+
+{{{
+TEvasObject.prototype.setColor = function(rgb, alpha) {
+  var r = (rgb >> 16) & 255;
+  var g = (rgb >> 8) & 255;
+  var b =  rgb & 255;
+  var a = alpha || 255;
+  evas_object_color_set(this.handle, r, g, b, a);   
+}
+}}}
+
+L'objet TEvasObject conserve une copie Javascript de sa position, il n'utilise donc pas la fonction *evas_object_geometry_get()*
+
+{{{
+TEvasObject.prototype.move = function(x, y) {
+  this.x = x;
+  this.y = y;
+  evas_object_move(this.handle, x, y);
+}
+}}}
+
+La visibilité est directement gérée par Evas.
+
+{{{
+TEvasObject.setVisibility = function(visible) {
+  if (visible)  {
+    evas_object_show(this.handle);
+  } else {
+    evas_object_hide(this.handle);
+  }
+}
+}}}
