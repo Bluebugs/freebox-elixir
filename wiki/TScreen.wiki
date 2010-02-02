@@ -1,0 +1,97 @@
+#summary objet TScreen de [Cauldron]
+
+= Introduction =
+
+le script Cauldron.js crée automatiquement la variable de portée global screen.
+Celle-ci se charge de créer l'environnement evas minimum pour exécuter votre application Elixir.
+
+= objet screen:TScreen =
+
+== Propriétés ==
+
+  * *handle*     : objet evas retourné par *ecore_evas_new()*
+  * *canvas*     : objet evas retourné par *ecore_evas_get(handle)*
+  * *width*      : largeur de l'écran, 720 pixels
+  * *height*     : hauteur de l'écran, 576 pixels
+  * *background* : objet [TRectangle] qui occupe le fond de l'écran
+
+== Méthodes ==
+
+  * *main()* : fonction qui lance la boucle de traitement principale de l'application.
+  * *quit()* : permet d'interrompre la boucle principale et mettre fin à l'application.
+
+== Evènements ==
+
+  * onKeyup(event) : méthode invoquée lorsqu'on utilise la télécommande de la Freebox
+
+NB: vous devez définir la méthode *screen.onKeyup()* avant d'appeler *main()*
+
+{{{
+// chargement de Cauldron
+ elx.include('Cauldron.js');
+// définition de l'évènement onKeyup
+ screen.onKeyup = function (event) {
+ // pour n'importe quelle touche, quitter la boucle main()
+  screen.quit();
+ }
+// lancement de l'application
+ screen.main();
+// fin de l'application
+}}}
+
+= Details =
+
+L'objet screen se charge d'effectuer les tâches classique d'initialisation de l'écran.
+
+{{{
+/**
+ *  initialisation de l'objet global Screen
+ */ 
+function TScreen() {
+  elx.load("evas");
+  elx.load("ecore");
+  elx.load("ecore-evas");
+  ecore_init();
+  ecore_evas_init();
+  this.handle = ecore_evas_new(null, 0, 0, this.width, this.height, '');  
+  this.canvas = ecore_evas_get(this.handle);
+  evas_image_cache_set(this.canvas, 10 * 1024 * 1024);
+  evas_font_path_prepend(this.canvas, '/.fonts/');
+  evas_font_cache_set(this.canvas, 512 * 1024);
+  ecore_evas_show(this.handle);
+}
+}}}
+
+La fonction *main()* vérifie la présence de la méthode *onKeyup()* pour capturer les évènements clavier avant de lancer la boucle principale.
+
+{{{
+TScreen.prototype.main = function() {
+  if (this.onKeyup) {
+    evas_object_event_callback_add(
+      this.background.handle, EVAS_CALLBACK_KEY_UP, 
+      function(self, e, obj, event){
+        self.onKeyup(event);
+      }, 
+      this
+    )
+  }
+  ecore_main_loop_begin();
+}
+}}}
+
+La fonction *quit()* invoque l'API EFL pour mettre fin à la boucle de traitement.
+
+{{{
+TScreen.prototype.quit = function() {
+  ecore_main_loop_quit();
+}
+}}}
+
+L'objet *screen* et son *background* sont créés directement dans le script Cauldron.
+L'objet *background* reçoit automatiquement le *focus*. 
+
+{{{
+var screen = new TScreen();
+screen.background = new TRectangle(0, 0, 720, 576);
+evas_object_focus_set(screen.background.handle, 1);
+}}}
