@@ -1,0 +1,88 @@
+#summary Objet Animator de Cauldron
+
+= Introduction =
+
+L'objet TAnimator permet de gérer des animations dans une scène Cauldron.
+
+Attention: c'est objet a été modifié depuis la toute première release de Cauldron.
+Dorénavant la variable *Cauldron* donnera la version de la bibliothèque.
+
+= Objet TAnimator (version 0.1) =
+
+== Propriétés ==
+
+  * *status* : usage interne (valeur retournée à la fonction callback de l'animator)
+  * *handle* : objet evas retournée par *ecore_animator_add()*
+
+== Méthodes ==
+
+  * *start()* : lance l'animation qui invoquera l'évènement *onChange()*
+  * *stop()* : arrête l'animation
+  * *setSpeed(rate)* : défini la fréquence de l'animation par *ecore_animator_frametime_set()*
+  * *handler()* : usage interne (méthode qui invoque *onChange()*)
+
+== Evènements ==
+
+  * *onChange()* : évènement appelé périodiquement pendant l'animation
+
+= Utilisation de TAnimator =
+
+Voici un exemple trivial d'animation d'un [TRectangle]
+
+{{{
+elx.include('Cauldron.js');
+
+var obj = new TRectangle(50, 50, 250, 200, 0x804000);
+
+var anim = new TAnimator();
+anim.onChange = function() {
+  var x = obj.x + anim.dx;
+  var y = obj.y + anim.dy;
+
+  if (x + obj.width > screen.width || x < 0)
+  {
+	  anim.dx = - anim.dx;
+ 	  x += 2 * anim.dx;
+  }
+
+  if (y + obj.height > screen.height || y < 0)
+  {
+	  anim.dy = - anim.dy;
+	  y += 2 * anim.dy;
+  }
+
+  obj.move(x, y);
+}
+anim.setSpeed(1/20);
+anim.dx = 20;
+anim.dy = 10;
+anim.start();
+
+screen.onKeyup = function(event) {
+  switch (event.keyname)
+  {
+    case "a":
+    case "Stop":
+      anim.stop();
+    break;
+    case "s":
+    case "Start":
+      anim.start();
+    break;
+    case "b":
+    case "Red":
+    case "equal":
+    case "Home":
+    case "Escape":
+	    screen.quit();
+	   break;
+  }
+}
+
+screen.main();
+
+}}}
+
+= Details =
+
+L'API EvasAnimator ne me semble pas limpide...j'ai regroupé ici dans un objet ce qui me semble être un ensemble cohérent...peut-être à revoir.
