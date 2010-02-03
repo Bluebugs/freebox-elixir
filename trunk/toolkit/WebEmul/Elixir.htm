@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html>
+<head>
+<title>Elixir Web Emulator (c)2010 by Paul TOTH</title>
+<script type="text/javascript" src="evas.js"></script>
+<script type="text/javascript" src="ecore.js"></script>
+<script type="text/javascript" src="ecore-evas.js"></script>
+<style type="text/css">
+#freebox {
+  position: absolute; 
+  top     : 10px; 
+  left    : 10px; 
+  width   : 720px; 
+  height  : 576px; 
+  border  : 1px solid gray; 
+  overflow: hidden; 
+  margin  : 0px;
+  padding : 0px;
+  background-color: black;
+}
+#console {
+  position: absolute; 
+  top     : 10px; 
+  left    : 735px; 
+  right   : 10px; 
+  height  : 576px; 
+  border  : 1px solid gray; 
+  overflow: auto;
+  padding : 2px;
+  margin  : 0px;
+}
+</style>
+</head>
+<body>
+<div id="freebox"></div>
+<pre id="console"></pre>
+<script type="text/javascript">
+
+const VERBOSE = false;
+
+function hexa(i) {
+  const hx = '0123456789abcdef';
+  return hx.charAt((i >> 4) & 15) + hx.charAt(i & 15);
+}
+
+var scripts  = new Array();
+
+function addScript(fileName) {
+  if (scripts.indexOf(fileName) >= 0)
+    return;
+  scripts.push(fileName);
+  var script = document.createElement('SCRIPT');
+  script.src = fileName;
+  var head = document.getElementsByTagName('HEAD')[0];
+  head.insertBefore(script, head.children[0]);    
+}
+
+var elx = {
+  version : function() {
+    return '"Elixir Web Emulator"'
+  },
+  print : function(msg) {
+    document.getElementById('console').innerHTML += msg;
+  },
+  load : function(module) {
+    if (VERBOSE) elx.print("loading : " + module + "\n");
+    //addScript(module + '.js');
+  },
+  include: function(file) {
+    if (VERBOSE) elx.print("include : " + file + "\n");
+    addScript(file); // cela ne fonctionne pas car le script est parsé après coup :(
+  },
+}
+
+elx.include('Cauldron.js');  // nécessaire AVANT l'include du reste :(
+//elx.include('rectangles.js');
+elx.include('animator.js');
+</script>
+</body>
+</html>
