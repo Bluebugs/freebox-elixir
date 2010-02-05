@@ -2,10 +2,16 @@
  *  Cauldron  (Elixir facile), (c)2010 Paul TOTH, tothpaul@free.fr
  *  A l'occasion des elixir's dev days du 30 janvier 2010 
  */
-
-const Cauldron = '0.1';
+ 
+const Cauldron = '0.1.1';
  
 elx.print("Rock n Roll " + elx.version() + "\n");
+
+function dump(obj) {
+  elx.print("dump of " + obj + "\n");
+  for (prop in obj)
+    elx.print(prop + " = " + obj[prop] + "\n");
+}
 
 /**
  *  initialisation de l'objet global Screen
@@ -54,14 +60,16 @@ function TEvasObject() {
 }
 
 TEvasObject.prototype = { 
-  init : function(handle, x, y, w, h, color, alpha) {
+  init : function(handle, x, y, color, alpha) {
     this.handle = handle;
     this.move(x, y);
-    this.width = w;
-    this.height = h;
-    evas_object_resize(this.handle, w, h);
     this.setColor(color, alpha);
     this.setVisibility(true);  
+  },
+  setSize : function(width, height) {
+    this.width = width;
+    this.height = height;
+    evas_object_resize(this.handle, width, height);
   },
   setColor : function(rgb, alpha) {
     var r = (rgb >> 16) & 255;
@@ -87,24 +95,63 @@ TEvasObject.prototype = {
 /**
  *  Création d'un rectangle
  *
- *  @param  x, y : position
- *  @param  w, h : dimensions
- *  @param  r, g, b, a : couleur
+ *  @param  x, y  : position
+ *  @param  w, h  : dimensions
+ *  @param  color : couleur
+ *  @param  alpha : transparence
  */
 function TRectangle(x, y, w, h, color, alpha) {
-  this.init(evas_object_rectangle_add(screen.canvas), x, y, w, h, color, alpha);
+  this.init(evas_object_rectangle_add(screen.canvas), x, y, color, alpha);
+  this.setSize(w, h);
 }
 TRectangle.prototype = new TEvasObject;
 
-function TText(text, x, y, w, h, color, alpha) {
-  this.init(evas_object_text_add(screen.canvas), x, y, w, h, color, alpha);
-  evas_object_text_text_set(this.handle, text);
-  evas_object_text_font_set(this.handle, 'Vera', 22);
+
+/**
+ *  Création d'un texte simple
+ *
+ *@param  text  : texte
+ *@param  x, y  : position
+ *@param  color : couleur du texte
+ *@param  alpha : transparence
+ */
+function TText(text, x, y, color, font, size) {
+  this.init(evas_object_text_add(screen.canvas), x, y, color);
+  this.setFont(font, size);
+  this.setText(text);
 }
 TText.prototype = new TEvasObject;
+TText.prototype.setFont = function(name, size) {
+  evas_object_text_font_set(this.handle, name, size);
+}
+TText.prototype.setText = function(text) {
+  evas_object_text_text_set(this.handle, text);
+  var geom = evas_object_geometry_get(this.handle);
+  this.width = geom.w;
+  this.height = geom.h;
+}
+TText.prototype.setStyle = function(style, color, alpha) {
+  var r = (color >> 16) & 255;
+  var g = (color >> 8) & 255;
+  var b =  color & 255;
+  var a = alpha || 255;
+  eval('evas_object_text_' + style +  '_color_set(this.handle, r, g, b, a)');
+  evas_object_text_style_set(this.handle, eval('EVAS_TEXT_STYLE_' + style.toUpperCase()));
+}
 
+/**
+ * Texte riche
+ *
+ *@param  x
+ *@param  y
+ *@param  w
+ *@param  h
+ *@param  color
+ *@param  alpha
+ */
 function TTextBlock(x, y, w, h, color, alpha) {
-  this.init(evas_object_textblock_add(screen.canvas), x, y, w, h, color, alpha);
+  this.init(evas_object_textblock_add(screen.canvas), x, y, color, alpha);
+  this.setSize(w, h);
 }
 TTextBlock.prototype = new TEvasObject;
 
