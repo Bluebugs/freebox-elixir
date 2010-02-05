@@ -28,6 +28,7 @@ Evas ne gérant pas de notion de hiérarchie d'objets, il n'existe pas de relati
   * *move(x, y)* : place l'objet à la position indiquée en pixels
   * *setColor(color, alpha)* : défini la couleur RGB de l'objet et son canal alpha (optionel)
   * *setVisibility(visible)* : affiche ou cache l'objet à l'écran
+  * *setSize(width, height)* : fixe la taille de l'objet
 
 == Evènements ==
 
@@ -38,14 +39,20 @@ _pas d'évènements_
 L'objet TEvasObject possède une méthode supplémentaire *init()* qui permet à ses descendant de l'initialiser.
 
 {{{
-TEvasObject.prototype.init = function(handle, x, y, w, h, color, alpha) {
+TEvasObject.prototype.init = function(handle, x, y, color, alpha) {
   this.handle = handle;
   this.move(x, y);
-  this.width = w;
-  this.height = h;
-  evas_object_resize(this.handle, w, h);
   this.setColor(color, alpha);
   this.setVisibility(true);  
+}
+}}}
+
+Méthode ajoutée dans la version 0.1.1
+{{{
+TEvasObject.setSize = function(width, height) {
+  this.width = width;
+  this.height = height;
+  evas_object_resize(this.handle, width, height);
 }
 }}}
 
