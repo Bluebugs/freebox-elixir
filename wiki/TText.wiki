@@ -1,0 +1,105 @@
+#summary Zone de texte simple pour Cauldron
+
+= Introduction =
+
+*TText* permet d'afficher un texte à l'écran
+
+= Objet TText (version 0.1.1) =
+
+Cet objet hérite de toutes les propriétés et méthodes de son ancêtre [TEvasObject].
+
+NB: il me semble que l'alpha n'est pas pris en compte
+
+== Propriétés ==
+
+  * *width* : largeur du texte en pixels
+  * *height* : hauteur du texte en pixels
+
+== Méthodes ==
+
+  * *setFont(name, size)* : choix de la police et de sa taille
+  * *setText(text)* : choix du texte (met à jour *width* et *height*) 
+  * *setStyle(style, color, alpha)* : choix du style de rendu du texte
+
+le style peux prendre les valeurs suivantes :
+  * 'shadow'
+  * 'glow'
+  * 'outline'
+
+== Evénements ==
+
+_aucun évènement_
+
+= Créer un texte =
+
+{{{
+elx.include('Cauldron.js');
+
+var hello = new TText('Hello World !', 10, 10, 0xFFFFFF);
+
+screen.onKeyup = function(event) { screen.quit() }
+screen.main(); 
+}}}
+
+= Details =
+
+Evas propose beaucoup de méthodes autour de l'objet texte, elles ne sont pas toutes reprises dans [Cauldron] afin de garder un système simple.
+
+Au départ, on crée simplement le *handle* pour l'ancètre [TEvasObject] et on fixe le texte
+{{{
+function TText(text, x, y, color, font, size) {
+  this.init(evas_object_text_add(screen.canvas), x, y, color);
+  this.setFont(font, size);
+  this.setText(text);
+}
+}}}
+
+Notez que la méthode *setText* calcule automatiquement les dimensions de l'objet car celui-ci s'adapte à la taille du texte.
+{{{
+TText.prototype.setFont = function(name, size) {
+  evas_object_text_font_set(this.handle, name, size);
+}
+TText.prototype.setText = function(text) {
+  evas_object_text_text_set(this.handle, text);
+  var geom = evas_object_geometry_get(this.handle);
+  this.width = geom.w;
+  this.height = geom.h;
+}
+}}}
+
+Pour la gestion du style, je passe par une ruse qui rend le code plus compact mais ne permet pas d'obtenir tous les effets d'evas
+{{{
+TText.prototype.setStyle = function(style, color, alpha) {
+  var r = (color >> 16) & 255;
+  var g = (color >> 8) & 255;
+  var b =  color & 255;
+  var a = alpha || 255;
+  eval('evas_object_text_' + style +  '_color_set(this.handle, r, g, b, a)');
+  evas_object_text_style_set(this.handle, eval('EVAS_TEXT_STYLE_' + style.toUpperCase()));
+}
+}}}
+
+Au besoin, vous pouvez cependant appeler directement l'API evas sur la propriété *handle* de l'objet.
+{{{
+  // choix du style 'shadow'
+  text.setStyle('shadow', 0xFF0000);
+  // passage en mode 'far shadow' (non supporté par setStyle)
+  evas_object_text_style_set(text.handle, EVAS_TEXT_STYLE_FAR_SHADOW); 
+}}}
+
+Pour info, voici les styles disponibles 
+{{{
+  typedef enum _Evas_Text_Style_Type
+     {
+	EVAS_TEXT_STYLE_PLAIN,
+	EVAS_TEXT_STYLE_SHADOW,
+	EVAS_TEXT_STYLE_OUTLINE,
+	EVAS_TEXT_STYLE_SOFT_OUTLINE,
+	EVAS_TEXT_STYLE_GLOW,
+	EVAS_TEXT_STYLE_OUTLINE_SHADOW,
+	EVAS_TEXT_STYLE_FAR_SHADOW,
+	EVAS_TEXT_STYLE_OUTLINE_SOFT_SHADOW,
+	EVAS_TEXT_STYLE_SOFT_SHADOW,
+	EVAS_TEXT_STYLE_FAR_SOFT_SHADOW
+     } Evas_Text_Style_Type;
+}}}
