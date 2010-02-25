@@ -12,9 +12,7 @@ Inversement, si vous connaissez l'API EFL, Cauldron vous laisse la possibilité 
 
 = Installation =
 
-Cauldron se présente sous la forme d'un unique script Javascript [http://lookinside.free.fr/zip/Cauldron.js Cauldron.js].
-
-(_Il sera sur la SVN dès que j'aurais compris son usage :)_)
+Cauldron se présente sous la forme d'un unique script Javascript [http://code.google.com/p/freebox-elixir/source/browse/trunk/toolkit/Cauldron/Cauldron.js Cauldron.js].
 
 = Architecture =
 
