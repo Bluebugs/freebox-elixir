@@ -1,0 +1,97 @@
+#summary object socket de Cauldron
+
+= Introduction =
+
+TClientSocket permet à Elixir de se connecter à un serveur IP en TCP ou UDP
+
+
+= Objet TSocketClient =
+
+== Propriétés ==
+
+  * *handle* : objet serveur *ecore_con*
+
+== Méthodes ==
+
+  * *connect(proto, server, port)* : connexion à un serveur
+  * *send(data)* : envoie de données au serveur
+  * *close()* : fermeture de la connexion
+
+les valeurs possibles de proto sont
+  * ECORE_CON_REMOTE_TCP : pour établir une connexion TCP
+  * ECORE_CON_REMOTE_UDP : pour établir une connexion UDP
+
+NB: en UDP il n'y a pas réellement de connexion, dans ce cas *connect* sert simplement à définir le serveur et *close* à libérer l'objet.
+
+== Evènements ==
+
+  * *onConnect(event)* : se produit (en TCP) lorsque la connexion est établie
+  * *onDisconnect(event)* : se produit (en TCP) lorsque la connexion est fermée
+  * *onData(event)* : se produit (en TCP et UDP) lors de la réception de données
+
+= Création un socket =
+{{{
+elx.include('Cauldron.js');
+
+// création de l'objet
+var socket = new TClientSocket();
+
+// définition des fonctions de traitement (avant le connect !)
+socket.onConnect = function(event) {
+  elx.print('connexion établie\n');
+  socket.send('Hello !\r\n');
+}
+
+socket.onDisconnect = function(event) {
+  elx.print('connexion fermée\n');
+}
+
+socket.onData = function(event) {
+  // réception données
+  elx.print(event.data);
+}
+
+socket.connect(ECORE_CON_REMOTE_TCP, 'www.google.com', 80);
+
+screen.onKeyup = function(event) { screen.quit() }
+screen.main();
+}}}
+
+Cet exemple envoie une requête invalide à *www.google.com* qui nous répond très justement *HTTP/1.0 400 Bad Request*.
+
+Vous trouverez un exemple de socket UDP sur le svn : [http://code.google.com/p/freebox-elixir/source/browse/trunk/toolkit/Cauldron/stun.js stun.js]
+
+= Détails =
+
+L'objet TSocketClient allège fortement l'usage des sockets de *ecore_con*.
+
+A la création du premier objet socket un objet [TServerHandler] est créé automatiquement pour gérer les fonctions callback de *ecore_con*.
+{{{
+function TClientSocket() {
+  if (!screen.server_handler)
+    screen.server_handler = new TServerHandler();
+}
+}}}
+
+La fonction *connect* fait appel à la function *ecore_con_server_connect* et ajoute l'objet TSocketClient au gestionnaire d'évènement *screen.server_handler*
+{{{
+TClientSocket.prototype.connect = function(proto, host, port) {
+  this.handle = ecore_con_server_connect(proto, host, port, screen.server_handler)
+  screen.server_handler.servers.push(this);
+}
+}}}
+
+La fonction *close* est l'opération inverse. Notez que c'est le gestionnaire d'évènement qui fermera la connexion.
+{{{
+TClientSocket.prototype.close = function() {
+  var index = screen.server_handler.servers.indexOf(this);
+  screen.server_handler.servers.splice(index, 1);
+}
+}}}
+
+La fonction *send* donne simplement les données à *ecore_con*
+{{{
+TClientSocket.prototype.send = function(data) {
+  ecore_con_server_send(this.handle, data);
+}
+}}}
