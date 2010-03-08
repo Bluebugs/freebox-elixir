@@ -3,7 +3,7 @@
  *  A l'occasion des elixir's dev days du 30 janvier 2010 
  */
  
-const Cauldron = '0.1.1';
+const Cauldron = '0.1.2';
  
 elx.print("Rock n Roll " + elx.version() + "\n");
 
@@ -22,7 +22,7 @@ function TScreen() {
   elx.load("ecore-evas");
   ecore_init();
   ecore_evas_init();
-  this.handle = ecore_evas_new(null, 0, 0, this.width, this.height, '');  
+  this.handle = ecore_evas_new(null, 0, 0, this.width, this.height, 'Cauldron');  
   this.canvas = ecore_evas_get(this.handle);
   evas_image_cache_set(this.canvas, 10 * 1024 * 1024);
   evas_font_path_prepend(this.canvas, '/.fonts/');
@@ -34,6 +34,15 @@ TScreen.prototype = {
   width : 720,
   height: 576,
   main  : function() {
+    if (this.onKeydown) {
+      evas_object_event_callback_add(
+        this.background.handle, EVAS_CALLBACK_KEY_DOWN, 
+        function(self, e, obj, event){
+          self.onKeydown(event);
+        }, 
+        this
+      )
+    }
     if (this.onKeyup) {
       evas_object_event_callback_add(
         this.background.handle, EVAS_CALLBACK_KEY_UP, 
@@ -78,6 +87,9 @@ TEvasObject.prototype = {
     var a = alpha || 255;
     evas_object_color_set(this.handle, r, g, b, a);   
   },
+  setDepth : function(index) {
+    evas_object_layer_set(this.handle, index);
+  },
   move : function(x, y) {
     this.x = x;
     this.y = y;
@@ -89,6 +101,12 @@ TEvasObject.prototype = {
     } else {
       evas_object_hide(this.handle);
     }
+  },
+  clipTo : function(target) {
+    evas_object_clip_set(this.handle, target.handle);
+  },
+  release : function() {
+    evas_object_del(this.handle);
   }
 }
 
@@ -106,6 +124,28 @@ function TRectangle(x, y, w, h, color, alpha) {
 }
 TRectangle.prototype = new TEvasObject;
 
+
+/**
+ * Chargement d'une image depuis un eet ou directement un fichier
+ *
+ *@param  x, y : position
+ *@param  file : eet ou fichier image
+ *@param  key  : clé du fichier eet
+ */
+function TImage(x, y, file, key) {
+  this.init(evas_object_image_add(screen.canvas), x, y, 0xFFFFFF);
+  if (file) this.load(file, key);
+}
+TImage.prototype = new TEvasObject;
+TImage.prototype.load = function(file, key) {
+  evas_object_image_file_set(this.handle, file, key || null);
+  var size = evas_object_image_size_get(this.handle);
+  this.setSize(size.w, size.h);
+  this.stretch(0, 0, size.w, size.h);
+}
+TImage.prototype.stretch = function(x, y, width, height) {
+  evas_object_image_fill_set(this.handle, x, y, width, height);
+}
 
 /**
  *  Création d'un texte simple
@@ -142,12 +182,8 @@ TText.prototype.setStyle = function(style, color, alpha) {
 /**
  * Texte riche
  *
- *@param  x
- *@param  y
- *@param  w
- *@param  h
- *@param  color
- *@param  alpha
+ *@param  x, y, w, h   : position et dimensions
+ *@param  color, alpha : couleur et alpha
  */
 function TTextBlock(x, y, w, h, color, alpha) {
   this.init(evas_object_textblock_add(screen.canvas), x, y, color, alpha);
