@@ -7,10 +7,11 @@ Dans EFL, l'API evas permet d'afficher des éléments graphiques à l'écran. [C
   * rectangle : [TRectangle]
   * zone de texte simple : [TText]
   * zone de texte riche : [TTextBlock]
+  * image : [TImage]
 
 TEvasObject est un ancêtre commun à tous ces objets, il n'a pas vocation à être utilisé directement dans vos scripts Elixir, mais toutes ses propriétés sont utilisables dans les objets qui en descendent.
 
-= Objet TEvasObject =
+= Objet TEvasObject (version 0.1.2) =
 
 == Propriétés ==
 
@@ -29,6 +30,9 @@ Evas ne gérant pas de notion de hiérarchie d'objets, il n'existe pas de relati
   * *setColor(color, alpha)* : défini la couleur RGB de l'objet et son canal alpha (optionel)
   * *setVisibility(visible)* : affiche ou cache l'objet à l'écran
   * *setSize(width, height)* : fixe la taille de l'objet
+  * *setDepth(index)* : fixe la position de l'objet dans le canvas (comme un z-Index HTML)
+  * *clipTo(target)* : l'objet sera dessiné "à travers" l'objet target 
+  * *release()* : destruction de l'objet
 
 == Evènements ==
 
@@ -87,5 +91,26 @@ TEvasObject.setVisibility = function(visible) {
   } else {
     evas_object_hide(this.handle);
   }
+}
+}}}
+
+L'ordre d'affichage par défaut est l'ordre de création des objets, mais vous changer l'ordre d'affichage d'un objet avec la méthode setDepth()
+{{{
+TEvasObject.prototype.setDepth = function(index) {
+  evas_object_layer_set(this.handle, index);
+}
+}}}
+
+Une notion assez particulière d'evas est le clipping, avec la méthode clipTo(), le rendu d'un objet est fait à travers un autre...ce qui implique que les effets de l'objet target sont appliqués à l'objet clippé !
+{{{
+TEvasObject.prototype.clipTo(target) {
+  evas_object_clip_set(this.handle, target.handle);
+}
+}}}
+
+Il est possible de demander à Cauldron de détruire l'objet evas associé avec la méthode release()
+{{{
+TEvasObject.prototpye.release = function() {
+  evas_object_del(this.handle); 
 }
 }}}
