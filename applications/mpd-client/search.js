@@ -292,7 +292,10 @@ function sl_on_key_down (data, e, obj, ev) {
 	    sl_display_message(basename + " ajouté");
 	} else {
 	    var query = edje_object_part_text_get(sl_edj_o, "query").replace(/_+$/, '');
-	    mpc_search(server_o, query);
+            if (!query.length)
+              mpc_search(server_o, "\"\"");
+            else
+	      mpc_search(server_o, query);
 	}
 	break;
     case "KP1":
@@ -315,8 +318,28 @@ function sl_on_key_down (data, e, obj, ev) {
     case "9":
     case "KP0":
     case "0":
+    case "KP_Insert":
+    case "agrave":
+    case "KP_End":
+    case "ampersand":
+    case "KP_Down":
+    case "eacute":
+    case "KP_Next":
+    case "quotedbl":
+    case "KP_Left":
+    case "apostrophe":
+    case "KP_Begin":
+    case "parenleft":
+    case "KP_Right":
+    case "minus":
+    case "KP_Home":
+    case "egrave":
+    case "KP_Up":
+    case "underscore":
+    case "KP_Prior":
+    case "ccedilla":
 	if (sl_editing == 10) {
-	    sl_set_letter(ev.keyname);
+	    sl_set_letter(translate(ev.keyname));
 	    break;
 	}
     case "BackSpace":
