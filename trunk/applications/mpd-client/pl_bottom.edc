@@ -6,7 +6,7 @@
         description {
           state: "default" 0.0;
           visible: 0;
-          color: 255 255 255 0;
+          color: 0 0 0 0;
           rel1 {
             relative: 0.1 0.9;
             offset: -30 -25;
@@ -488,7 +488,7 @@
           text {
             font: "Vera";
             size: 15;
-            text: "Rech.";
+            text: "Fichiers";
           }
         }
         description {
