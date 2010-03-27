@@ -1,0 +1,579 @@
+  group {
+    name: "main";
+    min: 360 288;
+    max: 720 576;
+    parts {
+      part {
+        name: "screen";
+        mouse_events: 0;
+        type: RECT;
+        description {
+          state: "default" 0.0;
+          visible: 1;
+          color: 255 255 255 255;
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          visible: 1;
+        }
+      }
+      part {
+        name: "background";
+        type: IMAGE;
+        mouse_events: 0;
+        clip_to: "screen";
+        description {
+          state: "default" 0.0;
+          image {
+            normal: "background.jpg";
+            border: 0 0 0 0;
+          }
+          visible: 0;
+          color: 255 255 255 0;
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+      }
+      part {
+        name: "play";
+        type: IMAGE;
+        mouse_events: 1;
+        clip_to: "screen";
+        description {
+          state: "default" 0.0;
+          rel1 {
+            relative: 0.0 1.0;
+            offset: 60 -100;
+            to: "background";
+          }
+          rel2 {
+            relative: 0.0 1.0;
+            offset: 100 -60;
+            to: "background";
+          }
+          image {
+            normal: "stop.png";
+          }
+          visible: 0;
+          color: 255 255 255 0;
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+        description {
+          state: "playing" 0.0;
+          inherit: "visible" 0.0;
+          image {
+            normal: "play.png";
+          }
+        }
+        description {
+          state: "paused" 0.0;
+          inherit: "visible" 0.0;
+          image {
+            normal: "pause.png";
+          }
+        }
+        description {
+          state: "stopped" 0.0;
+          inherit: "visible" 0.0;
+          image {
+            normal: "stop.png";
+          }
+        }
+      }
+      part {
+        name: "repeat";
+        type: IMAGE;
+        mouse_events: 1;
+        clip_to: "screen";
+        description {
+          state: "default" 0.0;
+          rel1 {
+            relative: 0.6 1.0;
+            offset: -124 -104;
+            to: "background";
+          }
+          rel2 {
+            relative: 0.6 1.0;
+            offset: -60 -60;
+            to: "background";
+          }
+          image {
+            normal: "repeat.png";
+          }
+          visible: 0;
+          color: 255 255 255 0;
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+        description {
+          state: "once" 0.0;
+          inherit: "visible" 0.0;
+          image {
+            normal: "repeat.png";
+          }
+        }
+        description {
+          state: "repeat" 0.0;
+          inherit: "visible" 0.0;
+          image {
+            normal: "repeatp.png";
+          }
+        }
+      }
+      part {
+        name: "random";
+        type: IMAGE;
+        mouse_events: 1;
+        clip_to: "screen";
+        description {
+          state: "default" 0.0;
+          rel1 {
+            relative: 0.8 1.0;
+            offset: -124 -104;
+            to: "background";
+          }
+          rel2 {
+            relative: 0.8 1.0;
+            offset: -60 -60;
+            to: "background";
+          }
+          image {
+            normal: "random.png";
+          }
+          visible: 0;
+          color: 255 255 255 0;
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+        description {
+          state: "random" 0.0;
+          inherit: "visible" 0.0;
+          image {
+            normal: "randomp.png";
+          }
+        }
+        description {
+          state: "linear" 0.0;
+          inherit: "visible" 0.0;
+          image {
+            normal: "random.png";
+          }
+        }
+      }
+      part {
+        name: "list";
+        type: IMAGE;
+        mouse_events: 1;
+        clip_to: "screen";
+        description {
+          state: "default" 0.0;
+          rel1 {
+            relative: 1.0 1.0;
+            offset: -124 -104;
+            to: "background";
+          }
+          rel2 {
+            relative: 1.0 1.0;
+            offset: -60 -60;
+            to: "background";
+          }
+          image {
+            normal: "list.png";
+          }
+          visible: 0;
+          color: 255 255 255 0;
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+      }
+      part {
+        name: "artist";
+        type: TEXT;
+        mouse_events: 0;
+        clip_to: "screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 255 255 255 0;
+          rel1 {
+            relative: 0.1 0.1;
+            offset: 50 1;
+          }
+          rel2 {
+            relative: 0.9 0.9;
+            offset: -50 -99;
+          }
+          text {
+            font: "Vera";
+            size: 25;
+            text: "Artist";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+      }
+      part {
+        name: "title";
+        type: TEXT;
+        mouse_events: 0;
+        clip_to: "screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 255 255 255 0;
+          rel1 {
+            relative: 0.1 0.1;
+            offset: 50 50;
+          }
+          rel2 {
+            relative: 0.9 0.9;
+            offset: -50 -50;
+          }
+          text {
+            font: "Vera";
+            size: 30;
+            text: "Title";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+      }
+      part {
+        name: "cursor";
+        type: IMAGE;
+        mouse_events: 0;
+        clip_to: "screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 255 255 255 0;
+          rel1 {
+            relative: 1.0 1.0;
+            offset: -124 -50;
+          }
+          rel2 {
+            relative: 1.0 1.0;
+            offset: -60 -50;
+          }
+          image {
+            normal: "cursor.png";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+        description {
+          state: "repeat/visible" 0.0;
+          inherit: "visible" 0.0;
+          rel1 {
+            relative: 0.6 1.0;
+            offset: -124 -50;
+          }
+          rel2 {
+            relative: 0.6 1.0;
+            offset: -60 -50;
+          }
+        }
+        description {
+          state: "repeat/mivisible" 0.0;
+          inherit: "repeat/visible" 0.0;
+          color: 168 168 168 168;
+        }
+        description {
+          state: "random/visible" 0.0;
+          inherit: "visible" 0.0;
+          rel1 {
+            relative: 0.8 1.0;
+            offset: -124 -50;
+          }
+          rel2 {
+            relative: 0.8 1.0;
+            offset: -60 -50;
+          }
+        }
+        description {
+          state: "random/mivisible" 0.0;
+          inherit: "random/visible" 0.0;
+          color: 168 168 168 168;
+        }
+        description {
+          state: "list/visible" 0.0;
+          inherit: "visible" 0.0;
+          rel1 {
+            relative: 1.0 1.0;
+            offset: -124 -50;
+          }
+          rel2 {
+            relative: 1.0 1.0;
+            offset: -60 -50;
+          }
+        }
+        description {
+          state: "list/mivisible" 0.0;
+          inherit: "list/visible" 0.0;
+          color: 168 168 168 168;
+        }
+      }
+    }
+    programs {
+      program {
+        name: "on_show";
+        signal: "show";
+        source: "*";
+        action: STATE_SET "visible" 0.0;
+        transition: DECELERATE 0.5;
+        target: "background";
+        target: "play";
+        target: "repeat";
+        target: "random";
+        target: "list";
+        target: "artist";
+        target: "title";
+        target: "cursor";
+      }
+      program {
+        name: "on_hide";
+        signal: "hide";
+        source: "*";
+        action: STATE_SET "hidden" 0.0;
+        transition: LINEAR 0.001;
+        target: "background";
+        target: "play";
+        target: "repeat";
+        target: "random";
+        target: "list";
+        target: "artist";
+        target: "title";
+        target: "cursor";
+      }
+      program {
+        name: "playpress";
+        signal: "mouse,clicked,1";
+        source: "play";
+        action: SIGNAL_EMIT "pressed" "play";
+      }
+      program {
+        name: "on_playing";
+        signal: "play";
+        source: "play";
+        action: STATE_SET "playing" 0.0;
+        target: "play";
+      }
+      program {
+        name: "on_paused";
+        signal: "pause";
+        source: "play";
+        action: STATE_SET "paused" 0.0;
+        target: "play";
+      }
+      program {
+        name: "on_stopped";
+        signal: "stop";
+        source: "play";
+        action: STATE_SET "stopped" 0.0;
+        target: "play";
+      }
+      program {
+        name: "repeatpress";
+        signal: "mouse,clicked,1";
+        source: "repeat";
+        action: SIGNAL_EMIT "pressed" "repeat";
+      }
+      program {
+        name: "on_repeat";
+        signal: "repeat";
+        source: "repeat";
+        action: STATE_SET "repeat" 0.0;
+        target: "repeat";
+      }
+      program {
+        name: "on_once";
+        signal: "once";
+        source: "repeat";
+        action: STATE_SET "once" 0.0;
+        target: "repeat";
+      }
+      program {
+        name: "randompress";
+        signal: "mouse,clicked,1";
+        source: "random";
+        action: SIGNAL_EMIT "pressed" "random";
+      }
+      program {
+        name: "on_random";
+        signal: "random";
+        source: "random";
+        action: STATE_SET "random" 0.0;
+        target: "random";
+      }
+      program {
+        name: "on_iinear";
+        signal: "linear";
+        source: "random";
+        action: STATE_SET "linear" 0.0;
+        target: "random";
+      }
+      program {
+        name: "repeatselect";
+        signal: "mouse,clicked,1";
+        source: "repeat";
+        action: SIGNAL_EMIT "selecting" "repeat";
+      }
+      program {
+        name: "on_repeatselect";
+        signal: "selecting";
+        source: "repeat";
+        action: STATE_SET "repeat/visible" 0.0;
+        target: "cursor";
+        after: "on_repeat/mivisible1";
+      }
+      program {
+        name: "on_repeat/mivisible1";
+        transition, SINUSOIDAL 2.0;
+        action: STATE_SET "repeat/mivisible" 0.0;
+        target: "cursor";
+        after: "on_repeat/mivisible2";
+      }
+      program {
+        name: "on_repeat/mivisible2";
+        transition, SINUSOIDAL 2.0;
+        action: STATE_SET "repeat/visible" 0.0;
+        target: "cursor";
+        after: "on_repeat/mivisible1";
+      }
+      program {
+        name: "randomselect";
+        signal: "mouse,clicked,1";
+        source: "random";
+        action: SIGNAL_EMIT "selecting" "random";
+      }
+      program {
+        name: "on_randomselect";
+        signal: "selecting";
+        source: "random";
+        action: STATE_SET "random/visible" 0.0;
+        target: "cursor";
+        after: "on_random/mivisible1";
+      }
+      program {
+        name: "on_random/mivisible1";
+        transition, SINUSOIDAL 2.0;
+        action: STATE_SET "random/mivisible" 0.0;
+        target: "cursor";
+        after: "on_random/mivisible2";
+      }
+      program {
+        name: "on_random/mivisible2";
+        transition, SINUSOIDAL 2.0;
+        action: STATE_SET "random/visible" 0.0;
+        target: "cursor";
+        after: "on_random/mivisible1";
+      }
+      program {
+        name: "listselect";
+        signal: "mouse,clicked,1";
+        source: "list";
+        action: SIGNAL_EMIT "selecting" "list";
+      }
+      program {
+        name: "on_listselect";
+        signal: "selecting";
+        source: "list";
+        action: STATE_SET "list/visible" 0.0;
+        target: "cursor";
+        after: "on_list/mivisible1";
+      }
+      program {
+        name: "on_list/mivisible1";
+        transition, SINUSOIDAL 2.0;
+        action: STATE_SET "list/mivisible" 0.0;
+        target: "cursor";
+        after: "on_list/mivisible2";
+      }
+      program {
+        name: "on_list/mivisible2";
+        transition, SINUSOIDAL 2.0;
+        action: STATE_SET "list/visible" 0.0;
+        target: "cursor";
+        after: "on_list/mivisible1";
+      }
+    }
+  }

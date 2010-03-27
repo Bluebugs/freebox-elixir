@@ -1,0 +1,509 @@
+  group {
+    name: "playlist";
+    min: 360 288;
+    max: 720 576;
+    parts {
+      part {
+        name: "pl_screen";
+        mouse_events: 0;
+        type: RECT;
+        description {
+          state: "default" 0.0;
+          visible: 1;
+          color: 255 255 255 255;
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          visible: 1;
+        }
+      }
+      part {
+        name: "pl_bg";
+        type: IMAGE;
+        mouse_events: 0;
+        clip_to: "pl_screen";
+        description {
+          state: "default" 0.0;
+          image {
+            normal: "background.jpg";
+            border: 0 0 0 0;
+          }
+          visible: 0;
+          color: 255 255 255 0;
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+      }
+      part {
+        name: "title";
+        type: TEXT;
+        mouse_events: 0;
+        clip_to: "pl_screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 0 0 0 0;
+          rel1 {
+            relative: 0.4 0.0;
+            offset: 0 +30;
+          }
+          rel2 {
+            relative: 0.6 0.0;
+            offset: 0 +60;
+          }
+          text {
+            font: "VeraBd";
+            size: 15;
+            text: "Playlist";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 0 0 0 255;
+          visible: 1;
+        }
+      }
+      part {
+        name: "poslabel";
+        type: TEXT;
+        mouse_events: 0;
+        clip_to: "pl_screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 255 255 255 0;
+          rel1 {
+            relative: 0.1 0.1;
+            offset: 0 +30;
+          }
+          rel2 {
+            relative: 0.2 0.1;
+            offset: 0 +60;
+          }
+          text {
+            font: "VeraBd";
+            size: 15;
+            text: "Pos";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+      }
+      part {
+        name: "filelabel";
+        type: TEXT;
+        mouse_events: 0;
+        clip_to: "pl_screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 255 255 255 0;
+          rel1 {
+            relative: 0.2 0.1;
+            offset: 0 +30;
+          }
+          rel2 {
+            relative: 0.9 0.1;
+            offset: 0 +60;
+          }
+          text {
+            font: "VeraBd";
+            size: 15;
+            text: "Piste";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+      }
+
+#define POSFILE(n, x1, y1, x2, y2)     \
+      part {                           \
+        name: "pos"n"";                \
+        type: TEXT;                    \
+        mouse_events: 1;               \
+        clip_to: "pl_screen";          \
+        description {                  \
+          state: "default" 0.0;        \
+          visible: 0;                  \
+          color: 255 255 255 0;        \
+          rel1 {                       \
+            relative: 0.1 0.2;         \
+            offset: x1 y1;             \
+          }                            \
+          rel2 {                       \
+            relative: 0.2 0.2;         \
+            offset: x2 y2;             \
+          }                            \
+          text {                       \
+            font: "Vera";              \
+            size: 15;                  \
+            text: "_";                 \
+          }                            \
+        }                              \
+        description {                  \
+          state: "hidden" 0.0;         \
+          inherit: "default" 0.0;      \
+          visible: 0;                  \
+        }                              \
+        description {                  \
+          state: "visible" 0.0;        \
+          inherit: "default" 0.0;      \
+          color: 255 255 255 255;      \
+          visible: 1;                  \
+        }                              \
+        description {                  \
+          state: "pos"n"/visible" 0.0; \
+          inherit: "visible" 0.0;      \
+        }                              \
+      }                                \
+      part {                           \
+        name: "file"n"";               \
+        type: TEXT;                    \
+        mouse_events: 1;               \
+        clip_to: "pl_screen";          \
+        description {                  \
+          state: "default" 0.0;        \
+          visible: 0;                  \
+          color: 255 255 255 0;        \
+          rel1 {                       \
+            relative: 0.2 0.2;         \
+            offset: x1 y1;             \
+          }                            \
+          rel2 {                       \
+            relative: 0.9 0.2;         \
+            offset: x2 y2;             \
+          }                            \
+          text {                       \
+            font: "Vera";              \
+            size: 15;                  \
+            text: "_";                 \
+          }                            \
+        }                              \
+        description {                  \
+          state: "hidden" 0.0;         \
+          inherit: "default" 0.0;      \
+          visible: 0;                  \
+        }                              \
+        description {                  \
+          state: "visible" 0.0;        \
+          inherit: "default" 0.0;      \
+          color: 255 255 255 255;      \
+          visible: 1;                  \
+        }                              \
+        description {                  \
+          state: "pos"n"/visible" 0.0; \
+          inherit: "visible" 0.0;      \
+        }                              \
+      }                                \
+
+POSFILE(0, 0, 0, 0, 30)
+POSFILE(1, 0, 30, 0, 60)
+POSFILE(2, 0, 60, 0, 90)
+POSFILE(3, 0, 90, 0, 120)
+POSFILE(4, 0, 120, 0, 150)
+POSFILE(5, 0, 150, 0, 180)
+POSFILE(6, 0, 180, 0, 210)
+POSFILE(7, 0, 210, 0, 240)
+POSFILE(8, 0, 240, 0, 270)
+POSFILE(9, 0, 270, 0, 300)
+
+      part {
+        name: "cursor";
+        type: IMAGE;
+        mouse_events: 0;
+        clip_to: "pl_screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 255 255 255 0;
+          rel1 {
+            relative: 0.1 0.2;
+            offset: 0 +30;
+          }
+          rel2 {
+            relative: 0.2 0.2;
+            offset: 0 +30;
+          }
+          image {
+            normal: "cursor.png";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+
+#define POSCURSOR(n, x1, x2, y)		\
+        description {			\
+          state: "pos"n"/visible" 0.0;	\
+          inherit: "visible" 0.0;	\
+          rel1 {			\
+            relative: 0.1 0.2;		\
+            offset: x1 y;		\
+          }				\
+          rel2 {			\
+            relative: 0.2 0.2;		\
+            offset: x2 y;		\
+          }				\
+        }				\
+        description {			\
+          state: "pos"n"/mivisible" 0.0;\
+          inherit: "pos"n"/visible" 0.0;\
+	  color: 168 168 168 168;	\
+	}
+	
+
+POSCURSOR(0, 0, 0, 30)
+POSCURSOR(1, 0, 0, 60)
+POSCURSOR(2, 0, 0, 90)
+POSCURSOR(3, 0, 0, 120)
+POSCURSOR(4, 0, 0, 150)
+POSCURSOR(5, 0, 0, 180)
+POSCURSOR(6, 0, 0, 210)
+POSCURSOR(7, 0, 0, 240)
+POSCURSOR(8, 0, 0, 270)
+POSCURSOR(9, 0, 0, 300)
+
+      }
+      part {
+        name: "msg";
+        type: TEXT;
+        mouse_events: 0;
+        clip_to: "pl_screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 0 0 0 0;
+          rel1 {
+            relative: 0.1 0.0;
+            offset: 0 +60;
+          }
+          rel2 {
+            relative: 0.9 0.0;
+            offset: 0 +90;
+          }
+          text {
+            font: "Vera";
+            size: 15;
+            text: "élément retiré";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 0 255 255 255;
+          visible: 1;
+        }
+      }
+      #include "pl_bottom.edc"
+    }
+    programs {
+      program {
+        name: "on_show";
+        signal: "show";
+        source: "js";
+        action: STATE_SET "visible" 0.0;
+        transition: DECELERATE 0.5;
+        target: "pl_bg";
+        target: "title";
+        target: "poslabel";
+        target: "filelabel";
+        target: "pos0";
+        target: "pos1";
+        target: "pos2";
+        target: "pos3";
+        target: "pos4";
+        target: "pos5";
+        target: "pos6";
+        target: "pos7";
+        target: "pos8";
+        target: "pos9";
+        target: "file0";
+        target: "file1";
+        target: "file2";
+        target: "file3";
+        target: "file4";
+        target: "file5";
+        target: "file6";
+        target: "file7";
+        target: "file8";
+        target: "file9";
+        target: "cursor";
+        target: "blue";
+        target: "yellow";
+        target: "left";
+        target: "up";
+        target: "ok";
+        target: "down";
+        target: "right";
+        target: "select";
+        target: "selectlabel";
+        target: "red";
+        target: "green";
+        target: "yellowlabel";
+        target: "bluelabel";
+        target: "redlabel";
+        target: "greenlabel";
+      }
+      program {
+        name: "on_hide";
+        signal: "hide";
+        source: "js";
+        action: STATE_SET "hidden" 0.0;
+        transition: LINEAR 0.001;
+        target: "pl_bg";
+        target: "poslabel";
+        target: "filelabel";
+        target: "pos0";
+        target: "pos1";
+        target: "pos2";
+        target: "pos3";
+        target: "pos4";
+        target: "pos5";
+        target: "pos6";
+        target: "pos7";
+        target: "pos8";
+        target: "pos9";
+        target: "file0";
+        target: "file1";
+        target: "file2";
+        target: "file3";
+        target: "file4";
+        target: "file5";
+        target: "file6";
+        target: "file7";
+        target: "file8";
+        target: "file9";
+        target: "cursor";
+        target: "blue";
+        target: "yellow";
+        target: "left";
+        target: "up";
+        target: "ok";
+        target: "down";
+        target: "right";
+        target: "select";
+        target: "selectlabel";
+        target: "red";
+        target: "green";
+        target: "yellowlabel";
+        target: "bluelabel";
+        target: "redlabel";
+        target: "greenlabel";
+      }
+      program {
+        name: "on_cursor_hide";
+        signal: "hide";
+        source: "cursor";
+        action: STATE_SET "hidden" 0.0;
+        target: "cursor";
+      }
+      program {
+        name: "on_msg_show";
+        signal: "show";
+        source: "msg";
+        action: STATE_SET "visible" 0.0;
+        target: "msg";
+      }
+      program {
+        name: "on_msg_hide";
+        signal: "hide";
+        source: "msg";
+        action: STATE_SET "hidden" 0.0;
+        target: "msg";
+      }
+
+#define POSFILESELECT(n)                          \
+      program {                                   \
+        name: "pos"n"select";                     \
+        signal: "mouse,clicked,1";                \
+        source: "pos"n"";                         \
+        action: SIGNAL_EMIT "selecting" "pos"n""; \
+      }                                           \
+      program {                                   \
+        name: "on_pos"n"select";                  \
+        signal: "selecting";                      \
+        source: "pos"n"";                         \
+        action: STATE_SET "pos"n"/visible" 0.0;   \
+        target: "cursor";                         \
+        after: "on_pos"n"/mivisible1";		  \
+      }						  \
+      program {					  \
+        name: "on_pos"n"/mivisible1";		  \
+        transition, SINUSOIDAL 2.0;		  \
+        action: STATE_SET "pos"n"/mivisible" 0.0; \
+        target: "cursor";			  \
+        after: "on_pos"n"/mivisible2";		  \
+      }						  \
+      program {					  \
+        name: "on_pos"n"/mivisible2";		  \
+        transition, SINUSOIDAL 2.0;		  \
+        action: STATE_SET "pos"n"/visible" 0.0;	  \
+        target: "cursor";			  \
+        after: "on_pos"n"/mivisible1";		  \
+      }
+
+POSFILESELECT(0)
+POSFILESELECT(1)
+POSFILESELECT(2)
+POSFILESELECT(3)
+POSFILESELECT(4)
+POSFILESELECT(5)
+POSFILESELECT(6)
+POSFILESELECT(7)
+POSFILESELECT(8)
+POSFILESELECT(9)
+
+    }
+  }

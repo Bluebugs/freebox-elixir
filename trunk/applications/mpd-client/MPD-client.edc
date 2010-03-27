@@ -1,0 +1,37 @@
+fonts
+{
+   font: "Vera.ttf"   "EdjeVera";
+   font: "VeraBd.ttf" "EdjeVeraBold";
+   font: "VeraIt.ttf" "EdjeVeraItalic";
+}
+
+images {
+  image: "background.jpg" LOSSY 90;
+  image: "play.png" COMP;
+  image: "pause.png" COMP;
+  image: "stop.png" COMP;
+  image: "cursor.png" COMP;
+  image: "ok.png" COMP;
+  image: "repeat.png" COMP;
+  image: "repeatp.png" COMP;
+  image: "random.png" COMP;
+  image: "randomp.png" COMP;
+  image: "list.png" COMP;
+  image: "up.png" COMP;
+  image: "down.png" COMP;
+  image: "left.png" COMP;
+  image: "right.png" COMP;
+  image: "red.png" COMP;
+  image: "blue.png" COMP;
+  image: "green.png" COMP;
+  image: "yellow.png" COMP;
+  image: "select.png" COMP;
+}
+
+collections {
+  #include "prefs.edc"
+  #include "main.edc"
+  #include "playlist.edc"
+  #include "search.edc"
+}
+

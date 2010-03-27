@@ -1,0 +1,3 @@
+Mpd-client s'utilise pour controller le lecteur de musique MPD.
+MPD est téléchargeable sur http://musicpd.org et s'installe sur
+un ordinateur du réseau local (serveur).
