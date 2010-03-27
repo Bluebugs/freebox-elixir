@@ -1,0 +1,468 @@
+  group {
+    name: "prefs";
+    min: 360 288;
+    max: 720 576;
+    parts {
+      part {
+        name: "prefs_screen";
+        mouse_events: 0;
+        type: RECT;
+        description {
+          state: "default" 0.0;
+          visible: 1;
+          color: 255 255 255 255;
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          visible: 1;
+        }
+      }
+      part {
+        name: "prefs_bg";
+        type: IMAGE;
+        mouse_events: 0;
+        clip_to: "prefs_screen";
+        description {
+          state: "default" 0.0;
+          image {
+            normal: "background.jpg";
+            border: 0 0 0 0;
+          }
+          visible: 0;
+          color: 255 255 255 0;
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+      }
+      part {
+        name: "hostlabel";
+        type: TEXT;
+        mouse_events: 0;
+        clip_to: "prefs_screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 255 255 255 0;
+          rel1 {
+            relative: 0.1 0.1;
+            offset: 0 0;
+          }
+          rel2 {
+            relative: 0.3 0.2;
+            offset: 0 0;
+          }
+          text {
+            font: "Vera";
+            size: 25;
+            text: "Host: ";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+      }
+      part {
+        name: "portlabel";
+        type: TEXT;
+        mouse_events: 0;
+        clip_to: "prefs_screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 255 255 255 0;
+          rel1 {
+            relative: 0.1 0.2;
+            offset: 0 0;
+          }
+          rel2 {
+            relative: 0.3 0.3;
+            offset: 0 0;
+          }
+          text {
+            font: "Vera";
+            size: 25;
+            text: "Port: ";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+      }
+
+#define HOST(n, x1, y1, x2, y2)         \
+      part {                            \
+        name: "host"n;                  \
+        type: TEXT;                     \
+        mouse_events: 1;                \
+        clip_to: "prefs_screen";        \
+        description {                   \
+          state: "default" 0.0;         \
+          visible: 0;                   \
+          color: 255 255 255 0;         \
+          rel1 {                        \
+            relative: x1 y1;            \
+            offset: 0 0;                \
+          }                             \
+          rel2 {                        \
+            relative: x2 y2;            \
+            offset: 0 0;                \
+          }                             \
+          text {                        \
+            font: "Vera";               \
+            size: 25;                   \
+            text: "?";                  \
+          }                             \
+        }                               \
+        description {                   \
+          state: "hidden" 0.0;          \
+          inherit: "default" 0.0;       \
+          visible: 0;                   \
+        }                               \
+        description {                   \
+          state: "visible" 0.0;         \
+          inherit: "default" 0.0;       \
+          color: 255 255 255 255;       \
+          visible: 1;                   \
+        }                               \
+        description {                   \
+          state: "host"n"/visible" 0.0; \
+          inherit: "visible" 0.0;       \
+        }                               \
+      }                                 \
+
+
+HOST (1, 0.3, 0.1, 0.4, 0.2)
+HOST (2, 0.4, 0.1, 0.5, 0.2)
+HOST (3, 0.5, 0.1, 0.6, 0.2)
+HOST (4, 0.6, 0.1, 0.7, 0.2)
+
+      part {
+        name: "port";
+        type: TEXT;
+        mouse_events: 1;
+        clip_to: "prefs_screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 255 255 255 0;
+          rel1 {
+            relative: 0.2 0.2;
+            offset: 0 0;
+          }
+          rel2 {
+            relative: 0.7 0.3;
+            offset: 0 0;
+          }
+          text {
+            font: "Vera";
+            size: 25;
+            text: "?";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+        description {
+          state: "port/visible" 0.0;
+          inherit: "visible" 0.0;
+        }
+      }
+      part {
+        name: "cursor";
+        type: IMAGE;
+        mouse_events: 0;
+        clip_to: "prefs_screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 255 255 255 0;
+          rel1 {
+            relative: 0.4 0.8;
+            offset: 0 +10;
+          }
+          rel2 {
+            relative: 0.6 0.8;
+            offset: 0 +10;
+          }
+          image {
+            normal: "cursor.png";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+
+#define CURSORHOST(n, x1, x2, y)	 \
+        description {			 \
+          state: "host"n"/visible" 0.0;	 \
+          inherit: "visible" 0.0;	 \
+          rel1 {			 \
+            relative: x1 y;		 \
+            offset: 0 0;		 \
+          }				 \
+          rel2 {			 \
+            relative: x2 y;		 \
+            offset: 0 0;		 \
+          }				 \
+        }				 \
+        description {			 \
+          state: "host"n"/mivisible" 0.0;\
+          inherit: "host"n"/visible" 0.0;\
+          color: 168 168 168 168;	 \
+        }
+
+CURSORHOST (1, 0.3, 0.4, 0.2)
+CURSORHOST (2, 0.4, 0.5, 0.2)
+CURSORHOST (3, 0.5, 0.6, 0.2)
+CURSORHOST (4, 0.6, 0.7, 0.2)
+
+        description {
+          state: "port/visible" 0.0;
+          inherit: "visible" 0.0;
+          rel1 {
+            relative: 0.4 0.3;
+            offset: 0 0;
+          }
+          rel2 {
+            relative: 0.5 0.3;
+            offset: 0 0;
+          }
+        }
+        description {
+          state: "port/mivisible" 0.0;
+          inherit: "port/visible" 0.0;
+	  color: 168 168 168 168;
+	}
+        description {
+          state: "ok/visible" 0.0;
+          inherit: "visible" 0.0;
+          rel1 {
+            relative: 0.5 0.8;
+            offset: -30 +20;
+          }
+          rel2 {
+            relative: 0.5 0.8;
+            offset: +30 +20;
+          }
+        }
+        description {
+          state: "ok/mivisible" 0.0;
+          inherit: "ok/visible" 0.0;
+	  color: 168 168 168 168;
+	}
+      }
+      part {
+        name: "ok";
+        type: IMAGE;
+        mouse_events: 1;
+        clip_to: "prefs_screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 255 255 255 0;
+          rel1 {
+            relative: 0.5 0.8;
+            offset: -30 -15;
+          }
+          rel2 {
+            relative: 0.5 0.8;
+            offset: +30 +15;
+          }
+          image {
+            normal: "ok.png";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+        description {
+          state: "ok/visible" 0.0;
+          inherit: "visible" 0.0;
+        }
+      }
+    }
+    programs {
+      program {
+        name: "on_show";
+        signal: "show";
+        source: "*";
+        action: STATE_SET "visible" 0.0;
+        transition: DECELERATE 0.5;
+        target: "prefs_bg";
+        target: "hostlabel";
+        target: "portlabel";
+        target: "host1";
+        target: "host2";
+        target: "host3";
+        target: "host4";
+        target: "port";
+        target: "cursor";
+        target: "ok";
+      }
+      program {
+        name: "on_hide";
+        signal: "hide";
+        source: "*";
+        action: STATE_SET "hidden" 0.0;
+        transition: LINEAR 0.001;
+        target: "prefs_bg";
+        target: "hostlabel";
+        target: "portlabel";
+        target: "host1";
+        target: "host2";
+        target: "host3";
+        target: "host4";
+        target: "port";
+        target: "cursor";
+        target: "ok";
+      }
+
+#define HOSTSELECT(n)                               \
+      program {                                     \
+        name: "host"n"select";                      \
+        signal: "mouse,clicked,1";                  \
+        source: "host"n"";                          \
+        action: SIGNAL_EMIT "selecting" "host"n;    \
+      }                                             \
+      program {                                     \
+        name: "on_host"n"select";                   \
+        signal: "selecting";                        \
+        source: "host"n;                            \
+        action: STATE_SET "host"n"/visible" 0.0;    \
+        target: "cursor";                           \
+        after: "on_host"n"/mivisible1";		    \
+      }                                             \
+      program {					    \
+        name: "on_host"n"/mivisible1";		    \
+        transition, SINUSOIDAL 2.0;		    \
+        action: STATE_SET "host"n"/mivisible" 0.0;  \
+        target: "cursor";			    \
+        after: "on_host"n"/mivisible2";		    \
+      }						    \
+      program {					    \
+        name: "on_host"n"/mivisible2";		    \
+        transition, SINUSOIDAL 2.0;		    \
+        action: STATE_SET "host"n"/visible" 0.0;    \
+        target: "cursor";			    \
+        after: "on_host"n"/mivisible1";		    \
+      }
+
+HOSTSELECT(1)
+HOSTSELECT(2)
+HOSTSELECT(3)
+HOSTSELECT(4)
+
+      program {
+        name: "portselect";
+        signal: "mouse,clicked,1";
+        source: "port";
+        action: SIGNAL_EMIT "selecting" "port";
+      }
+      program {
+        name: "on_portselect";
+        signal: "selecting";
+        source: "port";
+        action: STATE_SET "port/visible" 0.0;
+        target: "port";
+        target: "cursor";
+        after: "on_port/mivisible1";
+      }
+      program {
+        name: "on_port/mivisible1";
+        transition, SINUSOIDAL 2.0;
+        action: STATE_SET "port/mivisible" 0.0;
+        target: "cursor";
+        after: "on_port/mivisible2";
+      }
+      program {
+        name: "on_port/mivisible2";
+        transition, SINUSOIDAL 2.0;
+        action: STATE_SET "port/visible" 0.0;
+        target: "cursor";
+        after: "on_port/mivisible1";
+      }
+      program {
+        name: "okselect";
+        signal: "mouse,clicked,1";
+        source: "ok";
+        action: SIGNAL_EMIT "selecting" "ok";
+      }
+      program {
+        name: "on_okselect";
+        signal: "selecting";
+        source: "ok";
+        action: STATE_SET "ok/visible" 0.0;
+        target: "cursor";
+        after: "on_ok/mivisible1";
+      }
+      program {
+        name: "on_ok/mivisible1";
+        transition, SINUSOIDAL 2.0;
+        action: STATE_SET "ok/mivisible" 0.0;
+        target: "cursor";
+        after: "on_ok/mivisible2";
+      }
+      program {
+        name: "on_ok/mivisible2";
+        transition, SINUSOIDAL 2.0;
+        action: STATE_SET "ok/visible" 0.0;
+        target: "cursor";
+        after: "on_ok/mivisible1";
+      }
+    }
+  }

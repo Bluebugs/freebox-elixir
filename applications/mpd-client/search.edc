@@ -1,0 +1,525 @@
+  group {
+    name: "search";
+    min: 360 288;
+    max: 720 576;
+    parts {
+      part {
+        name: "sl_screen";
+        mouse_events: 0;
+        type: RECT;
+        description {
+          state: "default" 0.0;
+          visible: 1;
+          color: 255 255 255 255;
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          visible: 1;
+        }
+      }
+      part {
+        name: "sl_bg";
+        type: IMAGE;
+        mouse_events: 0;
+        clip_to: "sl_screen";
+        description {
+          state: "default" 0.0;
+          image {
+            normal: "background.jpg";
+            border: 0 0 0 0;
+          }
+          visible: 0;
+          color: 255 255 255 0;
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+      }
+      part {
+        name: "title";
+        type: TEXT;
+        mouse_events: 0;
+        clip_to: "sl_screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 0 0 0 0;
+          rel1 {
+            relative: 0.4 0.0;
+            offset: 0 +30;
+          }
+          rel2 {
+            relative: 0.6 0.0;
+            offset: 0 +60;
+          }
+          text {
+            font: "VeraBd";
+            size: 15;
+            text: "Fichiers";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 0 0 0 255;
+          visible: 1;
+        }
+      }
+      part {
+        name: "querylabel";
+        type: TEXT;
+        mouse_events: 0;
+        clip_to: "sl_screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 255 255 255 0;
+          rel1 {
+            relative: 0.0 0.1;
+            offset: +15 0;
+          }
+          rel2 {
+            relative: 0.2 0.1;
+            offset: 0 +30;
+          }
+          text {
+            font: "VeraBd";
+            size: 15;
+            text: "Rechercher: ";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+      }
+      part {
+        name: "query";
+        type: TEXT;
+        mouse_events: 0;
+        clip_to: "sl_screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 255 255 255 0;
+          rel1 {
+            relative: 0.2 0.1;
+            offset: 0 0;
+          }
+          rel2 {
+            relative: 0.4 0.1;
+            offset: 0 +30;
+          }
+          text {
+            font: "Vera";
+            size: 15;
+            text: "?";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+        description {
+          state: "query/visible" 0.0;
+          inherit: "visible" 0.0;
+        }
+      }
+      part {
+        name: "filelabel";
+        type: TEXT;
+        mouse_events: 0;
+        clip_to: "sl_screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 255 255 255 0;
+          rel1 {
+            relative: 0.1 0.1;
+            offset: 0 +30;
+          }
+          rel2 {
+            relative: 0.9 0.1;
+            offset: 0 +60;
+          }
+          text {
+            font: "VeraBd";
+            size: 15;
+            text: "Fichier";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+      }
+
+#define FILE(n, x1, y1, x2, y2)         \
+      part {                            \
+        name: "file"n"";                \
+        type: TEXT;                     \
+        mouse_events: 1;                \
+        clip_to: "sl_screen";           \
+        description {                   \
+          state: "default" 0.0;         \
+          visible: 0;                   \
+          color: 255 255 255 0;         \
+          rel1 {                        \
+            relative: 0.1 0.2;          \
+            offset: x1 y1;              \
+          }                             \
+          rel2 {                        \
+            relative: 0.9 0.2;          \
+            offset: x2 y2;              \
+          }                             \
+          text {                        \
+            font: "Vera";               \
+            size: 15;                   \
+            text: "_";                  \
+          }                             \
+        }                               \
+        description {                   \
+          state: "hidden" 0.0;          \
+          inherit: "default" 0.0;       \
+          visible: 0;                   \
+        }                               \
+        description {                   \
+          state: "visible" 0.0;         \
+          inherit: "default" 0.0;       \
+          color: 255 255 255 255;       \
+          visible: 1;                   \
+        }                               \
+        description {                   \
+          state: "file"n"/visible" 0.0; \
+          inherit: "visible" 0.0;       \
+        }                               \
+      }                                 \
+
+FILE(0,0,0,0,30)
+FILE(1,0,30,0,60)
+FILE(2,0,60,0,90)
+FILE(3,0,90,0,120)
+FILE(4,0,120,0,150)
+FILE(5,0,150,0,180)
+FILE(6,0,180,0,210)
+FILE(7,0,210,0,240)
+FILE(8,0,240,0,270)
+FILE(9,0,270,0,300)
+
+      part {
+        name: "cursor";
+        type: IMAGE;
+        mouse_events: 0;
+        clip_to: "sl_screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 255 255 255 0;
+          rel1 {
+            relative: 0.2 0.1;
+            offset: 0 +30;
+          }
+          rel2 {
+            relative: 0.4 0.1;
+            offset: 0 +30;
+          }
+          image {
+            normal: "cursor.png";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 255 255 255 255;
+          visible: 1;
+        }
+
+#define FILECURSOR(n, x1, x2, y)	\
+        description {			\
+          state: "file"n"/visible" 0.0;	\
+          inherit: "visible" 0.0;	\
+          rel1 {			\
+            relative: 0.1 0.2;		\
+            offset: x1 y;		\
+          }				\
+          rel2 {			\
+            relative: 0.9 0.2;		\
+            offset: x2 y;		\
+          }				\
+        }				\
+        description {			\
+          state: "file"n"/mivisible" 0.0;\
+          inherit: "file"n"/visible" 0.0;\
+	  color: 168 168 168 168;	\
+	}
+	
+
+FILECURSOR(0, 0, 0, 30)
+FILECURSOR(1, 0, 0, 60)
+FILECURSOR(2, 0, 0, 90)
+FILECURSOR(3, 0, 0, 120)
+FILECURSOR(4, 0, 0, 150)
+FILECURSOR(5, 0, 0, 180)
+FILECURSOR(6, 0, 0, 210)
+FILECURSOR(7, 0, 0, 240)
+FILECURSOR(8, 0, 0, 270)
+FILECURSOR(9, 0, 0, 300)
+
+
+        description {
+          state: "query/visible" 0.0;
+          inherit: "visible" 0.0;
+          rel1 {
+            relative: 0.2 0.1;
+            offset: 0 +30;
+          }
+          rel2 {
+            relative: 0.4 0.1;
+            offset: 0 +30;
+          }
+        }
+        description {
+          state: "query/mivisible" 0.0;
+          inherit: "query/visible" 0.0;
+	  color: 168 168 168 168;
+	}
+      }
+      part {
+        name: "msg";
+        type: TEXT;
+        mouse_events: 0;
+        clip_to: "sl_screen";
+        description {
+          state: "default" 0.0;
+          visible: 0;
+          color: 0 0 0 0;
+          rel1 {
+            relative: 0.1 0.0;
+            offset: 0 +60;
+          }
+          rel2 {
+            relative: 0.9 0.0;
+            offset: 0 +90;
+          }
+          text {
+            font: "Vera";
+            size: 15;
+            text: "élément ajouté";
+          }
+        }
+        description {
+          state: "hidden" 0.0;
+          inherit: "default" 0.0;
+          visible: 0;
+        }
+        description {
+          state: "visible" 0.0;
+          inherit: "default" 0.0;
+          color: 0 255 255 255;
+          visible: 1;
+        }
+      }
+      #include "sl_bottom.edc"
+    }
+    programs {
+      program {
+        name: "on_show";
+        signal: "show";
+        source: "js";
+        action: STATE_SET "visible" 0.0;
+        transition: DECELERATE 0.5;
+        target: "sl_bg";
+        target: "title";
+        target: "querylabel";
+        target: "query";
+        target: "filelabel";
+        target: "file0";
+        target: "file1";
+        target: "file2";
+        target: "file3";
+        target: "file4";
+        target: "file5";
+        target: "file6";
+        target: "file7";
+        target: "file8";
+        target: "file9";
+        target: "cursor";
+        target: "blue";
+        target: "yellow";
+        target: "left";
+        target: "up";
+        target: "ok";
+        target: "down";
+        target: "right";
+        target: "red";
+        target: "yellowlabel";
+        target: "bluelabel";
+        target: "redlabel";
+      }
+      program {
+        name: "on_hide";
+        signal: "hide";
+        source: "js";
+        action: STATE_SET "hidden" 0.0;
+        transition: LINEAR 0.001;
+        target: "sl_bg";
+        target: "title";
+        target: "querylabel";
+        target: "query";
+        target: "filelabel";
+        target: "file0";
+        target: "file1";
+        target: "file2";
+        target: "file3";
+        target: "file4";
+        target: "file5";
+        target: "file6";
+        target: "file7";
+        target: "file8";
+        target: "file9";
+        target: "cursor";
+        target: "blue";
+        target: "yellow";
+        target: "left";
+        target: "up";
+        target: "ok";
+        target: "down";
+        target: "right";
+        target: "red";
+        target: "yellowlabel";
+        target: "bluelabel";
+        target: "redlabel";
+      }
+      program {
+        name: "on_msg_show";
+        signal: "show";
+        source: "msg";
+        action: STATE_SET "visible" 0.0;
+        target: "msg";
+      }
+      program {
+        name: "on_msg_hide";
+        signal: "hide";
+        source: "msg";
+        action: STATE_SET "hidden" 0.0;
+        target: "msg";
+      }
+      program {
+        name: "queryselect";
+        signal: "mouse,clicked,1";
+        source: "query";
+        action: SIGNAL_EMIT "selecting" "query";
+      }
+      program {
+        name: "on_queryselect";
+        signal: "selecting";
+        source: "query";
+        action: STATE_SET "query/visible" 0.0;
+        target: "cursor";
+        after: "on_query/mivisible1";
+      }
+      program {
+        name: "on_query/mivisible1";
+        transition, SINUSOIDAL 2.0;
+        action: STATE_SET "query/mivisible" 0.0;
+        target: "cursor";
+        after: "on_query/mivisible2";
+      }
+      program {
+        name: "on_query/mivisible2";
+        transition, SINUSOIDAL 2.0;
+        action: STATE_SET "query/visible" 0.0;
+        target: "cursor";
+        after: "on_query/mivisible1";
+      }
+
+#define FILESELECT(n)                              \
+      program {                                    \
+        name: "file"n"select";                     \
+        signal: "mouse,clicked,1";                 \
+        source: "file"n"";                         \
+        action: SIGNAL_EMIT "selecting" "file"n""; \
+      }                                            \
+      program {                                    \
+        name: "on_file"n"select";                  \
+        signal: "selecting";                       \
+        source: "file"n"";                         \
+        action: STATE_SET "file"n"/visible" 0.0;   \
+        target: "file"n"";                         \
+        target: "cursor";                          \
+        after: "on_file"n"/mivisible1";		   \
+      }						   \
+      program {					   \
+        name: "on_file"n"/mivisible1";		   \
+        transition, SINUSOIDAL 2.0;		   \
+        action: STATE_SET "file"n"/mivisible" 0.0; \
+        target: "cursor";			   \
+        after: "on_file"n"/mivisible2";		   \
+      }						   \
+      program {					   \
+        name: "on_file"n"/mivisible2";		   \
+        transition, SINUSOIDAL 2.0;		   \
+        action: STATE_SET "file"n"/visible" 0.0;   \
+        target: "cursor";			   \
+        after: "on_file"n"/mivisible1";		   \
+      }
+
+FILESELECT(0)
+FILESELECT(1)
+FILESELECT(2)
+FILESELECT(3)
+FILESELECT(4)
+FILESELECT(5)
+FILESELECT(6)
+FILESELECT(7)
+FILESELECT(8)
+FILESELECT(9)
+
+    }
+  }
+
