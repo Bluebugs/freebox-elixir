@@ -1,6 +1,6 @@
 var ecore_event_job_type = 0;
 
-if (ecore_job_add === undefined)
+try
   {
      function ecore_job_add(func_handler, func_free, data)
      {
@@ -48,6 +48,11 @@ if (ecore_job_add === undefined)
 
 	return data;
      }
+     elx.print("adding ecore_job\n");
+  }
+catch(err)
+  {
+     elx.print("not adding ecore_job\n");
   }
 
 true;
