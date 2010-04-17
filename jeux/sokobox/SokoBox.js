@@ -1,5 +1,5 @@
 // v1.0beta13
-// Time-stamp: <16 décembre 2008, 13:02 mid>
+// Time-stamp: <17 avril 2010, 16:11 mid>
 
 var DEBUG = false;
 var LEVEL = false;
@@ -20,7 +20,7 @@ test &= elx.load("sqlite");
 var sound = elx.load("mix");
 
 var FN			= "/.fonts/";
-var PF_W		= 19;
+var PF_W		= 20;
 var PF_H		= 17;
 var MENU		= 0;
 var GAME_SETUP		= 1;
@@ -591,9 +591,10 @@ function setup_level()
     while (level_str.length) {
 	var line_end = level_str.search(/\n/);
 	var line = level_str.substring(0, line_end);
+	line = line.replace(/\s+$/, "");
 	level_str = level_str.substr(line_end + 1);
-
-	for (var pos = 0, x = 0; pos < line.length; pos++) {
+	var x = 0;
+	for (var pos = 0; pos < line.length; pos++) {
 	    var car;
 	    var nb = 1;
 	    var nb_str = '';
@@ -610,6 +611,8 @@ function setup_level()
 	    for (;nb; nb--, x++)
 		preplayfield_x[x][y] = preplayfield_y[x][y] = car;
 	}
+	for (;x < PF_W; x++)
+	    preplayfield_x[x][y] = preplayfield_y[x][y] = ' ';
 	y++;
     }
 
