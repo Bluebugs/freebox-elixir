@@ -1,5 +1,5 @@
 // v1.0beta13
-// Time-stamp: <17 avril 2010, 16:11 mid>
+// Time-stamp: <17 avril 2010, 16:52 mid>
 
 var DEBUG = false;
 var LEVEL = false;
@@ -593,9 +593,8 @@ function setup_level()
 	var line = level_str.substring(0, line_end);
 	line = line.replace(/\s+$/, "");
 	level_str = level_str.substr(line_end + 1);
-	var x = 0;
+	var x = 0, car;
 	for (var pos = 0; pos < line.length; pos++) {
-	    var car;
 	    var nb = 1;
 	    var nb_str = '';
 	    var nb_char;
@@ -612,7 +611,7 @@ function setup_level()
 		preplayfield_x[x][y] = preplayfield_y[x][y] = car;
 	}
 	for (;x < PF_W; x++)
-	    preplayfield_x[x][y] = preplayfield_y[x][y] = ' ';
+	    preplayfield_x[x][y] = preplayfield_y[x][y] = car;
 	y++;
     }
 
