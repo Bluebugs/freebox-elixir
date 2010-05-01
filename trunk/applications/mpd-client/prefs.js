@@ -5,30 +5,30 @@ var prefs_editing, prefs_nb, prefs_pos, prefs_timer, prefs_last_ts, prefs_idler_
 var prefs_come_back_cb;
 var prefs_cur_name, prefs_maj_min, prefs_cur_l;
 var prefs_sms = [
-	       [ ' ', '-', '0' ],
-	       [ '1' ],
-	       [ '2', 'a', 'b', 'c' ],
-	       [ '3', 'd', 'e', 'f' ],
-	       [ '4', 'g', 'h', 'i' ],
-	       [ '5', 'j', 'k', 'l' ],
-	       [ '6', 'm', 'n', 'o' ],
-	       [ '7', 'p', 'q', 'r', 's' ],
-	       [ '8', 't', 'u', 'v' ],
-	       [ '9', 'w', 'x', 'y', 'z' ],
-	       ];
+  [ '0', ' ', '-' ],
+  [ '1' ],
+  [ '2', 'a', 'b', 'c' ],
+  [ '3', 'd', 'e', 'f' ],
+  [ '4', 'g', 'h', 'i' ],
+  [ '5', 'j', 'k', 'l' ],
+  [ '6', 'm', 'n', 'o' ],
+  [ '7', 'p', 'q', 'r', 's' ],
+  [ '8', 't', 'u', 'v' ],
+  [ '9', 'w', 'x', 'y', 'z' ],
+  ];
 
 function prefs_handle_move(position)
 {
-  if (position > 6)
+  if (position > 10)
     position = 1;
   if (position < 1)
-    position = 6;
+    position = 10;
 
-  if (position && position < 5)
+  if (position && position < 9)
     edje_object_signal_emit(prefs_edje_o, "selecting", "host" + position);
-  else if (position == 5)
+  else if (position == 9)
     edje_object_signal_emit(prefs_edje_o, "selecting", "port");
-  else if (position == 6)
+  else if (position == 10)
     edje_object_signal_emit(prefs_edje_o, "selecting", "ok");
 
   prefs_timer = null;
@@ -45,12 +45,12 @@ function on_hostN_select(n)
 
 function on_port_select()
 {
-  prefs_editing = 5;
+  prefs_editing = 9;
 }
 
 function on_ok_select()
 {
-  prefs_editing = 6;
+  prefs_editing = 10;
 }
 
 function pref_gen()
@@ -60,6 +60,10 @@ function pref_gen()
   pref.host2 = edje_object_part_text_get(prefs_edje_o, "host2").replace(/_+$/, '');
   pref.host3 = edje_object_part_text_get(prefs_edje_o, "host3").replace(/_+$/, '');
   pref.host4 = edje_object_part_text_get(prefs_edje_o, "host4").replace(/_+$/, '');
+  pref.host5 = edje_object_part_text_get(prefs_edje_o, "host5").replace(/_+$/, '');
+  pref.host6 = edje_object_part_text_get(prefs_edje_o, "host6").replace(/_+$/, '');
+  pref.host7 = edje_object_part_text_get(prefs_edje_o, "host7").replace(/_+$/, '');
+  pref.host8 = edje_object_part_text_get(prefs_edje_o, "host8").replace(/_+$/, '');
   pref.port = edje_object_part_text_get(prefs_edje_o, "port").replace(/_+$/, '');
   return pref;
 }
@@ -93,10 +97,14 @@ function prefs_setup(position)
   edje_object_part_text_set(prefs_edje_o, "host2",  prefs[1].host2);
   edje_object_part_text_set(prefs_edje_o, "host3",  prefs[1].host3);
   edje_object_part_text_set(prefs_edje_o, "host4",  prefs[1].host4);
+  edje_object_part_text_set(prefs_edje_o, "host5",  prefs[1].host5);
+  edje_object_part_text_set(prefs_edje_o, "host6",  prefs[1].host6);
+  edje_object_part_text_set(prefs_edje_o, "host7",  prefs[1].host7);
+  edje_object_part_text_set(prefs_edje_o, "host8",  prefs[1].host8);
   edje_object_part_text_set(prefs_edje_o, "port",  prefs[1].port);
   edje_object_signal_emit(prefs_edje_o,   "show", "js");
-  
-  for (var i = 1; i < 5; i++)
+
+  for (var i = 1; i < 9; i++)
     edje_object_signal_callback_add(prefs_edje_o, "selecting", "host" + i, on_hostN_select, i);
 
   edje_object_signal_callback_add(prefs_edje_o, "selecting", "port", on_port_select, null);
@@ -118,7 +126,7 @@ function prefs_setdown()
 {
   evas_object_event_callback_del(prefs_bg, EVAS_CALLBACK_KEY_DOWN, prefs_on_key_down, null);
   evas_object_event_callback_del(prefs_bg, EVAS_CALLBACK_KEY_UP, prefs_pre_on_key_up, null);
-  for (var i = 1; i < 5; i++)
+  for (var i = 1; i < 9; i++)
     edje_object_signal_callback_del(prefs_edje_o, "selecting", "host" + i, on_hostN_select);
   edje_object_signal_callback_del(prefs_edje_o, "selecting", "port", on_port_select);
   edje_object_signal_callback_del(prefs_edje_o, "selecting", "ok", on_ok_select);
@@ -128,129 +136,129 @@ function prefs_setdown()
 
 function set_letter_timeout()
 {
-    if (prefs_cur_l != '_') {
-	prefs_cur_name += prefs_cur_l;
-//	if (prefs_cur_l == ' ' || prefs_cur_l == '-')
-//	    prefs_maj_min = true;
-//	else
-//	    prefs_maj_min = false;
-    }
+  if (prefs_cur_l != '_') {
+    prefs_cur_name += prefs_cur_l;
+    //	if (prefs_cur_l == ' ' || prefs_cur_l == '-')
+    //	    prefs_maj_min = true;
+    //	else
+    //	    prefs_maj_min = false;
+  }
 
-    if ((prefs_editing < 5 && prefs_cur_name.length < 3) || (prefs_editing == 5 && prefs_cur_name.length < 4))
-	prefs_cur_l = '_';
-    else
-	prefs_cur_l = '';
+  if ((prefs_editing < 9 && prefs_cur_name.length < 4) || (prefs_editing == 9 && prefs_cur_name.length < 5))
+    prefs_cur_l = '_';
+  else
+    prefs_cur_l = '';
 
-    if (prefs_maj_min)
-	prefs_nb = -1;
-    else
-	prefs_nb = -2;
+  if (prefs_maj_min)
+    prefs_nb = -1;
+  else
+    prefs_nb = -2;
 
-    if (prefs_editing < 5)
-      edje_object_part_text_set(prefs_edje_o, "host"  + prefs_editing, prefs_cur_name + prefs_cur_l);
-    else if (prefs_editing == 5)
-      edje_object_part_text_set(prefs_edje_o, "port", prefs_cur_name + prefs_cur_l);
-      
+  if (prefs_editing < 9)
+    edje_object_part_text_set(prefs_edje_o, "host"  + prefs_editing, prefs_cur_name + prefs_cur_l);
+  else if (prefs_editing == 9)
+    edje_object_part_text_set(prefs_edje_o, "port", prefs_cur_name + prefs_cur_l);
 
-    prefs_timer = null;
-    return 0;
+
+  prefs_timer = null;
+  return 0;
 }
 
 function set_letter(letter)
 {
-    var nb = 1;
-    var nb_pos = letter.search(/\d$/);
-    nb = letter.substring(nb_pos);
-    
-    if (prefs_timer) {
-	ecore_timer_del(prefs_timer);
-	prefs_timer = null;
-    }
-    prefs_timer = ecore_timer_add(1, set_letter_timeout, null);
+  var nb = 1;
+  var nb_pos = letter.search(/\d$/);
+  nb = letter.substring(nb_pos);
 
-    if (nb == prefs_nb) {
-	prefs_cur_l = prefs_sms[nb][++prefs_pos % prefs_sms[nb].length];
-	if (prefs_maj_min)
-	    prefs_cur_l = prefs_cur_l.toUpperCase();
-    } else if ((prefs_editing < 5 && prefs_cur_name.length < 3) || (prefs_editing == 5 && prefs_cur_name.length < 4)) {
-	if (prefs_cur_l != '_')
-	    prefs_cur_name += prefs_cur_l;
+  if (prefs_timer) {
+    ecore_timer_del(prefs_timer);
+    prefs_timer = null;
+  }
+  prefs_timer = ecore_timer_add(1, set_letter_timeout, null);
 
-        if ((prefs_editing < 5 && prefs_cur_name.length < 3) || (prefs_editing == 5 && prefs_cur_name.length < 4))
-	    prefs_cur_l = prefs_sms[nb][0];
-	else
-	    prefs_cur_l = '';
+  if (nb == prefs_nb) {
+    prefs_cur_l = prefs_sms[nb][++prefs_pos % prefs_sms[nb].length];
+    if (prefs_maj_min)
+      prefs_cur_l = prefs_cur_l.toUpperCase();
+  } else if ((prefs_editing < 9 && prefs_cur_name.length < 4) || (prefs_editing == 9 && prefs_cur_name.length < 5)) {
+    if (prefs_cur_l != '_')
+      prefs_cur_name += prefs_cur_l;
 
-	prefs_pos = 0;
+    if ((prefs_editing < 9 && prefs_cur_name.length < 4) || (prefs_editing == 9 && prefs_cur_name.length < 5))
+      prefs_cur_l = prefs_sms[nb][0];
+    else
+      prefs_cur_l = '';
 
-//	if (prefs_nb == -1 || prefs_cur_name.substring(prefs_cur_name.length - 1).match(/-| |\d/))
-//	    prefs_maj_min = true;
-//	else
-//	    prefs_maj_min = false;
+    prefs_pos = 0;
 
-	if (prefs_maj_min)
-	    prefs_cur_l = prefs_cur_l.toUpperCase();
+    //	if (prefs_nb == -1 || prefs_cur_name.substring(prefs_cur_name.length - 1).match(/-| |\d/))
+    //	    prefs_maj_min = true;
+    //	else
+    //	    prefs_maj_min = false;
 
-    } else {
-	prefs_pos = 0;
-    }
-    
-    prefs_nb = nb;
+    if (prefs_maj_min)
+      prefs_cur_l = prefs_cur_l.toUpperCase();
 
-    if (prefs_editing < 5)
-      edje_object_part_text_set(prefs_edje_o, "host"  + prefs_editing, prefs_cur_name + prefs_cur_l);
-    else if (prefs_editing == 5)
-      edje_object_part_text_set(prefs_edje_o, "port", prefs_cur_name + prefs_cur_l);
+  } else {
+    prefs_pos = 0;
+  }
+
+  prefs_nb = nb;
+
+  if (prefs_editing < 9)
+    edje_object_part_text_set(prefs_edje_o, "host"  + prefs_editing, prefs_cur_name + prefs_cur_l);
+  else if (prefs_editing == 9)
+    edje_object_part_text_set(prefs_edje_o, "port", prefs_cur_name + prefs_cur_l);
 }
 
 function prefs_on_key_up(keyname)
 {
-    prefs_idler_t = null;
-    return 0;
+  prefs_idler_t = null;
+  return 0;
 }
 
 function prefs_pre_on_key_up(data, e, obj, ev)
 {
-    prefs_last_ts = ev.timestamp;
-    prefs_idler_t = ecore_idler_add(prefs_on_key_up, ev.keyname);
+  prefs_last_ts = ev.timestamp;
+  prefs_idler_t = ecore_idler_add(prefs_on_key_up, ev.keyname);
 }
 
 function translate(key)
 {
-    switch (key) {
+  switch (key) {
     case "KP_Insert":
     case "agrave":
-	return "0";
+      return "0";
     case "KP_End":
     case "ampersand":
-	return "1";
+      return "1";
     case "KP_Down":
     case "eacute":
-	return "2";
+      return "2";
     case "KP_Next":
     case "quotedbl":
-	return "3";
+      return "3";
     case "KP_Left":
     case "apostrophe":
-	return "4";
+      return "4";
     case "KP_Begin":
     case "parenleft":
-	return "5";
+      return "5";
     case "KP_Right":
     case "minus":
-	return "6";
+      return "6";
     case "KP_Home":
     case "egrave":
-	return "7";
+      return "7";
     case "KP_Up":
     case "underscore":
-	return "8";
+      return "8";
     case "KP_Prior":
     case "ccedilla":
-	return "9";
+      return "9";
     default:
-	return key;
-    }
+      return key;
+  }
 }
 
 function prefs_on_key_down(data, e, obj, ev)
@@ -269,9 +277,9 @@ function prefs_on_key_down(data, e, obj, ev)
     case "q":
     case "Red":
     case "Home":
-    prefs_setdown();
-    ecore_main_loop_quit();
-    break;
+      prefs_setdown();
+      ecore_main_loop_quit();
+      break;
     case "KP1":
     case "1":
     case "KP2":
@@ -312,68 +320,68 @@ function prefs_on_key_down(data, e, obj, ev)
     case "underscore":
     case "KP_Prior":
     case "ccedilla":
-    if (prefs_editing && (prefs_editing < 6)) {
-	set_letter(translate(ev.keyname));
-      break;
-    }
-    case "BackSpace":
-    if (prefs_editing && (prefs_editing < 6)) {
-      if (prefs_timer) {
-        ecore_timer_del(prefs_timer);
-        prefs_timer = null;
+      if (prefs_editing && (prefs_editing < 10)) {
+        set_letter(translate(ev.keyname));
+        break;
       }
-      if (prefs_cur_l == '_' || prefs_cur_l == '')
-        prefs_cur_name = prefs_cur_name.substring(0, Math.max(0, prefs_cur_name.length - 1));
-      prefs_cur_l = '_';
-      if (prefs_editing < 5)
-        edje_object_part_text_set(prefs_edje_o, "host"  + prefs_editing, prefs_cur_name + prefs_cur_l);
-      else if (prefs_editing == 5)
-        edje_object_part_text_set(prefs_edje_o, "port", prefs_cur_name + prefs_cur_l);
+    case "BackSpace":
+      if (prefs_editing && (prefs_editing < 10)) {
+        if (prefs_timer) {
+          ecore_timer_del(prefs_timer);
+          prefs_timer = null;
+        }
+        if (prefs_cur_l == '_' || prefs_cur_l == '')
+          prefs_cur_name = prefs_cur_name.substring(0, Math.max(0, prefs_cur_name.length - 1));
+        prefs_cur_l = '_';
+        if (prefs_editing < 9)
+          edje_object_part_text_set(prefs_edje_o, "host"  + prefs_editing, prefs_cur_name + prefs_cur_l);
+        else if (prefs_editing == 9)
+          edje_object_part_text_set(prefs_edje_o, "port", prefs_cur_name + prefs_cur_l);
 
-//      if (!prefs_cur_name.length || prefs_cur_name.substring(prefs_cur_name.length - 1).match(/-| |\d/))
-//        prefs_maj_min = true;
-//      else
-//        prefs_maj_min = false;
+        //      if (!prefs_cur_name.length || prefs_cur_name.substring(prefs_cur_name.length - 1).match(/-| |\d/))
+        //        prefs_maj_min = true;
+        //      else
+        //        prefs_maj_min = false;
 
-      if (prefs_maj_min)
-        prefs_nb = -1;
-      else
-        prefs_nb = -2;
+        if (prefs_maj_min)
+          prefs_nb = -1;
+        else
+          prefs_nb = -2;
 
-       break;
-    }
+        break;
+      }
     case "Up":
     case "Left":
     case "FP/Up":
     case "RC/Up":
     case "FP/Left":
     case "RC/Left":
-    prefs_editing--;
-    prefs_handle_move(prefs_editing);
-    break;
+      prefs_editing--;
+      prefs_handle_move(prefs_editing);
+      break;
     case "Down":
     case "Right":
     case "FP/Down":
     case "RC/Down":
     case "FP/Right":
     case "RC/Right":
-    prefs_editing++;
-    prefs_handle_move(prefs_editing);
-    break;
+      prefs_editing++;
+      prefs_handle_move(prefs_editing);
+      break;
     case "Return":
     case "FP/Ok":
     case "RC/Ok":
     case "RCL/Ok":
     case "space":
-    if (prefs_editing && (prefs_editing == 6)) {
-      db_save(pref_gen());
-      db_close();
-      prefs_setdown();
-      main_setup();
-    }
-    break;
+      if (prefs_editing && (prefs_editing == 10)) {
+        db_save(pref_gen());
+        db_close();
+        prefs_setdown();
+        main_setup();
+      }
+      break;
     default:
-    break;
+      break;
   }
 }
 
