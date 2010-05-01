@@ -362,7 +362,7 @@ function main_setup()
 
     prefs = db_load();
     db_close();
-    host = "" + prefs[1].host1 + "." + prefs[1].host2 + "." + prefs[1].host3 + "." + prefs[1].host4;
+    host = "" + prefs[1].host1 + ":" + prefs[1].host2 + ":" + prefs[1].host3 + ":" + prefs[1].host4 + ":" + prefs[1].host5 + ":" + prefs[1].host6 + ":" + prefs[1].host7 + ":" + prefs[1].host8;
     port = prefs[1].port;
     if (!server_o)
 	mpc_init(host, port);
@@ -404,7 +404,7 @@ function main()
     edje_init();
     ecore_con_init();
 
-    prefs_setup(6);
+    prefs_setup(10);
  
     ecore_main_loop_begin();
 

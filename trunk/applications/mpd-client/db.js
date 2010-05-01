@@ -3,14 +3,14 @@ var db_name = "MPD-client.db";
 var tbl_name = null;
 
 var id = "1"; /* db primary key (only one mpd anyway) */
-var host1 = 0;
-var host2 = 0;
-var host3 = 0;
-var host4 = 0;
-var host5 = 0;
-var host6 = 0;
-var host7 = 0;
-var host8 = 0;
+var host1 = "a";
+var host2 = "d";
+var host3 = "r";
+var host4 = ".";
+var host5 = "I";
+var host6 = "P";
+var host7 = "v";
+var host8 = "6";
 var port = 6600; /* tcp port */
 
 function db_init(name)
@@ -31,7 +31,7 @@ function db_init(name)
   var obj = {};
   sqlite3_exec(db, "SELECT host1, host2, host3, host4, host5, host6, host7, host8 FROM " + tbl_name + "WHERE id='" + id + "';", test_func, obj);
   if (!obj.ok) {
-    sqlite3_exec(db, "CREATE TABLE " + name + " (id INTEGER PRIMARY KEY, host1 INTEGER NOT NULL, host2 INTEGER NOT NULL, host3 INTEGER NOT NULL, host4 INTEGER NOT NULL, host5 INTEGER NOT NULL, host6 INTEGER NOT NULL, host7 INTEGER NOT NULL, host8 INTEGER NOT NULL, port INTEGER);", null, null);
+    sqlite3_exec(db, "CREATE TABLE " + name + " (id INTEGER PRIMARY KEY, host1 TEXT NOT NULL, host2 TEXT NOT NULL, host3 TEXT NOT NULL, host4 TEXT NOT NULL, host5 TEXT NOT NULL, host6 TEXT NOT NULL, host7 TEXT NOT NULL, host8 TEXT NOT NULL, port INTEGER);", null, null);
     sqlite3_exec(db , "INSERT INTO " + name + " (id, host1, host2, host3, host4, host5, host6, host7, host8, port) VALUES ('" + id + "', '" + host1 + "', '" + host2 + "', '" + host3 + "', '" + host4 + "', '" + host5 + "', '" + host6 + "', '" + host7 + "', '" + host8 + "', '" + port + "');", null, null);
   }
 
