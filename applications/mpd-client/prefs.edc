@@ -59,12 +59,12 @@
           visible: 0;
           color: 255 255 255 0;
           rel1 {
-            relative: 0.1 0.1;
+            relative: 0.4 0.4;
             offset: 0 0;
           }
           rel2 {
-            relative: 0.3 0.2;
-            offset: 0 0;
+            relative: 0.6 0.4;
+            offset: 0 +25;
           }
           text {
             font: "Vera";
@@ -94,12 +94,12 @@
           visible: 0;
           color: 255 255 255 0;
           rel1 {
-            relative: 0.1 0.2;
+            relative: 0.4 0.7;
             offset: 0 0;
           }
           rel2 {
-            relative: 0.3 0.3;
-            offset: 0 0;
+            relative: 0.6 0.7;
+            offset: 0 +25;
           }
           text {
             font: "Vera";
@@ -162,10 +162,14 @@
       }                                 \
 
 
-HOST (1, 0.3, 0.1, 0.4, 0.2)
-HOST (2, 0.4, 0.1, 0.5, 0.2)
-HOST (3, 0.5, 0.1, 0.6, 0.2)
-HOST (4, 0.6, 0.1, 0.7, 0.2)
+HOST (1, 0.1, 0.5, 0.2, 0.6)
+HOST (2, 0.2, 0.5, 0.3, 0.6)
+HOST (3, 0.3, 0.5, 0.4, 0.6)
+HOST (4, 0.4, 0.5, 0.5, 0.6)
+HOST (5, 0.5, 0.5, 0.6, 0.6)
+HOST (6, 0.6, 0.5, 0.7, 0.6)
+HOST (7, 0.7, 0.5, 0.8, 0.6)
+HOST (8, 0.8, 0.5, 0.9, 0.6)
 
       part {
         name: "port";
@@ -177,12 +181,12 @@ HOST (4, 0.6, 0.1, 0.7, 0.2)
           visible: 0;
           color: 255 255 255 0;
           rel1 {
-            relative: 0.2 0.2;
-            offset: 0 0;
+            relative: 0.4 0.7;
+            offset: 0 +25;
           }
           rel2 {
-            relative: 0.7 0.3;
-            offset: 0 0;
+            relative: 0.6 0.8;
+            offset: 0 +25;
           }
           text {
             font: "Vera";
@@ -258,45 +262,49 @@ HOST (4, 0.6, 0.1, 0.7, 0.2)
           color: 168 168 168 168;	 \
         }
 
-CURSORHOST (1, 0.3, 0.4, 0.2)
-CURSORHOST (2, 0.4, 0.5, 0.2)
-CURSORHOST (3, 0.5, 0.6, 0.2)
-CURSORHOST (4, 0.6, 0.7, 0.2)
+CURSORHOST (1, 0.1, 0.2, 0.6)
+CURSORHOST (2, 0.2, 0.3, 0.6)
+CURSORHOST (3, 0.3, 0.4, 0.6)
+CURSORHOST (4, 0.4, 0.5, 0.6)
+CURSORHOST (5, 0.5, 0.6, 0.6)
+CURSORHOST (6, 0.6, 0.7, 0.6)
+CURSORHOST (7, 0.7, 0.8, 0.6)
+CURSORHOST (8, 0.8, 0.9, 0.6)
 
         description {
           state: "port/visible" 0.0;
           inherit: "visible" 0.0;
           rel1 {
-            relative: 0.4 0.3;
-            offset: 0 0;
+            relative: 0.4 0.8;
+            offset: 0 +25;
           }
           rel2 {
-            relative: 0.5 0.3;
-            offset: 0 0;
+            relative: 0.6 0.8;
+            offset: 0 +25;
           }
         }
         description {
           state: "port/mivisible" 0.0;
           inherit: "port/visible" 0.0;
-	  color: 168 168 168 168;
-	}
+          color: 168 168 168 168;
+        }
         description {
           state: "ok/visible" 0.0;
           inherit: "visible" 0.0;
           rel1 {
-            relative: 0.5 0.8;
+            relative: 0.5 0.9;
             offset: -30 +20;
           }
           rel2 {
-            relative: 0.5 0.8;
+            relative: 0.5 0.9;
             offset: +30 +20;
           }
         }
         description {
           state: "ok/mivisible" 0.0;
           inherit: "ok/visible" 0.0;
-	  color: 168 168 168 168;
-	}
+          color: 168 168 168 168;
+        }
       }
       part {
         name: "ok";
@@ -308,11 +316,11 @@ CURSORHOST (4, 0.6, 0.7, 0.2)
           visible: 0;
           color: 255 255 255 0;
           rel1 {
-            relative: 0.5 0.8;
+            relative: 0.5 0.9;
             offset: -30 -15;
           }
           rel2 {
-            relative: 0.5 0.8;
+            relative: 0.5 0.9;
             offset: +30 +15;
           }
           image {
@@ -350,6 +358,10 @@ CURSORHOST (4, 0.6, 0.7, 0.2)
         target: "host2";
         target: "host3";
         target: "host4";
+        target: "host5";
+        target: "host6";
+        target: "host7";
+        target: "host8";
         target: "port";
         target: "cursor";
         target: "ok";
@@ -367,6 +379,10 @@ CURSORHOST (4, 0.6, 0.7, 0.2)
         target: "host2";
         target: "host3";
         target: "host4";
+        target: "host5";
+        target: "host6";
+        target: "host7";
+        target: "host8";
         target: "port";
         target: "cursor";
         target: "ok";
@@ -406,6 +422,10 @@ HOSTSELECT(1)
 HOSTSELECT(2)
 HOSTSELECT(3)
 HOSTSELECT(4)
+HOSTSELECT(5)
+HOSTSELECT(6)
+HOSTSELECT(7)
+HOSTSELECT(8)
 
       program {
         name: "portselect";
