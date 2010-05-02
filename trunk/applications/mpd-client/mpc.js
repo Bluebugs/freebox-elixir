@@ -10,7 +10,7 @@ function mpc_init(host, port)
   };
   server_o = ecore_con_server_connect(ECORE_CON_REMOTE_TCP, host, port, null);
   if (!server_o)
-    elx.print("Unable to setup connexion.\n");
+    elx.print("Unable to setup connection.\n");
 }
 
 
