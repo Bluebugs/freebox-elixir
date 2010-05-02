@@ -33,8 +33,9 @@ var editing = 0;
 
 function on_srv_add(data, type, ev)
 {
+    elx.print("Setting connection up.\n");
     if (!server_o || ev.server != server_o) {
-	return 1;
+        return 1;
     }
     mpc_status(ev.server);
     mpc_currentsong(ev.server);
@@ -43,8 +44,9 @@ function on_srv_add(data, type, ev)
 
 function on_srv_del(data, type, ev)
 {
+    elx.print("Shutting connection down.\n");
     if (!server_o || ev.server != server_o) {
-	return 1;
+        return 1;
     }
     ecore_con_server_send(server_o, "close\n");
     ecore_con_server_del(server_o);
@@ -231,11 +233,11 @@ function pre_on_key_up(data, e, obj, ev)
 function on_key_down(data, e, obj, ev)
 {
     if (ev.timestamp == last_ts) {
-	if (idler_t) {
-	    ecore_idler_del(idler_t);
-	    idler_t = null;
-	}
-	return;
+        if (idler_t) {
+            ecore_idler_del(idler_t);
+            idler_t = null;
+        }
+        return;
     }
 
     switch (ev.keyname) {
@@ -244,50 +246,50 @@ function on_key_down(data, e, obj, ev)
     case "Home":
     case "Escape":
     case "Start":
-	ecore_main_loop_quit();
-	break;
+        ecore_main_loop_quit();
+        break;
     case "space":
     case "Play":
-	if (status_o && status_o.state != "play") {
-	    mpc_play(server_o, -1);
-	}
-	else if (status_o) {
-	    mpc_pause(server_o);
-	}
-	mpc_status(server_o); /* refresh status */
-	mpc_currentsong(server_o);
-	break;
+        if (status_o && status_o.state != "play") {
+            mpc_play(server_o, -1);
+        }
+        else if (status_o) {
+            mpc_pause(server_o);
+        }
+        mpc_status(server_o); /* refresh status */
+        mpc_currentsong(server_o);
+        break;
     case "Stop":
     case "s":
-	mpc_stop(server_o);
-	edje_object_signal_emit(edj_o, "stopped", "play");
-	mpc_status(server_o); /* refresh status */
-	break;
+        mpc_stop(server_o);
+        edje_object_signal_emit(edj_o, "stopped", "play");
+        mpc_status(server_o); /* refresh status */
+        break;
     case "n":
     case "Next":
-	mpc_next(server_o);
-	mpc_status(server_o);
-	mpc_currentsong(server_o);
-	break;
+        mpc_next(server_o);
+        mpc_status(server_o);
+        mpc_currentsong(server_o);
+        break;
     case "p":
     case "Previous":
-	mpc_prev(server_o);
-	mpc_status(server_o);
-	mpc_currentsong(server_o);
-	break;
+        mpc_prev(server_o);
+        mpc_status(server_o);
+        mpc_currentsong(server_o);
+        break;
     case "Volume_Plus":
     case "plus":
     case "equal":
-	mpc_volplus(server_o);
-	break;
+        mpc_volplus(server_o);
+        break;
     case "Volume_Minus":
     case "minus":
-	mpc_volminus(server_o);
-	break;
+        mpc_volminus(server_o);
+        break;
     case "List":
     case "l":
-	main_setdown();
-	pl_setup();
+        main_setdown();
+        pl_setup();
         break;
     case "Up":
     case "Left":
@@ -297,7 +299,7 @@ function on_key_down(data, e, obj, ev)
     case "RC/Left":
         editing--;
         handle_move(editing);
-    break;
+        break;
     case "Down":
     case "Right":
     case "FP/Down":
@@ -306,7 +308,7 @@ function on_key_down(data, e, obj, ev)
     case "RC/Right":
         editing++;
         handle_move(editing);
-    break;
+        break;
     case "Return":
     case "FP/Ok":
     case "RC/Ok":
@@ -356,8 +358,8 @@ function main_setup()
     edje_object_signal_callback_add(edj_o, "pressed", "repeat", on_repeat_pressed, null);
     edje_object_signal_callback_add(edj_o, "pressed", "random", on_random_pressed, null);
     if (!db_init("MPD_client")) {
-	elx.print("Could not init prefs\n");
-	return false;
+      elx.print("Could not init prefs\n");
+      return false;
     }
 
     prefs = db_load();
@@ -365,10 +367,10 @@ function main_setup()
     host = "" + prefs[1].host1 + ":" + prefs[1].host2 + ":" + prefs[1].host3 + ":" + prefs[1].host4 + ":" + prefs[1].host5 + ":" + prefs[1].host6 + ":" + prefs[1].host7 + ":" + prefs[1].host8;
     port = prefs[1].port;
     if (!server_o)
-	mpc_init(host, port);
+      mpc_init(host, port);
     else {
-	mpc_status(server_o);
-	mpc_currentsong(server_o);
+      mpc_status(server_o);
+      mpc_currentsong(server_o);
     }
     timer_handle = ecore_timer_add(3, on_timer, null); /* fetch song title every 3 sec */
     edje_object_signal_emit(edj_o, "selecting", "list");
@@ -391,7 +393,7 @@ function main()
     evas = ecore_evas_get(ee);
 
     evas_image_cache_set(evas, 10 * 1024 * 1024)
-	evas_font_path_prepend(evas, FN);
+    evas_font_path_prepend(evas, FN);
     evas_font_cache_set(evas, 512 * 1024);
 
     bg = evas_object_rectangle_add(evas);
@@ -409,7 +411,7 @@ function main()
     ecore_main_loop_begin();
 
     if (edj_o)
-	evas_object_del(edj_o);
+      evas_object_del(edj_o);
     evas_object_del(bg);
     ecore_evas_free(ee);
 
