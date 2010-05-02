@@ -40,7 +40,7 @@ function db_init(name)
 
 function db_save(pref)
 {
-  sqlite3_exec(db , "REPLACE INTO " + tbl_name + " (id, host1, host2, host3, host4, host5, host6, host7, host8, port) VALUES (" + id + ", " + pref.host1 + ", " + pref.host2 + ", " + pref.host3 + ", " + pref.host4 + ", " + pref.host5 + ", " + pref.host6 + ", " + pref.host7 + ", " + pref.host8 + ", " + pref.port + ");", null, null);
+  sqlite3_exec(db , "REPLACE INTO " + tbl_name + " (id, host1, host2, host3, host4, host5, host6, host7, host8, port) VALUES (" + id + ", '" + pref.host1 + "', '" + pref.host2 + "', '" + pref.host3 + "', '" + pref.host4 + "', '" + pref.host5 + "', '" + pref.host6 + "', '" + pref.host7 + "', '" + pref.host8 + "', '" + pref.port + "');", null, null);
 }
 
 function db_load()
