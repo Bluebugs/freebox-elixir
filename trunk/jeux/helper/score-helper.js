@@ -103,6 +103,10 @@ function save_highscore_end()
 {
 }
 
+function save_highscore_cancel()
+{
+}
+
 function save_highscore(score, name)
 {
    if (!load_sqlite)
@@ -112,7 +116,7 @@ function save_highscore(score, name)
           return ;
      }
 
-   ecore_thread_run(save_highscore_heavy, save_highscore_end, { score: score, name: name });
+   ecore_thread_run(save_highscore_heavy, save_highscore_end, save_highscore_cancel, { score: score, name: name });
 }
 
 var over;
