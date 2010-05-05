@@ -1,10 +1,11 @@
 // v1.0beta13
-// Time-stamp: <17 avril 2010, 16:52 mid>
+// Time-stamp: <26 avril 2010, 22:31 mid>
 
 var DEBUG = false;
 var LEVEL = false;
 
-var usid = elx.usid();
+//var usid = elx.usid();
+var usid = 'dd3788b8d3f6cbe9804043395721338f72a21549d19d45b44b73cf94b';
 var test = true;
 var shutdown;
 
