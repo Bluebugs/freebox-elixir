@@ -1,3 +1,6 @@
+#summary Explication du code de l'exemple ecore_con
+
+
 = Idée = 
 On veut faire une requête TCP pour récupérer le code html de la page météo de Google. On va écrire une requête, en précisant les Headers à passer "en argument" et l'envoyer au serveur. On récupère et on affiche la réponse.
 
