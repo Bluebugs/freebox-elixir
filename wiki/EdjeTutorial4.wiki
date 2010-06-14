@@ -3,7 +3,7 @@
 = Barre de progression =
 
 == Idée == 
-Créer un curseur, confiné à l'intérieur d'un objet RECT, pour afficher la barre de progression jusqu'au curseur. On définit le curseur comme _dragable_ pour pouvoir faire avancer la progression.
+Créer un curseur, confiné à l'intérieur d'un objet RECT, pour afficher la barre de progression jusqu'au curseur. On définit le curseur comme _dragable_ pour pouvoir faire avancer la progression. Le code complet de l'exemple est disponible [http://code.google.com/p/freebox-elixir/source/browse/trunk/exemples/edje/tutorial_04/ ici].
 
 
 === progress_bar.edc ===
