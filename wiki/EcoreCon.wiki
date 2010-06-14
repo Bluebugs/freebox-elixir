@@ -1,0 +1,108 @@
+= Idée = 
+On veut faire une requête TCP pour récupérer le code html de la page météo de Google. On va écrire une requête, en précisant les Headers à passer "en argument" et l'envoyer au serveur. On récupère et on affiche la réponse.
+
+
+
+== 1ère étape ==
+    On ajoute un idler. Il prend comme argument la fonction à appeler et les données à lui passer. Ici, c'est simplement `idler_cb` :
+{{{ 
+   ecore_idler_add(idler_cb, null);
+}}}
+
+    L'idler lui-même :
+{{{
+    function idler_cb(data)
+    {
+      handler = {
+	  add: ecore_event_handler_add(ECORE_CON_EVENT_SERVER_ADD, _elixir_add, self),		//Fonction appelée juste après avoir créé la connexion, on lui passe les données de "self"
+	  del: ecore_event_handler_add(ECORE_CON_EVENT_SERVER_DEL, _elixir_del, self),		//Fonction appelée lorsque l'on veut fermer la connexion, on lui passe les données de "self"
+	  data: ecore_event_handler_add(ECORE_CON_EVENT_SERVER_DATA, _elixir_data, self)	// Fonction appelée lors de la réception de donneés, on lui passe les données de "self"
+      };
+
+      server = ecore_con_server_connect(ECORE_CON_REMOTE_TCP, "www.google.com", 80, self);	// On veut se connecter en TCP sur "www.google.com", sur le port 80 (http)
+      if (!server)										// Si on n'arrive pas à ouvrir la connexion
+	evas_object_text_text_set(state, "Unable to setup connexion !");			// On affiche un message d'erreur
+
+      return 0;
+    }
+}}}
+
+
+== 2ème étape ==
+Ouverture de connexion et les headers :
+    
+    Avec la fonction `_elixir_add` :
+{{{
+    function _elixir_add(data, type, event)
+    {
+      var header;
+
+      if (event.server != server) // Si le serveur qui repond n'est pas celui qu'on a contacté, on arrête
+	return 1;
+
+      header = "GET http://www.google.com/ig/api?weather=Paris HTTP/1.1\r\n"; // Sinon, on demande la page à récupérer (météo sur Paris)
+      header += "Host: www.google.com\r\n\r\n";							// On complète les headers. On peut éventuellement mettre à la suite des identifications
+
+      ecore_con_server_send(server, header);							// On envoie les headers
+
+      evas_object_text_text_set(state, "Sending header");
+
+      return 0;
+    }
+}}}
+
+    A partir de maintenant, on a finit d'envoyer des données. On va recevoir la réponse.
+
+== 3ème étape ==
+Réception des données :
+
+    Avec la fonction `_elixir_data`, qui est appelée automatiquement lors de la réception de données.
+
+{{{
+    function _elixir_data(data, type, event)
+    {
+      if (event.server != server) // Si le serveur qui repond n'est pas celui qu'on a contacté, on arrête
+	return 1;
+
+      data.count += event.size;	 //Ici, data = self. On incrémente le compteur de taille de données reçues.
+      evas_object_text_text_set(down, data.count + " octets"); // On affiche la taille des données reçues.
+      evas_textblock_cursor_text_append(cursor, event.data); // On affiche les données reçues.
+
+      return 0;
+    }
+}}}
+
+
+== 4ème étape ==
+Fermeture de la connexion :
+
+    Avec la fonction `_elixir_del`, qui est appelée juste avant de tuer la connexion :
+{{{
+    function _elixir_del(data, type, event)
+    {
+      if (event.server != server) // Si le serveur qui repond n'est pas celui qu'on a contacté, on arrête
+	return 1;
+
+      ecore_con_server_del(server);	// On supprime la connexion avec le serveur
+      server = null;	// On n'est plus connecté
+
+      evas_object_text_text_set(state, "Download done"); // On affiche un message.
+
+      return 0;
+    }
+}}}
+
+
+== 5ème étape ==
+
+On stoppe l'idler avant de quitter :
+    Avec la fonction con_shutdown(), juste avant ecore_main_loop_quit() :
+  {{{  
+     function con_shutdown()
+      {
+      ecore_event_handler_del(handler.add);
+      ecore_event_handler_del(handler.del);
+      ecore_event_handler_del(handler.data);
+      handler = undefined;
+      }
+}}}
