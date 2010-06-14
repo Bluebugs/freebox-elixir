@@ -1,0 +1,85 @@
+#summary Tutorial présentant Edje
+
+= Barre de progression =
+
+== Idée == 
+Créer un curseur, confiné à l'intérieur d'un objet RECT, pour afficher la barre de progression jusqu'au curseur. On définit le curseur comme _dragable_ pour pouvoir faire avancer la progression.
+
+
+=== progress_bar.edc ===
+
+{{{
+part {
+	    name, "cursor";
+	    mouse_events, 0;
+	    type, RECT;
+
+	    dragable {			//On définit les paramètre dragable
+	       confine, "clip";		//On le confine dans l'objet "clip" définit plus haut
+	       x, 1 1 1;		
+	       y, 0 0 0;
+	    }
+
+	    description {
+	       state, "default" 0.0;
+
+	       min, 1 32;		//On fixe sa taille à 1x32 pixels 
+	       max, 1 32;
+	       fixed, 0 1;
+
+	       rel1.relative, 0.0 0.0;
+	       rel2.relative, 1.0 1.0;
+	       color, 0 255 0 255;	//Couleur, pas très important, uniquement pour debug ici
+
+	       visible, 0;		//On ne l'affiche pas, sauf pour debug
+	    }
+	 }
+
+}}}
+
+On affiche ensuite l'image progress_box.png jusqu'au curseur :
+
+{{{
+rel2 {
+		  to_x, "cursor";
+		  relative, 1.0 1.0;
+      }
+}}}
+
+
+
+=== progress_bar.js ===
+
+
+{{{   
+   edje_object_file_set(obj, "progress_bar.edj", "bar");
+   evas_object_resize(obj, 250, 52);					// On va prendre une barre de 250x52 pixels
+   evas_object_move(obj, 50, 50);					// On la bouge en 50x50
+   evas_object_show(obj);						// On l'affiche
+
+   edje_object_part_drag_value_set(obj, "cursor", 0.1, 0.1);		// On place le curseur à 10% (0.1, 0.1) de la barre
+   edje_object_part_text_set(obj, "percent", "10%");			// On affiche le texte : on en est à 10%
+
+   evas_object_data_set(obj, "dx", +2);					// Pour faire bouger la barre selon les x
+   evas_object_data_set(obj, "dy", +1);					// Pour faire bouger la barre selon les y
+   evas_object_data_set(obj, "dh", +1);					// Pour dilater la hauteur de la barre
+   ecore_animator_add(anim_cb, obj);					// Premier animator : fait bouger la barre/la dilate
+
+   ecore_animator_add(anim_bar_cb, { obj: obj, cursor: 0.1 });		// Second animator, celui qui nous intéresse : met à jour la progression. Au début, le curseur est positionné à 10% (0.1)
+}}}
+
+
+Animation du curseur :
+
+{{{
+function anim_bar_cb(data)
+{
+   data.cursor += 0.01;									// A chaque appel, on rajoute 0.01 (1%) au curseur
+   if (data.cursor >= 1.0) data.cursor = 0;						// Si on dépasse 100%, on revient à zéro
+
+   edje_object_part_drag_value_set(data.obj, "cursor", data.cursor, data.cursor);	// On fait avancer le curseur à l'écran
+   edje_object_part_text_set(data.obj, "percent", parseInt(data.cursor * 100) + "%");	// On met à jour le texte
+
+   return 1;
+}
+}}}
