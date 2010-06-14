@@ -1,0 +1,85 @@
+#summary Explication du code de l'exemple ecore_con_url
+
+= Idée =
+
+Dans la même veine que `ecore_con`, on veut faire une requête TCP pour récupérer le code html de la d'accueil de Google.
+Plutôt de de travailler directement en TCP, on va simplement fournir l'URL et `ecore` va se charger du reste.
+
+
+
+== 1ère étape ==
+On crée les fonctions à appeler lors de la réception de données, lorsque la fin de la transmission et régulièrement, pendant la transmission, et on les lie à ces événements :
+{{{ 
+  hd = ecore_event_handler_add(ECORE_CON_EVENT_URL_DATA, url_data_cb, null);
+   hc = ecore_event_handler_add(ECORE_CON_EVENT_URL_COMPLETE, url_complete_cb, null);
+   hp = ecore_event_handler_add(ECORE_CON_EVENT_URL_PROGRESS, url_progress_cb, null);
+}}}
+
+  La première se charge de recevoir les données, la seconde est appelée à la fin de la transmission, la troisième est appelée pendant la transmission.
+
+{{{  
+    function url_complete_cb(data, type, event)											// A la fin, 
+    {
+      var message;
+
+      message = "Complete '" + ecore_con_url_data_get(event.url_con) + "' with status: " + event.status;			// On affiche un simple texte, avec le status de la transmission
+      evas_object_text_text_set(state, message);
+
+      return 0;
+    }
+
+    function url_data_cb(data, type, event)											// Lors de la réception de données,
+    {
+      evas_object_text_text_set(state, event.size + " data for '" + ecore_con_url_data_get(event.url_con) + "'\n");		// On affiche la quantité de texte reçue
+      evas_textblock_cursor_text_append(cursor, event.data);									// On affiche le texte reçu
+
+      return 0;
+    }
+
+    function url_progress_cb(data, type, event)											// Pendant la transmission,
+    {
+      evas_object_text_text_set(down, event.down.now + "/" + event.down.total);							// Total de données reçues
+      evas_object_text_text_set(up, event.up.now + "/" + event.up.total);							// Total de données émises	
+      evas_object_text_text_set(state, "Progress for '" + ecore_con_url_data_get(event.url_con) + "'");				// On affiche l'url sur laquelle on travaille.
+
+      return 0;
+    }
+
+}}}
+
+
+== 2eme étape ==
+    On ajoute un idler, qui va se charger d'établir la connexion. Il prend comme argument la fonction à appeler et les données à lui passer.
+{{{   
+ ecore_idler_add(idler_cb, null);
+}}}
+
+    L'idler lui-même :
+{{{
+    function idler_cb(data)
+    {
+   azer = ecore_con_url_new("http://www.google.com/");						// On demande de se connecter à "http://www.google.com/"
+   ecore_con_url_data_set(azer, "azer");							
+   ecore_con_url_send(azer, null, null);							
+
+   evas_object_text_text_set(state, "Starting url request.");
+
+   return 0;
+    }
+}}}
+
+== 3ème étape ==
+Fermeture de la connexion
+
+  On arrête l'idler :
+{{{
+	 if (azer) ecore_con_url_destroy(azer);
+	 azer = null;
+}}}
+
+  On tue les handlers :
+{{{
+	  ecore_event_handler_del(hd);
+	  ecore_event_handler_del(hc);
+	  ecore_event_handler_del(hp);
+}}}
