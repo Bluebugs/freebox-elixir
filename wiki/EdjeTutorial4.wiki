@@ -8,6 +8,8 @@ Créer un curseur, confiné à l'intérieur d'un objet RECT, pour afficher la ba
 
 === progress_bar.edc ===
 
+On définit donc un object de type `RECT` qui ne sera pas visible mais qui permettra de déterminer l'endroit où la barre de progression d'arrêtera.
+
 {{{
 part {
 	    name, "cursor";
@@ -40,10 +42,32 @@ part {
 On affiche ensuite l'image progress_box.png jusqu'au curseur :
 
 {{{
-rel2 {
+	    description {
+	       state, "default" 0.0;
+
+	       rel1.relative, 0.0 0.0;
+
+	       rel2 {
 		  to_x, "cursor";
 		  relative, 1.0 1.0;
-      }
+	       }
+
+	       color, 255 255 0 255;
+
+	       image {
+		  border, 3 3 3 3;
+		  normal, "progress_box.png";
+	       }
+
+	       fill {
+		  origin.relative, 0.0 0.0;
+
+		  size {
+		     relative, 0.0 1.0;
+		     offset, 10 0;
+		  }
+	       }
+	    }
 }}}
 
 
