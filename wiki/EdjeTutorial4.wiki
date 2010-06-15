@@ -3,12 +3,37 @@
 = Barre de progression =
 
 == Idée == 
-Créer un curseur, confiné à l'intérieur d'un objet RECT, pour afficher la barre de progression jusqu'au curseur. On définit le curseur comme _dragable_ pour pouvoir faire avancer la progression. Le code complet de l'exemple est disponible [http://code.google.com/p/freebox-elixir/source/browse/trunk/exemples/edje/tutorial_04/ ici].
+Créer un curseur, confiné à l'intérieur d'un objet `RECT`, pour afficher la barre de progression jusqu'au curseur. On définit le curseur comme `dragable` pour pouvoir faire avancer la progression. Le code complet de l'exemple est disponible [http://code.google.com/p/freebox-elixir/source/browse/trunk/exemples/edje/tutorial_04/ ici].
 
 
-=== progress_bar.edc ===
+== progress_bar.edc ==
 
-On définit donc un object de type `RECT` qui ne sera pas visible mais qui permettra de déterminer l'endroit où la barre de progression d'arrêtera.
+La barre de progression est constituée de quatre parties :
+  * Un `RECT` dans lequel va apparaître la progression
+  * Le curseur, un autre `RECT`, définissant la limite de la progression à l'intérieur du  premier `RECT`
+  * La progression elle-même, ici une répétition d'images
+  * Un texte pour afficher le pourcentage
+
+On crée le premier `RECT` qui va contenir le tout :
+{{{
+part {
+	    name, "clip";
+	    type, RECT;
+	    mouse_events, 0;
+
+	    description {
+	       state, "default" 0.0;
+	       rel1.relative, 0.0 0.0;
+	       rel2.relative, 1.0 1.0;
+	       color, 128 0 0 255;
+	    }
+	 }
+}}}
+
+Rien de bien compliqué ici, un seul état, on définit simplement la position et la couleur.
+
+
+On définit ensuite un objet de type `RECT` qui ne sera pas visible mais qui permettra de déterminer l'endroit où la barre de progression s'arrêtera, le "curseur".
 
 {{{
 part {
@@ -27,7 +52,7 @@ part {
 
 	       min, 1 32;		//On fixe sa taille à 1x32 pixels 
 	       max, 1 32;
-	       fixed, 0 1;
+	       fixed, 0 1;		// Voir plus bas
 
 	       rel1.relative, 0.0 0.0;
 	       rel2.relative, 1.0 1.0;
@@ -39,16 +64,22 @@ part {
 
 }}}
 
+	    
 On affiche ensuite l'image progress_box.png jusqu'au curseur :
 
 {{{
+	 part {
+	    name, "display";
+	    mouse_events, 0;
+	    type, IMAGE;
+
 	    description {
 	       state, "default" 0.0;
 
 	       rel1.relative, 0.0 0.0;
 
 	       rel2 {
-		  to_x, "cursor";
+		  to_x, "cursor";	    // La partie intéressante ici, on étend l'image jusqu'au curseur
 		  relative, 1.0 1.0;
 	       }
 
@@ -63,16 +94,39 @@ On affiche ensuite l'image progress_box.png jusqu'au curseur :
 		  origin.relative, 0.0 0.0;
 
 		  size {
-		     relative, 0.0 1.0;
-		     offset, 10 0;
+		     relative, 0.0 1.0;	    	    // On veut que la taille selon l'axe Y soit 100% de la hauteur de la barre
+		     offset, 10 0;	    	    // Mais on veut que la taille selon l'axe X soit fixe, à 10 pixels. Force la répétition de l'image fournie
 		  }
 	       }
 	    }
+	 }
 }}}
 
+=== Objet dragable ===
 
+La section `dragable` est définie dans la [http://docs.enlightenment.org/auto/edje/edcref.html#sec_quickaccess doc] Edje :
+{{{ 
+x       [enable/disable] [step] [count]
+y       [enable/disable] [step] [count]
+confine 	[another part's name]
+}}}
 
-=== progress_bar.js ===
+Les paramètres `x` et `y` permettent d'autoriser les `dragging events` sur les axes X ou Y. Le premier paramètre autorise (avec 1 ou -1) ou non (0) ces événements sur l'axe. Quand l'événement est autorisé avec 1, l'objet partira du point 0.0, et de 1.0 si autorisé avec -1. Le deuxième paramètre prend un entier et limite les déplacements à des valeurs multiples de cet entier, obligeant l'objet à sauter lors des changements de position. Pour le troisième paramètre, mystère...
+
+`confine` permet de limiter le mouvement de l'objet dans le container d'un autre objet. Ne pas oublier de définir une taille minimum pour le container, sinon l'objet `dragable` n'apparaîtra pas.
+
+Ici, on demande donc d'autoriser les mouvements sur l'axe des X, par pas de 1 pixel, et à l'intérieur de l'objet `clip`.
+
+=== Paramètre `fixed` dans description ===
+
+{{{
+fixed 	 [width, 0 or 1] [height, 0 or 1]
+}}}
+ 	
+
+Permet de verrouiller (1) ou non (0) le calcul de la taille minimale, en largeur et/ou en hauteur. Affecte les fonctions `edje_object_size_min_calc()` et `edje_object_size_min_restricted_calc()`. On aurait pu ici mettre `fixed 1 1` sans problème.
+
+== progress_bar.js ==
 
 
 {{{   
