@@ -56,7 +56,7 @@ function eweather_start(eweather)
 
 function eweather_free(eweather)
 {
-   google_shutdown(eweanter);
+   google_shutdown(eweather);
 }
 
 function eweather_poll_time_set(eweather, poll_time)
