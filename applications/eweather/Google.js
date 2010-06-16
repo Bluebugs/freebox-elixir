@@ -173,7 +173,7 @@ function _server_del(data, type, event)
     if ((!eweather.google.server) || (eweather.google.server != ev.server)) return 1;
 
     ecore_con_server_del(eweather.google.server);
-    eweather.google.server = NULL;
+    eweather.google.server = null;
 
     ret = _parse(eweather);
 

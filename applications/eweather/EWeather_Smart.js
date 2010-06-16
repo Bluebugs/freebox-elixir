@@ -618,7 +618,7 @@ function _smart_del(obj)
     evas_object_del(sd.obj);
     evas_object_del(sd.main);
 
-    free(sd);
+    //free(sd);
 }
 
 function _smart_move(obj, x, y)
