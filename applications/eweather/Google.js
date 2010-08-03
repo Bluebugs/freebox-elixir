@@ -217,7 +217,13 @@ function _parse(eweather)
     if (!eweather.google.buffer) return 0;
 
     //elx.print(eweather.google.buffer);
-
+    
+    needle = strstr(eweather.google.buffer, "<problem_cause data=\"");
+    if (needle) {
+      eweather_code_set(eweather, "Paris,France");
+      return 0;
+    }
+    
     needle = strstr(eweather.google.buffer, "<city data=\"");
     if (!needle) return 0;
     needle = needle.slice(12);
