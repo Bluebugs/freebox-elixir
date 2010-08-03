@@ -8,6 +8,7 @@ test &= elx.load("ecore-con");
 test &= elx.load("edje");
 
 elx.include("EWeather.edj", "EWeather_Smart")
+elx.include("EWeather.edj", "Geoloc")
 
 var o_weather = null;
 var o_bg = null;
@@ -50,6 +51,7 @@ function main()
 
    ecore_init();
    ecore_evas_init();
+   ecore_con_url_init();
    ecore_con_init();
    edje_init();
 
@@ -72,6 +74,7 @@ function main()
    evas_object_event_callback_add(o_bg, EVAS_CALLBACK_KEY_UP, key_up_cb, null);
    evas_object_focus_set(o_bg, 1);
 
+   get_geoloc_info(done_geoloc);
    o_weather = eweather_object_add(evas);
    eweather = eweather_object_eweather_get(o_weather);
    eweather_code_set(eweather, "Paris");
@@ -91,7 +94,20 @@ function main()
    edje_shutdown();
    ecore_evas_shutdown();
    ecore_con_shutdown();
+   ecore_con_url_shutdown();
    ecore_shutdown();
+}
+
+function done_geoloc(info){
+
+for(var i in info)
+   elx.print(i + "=>" + info[i] + "\n");
+eweather = eweather_object_eweather_get(o_weather);
+
+if(info && info.City && info.City != "") 
+   eweather_code_set(eweather, info.City);
+else
+   eweather_code_set(eweather, "Paris");
 }
 
 if (test)
