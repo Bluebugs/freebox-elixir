@@ -1,0 +1,97 @@
+#summary L'objet evan_input
+
+= evan_input =
+
+L'objet evan_input est une simple zone de texte, sur une ligne, gérant plusieurs modes d'entrée :
+  * En mode "abc", l'utilisateur entre du texte minuscule avec les chiffres de la télécommande, comme sur un clavier de téléphoine portable
+  * En mode "ABC", l'utilisateur entre du texte majuscule avec les chiffres de la télécommande, comme sur un clavier de téléphoine portable
+  * En mode "123", l'utilisateur entre des chiffres directement avec la télécommande.
+
+L'utilisation de la fonction `evan_input_object_keyboard_add` permet de lier l'evan_input à un evan_keyboard et rajoute le mode "azer" qui crée le
+clavier Azerty et le lie à la zone de texte.
+
+== Utilisation ==
+
+Le code d'une démo montrant l'utilisation de evan_keyboard avec un evan_input est disponible ici.
+
+Pour pouvoir utiliser un evan_input, il faut avant tout le charger :
+{{{ 
+elx.include("evan.edj", "Evan_Input");
+}}}
+
+Les fonctions offertes par evan_list sont les suivantes :
+|| *fonction* || *Argument(s)* ||
+|| evan_input_object_add || (evas)||
+|| evan_input_object_change_mode_key_set  || (obj, keys) ||
+|| evan_input_object_text_get || (obj)||
+|| evan_input_object_text_set || (obj, text)||
+|| evan_input_object_keyboard_add || (obj, keyb)||
+|| evan_input_object_input_mode_set || (obj, mode)||
+|| evan_input_object_callback_set || (smartInput, validation) ||
+
+=== evan_input_object_add(evas) ===
+Crée un evan_input  et le retourne
+
+  * Argument :
+    * {{{evas}}}, l'evas sur lequel ajouter l'input.
+  * Retourne :
+    * Le Smart Object 
+   
+=== evan_input_object_change_mode_key_set(obj, keys) === 
+Permet de définir la ou les touches premettant de changer de mode. Par défaut, cette touche est la touche "Swap" (#) de la télécommande.
+
+  * Arguments :
+    * {{{obj}}}, le evan_input
+    * {{{keys}}}, la ou les touches, sous forme de String, chaque touche séparée par une virgule. Par exemple, "Swap,Info,Mail".
+  * Retourne :
+    * void
+  
+=== evan_input_object_text_get(obj) ===
+Renvoie le texte affiché par la zone de texte.
+
+  * Arguments :
+    * {{{obj}}}, le evan_input
+  * Retourne :
+    * {{{String}}} le texte entré
+    
+=== evan_input_object_text_set(obj, text) ===
+Définit le texte affiché par la zone de texte.
+
+  * Arguments :
+    * {{{obj}}}, le evan_input
+    * {{{text}}}, le texte qui sera affiché
+  * Retourne :
+    * void
+    
+=== evan_input_object_keyboard_add(obj, keyb) ===
+Déinit un evan_keyboard à utiliser avec le evan_input.
+
+  * Arguments :
+    * {{{obj}}}, le evan_input
+    * {{{keyb}}}, le evan_keyboard
+  * Retourne :
+    * void
+    
+=== evan_input_object_input_mode_set(obj, mode) ===
+Permet d'aller directement dans un mode d'entrée de texte.
+
+REMARQUE : Avant de forcer à passer en mode "azer", s'assurer d'avoir bien ajouté un clavier avec evan_input_object_keyboard_add, et 
+aussi d'avoir *donné le focus à la zone de texte*.
+
+  * Arguments :
+    * {{{obj}}}, le evan_input
+    * {{{mode}}}, le mode d'entrée. Peut être "abc", "ABC", "123" ou "azer" si un evan_keyboard a été défini précédemment
+  * Retourne :
+    * void
+    
+=== evan_input_object_callback_set(obj, cb) === 
+Définit la fonction qui sera appelée lors de la validation de la zone de texte,
+par un appui sur "Green", "Select", "KP_Enter","Return", ou "RC/Ok" en mode "abc", 
+"ABC", ou "123", ou par la selection de la touche "Ok" du clavier avec ces mêmes touches.
+
+  * Arguments :
+    * {{{obj}}}, le evan_input
+    * {{{cb}}}, le callback à appeler.
+  * Retourne :
+    * void
+    

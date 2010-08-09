@@ -1,0 +1,243 @@
+#summary Exemple de evan_list
+
+Cette page présente un exemple de evan_list. Le code de cet exemple est disponible ici.
+
+
+= Le thème =
+
+Il est constitué de 3 groupes :
+  * item
+  * cursor
+  * scroller
+
+== Le groupe item ==
+
+C'est là que l'on défint à quoi va ressembler notre item. Ici, c'est un simple rectangle, avec deux états, un état sélectionné et un état déselectionné. 
+On peut ajouter un ou des programmes permettant de passer d'un état à l'autre, mais on peut imaginer beaucoup de choses, animer l'item lorsqu'il a le focus...
+Rien de très compliqué ici, on remarque simplement l'utilisation de `min` qui définit la taille minimale de l'item (en fait, celle qui sera utilisée).
+
+== Le groupe cursor == 
+
+Rien de bien fantastique non plus, on définit ici le curseur qui va se déplacer sur les différents items. Le curseur sera redimensionné à sa taille minimale,
+donc celle-ci doit être généralement proche de celle des items.
+
+== Le groupe scroller ==
+
+Un peu plus délicat ici, il s'agit de définir la barre de scroll.
+Les différentes parties sont :
+  * `scroller/bg` : le fond de la barre. Ici, une image. On précise que l'on ne touche pas aux 15 pixels du haut et 15 du bas, qui correspondent aux "flèches" veres le haut et le bas, aux extrémités.
+  * `scroller/cursorClip` : Là ou le curseur (l'indicateur de progression) va pouvoir bouger.
+  * `scroller/cursor` : Le curseur en lui même
+  * `scroller/cursorUpScroller` :  le haut du scroller, une simple "butée" invisible
+  * `scroller/cursorDownScroller` : pareil mais pour le bas
+
+On remarque que les tailles de `scroller/cursorUpScroller` et `scroller/cursorDownScroller` sont fixées, exactement comme pour la [EdjeTutorial4 barre de progression].
+
+
+= Le programme javascript =
+
+
+On commence par le début classique, on charge les librairies :
+{{{
+var FN = "/.fonts/";
+var test = true;
+
+test &= elx.load("evas");
+test &= elx.load("ecore");
+test &= elx.load("ecore-evas");
+test &= elx.load("edje");
+}}}
+
+On n'oublie pas evan :
+{{{
+elx.include("evan.edj", "Evan_List")
+}}}
+
+Maintenant, on va définir nos variables gloabales. On aura besoin d'une liste, d'un fond, et de contenu à afficher dans les items :
+{{{
+var o_evan_list = null;
+var o_bg = null;
+var win = { w: 720, h: 576 };
+var texte;
+}}}
+
+Regardons tout de suite le main.
+
+{{{
+function main()
+{
+   var evan_list;
+
+   ecore_init();
+   ecore_evas_init();
+   edje_init();
+
+   ecore_animator_frametime_set(1 / 20);
+
+   ee = ecore_evas_new(null, 0, 0, win.w, win.h, "name=Test;");
+   ecore_evas_callback_resize_set (ee, _resize_cb);
+
+   var evas = ecore_evas_get(ee);
+
+   evas_image_cache_set(evas, 10 * 1024 * 1024);
+   evas_font_path_prepend(evas, FN);
+   evas_font_cache_set(evas, 512 * 1024);
+
+   o_bg = evas_object_rectangle_add(evas);
+   evas_object_resize(o_bg, win.w, win.h);
+   evas_object_color_set(o_bg, 0, 0, 0, 255);
+   evas_object_show(o_bg);
+}}}
+
+Pour l'instant, rien que du connu. Vu qu'on va insérer une liste, c'est elle (ou plutôt, les items) qui auront le focus. Il faut pouvoir quitter proprement,
+on rajoute donc un callback sur le fond, et l'on surveille certaines touches de façon globale.
+
+{{{
+   evas_object_event_callback_add(o_bg, EVAS_CALLBACK_KEY_UP, key_action_cb, null);
+   evas_object_key_grab(o_bg, "Escape", 0, 0, 0);
+   evas_object_key_grab(o_bg, "p", 0, 0, 0);
+   evas_object_key_grab(o_bg, "a", 0, 0, 0);
+   evas_object_key_grab(o_bg, "KP_Add", 0, 0, 0);
+   evas_object_key_grab(o_bg, "KP_Subtract", 0, 0, 0);
+   evas_object_key_grab(o_bg, "Delete", 0, 0, 0);
+   evas_object_key_grab(o_bg, "KP_Delete", 0, 0, 0);
+}}}
+
+On définit ensuite le contenu de nos items :
+{{{
+    var nbitems = 20;
+    texte = new Array(nbitems);
+
+    for(i=0; i<nbitems ; i++)
+    {
+      texte[i] = "Item "+i;
+    }
+}}}
+
+Puis (enfin) on va créer la liste. On définit ses paramètres dans une structure :
+
+{{{
+    var info_liste =
+    {
+      name: "liste1",
+      nb_items: nbitems,
+      edje_file: "evanListDemo.edj",
+      edje_group_item: "item",
+      edje_group_cursor: "cursor",
+      preload: _item_preload,
+      unload: _item_unload,
+      show: _item_show,
+      hide: _item_hide,
+      focus: _item_focus,
+      unfocus: _item_unfocus,
+      key_up_cb: key_up_item_cb,
+//      key_down_cb: key_down_item_cb,
+      data: null
+    };
+}}}
+
+Et enfin la liste en elle-même, à la manière d'un objet evas tout à fait normal :
+{{{
+   o_evan_list = evan_list_object_add(evas);
+   evan_list_object_set_params(o_evan_list, info_liste);
+   evas_object_resize(o_evan_list, win.w-100, win.h-100);
+   evas_object_move(o_evan_list, 50, 50);
+   
+   evan_list_object_set_scroller(o_evan_list, "evanListDemo.edj", "scroller", "scroller/cursorUpScroller", "scroller/cursorDownScroller");
+//    evan_list_object_layout_set(o_evan_list, "horizontal");
+   
+   evas_object_show(o_evan_list);
+}}}
+
+Le reste est simplement pour finir proprement :
+{{{
+   ecore_evas_show(ee);
+   ecore_main_loop_begin();
+   
+   evas_object_event_callback_del(o_bg, EVAS_CALLBACK_KEY_UP, key_action_cb, null);
+
+   evas_object_del(o_evan_list);
+   evas_object_del(o_bg);
+
+   ecore_evas_free(ee);
+
+   edje_shutdown();
+   ecore_evas_shutdown();
+   ecore_shutdown();
+}
+}}}
+
+
+Viennent ensuite les callbacks qui vont être appelés lors des preload, unload, show, hide :
+En preload, on pense à remplir le texte de nos items :
+{{{
+function _item_preload(data, obj, signal, source){
+    
+    elx.print("Preload de l'item  " + data + "\n");
+   edje_object_part_text_set(obj,"item/text",texte[data]);    
+   edje_object_preload(obj, true);
+}
+}}}
+{{{
+function _item_unload(data, obj, signal, source){
+elx.print("Unload de l'item "+data + "\n");
+}
+}}}
+{{{
+function _item_show(data, obj, signal, source){
+ 
+    indice = data;
+  
+    evas_object_show(obj);
+    elx.print("Show "+indice + "\n");
+}
+}}}
+{{{
+function _item_hide(data, obj, signal, source){
+    evas_object_hide(obj);
+    elx.print("Hide "+ data + "\n");
+}
+}}}
+Pour le focus/unfocus, on appelle nos programmes définis dans le thème :
+{{{
+function _item_focus(data, obj, signal, source){
+    evas_object_focus_set(obj, 1);
+    edje_object_signal_emit(obj, "mouse,in", "item/bg");
+    elx.print("Focus de l'item "+data + "\n");
+}
+}}}
+{{{
+function _item_unfocus(data, obj, signal, source){
+    evas_object_focus_set(obj, 0);
+    edje_object_signal_emit(obj, "mouse,out", "item/bg");  
+    elx.print("Unfocus de l'item "+data +"\n");
+}
+}}}
+
+Enfin, lorsque l'on clique sur un item :
+{{{
+function key_up_item_cb(data, e, obj, event)
+{
+  switch (event.keyname)
+     {
+      case "Ok":
+      case "Return":
+      	  elx.print("Click sur item :"+ data + "\n");
+	 break;
+      }
+}
+}}}
+
+----
+
+On remarque que la liste est verticale. Pour utiliser une liste horizontale, il suffira de rajouter, lors de la création de la liste, la ligne 
+{{{
+ evan_list_object_layout_set(o_evan_list, "horizontal");
+}}}
+
+et de penser à modifier :
+  * la barre de scroll (on peut même la supprimer)
+  * les touches _keyPrevious_ et _keyNext_ (bah oui, c'est mieux gauche/droite quand même...)
+  * la géométrie des items et du curseur
+  
+et les items seront réorganisés horizontalement.

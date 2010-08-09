@@ -1,0 +1,49 @@
+#summary Présentation générale de la bibliothèque Evan
+
+= Qu'est ce que Evan ? =
+
+Evan est une "bibliothèque" qui contient trois objets destinés à vous aider dans le développement d'applications pour la Freebox :
+   * Un objet evan_list
+   * Un objet evan_keyboard
+   * Un objet evan_input
+
+L'utilisation de ces objets est simplifiée au maximum afin de permettre une utilisation quasi-immédiate.
+
+= Description des objets =
+
+Les trois objets sont en réalité des "Smart Object".
+Une définition tirée de la doc serait :
+ Smart objects are groupings of primitive evas objects that behave as a cohesive group. 
+ For instance, a file manager icon may be a smart object composed of an image object, 
+ a text label and two rectangles that appear behind the image and text when the icon 
+ is selected. As a smart object, the normal evas api could be used on the icon object.
+
+Les méthode classique s'appliquant aux objets Evas restent donc valides : {{{ evas_object_resize }}}, {{{ evas_object_move }}}...
+
+== evan_list ==
+
+Comme son nom peut le laisser supposer, il s'agit d'afficher une liste d'items. L'affichage est automatique, il suffit de fournir :
+   * Le thème edc d'un item
+   * Le nombre d'items
+   * Le thème d'un curseur qui va se déplacer lors de la sélection des items
+   * Les callbacks appelés lorsque les items sont preloaded/shown/hidden/focused/unfocused
+   * Eventuellement, le thème d'un scroller (genre barre de défilement)
+
+La liste peut être verticale ou horizontale, le nombre d'éléments peut varier dynamiquement.
+Pour plus d'info sur evan_list, consulter sa doc [evan_list ici].
+
+==evan_keyboard ==
+
+Un clavier AZERTY complet. Le thème n'est pas modifiable directement pour l'instant, mais le clavier est utilisable. Il suffira de fournir le callback appelé lorsque l'utilisateur appuye sur une touche.
+Pour plus d'info sur evan_keyboard, consulter sa doc [evan_keyboard ici].
+
+== evan_input ==
+
+Une zone de texte. Pour l'instant, le texte doit être limité à une seule ligne.
+Permet par défaut 3 modes de saisies :
+   * Mode {{{abc}}}, pour entrer du texte avec le pavé numérique de la télécommande, façon clavier de téléphone portable
+   * Mode {{{ABC}}}, idem, en majuscule
+   * Mode {{{123}}}, permet d'entrer des chiffres
+   
+En plus de ces trois modes, il est possible d'utiliser le {{{evan_keyboard}}} pour entrer du texte.
+Pour plus d'info sur evan_input, consulter sa doc [evan_input ici].

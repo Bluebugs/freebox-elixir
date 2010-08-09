@@ -1,0 +1,211 @@
+#summary L'objet evan_list
+
+= evan_list =
+
+Comme son nom peut le laisser supposer, il s'agit d'afficher une liste d'items. L'affichage est automatique, il suffit de fournir :
+   * Le thème edc d'un item
+   * Le nombre d'items
+   * Le thème d'un curseur qui va se déplacer lors de la sélection des items
+   * Les callbacks appelés lorsque les items sont preloaded/shown/hidden/focused/unfocused
+   * Eventuellement, le thème d'un scroller (genre barre de défilement)
+
+
+== Combien d'items sont affichés/chargés en mémoire ? ==
+
+Les items sont redimensionnés à leur taille minimale, définie dans leur thème, afin d'en afficher un maximum dans la evan_list.
+D'autre part, seuls les items affichés sont chargés en mémoire, plus s'ils existent le précédent et le suivant, pour accélérer leur affichage.
+Cela permet, en théorie, de gérer des listes avec un grand nombre d'éléments sans faire mourir la Freebox.
+
+
+== Utilisation de la liste ==
+
+Le code d'une démo montrant l'utilisation de evan_list est disponible ici.
+
+Pour pouvoir utiliser une evan_list, il faut avant tout la charger :
+{{{ 
+elx.include("evan.edj", "Evan_List");
+}}}
+
+Les fonctions offertes par evan_list sont les suivantes :
+|| *fonction* || *Argument(s)* ||
+||evan_list_object_add(evas) || (evas) ||
+||evan_list_object_set_params || (obj, params) ||
+||evan_list_object_layout_set || (obj, layout) ||
+||evan_list_object_set_scroller || (obj, edje, group, partScrollerUp, partScrollerDown) ||
+||evan_list_object_data_changed || (obj) ||
+||evan_list_object_remove_all || (obj)||
+||evan_list_object_remove_at || (obj, indice, data)||
+||evan_list_object_insert_at || (obj, indice, data)||
+||evan_list_object_prepend || (obj, data)||
+||evan_list_object_append || (obj, data)||
+||evan_list_object_current_item_indice_get || (obj)||
+||evan_list_object_current_item_get || (obj)||
+
+
+=== evan_list_object_add(evas) ===
+Crée une evan_list  et la retourne
+
+  * Argument :
+    * {{{evas}}}, l'evas sur lequel ajouter la liste.
+  * Retourne :
+    * Le Smart Object 
+   
+=== evan_list_object_set_params(obj, params) === 
+Défini les paramètres qui vont permettre d'utiliser la evan_list. INDISPENSABLE
+
+  * Arguments :
+    * {{{obj}}}, la evan_list à laquelle appliquer ces paramètres.
+    * {{{params}}}, une structure telle que définie plus bas.
+  * Retourne :
+    * void
+
+La structure contenant les différents paramètres est définie comme suit :
+{{{
+params = {
+   name: "liste",
+   nb_items: 15,
+   edje_file: "liste.edj",
+   edje_group_item: "item",
+   edje_group_cursor: "cursor",
+   preload: _item_preload,
+   unload: _item_unload,
+   show: _item_show,
+   hide: _item_hide,
+   focus: _item_focus,
+   unfocus: _item_unfocus,
+   key_down_cb: key_down_item_cb,
+   key_up_cb: key_up_item_cb,
+   data: null
+};
+}}}
+
+Avec les champs suivants : 
+|| *Champs* || *Type* || *Description* || *Obligatoire ?* ||
+|| name || String || Nom de la liste || oui ||
+|| nb_items || int || Nombre d'items à la création || par défaut, 0 ||
+|| edje_file || String || _edj_ où aller chercher les thèmes de l'item et du cursor || oui ||
+|| edje_group || String || group décrivant les items || oui ||
+|| edje_group_cursor || String || group décrivant le curseur || non ||
+|| preload || Function || Callback appelé lors du preload d'un item || non ||
+|| unload || Function ||  Callback appelé lors de l'unload d'un item || non ||
+|| show || Function ||  Callback appelé lors de l'affichage d'un item || oui ||
+|| hide || Function ||  Callback appelé lors du "cachage" d'un item || oui ||
+|| focus || Function ||  Callback appelé lors du focus d'un item || oui ||
+|| unfocus || Function ||  Callback appelé lors de l'unfocus d'un item || oui ||
+|| key_up_cb || Function ||  Callback appelé lorsque l'utilisateur appuie sur une touche || non ||
+|| key_down_cb || Function ||   Callback appelé lorsque l'utilisateur relache une touche || non ||
+|| data || Object || données à passer à la liste || non ||
+
+Remarque : la gestion du focus sur les items est automatique. Les touches permettant de se déplacer 
+parmis les éléments sont définies dans le thème (le _edje_file_ de la structure) comme les items 
+"keyPrevious" et "keyNext", et séparées par des virgules, comme ceci :
+{{{
+data{
+    item:"keyPrevious" "Up,FP/Up,RC/Up";
+    item:"keyNext" "Down,FP/Down,RC/Down";
+}
+}}}
+
+
+Les données passées aux callbacks sont les suivantes : 
+  * Pour preload, unload, show, hide, focus, unfocus :
+    * data : l'indice de l'item
+    * obj : l'evas correspondant à l'item
+    * signal : le signal ayant déclénché le callback ("preload", "unload"...)
+    * source : le String "item"+`*`indice de l'item`*`
+  * Pour key_up_cb et key_down_cb :
+    * data : l'indice de l'item ayant déclenché l'événement
+    * e : l'evas global
+    * obj : l'item ayant déclenché l'événement
+    * event : comme d'habitude, fournit _keyname_, _timestamp_...
+  
+  
+=== evan_list_object_layout_set(obj, layout) ===
+Permet de définir le layout de la liste. Pour l'instant, le layout est par défaut Vertical, avec tous les items redimensionnés selon leur taille minimale (à définir dans le _`*`.edc_). L'autre layout disponible est "Horizontal".
+
+  * Arguments :
+    * {{{obj}}}, la evan_list dont on veut changer le layout
+    * {{{layout}}}, un String ("Horizontal" ou "Vertical")
+  * Retourne :
+    * void
+
+=== evan_list_object_set_scroller(obj, edje, group, partScrollerUp, partScrollerDown) ===
+Permet de définir un "scroller", barre de défilement, placée par défaut à droite dans un layout vertical et en bas dans un layout horizontal.
+
+  * Arguments :
+    * {{{obj}}}, la evan_list sur laquelle ajouter le scroller
+    * {{{edje}}}, String donnant le fichier edj contenant le thème du scroller.
+    * {{{partScrollerUp}}}, String donnant le group dans le fichier edj du curseur du haut du scroller.
+    * {{{partScrollerDown}}}, String donnant le group dans le fichier edj du curseur du bas du scroller.
+  * Retourne :
+    * void
+
+=== evan_list_object_data_changed(obj) ===
+Après une modification des données à afficher, permet d'actualiser l'affichage. Tous les items affichés sont déchargés (unload), puis rechargés (preload) et affichés (show).
+
+  * Argument :
+    * {{{obj}}}, la evan_list à actualiser
+  * Retourne :
+    * void
+
+=== evan_list_object_remove_all (obj) ===
+Vide complètement la evan_list
+
+  * Argument :
+    * {{{obj}}}, la evan_list à vider
+  * Retourne :
+    * void
+
+=== evan_list_object_remove_at (obj, indice, data) ===
+Supprime l'élément à l'indice "indice"
+
+  * Arguments :
+    * {{{obj}}}, la evan_list
+    * {{{indice}}}, l'indice de l'éléement à supprimer
+    * {{{data}}}, met à jour les data de l'evan_list
+  * Retourne :
+    * void
+
+=== evan_list_object_insert_at (obj, indice, data) ===
+Ajoute un élément à l'indice "indice"
+
+  * Arguments :
+    * {{{obj}}}, la evan_list
+    * {{{indice}}}, l'indice où ajouter l'élément
+    * {{{data}}}, met à jour les data de l'evan_list
+  * Retourne :
+    * void
+    
+=== evan_list_object_prepend (obj, data) ===
+Ajoute un élément au début de la evan_list
+
+  * Arguments :
+    * {{{obj}}}, la evan_list
+    * {{{data}}}, met à jour les data de l'evan_list
+  * Retourne :
+    * void
+
+=== evan_list_object_append (obj, data) ===
+Ajoute un élément à la fin de la evan_list
+
+  * Arguments :
+    * {{{obj}}}, la evan_list
+    * {{{data}}}, met à jour les data de l'evan_list
+  * Retourne :
+    * void
+    
+=== evan_list_object_current_item_indice_get(obj) ===
+Retourne l'indice de l'item sélectionné
+
+  * Arguments :
+    * {{{obj}}}, la evan_list
+  * Retourne :
+    * int, l'indice de l'item
+
+=== evan_list_object_current_item_get(obj) ===
+Retourne l'item sélectionné
+
+  * Arguments :
+    * {{{obj}}}, la evan_list
+  * Retourne :
+    * edje_object, l'item sélectionné

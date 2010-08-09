@@ -1,0 +1,61 @@
+#summary L'objet evan_keyboard
+
+= evan_keyboard =
+
+Idéalement utilisé avec l'objet evan_input, evan_keyboard est un clavier virtuel qui permet d'entrer du texte. Pour l'instant
+difficilement thémable, il est tout à fait possible de modifier son apparence en éditant le code et le thème.
+
+Son utilisation repose entièrement sur l'utilisation d'un callback fixé avec `evan_keyboard_object_callback_set`. Celui-ci sera appelé
+à chaque appui sur une touche. Le focus des touches est géré automatiquement, et il est possible d'entrer du texte avec un clavier si
+l'utilisateur en branche un en USB.
+
+
+== Utilisation ==
+
+Le code d'une démo montrant l'utilisation de evan_keyboard avec un evan_input est disponible ici.
+
+Pour pouvoir utiliser une evan_list, il faut avant tout la charger :
+{{{ 
+elx.include("evan.edj", "Evan_Keyboard");
+}}}
+
+Les fonctions offertes par evan_list sont les suivantes :
+|| *fonction* || *Argument(s)* ||
+||evan_keyboard_object_add(evas) || (evas) ||
+||evan_keyboard_object_callback_set || (obj, funCB, data) ||
+||evan_keyboard_object_callback_del || (obj) ||
+
+=== evan_list_object_add(evas) ===
+Crée un evan_keyboard  et le retourne
+
+  * Argument :
+    * {{{evas}}}, l'evas sur lequel ajouter la liste.
+  * Retourne :
+    * Le Smart Object 
+   
+=== evan_keyboard_object_callback_set(obj, funCB, data) === 
+Permet de récupérer les touches appuyées. Lors de l'appui d'une touche, la fonction `funCB` est appelée :
+{{{
+funCB(data, evas, touche, "texteSurLaTouche");
+}}}
+
+Où `data` est le troisième argument de `evan_keyboard_object_callback_set`, `evas` l'object contenant le evan_keyboard,
+`touche` l'objet edje correspondant à la touche appuyée et `"texteSurLaTouche"` le caractère voulu par l'utilisateur.
+
+Dans le cas d'un appui sur "TAB", ou "BackSpace", le clavier renvoi respectivement "\t" et "\b". Sinon, renvoi le ou les caractères
+affichés sur la touche, p.e. "a", "A", "{"...
+
+  * Arguments :
+    * {{{obj}}}, le evan_keyboard
+    * {{{funCB}}}, la fonction de callback à appeler
+    * {{{data}}}, les données à passer à la fonction précédente
+  * Retourne :
+    * void
+  
+=== evan_keyboard_object_callback_del(obj) ===
+Supprime le callback ajouté précédemment.
+
+  * Arguments :
+    * {{{obj}}}, le evan_keyboard dont on veut retirer le callback.
+  * Retourne :
+    * void
