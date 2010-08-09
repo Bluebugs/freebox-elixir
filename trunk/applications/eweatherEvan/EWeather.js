@@ -18,7 +18,7 @@ var win = { w: 720, h: 576 };
 var smartClavier = null;
 var smartInput = null;
 var bgGris = null;
-var villeEnCours;
+var villeEnCours = "Paris";
 var mode;
 
 function key_up_cb(data, e, obj, event)
@@ -117,7 +117,6 @@ function main()
    evas_object_show(o_weather);
 
    mode = "meteo";
-   villeEnCours = "Paris";
 
    evas_object_key_grab(o_bg, "Return", 0, 0, 0);
    evas_object_key_grab(o_bg, "RC/Ok", 0, 0, 0);
