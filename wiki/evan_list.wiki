@@ -9,11 +9,12 @@ Comme son nom peut le laisser supposer, il s'agit d'afficher une liste d'items. 
    * Les callbacks appelés lorsque les items sont preloaded/shown/hidden/focused/unfocused
    * Eventuellement, le thème d'un scroller (genre barre de défilement)
 
+http://freebox-elixir.googlecode.com/files/evanListScreenshot.png
 
 == Combien d'items sont affichés/chargés en mémoire ? ==
 
 Les items sont redimensionnés à leur taille minimale, définie dans leur thème, afin d'en afficher un maximum dans la evan_list.
-D'autre part, seuls les items affichés sont chargés en mémoire, plus s'ils existent le précédent et le suivant, pour accélérer leur affichage.
+D'autre part, seuls les items affichés sont chargés en mémoire, avec en plus, s'ils existent, le précédent (-1) et le suivant (N+1), pour accélérer leur affichage.
 Cela permet, en théorie, de gérer des listes avec un grand nombre d'éléments sans faire mourir la Freebox.
 
 

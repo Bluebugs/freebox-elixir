@@ -1,6 +1,6 @@
 #summary Exemple de evan_list
 
-Cette page présente un exemple de evan_list. Le code de cet exemple est disponible ici.
+Cette page présente un exemple de [evan_list]. Le code de cet exemple est [http://code.google.com/p/freebox-elixir/source/browse/#svn/trunk/exemples/evan/demoList disponible ici].
 
 
 = Le thème =

@@ -1,10 +1,12 @@
 #summary Exemple 2 de evan_keyboard et de evan_input, avec de la géolocalisation
 
-Cette page présente un deuxième exemple de evan_keyboard et de evan_input, associé à un exemple de géolocalisation.
-Le code de cet exemple est disponible ici.
+Cette page présente un deuxième exemple de [evan_keyboard] et de [evan_input], associé à un exemple de [geolocalisation géolocalisation].
+Le code de cet exemple est [http://code.google.com/p/freebox-elixir/source/browse/#svn/trunk/applications/eweatherEvan disponible ici].
 On reprend ici le code de l'API météo que l'on va modifier un peu:
   * On ajoute de la géolocalisation. Au lancement de l'appli, on récupère l'ipv6 de la box, on calcule l'ipv4, et on géolocalise cette ip. On demande ensuite la météo dans cette ville. S'il ne la trouve pas, il cherche la météo de Paris.
   * Si on appuie sur "Ok", on fait apparaître une zone de texte, qui permet d'entrer un nom de ville, au choix. On valide en refaisant ok et l'API cherche la météo de cette ville, ou Paris si elle ne trouve pas.
+
+http://freebox-elixir.googlecode.com/files/EweatherEvanScreenshot.png
 
 = Le programme javascript =
 

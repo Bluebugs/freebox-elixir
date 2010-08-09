@@ -1,9 +1,10 @@
 #summary Exemple de evan_keyboard et evan_input
 
-Cette page présente un exemple de evan_keyboard et de evan_input. Le code de cet exemple est disponible ici.
+Cette page présente un exemple de [evan_keyboard] et de [evan_input]. Le code de cet exemple est [http://code.google.com/p/freebox-elixir/source/browse/#svn/trunk/exemples/evan/demoInput disponible ici].
 Pour cet exemple, on va créer un `evan_keyboard` et que l'on va associer à deux `evan_input`. On va également
 gérer le focus, en ajoutant la possibilité de passer d'une zone de texte à une autre.
 
+http://freebox-elixir.googlecode.com/files/evanInputScreenshot.png
 
 = Le programme javascript =
 
@@ -31,7 +32,7 @@ var currentFocus = 1;
 }}}
 
 Jusqu'ici, rien d'anormal. On va utiliser des evan_keyboard et evan_input, donc on pense à charger les Smart Object.
-A l'initialisation, ce sera le premier evan_input qui aura le focus, on initialise donc `currentFocus` à 1.
+A l'initialisation, ce sera le premier [evan_input] qui aura le focus, on initialise donc `currentFocus` à 1.
 
 Les touches pour quitter, rien de spécial.
 {{{
@@ -112,7 +113,7 @@ Comme ce seront les evan_input ou le evan_keyboard qui auront le focus, on doit 
 }}}
 
 
-On va maintenant tout simplement créer un evan_keyboard et deux evan_input et les redimensionner, les positionner et les afficher.
+On va maintenant tout simplement créer un [evan_keyboard] et deux [evan_input] et les redimensionner, les positionner et les afficher.
 {{{
    smartClavier = evan_keyboard_object_add(evas);
    evas_object_resize(smartClavier, win.w-100, win.h-200);
