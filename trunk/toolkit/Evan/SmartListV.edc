@@ -1,0 +1,92 @@
+  images {
+            image: "liste/Bg_Liste.png" COMP;
+}
+
+collections
+{
+    group
+    {
+        name: "listeV";
+        min: 165 300;
+        parts
+        {
+            part
+            {
+                name: "whole";
+                type: RECT;
+		mouse_events: 0;    
+                description
+                {
+                    state: "default" 0.0;
+                }
+            }
+            part
+            {
+                name: "liste/bg";
+                type: IMAGE;
+                mouse_events: 0; 
+		clip_to: "whole";
+                description
+                {
+                    state: "default" 0.0;
+                    image.normal: "liste/Bg_Liste.png";
+                    image.border: 10 10 10 10;
+                }
+            }
+	    part
+	    {
+		name: "liste/items";
+		type: BOX;
+		mouse_events: 0;
+		clip_to: "whole";
+		description
+		{
+		    state: "default" 0.0;
+		    rel1.to_x: "liste/bg";
+		    rel1.to_y: "liste/bg";
+		    rel2.to_x: "liste/bg";
+		    rel2.to_y: "liste/bg";
+		    rel1.offset: 10 10;
+		    rel2.offset: -10 -10;
+		    box {
+                    layout: "vertical";
+                    padding: 2 2;
+                    align: 0.5 0.5;
+                    min: 1 1;
+		    }
+
+		}
+	    }
+	    part
+            {
+                name: "aaa";
+                type: RECT;
+                mouse_events: 0; 
+		clip_to: "whole";
+                description
+                {
+                    state: "default" 0.0;
+		    rel1.to: "liste/bg";
+		    rel2.to: "liste/bg";
+		    color: 255 0 0 0;
+                }
+            }
+	    
+	    part
+            {
+                name: "liste/clipScroller";
+                type: RECT;
+                mouse_events: 0; 
+		clip_to: "whole";
+                description
+                {
+                    state: "default" 0.0;
+                    rel1.relative: 0.97 0.0;
+                    rel2.relative: 1.0 1.0;
+                    rel1.offset: 0 20;
+                    rel2.offset: 0 -20;
+                }
+            }
+	}
+    }
+}

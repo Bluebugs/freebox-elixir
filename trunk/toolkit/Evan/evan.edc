@@ -1,0 +1,4 @@
+#include "SmartListV.edc"
+#include "SmartListH.edc"
+#include "SmartInput.edc"
+#include "SmartKB.edc"

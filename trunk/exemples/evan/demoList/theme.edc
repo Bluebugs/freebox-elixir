@@ -1,0 +1,227 @@
+images {
+            image: "ScrollBar.png" COMP;
+            image: "Scroller.png" COMP;
+            image: "Selected_Around.png" COMP;
+            image: "Selected.png" COMP;
+            image: "unSelected.png" COMP;
+}
+
+data{
+    item:"keyPrevious" "Up,FP/Up,RC/Up";
+    item:"keyNext" "Down,FP/Down,RC/Down";
+}
+
+collections
+{    
+    group
+    {
+        name: "item";
+        min: 400 50;
+	max: 800 300;
+        parts
+        {
+	    part
+            {
+                name: "item/clip";
+		type: RECT;
+                mouse_events: 0;
+		
+                description
+                {
+                    state: "default" 0.0;
+		    color: 255 255 255 255;
+		}
+            }
+	    part
+            {
+                name: "item/bg";
+		type: IMAGE;
+                mouse_events: 0;
+		clip_to : "item/clip";
+                description
+                {
+                    state: "default" 0.0;
+		    image.normal: "unSelected.png";
+		}
+		description
+                {
+                    state: "focus" 0.0;
+		    inherit: "default" 0.0;
+		    image.normal: "Selected.png";
+                }
+            }
+            part
+            {
+                name: "item/text";
+		type: TEXT;
+                clip_to : "item/clip";
+		mouse_events: 0;
+		description
+                {
+                    state: "default" 0.0;
+                    rel1.relative: 0.0 0.0;
+                    rel2.relative: 1.0 1.0;
+		    color: 255 255 255 255;
+                    text
+                    {
+                        text: "Item 3";
+			font: "Vera";
+                        size: 16;
+                        min: 1 1;
+                        align: 0.5 0.5;
+                    }
+                }
+            }
+	}
+	programs
+	{
+	    program {
+		    name,  "item/focus";
+		    source, "item/bg"; 
+		    signal, "mouse,in";
+		    action, STATE_SET "focus" 0.0;
+		    target, "item/bg";
+	    }
+	    program {
+		    name, "item/unfocus";
+		    source, "item/bg";
+		    signal, "mouse,out";
+		    action, STATE_SET "default" 0.0;
+		    target,  "item/bg";
+	    } 
+	}
+    }
+    group
+    {
+        name: "cursor";
+        min: 400 50;
+	max: 800 300;
+        parts
+        {
+	    part
+            {
+                name: "cursor/bg";
+		type: IMAGE;
+                mouse_events: 0;
+		
+                description
+                {
+                    state: "default" 0.0;
+		    image
+		    {
+		      normal: "Selected_Around.png";
+		      border: 8 8 8 8;
+		    }
+		}
+            }
+	}
+    }
+    group
+    {
+	 name: "scroller";
+	 parts
+	 {
+	    part
+	    {
+	       name: "scroller/bg";
+	       type: IMAGE;
+	       mouse_events: 0;
+	       description
+	       {
+		  state: "default" 0.0;
+		  min, 17 1;
+		  max, 17 1000;
+		  fixed, 1 0;
+		  image
+		  {
+		     normal: "ScrollBar.png";
+		  }
+	       }
+	    }
+	    part
+	    {
+	       name: "scroller/cursorClip";
+	       type: RECT;
+	       mouse_events: 0;
+	       description
+	       {
+		  state: "default" 0.0;
+		  color: 255 255 255 255;
+		  rel1.to, "scroller/bg";
+		  rel2.to, "scroller/bg";
+		  rel1.relative, 0.0 0.0;
+		  rel2.relative, 1.0 1.0;
+	       }
+	    }
+	    part
+	    {
+	       name: "scroller/cursor";
+	       type: IMAGE;
+	       mouse_events: 0;
+	       clip_to: "scroller/cursorClip";
+	       description
+	       {
+		  state: "default" 0.0;
+		  rel1.to_y, "scroller/cursorUpScroller";
+		  rel2.to_y, "scroller/cursorDownScroller";
+		  image.normal: "Scroller.png";
+	       }
+	    }
+	    
+	  part {
+	    name, "scroller/cursorUpScroller";
+	    mouse_events, 0;
+	    type, RECT;
+	    clip_to: "scroller/cursorClip";
+	    dragable {
+	       confine, "scroller/cursorClip";
+	       y, 1 1 1;
+	       x, 0 0 0;
+	    }
+
+	    description {
+	       state, "default" 0.0;
+
+	       min, 32 1;
+	       max, 32 1;
+	       fixed, 0 1;
+
+	       rel1.relative, 0.0 0.0;
+	       rel2.relative, 1.0 1.0;
+	       rel1.to: "scroller/cursorClip";
+	       rel2.to: "scroller/cursorClip";
+	       color, 255 0 0 255;
+
+	       visible, 0;
+	    }
+	 }
+	 part {
+	    name, "scroller/cursorDownScroller";
+	    mouse_events, 0;
+	    type, RECT;
+	    clip_to: "scroller/cursorClip";
+
+	    dragable {
+	       confine, "scroller/cursorClip";
+	       y, 1 1 1;
+	       x, 0 0 0;
+	    }
+
+	    description {
+	       state, "default" 0.0;
+
+	       min, 32 1;
+	       max, 32 1;
+	       fixed, 0 1;
+
+	       rel1.relative, 0.0 0.0;
+	       rel2.relative, 1.0 1.0;
+	       rel1.to: "scroller/cursorClip";
+	       rel2.to: "scroller/cursorClip";
+	       color, 255 0 0 255;
+	       visible, 0;
+	    }
+	 }
+	 }
+    }
+}
