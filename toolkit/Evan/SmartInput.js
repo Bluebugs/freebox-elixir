@@ -1,4 +1,3 @@
-var E_OBJ_NAME = "evan_input_object"
 var smarti = null;
 
 function evan_input_object_add(evas)
@@ -737,6 +736,7 @@ function evan_input_object_text_set(obj, text)
    smi = obj.data;
    
    if (!smi) return;
+   if (text == undefined) return ;
    
    edje_object_part_text_set(smi.o_texte, "textentry/text", text);
    smi.posCursor = text.length;
@@ -772,3 +772,5 @@ function evan_input_object_change_mode_key_set(obj, key)
       for(i=0; i<smi.changeModeKeys.length ; i++)
          evas_object_key_grab(obj, smi.changeModeKeys[i], 0, 0, 0); 
 }
+
+true;
