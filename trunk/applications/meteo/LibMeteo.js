@@ -2,34 +2,34 @@
 
 var EWT =
 {
-    EWEATHER_TYPE_UNKNOWN : 0,
-    EWEATHER_TYPE_WINDY : 1,
-    EWEATHER_TYPE_RAIN : 2,
-    EWEATHER_TYPE_SNOW : 3,
-    EWEATHER_TYPE_RAIN_SNOW : 4,
-    EWEATHER_TYPE_FOGGY : 5,
-    EWEATHER_TYPE_CLOUDY : 6,
-    EWEATHER_TYPE_MOSTLY_CLOUDY_NIGHT : 7,
-    EWEATHER_TYPE_MOSTLY_CLOUDY_DAY : 8,
-    EWEATHER_TYPE_PARTLY_CLOUDY_NIGHT : 9,
-    EWEATHER_TYPE_PARTLY_CLOUDY_DAY : 10,
-    EWEATHER_TYPE_CLEAR_NIGHT : 11,
-    EWEATHER_TYPE_SUNNY : 12,
-    EWEATHER_TYPE_ISOLATED_THUNDERSTORMS : 13,
-    EWEATHER_TYPE_THUNDERSTORMS : 14,
-    EWEATHER_TYPE_SCATTERED_THUNDERSTORMS : 15,
-    EWEATHER_TYPE_HEAVY_SNOW : 16,
+    METEO_TYPE_UNKNOWN : 0,
+    METEO_TYPE_WINDY : 1,
+    METEO_TYPE_RAIN : 2,
+    METEO_TYPE_SNOW : 3,
+    METEO_TYPE_RAIN_SNOW : 4,
+    METEO_TYPE_FOGGY : 5,
+    METEO_TYPE_CLOUDY : 6,
+    METEO_TYPE_MOSTLY_CLOUDY_NIGHT : 7,
+    METEO_TYPE_MOSTLY_CLOUDY_DAY : 8,
+    METEO_TYPE_PARTLY_CLOUDY_NIGHT : 9,
+    METEO_TYPE_PARTLY_CLOUDY_DAY : 10,
+    METEO_TYPE_CLEAR_NIGHT : 11,
+    METEO_TYPE_SUNNY : 12,
+    METEO_TYPE_ISOLATED_THUNDERSTORMS : 13,
+    METEO_TYPE_THUNDERSTORMS : 14,
+    METEO_TYPE_SCATTERED_THUNDERSTORMS : 15,
+    METEO_TYPE_HEAVY_SNOW : 16,
 }
 
 var EWTEMP =
 {
-    EWEATHER_TEMP_FARENHEIT : 0,
-    EWEATHER_TEMP_CELCIUS : 1,
+    METEO_TEMP_FARENHEIT : 0,
+    METEO_TEMP_CELCIUS : 1,
 }
 
 elx.include("Meteo.edj", "Google")
 
-function eweather_new()
+function meteo_new()
 {
    var e = {};
    e.google = {};
@@ -42,149 +42,149 @@ function eweather_new()
    //30 minutes
    e.poll_time = 30*60;
    //celcius because Free is a french ISP
-   e.temp_type = EWTEMP.EWEATHER_TEMP_CELCIUS;
+   e.temp_type = EWTEMP.METEO_TEMP_CELCIUS;
 
    return e;
 }
 
-function eweather_start(eweather)
+function meteo_start(meteo)
 {
-    eweather.init = true;
-    google_init(eweather);
+    meteo.init = true;
+    google_init(meteo);
 }
 
 
-function eweather_free(eweather)
+function meteo_free(meteo)
 {
-   google_shutdown(eweather);
+   google_shutdown(meteo);
 }
 
-function eweather_poll_time_set(eweather, poll_time)
+function meteo_poll_time_set(meteo, poll_time)
 {
-   eweather.poll_time = poll_time;
+   meteo.poll_time = poll_time;
 
-   if(eweather.init)
-    google_poll_time_updated(eweather)
+   if(meteo.init)
+    google_poll_time_updated(meteo)
 }
 
-function eweather_code_set(eweather, code)
+function meteo_code_set(meteo, code)
 {
-   eweather.code = code;
+   meteo.code = code;
 
-   if(eweather.init)
-     google_code_updated(eweather);
+   if(meteo.init)
+     google_code_updated(meteo);
 }
 
-function eweather_temp_type_set(eweather, type)
+function meteo_temp_type_set(meteo, type)
 {
-   eweather.temp_type = type;
+   meteo.temp_type = type;
 }
 
-function eweather_temp_type_get(eweather)
+function meteo_temp_type_get(meteo)
 {
-   return eweather.temp_type;
+   return meteo.temp_type;
 }
 
-function eweather_data_type_get(eweather_data)
+function meteo_data_type_get(meteo_data)
 {
-   return eweather_data.type;
+   return meteo_data.type;
 }
 
-function eweather_data_temp_get(eweather_data)
+function meteo_data_temp_get(meteo_data)
 {
-   return eweather_data.temp;
+   return meteo_data.temp;
 }
 
-function eweather_data_temp_min_get(eweather_data)
+function meteo_data_temp_min_get(meteo_data)
 {
-   return eweather_data.temp_min;
-}
-
-
-function eweather_data_temp_max_get(eweather_data)
-{
-   return eweather_data.temp_max;
-}
-
-function eweather_data_city_get( eweather_data)
-{
-   return eweather_data.city;
+   return meteo_data.temp_min;
 }
 
 
-function eweather_data_region_get(eweather_data)
+function meteo_data_temp_max_get(meteo_data)
 {
-   return eweather_data.region;
+   return meteo_data.temp_max;
 }
 
-function eweather_data_country_get(eweather_data)
+function meteo_data_city_get( meteo_data)
 {
-   return eweather_data.country;
+   return meteo_data.city;
 }
 
-function eweather_data_date_get(eweather_data)
+
+function meteo_data_region_get(meteo_data)
 {
-   return eweather_data.date;
+   return meteo_data.region;
 }
 
-function eweather_data_current_get(eweather)
+function meteo_data_country_get(meteo_data)
 {
-   if(eweather.data.length == 0)
+   return meteo_data.country;
+}
+
+function meteo_data_date_get(meteo_data)
+{
+   return meteo_data.date;
+}
+
+function meteo_data_current_get(meteo)
+{
+   if(meteo.data.length == 0)
      {
 	var e_data = {};
-	eweather.data.push(e_data);
+	meteo.data.push(e_data);
      }
-   return eweather.data[0];
+   return meteo.data[0];
 }
 
-function eweather_data_current_set(eweather, data)
+function meteo_data_current_set(meteo, data)
 {
-   if(eweather.data.length == 0)
-     eweather.data.push(data);
+   if(meteo.data.length == 0)
+     meteo.data.push(data);
    else
-     eweather.data[0] = data;
+     meteo.data[0] = data;
 }
 
-function eweather_data_get(eweather, num)
+function meteo_data_get(meteo, num)
 {
-   while(eweather.data.length <= num)
+   while(meteo.data.length <= num)
      {
 	var e_data = {};
-	eweather.data.push(e_data);
+	meteo.data.push(e_data);
      }
-   return eweather.data[num];
+   return meteo.data[num];
 }
 
-function eweather_data_set(eweather, data, num)
+function meteo_data_set(meteo, data, num)
 {
-   while(eweather.data.length <= num)
+   while(meteo.data.length <= num)
      {
 	var e_data = {};
-	eweather.data.push(e_data);
+	meteo.data.push(e_data);
      }
 
-   eweather.data[num] = data;
+   meteo.data[num] = data;
 }
 
-function eweather_data_count(eweather)
+function meteo_data_count(meteo)
 {
-   return eweather.data.length;
+   return meteo.data.length;
 }
 
-function eweather_callbacks_set(eweather, update_cb, data)
+function meteo_callbacks_set(meteo, update_cb, data)
 {
-   eweather.func.data = data;
-   eweather.func.update_cb = update_cb;
+   meteo.func.data = data;
+   meteo.func.update_cb = update_cb;
 }
 
-function eweather_utils_celcius_get(farenheit)
+function meteo_utils_celcius_get(farenheit)
 {
    return Math.round((farenheit - 32) * 5/9);
 }
 
-function eweather_plugin_update(eweather)
+function meteo_plugin_update(meteo)
 {
-   if(eweather.func.update_cb)
-     eweather.func.update_cb(eweather.func.data, eweather);
+   if(meteo.func.update_cb)
+     meteo.func.update_cb(meteo.func.data, meteo);
 }
 
