@@ -86,11 +86,11 @@ function google_init(eweather)
 
 function google_shutdown(eweather)
 {
-    if (eweather.google.check_timer) ecore_timer_del(eweather.google.check_timer);
-    if (eweather.google.add_handler) ecore_event_handler_del(eweather.google.add_handler);
-    if (eweather.google.data_handler) ecore_event_handler_del(eweather.google.data_handler);
-    if (eweather.google.del_handler) ecore_event_handler_del(eweather.google.del_handler);
-    if (eweather.google.server) ecore_con_server_del(eweather.google.server);
+   if (eweather.google.check_timer) ecore_timer_del(eweather.google.check_timer);
+   if (eweather.google.add_handler) ecore_event_handler_del(eweather.google.add_handler);
+   if (eweather.google.data_handler) ecore_event_handler_del(eweather.google.data_handler);
+   if (eweather.google.del_handler) ecore_event_handler_del(eweather.google.del_handler);
+   if (eweather.google.server) ecore_con_server_del(eweather.google.server);
 }
 
 function google_poll_time_updated(eweather)
@@ -104,11 +104,11 @@ function google_poll_time_updated(eweather)
 
 function google_code_updated(eweather)
 {
-    if(eweather.google.check_timer)
+    if (eweather.google.check_timer)
         ecore_timer_del(eweather.google.check_timer);
 
     eweather.google.check_timer =
-        ecore_timer_add(0, _weather_cb_check, eweather);
+      ecore_timer_add(0, _weather_cb_check, eweather);
 }
 
 function _weather_cb_check(data)
@@ -144,6 +144,10 @@ function _server_add(data, type, event)
 
     if (!(eweather = data)) return 1;
     if(!eweather.code) return 0;
+
+    eweather.google.buffer = "";
+    eweather.google.cursize = 0;
+    eweather.google.bufsize = 0;
 
     ev = event;
     if ((!eweather.google.server) || (eweather.google.server != ev.server))
@@ -181,6 +185,7 @@ function _server_del(data, type, event)
     eweather.google.cursize = 0;
 
     eweather.google.buffer = "";
+
     return 0;
 }
 
@@ -216,14 +221,13 @@ function _parse(eweather)
 
     if (!eweather.google.buffer) return 0;
 
-    //elx.print(eweather.google.buffer);
-    
+    // elx.print(eweather.google.buffer);
     needle = strstr(eweather.google.buffer, "<problem_cause data=\"");
     if (needle) {
       eweather_code_set(eweather, "Paris,France");
       return 0;
     }
-    
+
     needle = strstr(eweather.google.buffer, "<city data=\"");
     if (!needle) return 0;
     needle = needle.slice(12);
@@ -271,6 +275,8 @@ function _parse(eweather)
 
     e_data_current = e_data;
 
+    eweather_data_current_set(eweather, e_data_current);
+
     for(var i=1; i<4; i++)
     {
         e_data = eweather_data_get(eweather, i);
@@ -305,6 +311,8 @@ function _parse(eweather)
         e_data.country = e_data_current.country;
         e_data.region = e_data_current.region;
         e_data.city = e_data_current.city;
+
+	eweather_data_set(eweather, e_data, i);
     }
 
     eweather_plugin_update(eweather);

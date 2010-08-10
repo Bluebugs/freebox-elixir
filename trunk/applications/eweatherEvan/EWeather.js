@@ -187,7 +187,7 @@ evas_object_focus_set(smartInput, 1);
 function validation(texte){
    evas_object_hide(bgGris);
    evas_object_hide(smartInput);
-   
+
    villeEnCours = texte;
    eweather_code_set(eweather, villeEnCours);
    evas_object_focus_set(o_weather, 1);
