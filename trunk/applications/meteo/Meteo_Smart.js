@@ -1,7 +1,7 @@
 
-elx.include("EWeather.edj", "LIBEWeather")
+elx.include("Meteo.edj", "LIBMeteo");
 
-var E_OBJ_NAME = "eweather_object"
+var E_OBJ_NAME = "eweather_object";
 var smart = null;
 
 //
@@ -315,7 +315,7 @@ function _eweather_update_cb(data, eweather)
         if(i >= sd.objs.length)
         {
             o_day = edje_object_add(evas_object_evas_get(obj));
-            edje_object_file_set(o_day, "EWeather.edj", "weather");
+            edje_object_file_set(o_day, "Meteo.edj", "weather");
             evas_object_smart_member_add(o_day, obj);
             evas_object_show(o_day);
             sd.objs.push(o_day);
@@ -563,7 +563,7 @@ function _smart_add(obj)
 
     var evas = evas_object_evas_get(obj);
     sd.obj = edje_object_add(evas);
-    edje_object_file_set(sd.obj, "EWeather.edj", "main");
+    edje_object_file_set(sd.obj, "Meteo.edj", "main");
     evas_object_smart_member_add(sd.obj, obj);
     sd.main = edje_object_add(evas_object_evas_get(obj));
 
@@ -573,7 +573,7 @@ function _smart_add(obj)
 
     edje_object_signal_callback_add(sd.main, "preload,done", "", _preload_done_cb, sd);
 
-    edje_object_file_set(sd.main, "EWeather.edj", "weather");
+    edje_object_file_set(sd.main, "Meteo.edj", "weather");
     edje_object_preload(sd.main, false);
 
     evas_object_smart_member_add(sd.main, obj);
