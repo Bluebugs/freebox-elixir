@@ -1,11 +1,9 @@
-var E_OBJ_NAME = "evan_keyboard"
 var smartKB = null;
 
 function evan_keyboard_object_add(evas)
 {
    if(!smartKB)  _evan_keyboard_init();
    return evas_object_smart_add(evas, smartKB);
-   
 }
 
 
@@ -39,7 +37,6 @@ function _evan_keyboard_add(obj)
    obj.data = sd;
    
    var evas = evas_object_evas_get(obj);
-   
    
    sd.o_clavier = edje_object_add(evas);
    edje_object_file_set(sd.o_clavier , "evan.edj", "clavier");
@@ -146,7 +143,7 @@ sd.lignes = new Array();
    edje_object_part_text_set(sd.touchesDroite[1][0], "touche/text", "&$#!");
    evas_object_show(sd.touchesDroite[1][0]);
    edje_object_part_box_append(sd.lignesDroite[1] , "clavier/ligne", sd.touchesDroite[1][0]);
-   
+    
    edje_object_part_box_append(sd.o_clavier, "clavier/touchesDroite", sd.lignesDroite[1]);
    evas_object_show(sd.lignesDroite[1]);
    
@@ -159,7 +156,7 @@ sd.lignes = new Array();
    evas_object_smart_member_add(sd.touchesDroite[2][0], obj);
    edje_object_file_set(sd.touchesDroite[2][0], "evan.edj", "grosseTouche");
    edje_object_part_text_set(sd.touchesDroite[2][0], "touche/text", "Suppr.");
-   evas_object_text_font_set(sd.touchesDroite[2][0], "Vera", 10);
+   // evas_object_text_font_set(sd.touchesDroite[2][0], "Vera", 10);
    evas_object_show(sd.touchesDroite[2][0]);
    edje_object_part_box_append(sd.lignesDroite[2] , "clavier/ligne", sd.touchesDroite[2][0]);
    
@@ -175,7 +172,7 @@ sd.lignes = new Array();
    evas_object_smart_member_add(sd.touchesDroite[3][0], obj);
    edje_object_file_set(sd.touchesDroite[3][0], "evan.edj", "grosseTouche");
    edje_object_part_text_set(sd.touchesDroite[3][0], "touche/text", "Ok");
-   evas_object_text_font_set(sd.touchesDroite[3][0], "Vera", 10);
+   // evas_object_text_font_set(sd.touchesDroite[3][0], "Vera", 10);
    evas_object_show(sd.touchesDroite[3][0]);
    edje_object_part_box_append(sd.lignesDroite[3] , "clavier/ligne", sd.touchesDroite[3][0]);
    
@@ -688,3 +685,5 @@ function evan_keyboard_object_callback_del(obj)
    sd.clickCB = _clickCB_dummy;
    sd.clickCBdata = null;
 }
+
+true;
