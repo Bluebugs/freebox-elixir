@@ -12,6 +12,7 @@ elx.include("Meteo.edj", "Geoloc")
 elx.include("evan.edj", "Evan_Keyboard");
 elx.include("evan.edj", "Evan_Input");
 
+var shutdown;
 var o_meteo = null;
 var o_bg = null;
 var win = { w: 720, h: 576 };
@@ -81,22 +82,29 @@ function main()
 {
    var meteo;
 
-   ecore_init();
-   ecore_evas_init();
+      if (shutdown === undefined || shutdown == false)
+     {
+        ecore_init();
+        ecore_evas_init();
+        edje_init();
+
+        ee = ecore_evas_new(null, 0, 0, 720, 576, "name=EWeather;double_buffer=0;");
+
+        evas = ecore_evas_get(ee);
+
+        evas_image_cache_set(evas, 8192 * 1024);
+        evas_font_path_prepend(evas, FN);
+        evas_font_cache_set(evas, 512 * 1024);
+     }
+   else
+     evas_object_del(eo_bg);
+
    ecore_con_url_init();
    ecore_con_init();
-   edje_init();
 
    ecore_animator_frametime_set(1 / 20);
 
-   ee = ecore_evas_new(null, 0, 0, win.w, win.h, "name=Test;");
    ecore_evas_callback_resize_set (ee, _resize_cb);
-
-   var evas = ecore_evas_get(ee);
-
-   evas_image_cache_set(evas, 10 * 1024 * 1024);
-   evas_font_path_prepend(evas, FN);
-   evas_font_cache_set(evas, 512 * 1024);
 
    o_bg = evas_object_rectangle_add(evas);
    evas_object_resize(o_bg, win.w, win.h);
@@ -210,8 +218,8 @@ if(info && info.City && info.City != ""){
    villeEnCours = info.city;
    meteo_code_set(meteo, info.City);
 } else {
-   villeEnCours = "Paris";
-   meteo_code_set(meteo, "Paris");
+   villeEnCours = "Fontainebleau,France";
+   meteo_code_set(meteo, "Fontainebleau,France");
    }
 }
 
