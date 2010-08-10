@@ -1,14 +1,14 @@
 
 elx.include("Meteo.edj", "LIBMeteo");
 
-var E_OBJ_NAME = "eweather_object";
+var E_OBJ_NAME = "meteo_object";
 var smart = null;
 
 //
 var EWM =
 {
-    EWEATHER_OBJECT_MODE_FULLSCREEN : 0,
-    EWEATHER_OBJECT_MODE_EXPOSE : 1,
+    METEO_OBJECT_MODE_FULLSCREEN : 0,
+    METEO_OBJECT_MODE_EXPOSE : 1,
 }
 //
 
@@ -21,7 +21,7 @@ function _tab_add(type, signal) {
     this.signal = signal;
 }
 
-function eweather_object_signal_type_get(type)
+function meteo_object_signal_type_get(type)
 {
     for (var i = 0; i < _tab.length; ++i)
         if (_tab[i].type == type)
@@ -35,38 +35,38 @@ function eweather_object_signal_type_get(type)
 
 
 
-function eweather_object_add(evas)
+function meteo_object_add(evas)
 {
-    _tab[0] = new _tab_add(EWT.EWEATHER_TYPE_UNKNOWN, "unknown");
-    _tab[1] = new _tab_add(EWT.EWEATHER_TYPE_WINDY, "right,day_clear,sun,isolated_cloud,windy");
-    _tab[2] = new _tab_add(EWT.EWEATHER_TYPE_RAIN, "right,day_rain,sun,rain,rain");
-    _tab[3] = new _tab_add(EWT.EWEATHER_TYPE_SNOW, "right,day_rain,sun,rain,snow");
-    _tab[4] = new _tab_add(EWT.EWEATHER_TYPE_RAIN_SNOW, "right,day_rain,sun,rain,rain_snow");
-    _tab[5] = new _tab_add(EWT.EWEATHER_TYPE_FOGGY, "right,day_rain,sun,cloud,foggy");
-    _tab[6] = new _tab_add(EWT.EWEATHER_TYPE_CLOUDY, "right,day_clear,sun,cloud,");
-    _tab[7] = new _tab_add(EWT.EWEATHER_TYPE_MOSTLY_CLOUDY_NIGHT, "right,night_clear,moon,cloud,");
-    _tab[8] = new _tab_add(EWT.EWEATHER_TYPE_MOSTLY_CLOUDY_DAY, "right,day_clear,sun,cloud,");
-    _tab[9] = new _tab_add(EWT.EWEATHER_TYPE_PARTLY_CLOUDY_NIGHT, "right,night_clear,moon,isolated_cloud,");
-    _tab[10] = new _tab_add(EWT.EWEATHER_TYPE_PARTLY_CLOUDY_DAY, "right,day_clear,sun,isolated_cloud,");
-    _tab[11] = new _tab_add(EWT.EWEATHER_TYPE_CLEAR_NIGHT, "right,night_clear,moon,nothing,");
-    _tab[12] = new _tab_add(EWT.EWEATHER_TYPE_SUNNY, "right,day_clear,sun,nothing,");
-    _tab[13] = new _tab_add(EWT.EWEATHER_TYPE_ISOLATED_THUNDERSTORMS, "right,day_heavyrain,sun,isolated_tstorm,rain");
-    _tab[14] = new _tab_add(EWT.EWEATHER_TYPE_THUNDERSTORMS, "right,day_heavyrain,sun,tstorm,rain");
-    _tab[15] = new _tab_add(EWT.EWEATHER_TYPE_SCATTERED_THUNDERSTORMS, "right,day_heavyrain,sun,tstorm,rain");
-    _tab[16] = new _tab_add(EWT.EWEATHER_TYPE_HEAVY_SNOW, "right,day_heavyrain,sun,storm,snow");
+    _tab[0] = new _tab_add(EWT.METEO_TYPE_UNKNOWN, "unknown");
+    _tab[1] = new _tab_add(EWT.METEO_TYPE_WINDY, "right,day_clear,sun,isolated_cloud,windy");
+    _tab[2] = new _tab_add(EWT.METEO_TYPE_RAIN, "right,day_rain,sun,rain,rain");
+    _tab[3] = new _tab_add(EWT.METEO_TYPE_SNOW, "right,day_rain,sun,rain,snow");
+    _tab[4] = new _tab_add(EWT.METEO_TYPE_RAIN_SNOW, "right,day_rain,sun,rain,rain_snow");
+    _tab[5] = new _tab_add(EWT.METEO_TYPE_FOGGY, "right,day_rain,sun,cloud,foggy");
+    _tab[6] = new _tab_add(EWT.METEO_TYPE_CLOUDY, "right,day_clear,sun,cloud,");
+    _tab[7] = new _tab_add(EWT.METEO_TYPE_MOSTLY_CLOUDY_NIGHT, "right,night_clear,moon,cloud,");
+    _tab[8] = new _tab_add(EWT.METEO_TYPE_MOSTLY_CLOUDY_DAY, "right,day_clear,sun,cloud,");
+    _tab[9] = new _tab_add(EWT.METEO_TYPE_PARTLY_CLOUDY_NIGHT, "right,night_clear,moon,isolated_cloud,");
+    _tab[10] = new _tab_add(EWT.METEO_TYPE_PARTLY_CLOUDY_DAY, "right,day_clear,sun,isolated_cloud,");
+    _tab[11] = new _tab_add(EWT.METEO_TYPE_CLEAR_NIGHT, "right,night_clear,moon,nothing,");
+    _tab[12] = new _tab_add(EWT.METEO_TYPE_SUNNY, "right,day_clear,sun,nothing,");
+    _tab[13] = new _tab_add(EWT.METEO_TYPE_ISOLATED_THUNDERSTORMS, "right,day_heavyrain,sun,isolated_tstorm,rain");
+    _tab[14] = new _tab_add(EWT.METEO_TYPE_THUNDERSTORMS, "right,day_heavyrain,sun,tstorm,rain");
+    _tab[15] = new _tab_add(EWT.METEO_TYPE_SCATTERED_THUNDERSTORMS, "right,day_heavyrain,sun,tstorm,rain");
+    _tab[16] = new _tab_add(EWT.METEO_TYPE_HEAVY_SNOW, "right,day_heavyrain,sun,storm,snow");
 
     _smart_init();
     return evas_object_smart_add(evas, smart);
 }
 
 
-function eweather_object_eweather_get(obj)
+function meteo_object_meteo_get(obj)
 {
-    return obj.data.eweather;
+    return obj.data.meteo;
 }
 
 
-function eweather_object_mode_set(obj, mode)
+function meteo_object_mode_set(obj, mode)
 {
     var sd = obj.data;
     if(!sd) return ;
@@ -74,7 +74,7 @@ function eweather_object_mode_set(obj, mode)
     if(mode == sd.mode) return;
 
     sd.mode = mode;
-    if(sd.mode == EWM.EWEATHER_OBJECT_MODE_FULLSCREEN)
+    if(sd.mode == EWM.METEO_OBJECT_MODE_FULLSCREEN)
         edje_object_signal_emit(sd.obj, "fullscreen", "");
     else
     {
@@ -89,7 +89,7 @@ function eweather_object_mode_set(obj, mode)
     _sizing_eval(obj);
 }
 
-function eweather_object_ready_callback_add(obj, done_cb, data)
+function meteo_object_ready_callback_add(obj, done_cb, data)
 {
    var sd = obj.data;
 
@@ -118,10 +118,10 @@ function _loaded_cb(data, _obj, emission, source)
 
     if (!sd) return;
 
-    eweather_object_ready_callback_add(obj,
+    meteo_object_ready_callback_add(obj,
 				       function (obj, sd) {
-					  eweather_object_mode_set(obj, EWM.EWEATHER_OBJECT_MODE_FULLSCREEN);
-					  eweather_start(sd.eweather);
+					  meteo_object_mode_set(obj, EWM.METEO_OBJECT_MODE_FULLSCREEN);
+					  meteo_start(sd.meteo);
 				       },
 				       sd);
 }
@@ -221,19 +221,19 @@ function _mouse_up_cb(data, evas, o_day, _event)
         }
     }
 
-    if(o && sd.mode == EWM.EWEATHER_OBJECT_MODE_EXPOSE)
+    if(o && sd.mode == EWM.METEO_OBJECT_MODE_EXPOSE)
     {
         sd.current_day = i;
         update_main(obj);
     }
 
-    if(o && sd.mode == EWM.EWEATHER_OBJECT_MODE_EXPOSE)
+    if(o && sd.mode == EWM.METEO_OBJECT_MODE_EXPOSE)
     {
-        eweather_object_mode_set(obj, EWM.EWEATHER_OBJECT_MODE_FULLSCREEN);
+        meteo_object_mode_set(obj, EWM.METEO_OBJECT_MODE_FULLSCREEN);
     }
     else
     {
-        eweather_object_mode_set(obj, EWM.EWEATHER_OBJECT_MODE_EXPOSE);
+        meteo_object_mode_set(obj, EWM.METEO_OBJECT_MODE_EXPOSE);
     }
 }
 
@@ -291,7 +291,7 @@ function _mouse_move_cb(data, evas, o_day, _event)
     }
 }
 
-function _eweather_update_cb(data, eweather)
+function _meteo_update_cb(data, meteo)
 {
     var obj = data;
     var sd;
@@ -302,12 +302,12 @@ function _eweather_update_cb(data, eweather)
     sd = obj.data;
     if (!sd) return;
 
-    if(sd.current_day >= eweather_data_count(sd.eweather))
+    if(sd.current_day >= meteo_data_count(sd.meteo))
         sd.current_day = -1;
 
-    for(i=0; i < eweather_data_count(sd.eweather); i++)
+    for(i=0; i < meteo_data_count(sd.meteo); i++)
     {
-        var e_data = eweather_data_get(sd.eweather, i);
+        var e_data = meteo_data_get(sd.meteo, i);
 
 	if(sd.current_day<0)
             sd.current_day = i;
@@ -326,48 +326,48 @@ function _eweather_update_cb(data, eweather)
             content = edje_object_part_object_get(sd.obj, "object.content");
             evas_object_clip_set(o_day, content);
 
-            if(sd.mode == EWM.EWEATHER_OBJECT_MODE_FULLSCREEN)
+            if(sd.mode == EWM.METEO_OBJECT_MODE_FULLSCREEN)
                 evas_object_hide(o_day);
         }
 
         o_day = sd.objs[i];
 
-        signal = eweather_object_signal_type_get(eweather_data_type_get(e_data));
+        signal = meteo_object_signal_type_get(meteo_data_type_get(e_data));
 
 	ecore_idler_add(animation_idler_cb, { obj: o_day, signal: signal });
         edje_object_signal_emit(o_day, signal, "");
 
-//         if(eweather_temp_type_get(eweather) == EWTEMP.EWEATHER_TEMP_FARENHEIT)
-//             buf = eweather_data_temp_get(e_data) + "°F";
+//         if(meteo_temp_type_get(meteo) == EWTEMP.METEO_TEMP_FARENHEIT)
+//             buf = meteo_data_temp_get(e_data) + "°F";
 //         else
-//             buf =  eweather_utils_celcius_get(eweather_data_temp_get(e_data)) + "°C";
-            buf = eweather_data_temp_get(e_data) + "°C";
+//             buf =  meteo_utils_celcius_get(meteo_data_temp_get(e_data)) + "°C";
+            buf = meteo_data_temp_get(e_data) + "°C";
             
         edje_object_part_text_set(o_day, "text.temp", buf);
 
-//         if(eweather_temp_type_get(eweather) == EWTEMP.EWEATHER_TEMP_FARENHEIT)
-//             buf = eweather_data_temp_min_get(e_data) + "°F";
+//         if(meteo_temp_type_get(meteo) == EWTEMP.METEO_TEMP_FARENHEIT)
+//             buf = meteo_data_temp_min_get(e_data) + "°F";
 //         else
-//             buf = eweather_utils_celcius_get(eweather_data_temp_min_get(e_data)) + "°C";
-            buf = eweather_data_temp_min_get(e_data) + "°C";
+//             buf = meteo_utils_celcius_get(meteo_data_temp_min_get(e_data)) + "°C";
+            buf = meteo_data_temp_min_get(e_data) + "°C";
 
         edje_object_part_text_set(o_day, "text.temp_min", buf);
 
-//         if(eweather_temp_type_get(eweather) == EWTEMP.EWEATHER_TEMP_FARENHEIT)
-//             buf = eweather_data_temp_max_get(e_data) + "°F";
+//         if(meteo_temp_type_get(meteo) == EWTEMP.METEO_TEMP_FARENHEIT)
+//             buf = meteo_data_temp_max_get(e_data) + "°F";
 //         else
-//             buf = eweather_utils_celcius_get(eweather_data_temp_max_get(e_data)) + "°C";
-	    buf = eweather_data_temp_max_get(e_data) + "°C";
+//             buf = meteo_utils_celcius_get(meteo_data_temp_max_get(e_data)) + "°C";
+	    buf = meteo_data_temp_max_get(e_data) + "°C";
 
         edje_object_part_text_set(o_day, "text.temp_max", buf);
 
-        edje_object_part_text_set(o_day, "text.city", eweather_data_city_get(e_data));
-        edje_object_part_text_set(o_day, "text.date", eweather_data_date_get(e_data));
+        edje_object_part_text_set(o_day, "text.city", meteo_data_city_get(e_data));
+        edje_object_part_text_set(o_day, "text.date", meteo_data_date_get(e_data));
     }
 
     //useless if we use only one provider (google here)
     /*
-       while(eina_list_count(sd->objs) > eweather_data_count(sd->eweather))
+       while(eina_list_count(sd->objs) > meteo_data_count(sd->meteo))
        {
        Evas_Object *o = eina_list_data_get(eina_list_last(sd->objs));
        sd->objs = eina_list_remove(sd->objs, o);
@@ -391,49 +391,49 @@ function update_main(obj)
     var sd;
     var signal;
     var buf;
-    var eweather;
+    var meteo;
 
     sd = obj.data;
     if (!sd) return;
 
     if(sd.current_day < 0) return ;
 
-    eweather = sd.eweather;
+    meteo = sd.meteo;
 
     evas_object_show(sd.main);
     edje_object_part_swallow(sd.obj, "object.swallow", sd.main);
 
-    var e_data = eweather_data_get(eweather, sd.current_day);
+    var e_data = meteo_data_get(meteo, sd.current_day);
 
-    signal = eweather_object_signal_type_get(eweather_data_type_get(e_data));
+    signal = meteo_object_signal_type_get(meteo_data_type_get(e_data));
 
     ecore_idler_add(animation_idler_cb, { obj: sd.main, signal: signal });
 
-//     if(eweather_temp_type_get(eweather) == EWTEMP.EWEATHER_TEMP_FARENHEIT)
-//         buf = eweather_data_temp_get(e_data) + "°F";
+//     if(meteo_temp_type_get(meteo) == EWTEMP.METEO_TEMP_FARENHEIT)
+//         buf = meteo_data_temp_get(e_data) + "°F";
 //     else
-//         buf =  eweather_utils_celcius_get(eweather_data_temp_get(e_data)) + "°C";
-        buf = eweather_data_temp_get(e_data) + "°C";
+//         buf =  meteo_utils_celcius_get(meteo_data_temp_get(e_data)) + "°C";
+        buf = meteo_data_temp_get(e_data) + "°C";
     edje_object_part_text_set(sd.main, "text.temp", buf);
 
-//     if(eweather_temp_type_get(eweather) == EWTEMP.EWEATHER_TEMP_FARENHEIT)
-//         buf = eweather_data_temp_min_get(e_data) + "°F";
+//     if(meteo_temp_type_get(meteo) == EWTEMP.METEO_TEMP_FARENHEIT)
+//         buf = meteo_data_temp_min_get(e_data) + "°F";
 //     else
-//         buf = eweather_utils_celcius_get(eweather_data_temp_min_get(e_data)) + "°C";
-        buf = eweather_data_temp_min_get(e_data) + "°C";
+//         buf = meteo_utils_celcius_get(meteo_data_temp_min_get(e_data)) + "°C";
+        buf = meteo_data_temp_min_get(e_data) + "°C";
 
     edje_object_part_text_set(sd.main, "text.temp_min", buf);
 
-//     if(eweather_temp_type_get(eweather) == EWTEMP.EWEATHER_TEMP_FARENHEIT)
-//         buf = eweather_data_temp_max_get(e_data) + "°F";
+//     if(meteo_temp_type_get(meteo) == EWTEMP.METEO_TEMP_FARENHEIT)
+//         buf = meteo_data_temp_max_get(e_data) + "°F";
 //     else
-//         buf = eweather_utils_celcius_get(eweather_data_temp_max_get(e_data)) + "°C";
-        buf = eweather_data_temp_max_get(e_data) + "°C";
+//         buf = meteo_utils_celcius_get(meteo_data_temp_max_get(e_data)) + "°C";
+        buf = meteo_data_temp_max_get(e_data) + "°C";
 
     edje_object_part_text_set(sd.main, "text.temp_max", buf);
 
-    edje_object_part_text_set(sd.main, "text.city", eweather_data_city_get(e_data));
-    edje_object_part_text_set(sd.main, "text.date", eweather_data_date_get(e_data));
+    edje_object_part_text_set(sd.main, "text.city", meteo_data_city_get(e_data));
+    edje_object_part_text_set(sd.main, "text.date", meteo_data_date_get(e_data));
 }
 
 function _sizing_eval(obj)
@@ -557,7 +557,7 @@ function _smart_add(obj)
     var o;
 
     obj.data = sd;
-    sd.mode = EWM.EWEATHER_OBJECT_MODE_EXPOSE;
+    sd.mode = EWM.METEO_OBJECT_MODE_EXPOSE;
     sd.thumbscroll.moved = true;
     sd.current_day = 0;
 
@@ -577,10 +577,10 @@ function _smart_add(obj)
     edje_object_preload(sd.main, false);
 
     evas_object_smart_member_add(sd.main, obj);
-    sd.eweather = eweather_new();
+    sd.meteo = meteo_new();
     evas_object_focus_set(sd.main, 1);
 
-    eweather_callbacks_set(sd.eweather, _eweather_update_cb, obj);
+    meteo_callbacks_set(sd.meteo, _meteo_update_cb, obj);
 
     evas_object_event_callback_add(sd.main, EVAS_CALLBACK_MOUSE_UP,
             _mouse_up_cb, obj);
@@ -626,7 +626,7 @@ function _smart_del(obj)
 
     sd = obj.data;
     if (!sd) return;
-    eweather_free(sd.eweather);
+    meteo_free(sd.meteo);
 
 
     for (var i = 0; i < sd.objs.length; ++i)

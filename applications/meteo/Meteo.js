@@ -12,7 +12,7 @@ elx.include("Meteo.edj", "Geoloc")
 elx.include("evan.edj", "Evan_Keyboard");
 elx.include("evan.edj", "Evan_Input");
 
-var o_weather = null;
+var o_meteo = null;
 var o_bg = null;
 var win = { w: 720, h: 576 };
 var smartClavier = null;
@@ -63,7 +63,7 @@ function _resize_cb(ee)
     evas = ecore_evas_get(ee);
     geom = evas_output_size_get(evas);
     evas_object_resize(o_bg, geom.w, geom.h);
-    evas_object_resize(o_weather, geom.w, geom.h);
+    evas_object_resize(o_meteo, geom.w, geom.h);
     if(smartClavier)
     evas_object_resize(smartClavier, geom.w-100, geom.h-200);
     if(smartInput)
@@ -79,7 +79,7 @@ function show_when_ready(obj, data)
 
 function main()
 {
-   var eweather;
+   var meteo;
 
    ecore_init();
    ecore_evas_init();
@@ -107,14 +107,14 @@ function main()
    evas_object_focus_set(o_bg, 1);
 
    get_geoloc_info(done_geoloc);
-   o_weather = eweather_object_add(evas);
-   eweather = eweather_object_eweather_get(o_weather);
-   eweather_code_set(eweather, "Paris");
+   o_meteo = meteo_object_add(evas);
+   meteo = meteo_object_meteo_get(o_meteo);
+   meteo_code_set(meteo, "Paris");
    villeEnCours = "Paris";
-   evas_object_resize(o_weather, win.w, win.h);
-   evas_object_move(o_weather, 0, 0);
-   eweather_object_ready_callback_add(o_weather, show_when_ready, null);
-   evas_object_show(o_weather);
+   evas_object_resize(o_meteo, win.w, win.h);
+   evas_object_move(o_meteo, 0, 0);
+   meteo_object_ready_callback_add(o_meteo, show_when_ready, null);
+   evas_object_show(o_meteo);
 
    mode = "meteo";
 
@@ -141,7 +141,7 @@ function main()
       evas_object_del(smartClavier);
    if(bgGris)
       evas_object_del(bgGris);
-   evas_object_del(o_weather);
+   evas_object_del(o_meteo);
    evas_object_del(o_bg);
 
    ecore_evas_free(ee);
@@ -189,8 +189,8 @@ function validation(texte){
    evas_object_hide(smartInput);
 
    villeEnCours = texte;
-   eweather_code_set(eweather, villeEnCours);
-   evas_object_focus_set(o_weather, 1);
+   meteo_code_set(meteo, villeEnCours);
+   evas_object_focus_set(o_meteo, 1);
    evas_object_key_grab(o_bg, "Return", 0, 0, 0);
    evas_object_key_grab(o_bg, "RC/Ok", 0, 0, 0);
    evas_object_key_grab(o_bg, "KP_Enter", 0, 0, 0);
@@ -204,14 +204,14 @@ function done_geoloc(info){
 
 for(var i in info)
    elx.print(i + "=>" + info[i] + "\n");
-eweather = eweather_object_eweather_get(o_weather);
+meteo = meteo_object_meteo_get(o_meteo);
 
 if(info && info.City && info.City != ""){
    villeEnCours = info.city;
-   eweather_code_set(eweather, info.City);
+   meteo_code_set(meteo, info.City);
 } else {
    villeEnCours = "Paris";
-   eweather_code_set(eweather, "Paris");
+   meteo_code_set(meteo, "Paris");
    }
 }
 

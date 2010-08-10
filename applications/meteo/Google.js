@@ -1,5 +1,5 @@
 //Recuperation de la meteo sur Google Weather
-//Ce code correspond au plugin Google de la bibliotheque C eweather
+//Ce code correspond au plugin Google de la bibliotheque C meteo
 
 
 function strstr (haystack, needle, bool) {
@@ -40,195 +40,195 @@ function _google_tab_add(id, type) {
     this.type = type;
 }
 
-function google_init(eweather)
+function google_init(meteo)
 {
-    _google_tab[0] = new _google_tab_add("/ig/images/weather/chance_of_rain.gif", EWT.EWEATHER_TYPE_RAIN);
-    _google_tab[1] = new _google_tab_add("/ig/images/weather/sunny.gif", EWT.EWEATHER_TYPE_SUNNY);
-    _google_tab[2] = new _google_tab_add("/ig/images/weather/mostly_sunny.gif", EWT.EWEATHER_TYPE_PARTLY_CLOUDY_DAY);
-    _google_tab[3] = new _google_tab_add("/ig/images/weather/partly_cloudy.gif", EWT.EWEATHER_TYPE_PARTLY_CLOUDY_DAY);
-    _google_tab[4] = new _google_tab_add("/ig/images/weather/mostly_cloudy.gif", EWT.EWEATHER_TYPE_MOSTLY_CLOUDY_DAY);
-    _google_tab[5] = new _google_tab_add("/ig/images/weather/chance_of_storm.gif", EWT.EWEATHER_TYPE_ISOLATED_THUNDERSTORMS);
-    _google_tab[6] = new _google_tab_add("/ig/images/weather/rain.gif", EWT.EWEATHER_TYPE_RAIN);
-    _google_tab[7] = new _google_tab_add("/ig/images/weather/chance_of_rain.gif", EWT.EWEATHER_TYPE_RAIN);
-    _google_tab[8] = new _google_tab_add("/ig/images/weather/chance_of_snow.gif", EWT.EWEATHER_TYPE_SNOW);
-    _google_tab[9] = new _google_tab_add("/ig/images/weather/cloudy.gif", EWT.EWEATHER_TYPE_CLOUDY);
-    _google_tab[10] = new _google_tab_add("/ig/images/weather/mist.gif", EWT.EWEATHER_TYPE_FOGGY);
-    _google_tab[11] = new _google_tab_add("/ig/images/weather/storm.gif", EWT.EWEATHER_TYPE_SCATTERED_THUNDERSTORMS);
-    _google_tab[12] = new _google_tab_add("/ig/images/weather/chance_of_tstorm.gif", EWT.EWEATHER_TYPE_ISOLATED_THUNDERSTORMS);
-    _google_tab[13] = new _google_tab_add("/ig/images/weather/sleet.gif", EWT.EWEATHER_TYPE_RAIN_SNOW);
-    _google_tab[13] = new _google_tab_add("/ig/images/weather/rain_snow.gif", EWT.EWEATHER_TYPE_RAIN_SNOW);
-    _google_tab[14] = new _google_tab_add("/ig/images/weather/snow.gif", EWT.EWEATHER_TYPE_SNOW);
-    _google_tab[15] = new _google_tab_add("/ig/images/weather/icy.gif", EWT.EWEATHER_TYPE_SNOW);
-    _google_tab[16] = new _google_tab_add("/ig/images/weather/dust.gif", EWT.EWEATHER_TYPE_FOGGY);
-    _google_tab[17] = new _google_tab_add("/ig/images/weather/fog.gif", EWT.EWEATHER_TYPE_FOGGY);
-    _google_tab[18] = new _google_tab_add("/ig/images/weather/smoke.gif", EWT.EWEATHER_TYPE_FOGGY);
-    _google_tab[19] = new _google_tab_add("/ig/images/weather/haze.gif", EWT.EWEATHER_TYPE_FOGGY);
-    _google_tab[20] = new _google_tab_add("/ig/images/weather/flurries.gif", EWT.EWEATHER_TYPE_SNOW);
-    _google_tab[21] = new _google_tab_add("", EWT.EWEATHER_TYPE_UNKNOWN);
+    _google_tab[0] = new _google_tab_add("/ig/images/weather/chance_of_rain.gif", EWT.METEO_TYPE_RAIN);
+    _google_tab[1] = new _google_tab_add("/ig/images/weather/sunny.gif", EWT.METEO_TYPE_SUNNY);
+    _google_tab[2] = new _google_tab_add("/ig/images/weather/mostly_sunny.gif", EWT.METEO_TYPE_PARTLY_CLOUDY_DAY);
+    _google_tab[3] = new _google_tab_add("/ig/images/weather/partly_cloudy.gif", EWT.METEO_TYPE_PARTLY_CLOUDY_DAY);
+    _google_tab[4] = new _google_tab_add("/ig/images/weather/mostly_cloudy.gif", EWT.METEO_TYPE_MOSTLY_CLOUDY_DAY);
+    _google_tab[5] = new _google_tab_add("/ig/images/weather/chance_of_storm.gif", EWT.METEO_TYPE_ISOLATED_THUNDERSTORMS);
+    _google_tab[6] = new _google_tab_add("/ig/images/weather/rain.gif", EWT.METEO_TYPE_RAIN);
+    _google_tab[7] = new _google_tab_add("/ig/images/weather/chance_of_rain.gif", EWT.METEO_TYPE_RAIN);
+    _google_tab[8] = new _google_tab_add("/ig/images/weather/chance_of_snow.gif", EWT.METEO_TYPE_SNOW);
+    _google_tab[9] = new _google_tab_add("/ig/images/weather/cloudy.gif", EWT.METEO_TYPE_CLOUDY);
+    _google_tab[10] = new _google_tab_add("/ig/images/weather/mist.gif", EWT.METEO_TYPE_FOGGY);
+    _google_tab[11] = new _google_tab_add("/ig/images/weather/storm.gif", EWT.METEO_TYPE_SCATTERED_THUNDERSTORMS);
+    _google_tab[12] = new _google_tab_add("/ig/images/weather/chance_of_tstorm.gif", EWT.METEO_TYPE_ISOLATED_THUNDERSTORMS);
+    _google_tab[13] = new _google_tab_add("/ig/images/weather/sleet.gif", EWT.METEO_TYPE_RAIN_SNOW);
+    _google_tab[13] = new _google_tab_add("/ig/images/weather/rain_snow.gif", EWT.METEO_TYPE_RAIN_SNOW);
+    _google_tab[14] = new _google_tab_add("/ig/images/weather/snow.gif", EWT.METEO_TYPE_SNOW);
+    _google_tab[15] = new _google_tab_add("/ig/images/weather/icy.gif", EWT.METEO_TYPE_SNOW);
+    _google_tab[16] = new _google_tab_add("/ig/images/weather/dust.gif", EWT.METEO_TYPE_FOGGY);
+    _google_tab[17] = new _google_tab_add("/ig/images/weather/fog.gif", EWT.METEO_TYPE_FOGGY);
+    _google_tab[18] = new _google_tab_add("/ig/images/weather/smoke.gif", EWT.METEO_TYPE_FOGGY);
+    _google_tab[19] = new _google_tab_add("/ig/images/weather/haze.gif", EWT.METEO_TYPE_FOGGY);
+    _google_tab[20] = new _google_tab_add("/ig/images/weather/flurries.gif", EWT.METEO_TYPE_SNOW);
+    _google_tab[21] = new _google_tab_add("", EWT.METEO_TYPE_UNKNOWN);
 
 
-    eweather.google.host = "www.google.com";
-    eweather.google.server = null;
+    meteo.google.host = "www.google.com";
+    meteo.google.server = null;
 
-    eweather.google.add_handler =
+    meteo.google.add_handler =
         ecore_event_handler_add(ECORE_CON_EVENT_SERVER_ADD,
-                _server_add, eweather);
+                _server_add, meteo);
 
-    eweather.google.del_handler =
+    meteo.google.del_handler =
         ecore_event_handler_add(ECORE_CON_EVENT_SERVER_DEL,
-                _server_del, eweather);
-    eweather.google.data_handler =
+                _server_del, meteo);
+    meteo.google.data_handler =
         ecore_event_handler_add(ECORE_CON_EVENT_SERVER_DATA,
-                _server_data, eweather);
+                _server_data, meteo);
 
-    eweather.google.check_timer = ecore_timer_add(0, _weather_cb_check, eweather);
+    meteo.google.check_timer = ecore_timer_add(0, _weather_cb_check, meteo);
 }
 
-function google_shutdown(eweather)
+function google_shutdown(meteo)
 {
-   if (eweather.google.check_timer) ecore_timer_del(eweather.google.check_timer);
-   if (eweather.google.add_handler) ecore_event_handler_del(eweather.google.add_handler);
-   if (eweather.google.data_handler) ecore_event_handler_del(eweather.google.data_handler);
-   if (eweather.google.del_handler) ecore_event_handler_del(eweather.google.del_handler);
-   if (eweather.google.server) ecore_con_server_del(eweather.google.server);
+   if (meteo.google.check_timer) ecore_timer_del(meteo.google.check_timer);
+   if (meteo.google.add_handler) ecore_event_handler_del(meteo.google.add_handler);
+   if (meteo.google.data_handler) ecore_event_handler_del(meteo.google.data_handler);
+   if (meteo.google.del_handler) ecore_event_handler_del(meteo.google.del_handler);
+   if (meteo.google.server) ecore_con_server_del(meteo.google.server);
 }
 
-function google_poll_time_updated(eweather)
+function google_poll_time_updated(meteo)
 {
-    if(eweather.google.check_timer)
-        ecore_timer_del(eweather.google.check_timer);
+    if(meteo.google.check_timer)
+        ecore_timer_del(meteo.google.check_timer);
 
-    eweather.google.check_timer =
-        ecore_timer_add(0, _weather_cb_check, eweather);
+    meteo.google.check_timer =
+        ecore_timer_add(0, _weather_cb_check, meteo);
 }
 
-function google_code_updated(eweather)
+function google_code_updated(meteo)
 {
-    if (eweather.google.check_timer)
-        ecore_timer_del(eweather.google.check_timer);
+    if (meteo.google.check_timer)
+        ecore_timer_del(meteo.google.check_timer);
 
-    eweather.google.check_timer =
-      ecore_timer_add(0, _weather_cb_check, eweather);
+    meteo.google.check_timer =
+      ecore_timer_add(0, _weather_cb_check, meteo);
 }
 
 function _weather_cb_check(data)
 {
-    var eweather;
+    var meteo;
 
-    if (!(eweather = data)) return 0;
+    if (!(meteo = data)) return 0;
 
-    if (eweather.google.server) ecore_con_server_del(eweather.google.server);
-    eweather.google.server = null;
+    if (meteo.google.server) ecore_con_server_del(meteo.google.server);
+    meteo.google.server = null;
 
-    if (eweather.proxy.port && eweather.proxy.port != "")
-        eweather.google.server =
-            ecore_con_server_connect(ECORE_CON_REMOTE_SYSTEM, eweather.proxy.host,
-                    eweather.proxy.port, eweather);
+    if (meteo.proxy.port && meteo.proxy.port != "")
+        meteo.google.server =
+            ecore_con_server_connect(ECORE_CON_REMOTE_SYSTEM, meteo.proxy.host,
+                    meteo.proxy.port, meteo);
     else
-        eweather.google.server =
-            ecore_con_server_connect(ECORE_CON_REMOTE_SYSTEM, eweather.google.host, 80, eweather);
+        meteo.google.server =
+            ecore_con_server_connect(ECORE_CON_REMOTE_SYSTEM, meteo.google.host, 80, meteo);
 
-    if (!eweather.google.server) return 0;
+    if (!meteo.google.server) return 0;
 
-    ecore_timer_interval_set(eweather.google.check_timer, eweather.poll_time);
+    ecore_timer_interval_set(meteo.google.check_timer, meteo.poll_time);
     return 1;
 }
 
 function _server_add(data, type, event)
 {
-    var eweather;
+    var meteo;
     var ev;
     var buf;
     var s;
     var i;
 
-    if (!(eweather = data)) return 1;
-    if(!eweather.code) return 0;
+    if (!(meteo = data)) return 1;
+    if(!meteo.code) return 0;
 
-    eweather.google.buffer = "";
-    eweather.google.cursize = 0;
-    eweather.google.bufsize = 0;
+    meteo.google.buffer = "";
+    meteo.google.cursize = 0;
+    meteo.google.bufsize = 0;
 
     ev = event;
-    if ((!eweather.google.server) || (eweather.google.server != ev.server))
+    if ((!meteo.google.server) || (meteo.google.server != ev.server))
         return 1;
-    s = eweather.code;
+    s = meteo.code;
     for(i=0; i<s.length; i++)
         if(s[i] == ' ')
             s[i] = '+';
 
-    buf = "GET http://"+eweather.google.host+"/ig/api?weather="+s+"&hl=fr HTTP/1.1\r\nHost: "
-        +eweather.google.host+"\r\n\r\n";
+    buf = "GET http://"+meteo.google.host+"/ig/api?weather="+s+"&hl=fr HTTP/1.1\r\nHost: "
+        +meteo.google.host+"\r\n\r\n";
 
-    ecore_con_server_send(eweather.google.server, buf);
+    ecore_con_server_send(meteo.google.server, buf);
 
     return 0;
 }
 
 function _server_del(data, type, event)
 {
-    var eweather;
+    var meteo;
     var ev;
     var ret;
 
-    eweather = data;
+    meteo = data;
     ev = event;
 
-    if ((!eweather.google.server) || (eweather.google.server != ev.server)) return 1;
+    if ((!meteo.google.server) || (meteo.google.server != ev.server)) return 1;
 
-    ecore_con_server_del(eweather.google.server);
-    eweather.google.server = null;
+    ecore_con_server_del(meteo.google.server);
+    meteo.google.server = null;
 
-    ret = _parse(eweather);
+    ret = _parse(meteo);
 
-    eweather.google.bufsize = 0;
-    eweather.google.cursize = 0;
+    meteo.google.bufsize = 0;
+    meteo.google.cursize = 0;
 
-    eweather.google.buffer = "";
+    meteo.google.buffer = "";
 
     return 0;
 }
 
 function _server_data(data, type, event)
 {
-    var eweather;
+    var meteo;
     var ev;
 
-    eweather = data;
+    meteo = data;
     ev = event;
 
-    if ( !(eweather.google.server) || (eweather.google.server != ev.server))
+    if ( !(meteo.google.server) || (meteo.google.server != ev.server))
         return 1;
 
-    eweather.google.buffer = eweather.google.buffer + ev.data;
-    eweather.google.cursize += ev.size;
+    meteo.google.buffer = meteo.google.buffer + ev.data;
+    meteo.google.cursize += ev.size;
 
-    _parse(eweather);
+    _parse(meteo);
     return 0;
 }
 
-function _parse(eweather)
+function _parse(meteo)
 {
     var needle;
     var location;
     var day;
     var date;
-    var e_data = eweather_data_current_get(eweather);
+    var e_data = meteo_data_current_get(meteo);
     var e_data_current;
     var code;
     var pos;
     location = "";
 
-    if (!eweather.google.buffer) return 0;
+    if (!meteo.google.buffer) return 0;
 
-    // elx.print(eweather.google.buffer);
-    needle = strstr(eweather.google.buffer, "<problem_cause data=\"");
+    // elx.print(meteo.google.buffer);
+    needle = strstr(meteo.google.buffer, "<problem_cause data=\"");
     if (needle) {
-      eweather_code_set(eweather, "Paris,France");
+      meteo_code_set(meteo, "Paris,France");
       return 0;
     }
 
-    needle = strstr(eweather.google.buffer, "<city data=\"");
+    needle = strstr(meteo.google.buffer, "<city data=\"");
     if (!needle) return 0;
     needle = needle.slice(12);
     pos = needle.indexOf("\"");
@@ -275,11 +275,11 @@ function _parse(eweather)
 
     e_data_current = e_data;
 
-    eweather_data_current_set(eweather, e_data_current);
+    meteo_data_current_set(meteo, e_data_current);
 
     for(var i=1; i<4; i++)
     {
-        e_data = eweather_data_get(eweather, i);
+        e_data = meteo_data_get(meteo, i);
 
         needle = strstr(needle, "<day_of_week data=\"");
         if (!needle) return 0;
@@ -312,10 +312,10 @@ function _parse(eweather)
         e_data.region = e_data_current.region;
         e_data.city = e_data_current.city;
 
-	eweather_data_set(eweather, e_data, i);
+	meteo_data_set(meteo, e_data, i);
     }
 
-    eweather_plugin_update(eweather);
+    meteo_plugin_update(meteo);
     return 1;
 }
 
@@ -329,6 +329,6 @@ function _weather_type_get(id)
         }
     }
 
-    return EWT.EWEATHER_TYPE_UNKNOWN;
+    return EWT.METEO_TYPE_UNKNOWN;
 }
 
