@@ -88,13 +88,20 @@ function main()
    evas_object_show(o_bg);
 
    evas_object_event_callback_add(o_bg, EVAS_CALLBACK_KEY_UP, key_action_cb, null);
-   evas_object_key_grab(o_bg, "Escape", 0, 0, 0);
    evas_object_key_grab(o_bg, "p", 0, 0, 0);
    evas_object_key_grab(o_bg, "a", 0, 0, 0);
    evas_object_key_grab(o_bg, "KP_Add", 0, 0, 0);
    evas_object_key_grab(o_bg, "KP_Subtract", 0, 0, 0);
    evas_object_key_grab(o_bg, "Delete", 0, 0, 0);
    evas_object_key_grab(o_bg, "KP_Delete", 0, 0, 0);
+
+   evas_object_key_grab(o_bg, "b", 0, 0, 0);
+   evas_object_key_grab(o_bg, "Red", 0, 0, 0);
+   evas_object_key_grab(o_bg, "equal", 0, 0, 0);
+   evas_object_key_grab(o_bg, "Stop", 0, 0, 0);
+   evas_object_key_grab(o_bg, "Home", 0, 0, 0);
+   evas_object_key_grab(o_bg, "Escape", 0, 0, 0);
+   evas_object_key_grab(o_bg, "Start", 0, 0, 0);
 
     var nbitems = 20;
     texte = new Array(nbitems);
