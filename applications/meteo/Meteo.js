@@ -7,8 +7,8 @@ test &= elx.load("ecore-evas");
 test &= elx.load("ecore-con");
 test &= elx.load("edje");
 
-elx.include("EWeather.edj", "EWeather_Smart")
-elx.include("EWeather.edj", "Geoloc")
+elx.include("Meteo.edj", "Meteo_Smart")
+elx.include("Meteo.edj", "Geoloc")
 elx.include("evan.edj", "Evan_Keyboard");
 elx.include("evan.edj", "Evan_Input");
 

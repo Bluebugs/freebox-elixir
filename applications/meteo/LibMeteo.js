@@ -27,7 +27,7 @@ var EWTEMP =
     EWEATHER_TEMP_CELCIUS : 1,
 }
 
-elx.include("EWeather.edj", "Google")
+elx.include("Meteo.edj", "Google")
 
 function eweather_new()
 {
