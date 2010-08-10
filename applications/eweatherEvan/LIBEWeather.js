@@ -72,7 +72,7 @@ function eweather_code_set(eweather, code)
    eweather.code = code;
 
    if(eweather.init)
-    google_code_updated(eweather);
+     google_code_updated(eweather);
 }
 
 function eweather_temp_type_set(eweather, type)
@@ -137,6 +137,14 @@ function eweather_data_current_get(eweather)
    return eweather.data[0];
 }
 
+function eweather_data_current_set(eweather, data)
+{
+   if(eweather.data.length == 0)
+     eweather.data.push(data);
+   else
+     eweather.data[0] = data;
+}
+
 function eweather_data_get(eweather, num)
 {
    while(eweather.data.length <= num)
@@ -145,6 +153,17 @@ function eweather_data_get(eweather, num)
 	eweather.data.push(e_data);
      }
    return eweather.data[num];
+}
+
+function eweather_data_set(eweather, data, num)
+{
+   while(eweather.data.length <= num)
+     {
+	var e_data = {};
+	eweather.data.push(e_data);
+     }
+
+   eweather.data[num] = data;
 }
 
 function eweather_data_count(eweather)

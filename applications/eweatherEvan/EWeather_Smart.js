@@ -139,7 +139,7 @@ function _preload_done_cb(sd, obj, emission, source)
 
 function _msg_cb(sd, obj, emission, source)
 {
-   elx.print(emission, ", ", source, "\n");
+   // elx.print(emission, ", ", source, "\n");
 }
 
 function _key_down_cb(data, evas, o_day, event)
@@ -309,7 +309,7 @@ function _eweather_update_cb(data, eweather)
     {
         var e_data = eweather_data_get(sd.eweather, i);
 
-        if(sd.current_day<0)
+	if(sd.current_day<0)
             sd.current_day = i;
 
         if(i >= sd.objs.length)
@@ -381,7 +381,6 @@ function _eweather_update_cb(data, eweather)
 
 function animation_idler_cb(data)
 {
-   elx.print("signal : ", data.signal, "\n");
    edje_object_signal_emit(data.obj, data.signal, "");
 
    return 0;
