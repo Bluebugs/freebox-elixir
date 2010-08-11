@@ -81,7 +81,7 @@ function _goPrevious(obj){
       } else if(sd.currentItem ==0) {
 	 return;
       } else {
-	 edje_object_signal_emit(sd.items[sd.currentItem], "unfocus", "item"+sd.items[sd.currentItem].shownItem);
+	 edje_object_signal_emit(sd.items[sd.currentItem], "unfocus", sd.items[sd.currentItem].shownItem);
 	 if(sd.cursor)
 	 _move_cursor({obj:obj, cursor:sd.cursor, item1:sd.items[sd.currentItem]});
 	 
@@ -109,7 +109,7 @@ function _goNext(obj){
 	 _move_up(obj);
       } else if (sd.currentItem == sd.items.length -1) return;
       else {
-	 edje_object_signal_emit(sd.items[sd.currentItem], "unfocus", "item"+sd.items[sd.currentItem].shownItem);
+	 edje_object_signal_emit(sd.items[sd.currentItem], "unfocus", sd.items[sd.currentItem].shownItem);
 	 if(sd.cursor)
 	 _move_cursor({obj:obj, cursor:sd.cursor, item1:sd.items[sd.currentItem]});
 	 item1 = sd.items[sd.currentItem];
@@ -202,7 +202,7 @@ function _update_main(obj)
    }
    evas_object_show(sd.obj);  
    
-   edje_object_signal_emit(sd.items[sd.currentItem], "focus", "item"+sd.items[sd.currentItem].shownItem);
+   edje_object_signal_emit(sd.items[sd.currentItem], "focus", sd.items[sd.currentItem].shownItem);
    
 }
 
@@ -246,8 +246,8 @@ function _smart_calculate(obj)
       
       while((minBBox.xleft < x_contenant || minBBox.ytop < y_contenant || minBBox.xright > (x_contenant + w_contenant) || minBBox.ybottom > (h_contenant+y_contenant)) && sd.items.length >0){
 	 
-	 edje_object_signal_emit(sd.items[sd.items.length-1], "unfocus", "item"+ sd.items[sd.items.length-1].shownItem);      
-	 edje_object_signal_emit(sd.items[sd.items.length-1], "hide", "item"+ sd.items[sd.items.length-1].shownItem); 
+	 edje_object_signal_emit(sd.items[sd.items.length-1], "unfocus", sd.items[sd.items.length-1].shownItem);      
+	 edje_object_signal_emit(sd.items[sd.items.length-1], "hide", sd.items[sd.items.length-1].shownItem); 
 	 edje_object_part_box_remove(sd.obj, "liste/items", sd.items[sd.items.length-1]);	
 	 
 	 if(sd.itemN1) {
@@ -453,7 +453,7 @@ function _move_up(obj)
    var evas = evas_object_evas_get(obj);
    
    if(sd.firstShownItem + sd.items.length  < sd.tailleData){
-      edje_object_signal_emit(sd.items[sd.items.length-1], "unfocus", "item"+sd.items[sd.items.length-1].shownItem);
+      edje_object_signal_emit(sd.items[sd.items.length-1], "unfocus", sd.items[sd.items.length-1].shownItem);
       
       if(sd.itemP2) {
 	 edje_object_signal_callback_del(sd.itemP2, "preload", "item"+sd.itemP2.shownItem, _cb_preload_item);
@@ -507,7 +507,7 @@ function _move_down(obj)
    var evas = evas_object_evas_get(obj);
    
    if(sd.firstShownItem > 0){
-      edje_object_signal_emit(sd.items[0], "unfocus", "item"+sd.items[0].shownItem);
+      edje_object_signal_emit(sd.items[0], "unfocus", sd.items[0].shownItem);
       
       if(sd.itemN2) {
 	 edje_object_signal_callback_del(sd.itemN2, "preload", "item"+sd.itemN2.shownItem, _cb_preload_item);
@@ -870,7 +870,7 @@ function _cb_preload_item(data, obj, signal, source){
    affiche= data.affiche;
    
    if(sd.cb_preload)
-   sd.cb_preload(affiche, obj, signal, source);
+   sd.cb_preload(sd.data, obj, signal, affiche);
    
    edje_object_signal_callback_del(obj, "preload", "item"+affiche, _cb_preload_item);
    edje_object_signal_callback_add(obj, "show", "item"+affiche, _cb_show_item, {sd:sd, affiche: affiche});
@@ -883,14 +883,14 @@ function _cb_show_item(data, obj, signal, source){
    affiche= data.affiche;
    
    if(sd.cb_show)
-   sd.cb_show(affiche, obj, signal, source);
+   sd.cb_show(sd.data, obj, signal, affiche);
    
    edje_object_signal_callback_del(obj, "show", "item"+affiche, _cb_show_item); 
    edje_object_signal_callback_add(obj, "hide", "item"+affiche, _cb_hide_item, {sd:sd, affiche:affiche});
    if(sd.cb_focus)
-   edje_object_signal_callback_add(obj, "focus", "item"+affiche, sd.cb_focus, affiche);
+   edje_object_signal_callback_add(obj, "focus", affiche, sd.cb_focus, sd.data);
    if(sd.cb_unfocus)
-   edje_object_signal_callback_add(obj, "unfocus", "item"+affiche, sd.cb_unfocus, affiche);
+   edje_object_signal_callback_add(obj, "unfocus", affiche, sd.cb_unfocus, sd.data);
 }
 
 function _cb_hide_item(data, obj, signal, source){
@@ -899,13 +899,13 @@ function _cb_hide_item(data, obj, signal, source){
    affiche= data.affiche;
    
    if(sd.cb_hide)
-   sd.cb_hide(affiche,obj, signal, source);
+   sd.cb_hide(sd.data,obj, signal, affiche);
    
    edje_object_signal_callback_del(obj, "hide", "item"+affiche, _cb_hide_item);
    if(sd.cb_focus)
-   edje_object_signal_callback_del(obj, "focus", "item"+affiche, sd.cb_focus);
+   edje_object_signal_callback_del(obj, "focus", affiche, sd.cb_focus);
    if(sd.cb_unfocus)
-   edje_object_signal_callback_del(obj, "unfocus", "item"+affiche, sd.cb_unfocus);
+   edje_object_signal_callback_del(obj, "unfocus", affiche, sd.cb_unfocus);
    edje_object_signal_callback_add(obj, "show", "item"+affiche, _cb_show_item, {sd:sd, affiche:affiche});
 }
 
@@ -915,15 +915,15 @@ function _cb_unload_item(data, obj, signal, source){
    affiche= data.affiche;
    
    if(sd.cb_unload)
-   sd.cb_unload(affiche , obj, signal, source);
+   sd.cb_unload(sd.data , obj, signal, affiche);
    
    edje_object_signal_callback_del(obj, "show", "item"+affiche, _cb_show_item);
    edje_object_signal_callback_del(obj, "unload", "item"+affiche, _cb_unload_item);
    edje_object_signal_callback_del(obj, "hide", "item"+affiche, _cb_hide_item);
    if(sd.cb_focus)
-   edje_object_signal_callback_del(obj, "focus", "item"+affiche, sd.cb_focus);
+   edje_object_signal_callback_del(obj, "focus", affiche, sd.cb_focus);
    if(sd.cb_unfocus)
-   edje_object_signal_callback_del(obj, "unfocus", "item"+affiche, sd.cb_unfocus);
+   edje_object_signal_callback_del(obj, "unfocus", affiche, sd.cb_unfocus);
    edje_object_signal_callback_add(obj, "preload", "item"+affiche, _cb_preload_item, {sd:sd, affiche:affiche});
 }
 
@@ -1182,5 +1182,24 @@ if(!sd) return;
       return sd.items[sd.currentItem].shownItem;
    else
       return -1;
+}
 
+function evan_list_object_data_set(obj, data)
+{
+   var sd;
+   sd = obj.data;
+
+   if(!sd) return;
+
+   sd.data = data;
+}
+
+function evan_list_object_data_get(obj)
+{
+   var sd;
+   sd = obj.data;
+
+   if(!sd) return;
+
+   return sd.data;
 }
