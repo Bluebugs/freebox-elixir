@@ -39,7 +39,8 @@ Les fonctions offertes par evan_list sont les suivantes :
 ||evan_list_object_append || (obj, data)||
 ||evan_list_object_current_item_indice_get || (obj)||
 ||evan_list_object_current_item_get || (obj)||
-
+||evan_list_object_data_get || (obj)||
+||evan_list_object_data_set|| (obj, data)||
 
 === evan_list_object_add(evas) ===
 Crée une evan_list  et la retourne
@@ -108,10 +109,10 @@ data{
 
 Les données passées aux callbacks sont les suivantes : 
   * Pour preload, unload, show, hide, focus, unfocus :
-    * data : l'indice de l'item
+    * data : les données associées à la liste
     * obj : l'evas correspondant à l'item
     * signal : le signal ayant déclénché le callback ("preload", "unload"...)
-    * source : le String "item"+`*`indice de l'item`*`
+    * source : l'indice de l'item
   * Pour key_up_cb et key_down_cb :
     * data : l'indice de l'item ayant déclenché l'événement
     * e : l'evas global
@@ -208,3 +209,20 @@ Retourne l'item sélectionné
     * {{{obj}}}, la evan_list
   * Retourne :
     * edje_object, l'item sélectionné
+    
+=== evan_list_object_data_get(obj) ===
+Retourne les données attachées à la liste.
+
+  * Arguments :
+    * {{{obj}}}, la evan_list
+  * Retourne :
+    * data, les données
+
+=== evan_list_object_data_set(obj, data) ===
+Définit/remplace les données attachées à la liste.
+
+  * Arguments :
+    * {{{obj}}}, la evan_list
+    * {{{data}}}, les données à associer
+  * Retourne :
+    * void
