@@ -7,8 +7,9 @@ test &= elx.load("ecore-evas");
 test &= elx.load("ecore-con");
 test &= elx.load("edje");
 
-elx.include("Meteo.edj", "Meteo_Smart")
-elx.include("Meteo.edj", "Geoloc")
+elx.include("Meteo.edj", "Meteo_Smart");
+elx.include("Meteo.edj", "Geoloc");
+elx.include("Meteo.edj", "SQLite");
 elx.include("evan.edj", "Evan_Keyboard");
 elx.include("evan.edj", "Evan_Input");
 
@@ -42,12 +43,12 @@ function key_up_cb(data, e, obj, event)
       case "Green":
 	 if(mode == "meteo"){
 	    elx.print("Action \n");
-	    show_input(data);
 	    evas_object_key_ungrab(o_bg, "Return", 0, 0);
 	    evas_object_key_ungrab(o_bg, "RC/Ok", 0, 0);
 	    evas_object_key_ungrab(o_bg, "KP_Enter", 0, 0);
 	    evas_object_key_ungrab(o_bg, "Select", 0, 0);
 	    evas_object_key_ungrab(o_bg, "Green", 0, 0);
+	    show_input(data);
 	    mode = "input";
 	 } else {
 	    mode = "meteo";
@@ -111,20 +112,19 @@ function main()
    evas_object_color_set(o_bg, 0, 0, 0, 255);
    evas_object_show(o_bg);
 
+   mode = "meteo";
+
    evas_object_event_callback_add(o_bg, EVAS_CALLBACK_KEY_UP, key_up_cb, evas);
    evas_object_focus_set(o_bg, 1);
 
-   get_geoloc_info(done_geoloc);
    o_meteo = meteo_object_add(evas);
    meteo = meteo_object_meteo_get(o_meteo);
-   meteo_code_set(meteo, "Paris");
-   villeEnCours = "Paris";
+   load_location(cache_fun);
+   
    evas_object_resize(o_meteo, win.w, win.h);
    evas_object_move(o_meteo, 0, 0);
    meteo_object_ready_callback_add(o_meteo, show_when_ready, null);
    evas_object_show(o_meteo);
-
-   mode = "meteo";
 
    evas_object_key_grab(o_bg, "Return", 0, 0, 0);
    evas_object_key_grab(o_bg, "RC/Ok", 0, 0, 0);
@@ -196,8 +196,11 @@ function validation(texte){
    evas_object_hide(bgGris);
    evas_object_hide(smartInput);
 
-   villeEnCours = texte;
-   meteo_code_set(meteo, villeEnCours);
+   if(texte && texte != "")
+      done_geoloc({City:texte});
+   else
+      get_geoloc_info(done_geoloc);
+   
    evas_object_focus_set(o_meteo, 1);
    evas_object_key_grab(o_bg, "Return", 0, 0, 0);
    evas_object_key_grab(o_bg, "RC/Ok", 0, 0, 0);
@@ -207,6 +210,18 @@ function validation(texte){
 
 }
 
+function cache_fun(info) {
+   meteo = meteo_object_meteo_get(o_meteo);
+
+   if(info && info.City && info.City != ""){
+      villeEnCours = info.City;
+      elx.print("Loading : " + villeEnCours+"\n");
+      meteo_code_set(meteo, villeEnCours);
+   } else {
+      get_geoloc_info(done_geoloc);
+      villeEnCours = "Fontainebleau";
+   }
+}
 
 function done_geoloc(info){
 
@@ -215,11 +230,13 @@ for(var i in info)
 meteo = meteo_object_meteo_get(o_meteo);
 
 if(info && info.City && info.City != ""){
-   villeEnCours = info.city;
+   villeEnCours = info.City;
    meteo_code_set(meteo, info.City);
+   save_location(villeEnCours);
 } else {
    villeEnCours = "Fontainebleau,France";
    meteo_code_set(meteo, "Fontainebleau,France");
+   save_location(villeEnCours);
    }
 }
 
