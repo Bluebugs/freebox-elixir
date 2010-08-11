@@ -382,7 +382,7 @@ function _effaceCarac(obj){
    text = edje_object_part_text_get(smi.o_texte, "textentry/text");
    
    if(smi.posCursor > 0){
-   if(text.charCodeAt(smi.posCursor-1) > 127){
+   if(smi.posCursor > 1 && text.charCodeAt(smi.posCursor-2) > 127 && text.charCodeAt(smi.posCursor-1) > 127){
       edje_object_part_text_set(smi.o_texte, "textentry/text", text.substring(0, smi.posCursor-2) + text.substring(smi.posCursor, text.length));
       smi.posCursor -= 2;
    } else   {
@@ -391,6 +391,17 @@ function _effaceCarac(obj){
    }
    _updateCursor(obj);
    }
+}
+
+function get_pos(text, cursor)
+{
+   pos = 0;
+   for(i=0; i<cursor; i++){
+      if(text.charCodeAt(i) > 127)
+	 i++;
+      pos++;
+   }
+   return pos;
 }
 
 function _updateCursor(obj){
@@ -413,16 +424,15 @@ function _updateCursor(obj){
    else if (smi.posCursor > text.length)
       smi.posCursor = 0;
    
-   
       geom = evas_object_geometry_get(smi.o_texte);   
    
       edje_text = edje_object_part_object_get(smi.o_texte, "textentry/text"); 
      var geomC;
      
-   if(smi.posCursor > 1 && text.charCodeAt(smi.posCursor-1) > 127){
-      geomC = evas_object_text_char_pos_get( edje_text, smi.posCursor-2);
+   if(smi.posCursor > 1 && text.charCodeAt(smi.posCursor-1) > 127 && text.charCodeAt(smi.posCursor-2) > 127){
+      geomC = evas_object_text_char_pos_get( edje_text, get_pos(text, smi.posCursor-2));
    } else if (smi.posCursor > 0){
-      geomC = evas_object_text_char_pos_get( edje_text, smi.posCursor-1);
+      geomC = evas_object_text_char_pos_get( edje_text, get_pos(text, smi.posCursor-1));
    } else {
       geomC = {cx:0, cy:0, ch:0, cw:0};
    }
@@ -563,7 +573,7 @@ switch (event.keyname)
 	 smi.timerTouche = null;
 	 } else {
 	  text = edje_object_part_text_get(smi.o_texte, "textentry/text");
-	  if(smi.posCursor > 1 && text.charCodeAt(smi.posCursor-1) > 127){
+	  if(smi.posCursor > 1 && text.charCodeAt(smi.posCursor-1) > 127 && text.charCodeAt(smi.posCursor-2) > 127){
 	    smi.posCursor--;
 	    } 
 	 smi.posCursor--;
@@ -578,7 +588,7 @@ switch (event.keyname)
 	 smi.timerTouche = null;
 	 } else {
 	 text = edje_object_part_text_get(smi.o_texte, "textentry/text");
-	  if(smi.posCursor < text.length-1 && text.charCodeAt(smi.posCursor+1) > 127){
+	  if(smi.posCursor < text.length-2 && text.charCodeAt(smi.posCursor) > 127 && text.charCodeAt(smi.posCursor+1) > 127){
 	    smi.posCursor++;
 	    } 
 	 smi.posCursor++;
@@ -606,7 +616,7 @@ function _appuiToucheClavier(data, e, obj, event)
 	    smi.timerTouche = null;
 	    } else {
 	    text = edje_object_part_text_get(smi.o_texte, "textentry/text");
-	    if(smi.posCursor > 1 && text.charCodeAt(smi.posCursor-1) > 127){
+	    if(smi.posCursor > 1 && text.charCodeAt(smi.posCursor-1) > 127 && text.charCodeAt(smi.posCursor-2) > 127){
 	       smi.posCursor--;
 	       } 
 	    smi.posCursor--;
@@ -619,7 +629,7 @@ function _appuiToucheClavier(data, e, obj, event)
 	    smi.timerTouche = null;
 	    } else {
 	    text = edje_object_part_text_get(smi.o_texte, "textentry/text");
-	    if(smi.posCursor < text.length-1 && text.charCodeAt(smi.posCursor+1) > 127){
+	    if(smi.posCursor < text.length-2 && text.charCodeAt(smi.posCursor) > 127 && text.charCodeAt(smi.posCursor+1) > 127){
 	       smi.posCursor++;
 	       } 
 	    smi.posCursor++;
