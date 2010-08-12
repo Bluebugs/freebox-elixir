@@ -107,9 +107,9 @@ styleText est, par exemple, de la forme suivante :
 {{{
   "DEFAULT='valign=middle color=#ff0000 wrap=word font_size=17.000000 font=Vera'"
 }}}
-Voir `evan_inputblock_style_get` pour d'autres exemples, 
+Voir `evan_inputblock_style_get` pour d'autres exemples. 
 
-* Arguments :
+  * Arguments :
     * {{{obj}}}, le evan_inputblock
     * {{{styleText}}}, le style à appliquer, sous forme de texte.
   * Retourne :
