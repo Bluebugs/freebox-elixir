@@ -22,9 +22,16 @@ var smartInput = null;
 var bgGris = null;
 var villeEnCours = "Paris";
 var mode;
+var timestamp = null;
 
 function key_up_cb(data, e, obj, event)
 {
+   timestamp = event.timestamp;
+}
+
+function key_down_cb(data, e, obj, event)
+{
+   if(timestamp != event.timestamp)
    switch (event.keyname)
      {
       case "b":
@@ -53,8 +60,7 @@ function key_up_cb(data, e, obj, event)
 	 } else {
 	    mode = "meteo";
 	 }
-     }
-     
+     }    
 }
 
 function _resize_cb(ee)
@@ -115,6 +121,7 @@ function main()
    mode = "meteo";
 
    evas_object_event_callback_add(o_bg, EVAS_CALLBACK_KEY_UP, key_up_cb, evas);
+   evas_object_event_callback_add(o_bg, EVAS_CALLBACK_KEY_DOWN, key_down_cb, evas);
    evas_object_focus_set(o_bg, 1);
 
    o_meteo = meteo_object_add(evas);
@@ -207,7 +214,7 @@ function validation(texte){
    evas_object_key_grab(o_bg, "KP_Enter", 0, 0, 0);
    evas_object_key_grab(o_bg, "Select", 0, 0, 0);
    evas_object_key_grab(o_bg, "Green", 0, 0, 0);
-
+   
 }
 
 function cache_fun(info) {
