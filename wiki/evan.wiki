@@ -2,16 +2,17 @@
 
 = Qu'est ce que Evan ? =
 
-Evan est une "bibliothèque" qui contient trois objets destinés à vous aider dans le développement d'applications pour la Freebox :
+Evan est une "bibliothèque" qui contient ~~trois~~ quatre objets destinés à vous aider dans le développement d'applications pour la Freebox :
    * Un objet [evan_list]
    * Un objet [evan_keyboard]
    * Un objet [evan_input]
+   * Un objet [evan_inputblock]
 
 L'utilisation de ces objets est simplifiée au maximum afin de permettre une utilisation quasi-immédiate.
 
 = Description des objets =
 
-Les trois objets sont en réalité des "Smart Object".
+Les quatre objets sont en réalité des "Smart Object".
 Une définition tirée de la [http://docs.enlightenment.org/auto/evas/group__Evas__Smart__Object__Group.html doc] serait :
  Smart objects are groupings of primitive evas objects that behave as a cohesive group. 
  For instance, a file manager icon may be a smart object composed of an image object, 
@@ -39,11 +40,16 @@ Pour plus d'info sur [evan_keyboard], consulter sa doc [evan_keyboard ici] et vo
 
 == evan_input ==
 
-Une zone de texte. Pour l'instant, le texte doit être limité à une seule ligne.
+Une zone de texte.
 Permet par défaut 3 modes de saisies :
    * Mode {{{abc}}}, pour entrer du texte avec le pavé numérique de la télécommande, façon clavier de téléphone portable
    * Mode {{{ABC}}}, idem, en majuscule
    * Mode {{{123}}}, permet d'entrer des chiffres
    
-En plus de ces trois modes, il est possible d'utiliser le {{{evan_keyboard}}} pour entrer du texte.
+En plus de ces trois modes, il est possible d'utiliser le [evan_keyboard] pour entrer du texte.
 Pour plus d'info sur evan_input, consulter sa doc [evan_input ici] et voir l'exemple [evan_input_exemple].
+
+== evan_inputblock ==
+
+Une zone de texte multiligne. Mêmes modes d'entrée que [evan_input], avec également le [evan_keyboard].
+Pour plus d'info sur evan_inputblock, consulter sa doc [evan_inputblock ici] et voir l'exemple [evan_inputblock_exemple].

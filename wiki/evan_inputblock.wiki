@@ -1,0 +1,116 @@
+#summary L'objet evan_inputblock
+
+= evan_inputblock =
+
+L'objet evan_inputblock est une zone de texte plsu évoluée que [evan_input], avec possibilité de multiligne et de styles.
+Les modes d'entrée sont identiques à [evan_input] (3 "SMS" et le clavier).
+
+
+== Utilisation ==
+
+Le code d'une démo montrant l'utilisation de [evan_inputblock] est disponible [http://code.google.com/p/freebox-elixir/source/browse/#svn/trunk/exemples/evan/demoInputBlock ici].
+
+Pour pouvoir utiliser un evan_input, il faut avant tout le charger :
+{{{ 
+elx.include("evan.edj", "Evan_InputBlock");
+}}}
+
+Les fonctions offertes par evan_list sont les suivantes :
+|| *fonction* || *Argument(s)* ||
+|| evan_inputblock_object_add || (evas)||
+|| evan_inputblock_object_change_mode_key_set  || (obj, keys) ||
+|| evan_inputblock_object_text_get || (obj)||
+|| evan_inputblock_object_text_set || (obj, text)||
+|| evan_inputblock_object_keyboard_add || (obj, keyb)||
+|| evan_inputblock_object_input_mode_set || (obj, mode)||
+|| evan_inputblock_object_callback_set || (obj, validation) ||
+|| evan_inputblock_style_get || (obj) ||
+|| evan_inputblock_style_set || (obj, styleText) ||
+
+=== evan_inputblock_object_add(evas) ===
+Crée un evan_inputblock  et le retourne
+
+  * Argument :
+    * {{{evas}}}, l'evas sur lequel ajouter l'inputblock.
+  * Retourne :
+    * Le Smart Object 
+   
+=== evan_inputblock_object_change_mode_key_set(obj, keys) === 
+Permet de définir la ou les touches premettant de changer de mode. Par défaut, cette touche est la touche "Swap" (#) de la télécommande.
+
+  * Arguments :
+    * {{{obj}}}, le evan_inputblock
+    * {{{keys}}}, la ou les touches, sous forme de String, chaque touche séparée par une virgule. Par exemple, "Swap,Info,Mail".
+  * Retourne :
+    * void
+  
+=== evan_inputblock_object_text_get(obj) ===
+Renvoie le texte affiché par la zone de texte.
+
+  * Arguments :
+    * {{{obj}}}, le evan_inputblock
+  * Retourne :
+    * {{{String}}} le texte entré
+    
+=== evan_inputblock_object_text_set(obj, text) ===
+Définit le texte affiché par la zone de texte.
+
+  * Arguments :
+    * {{{obj}}}, le evan_inputblock
+    * {{{text}}}, le texte qui sera affiché
+  * Retourne :
+    * void
+    
+=== evan_inputblock_object_keyboard_add(obj, keyb) ===
+Déinit un evan_keyboard à utiliser avec le evan_input.
+
+  * Arguments :
+    * {{{obj}}}, le evan_inputblock
+    * {{{keyb}}}, le evan_keyboard
+  * Retourne :
+    * void
+    
+=== evan_inputblock_object_input_mode_set(obj, mode) ===
+Permet d'aller directement dans un mode d'entrée de texte.
+
+REMARQUE : Avant de forcer à passer en mode "azer", s'assurer d'avoir bien ajouté un clavier avec evan_input_object_keyboard_add, et 
+aussi d'avoir *donné le focus à la zone de texte*.
+
+  * Arguments :
+    * {{{obj}}}, le evan_inputblock
+    * {{{mode}}}, le mode d'entrée. Peut être "abc", "ABC", "123" ou "azer" si un evan_keyboard a été défini précédemment
+  * Retourne :
+    * void
+    
+=== evan_inputblock_object_callback_set(obj, cb) === 
+Définit la fonction qui sera appelée lors de la validation de la zone de texte,
+par un appui sur "Green", "Select", "KP_Enter","Return", ou "RC/Ok" en mode "abc", 
+"ABC", ou "123", ou par la selection de la touche "Ok" du clavier avec ces mêmes touches.
+
+  * Arguments :
+    * {{{obj}}}, le evan_inputblock
+    * {{{cb}}}, le callback à appeler.
+  * Retourne :
+    * void
+    
+=== evan_inputblock_style_get(obj) ===
+Renvoie le style actuellement utilisé par le TEXTBLOCK qui se charge de l'affichage de l'inputblock, sous la forme d'une chaine de caractères.
+
+  * Arguments :
+    * {{{obj}}}, le evan_inputblock
+  * Retourne :
+    * {{{String}}}, le style actuellement utilisé
+
+=== evan_inputblock_style_set(obj, styleText) ===
+Définit le style que le TEXTBLOCK qui se charge de l'affichage de l'inputblock va utiliser.
+styleText est, par exemple, de la forme suivante :
+{{{
+  "DEFAULT='valign=middle color=#ff0000 wrap=word font_size=17.000000 font=Vera'"
+}}}
+Voir `evan_inputblock_style_get` pour d'autres exemples, 
+
+* Arguments :
+    * {{{obj}}}, le evan_inputblock
+    * {{{styleText}}}, le style à appliquer, sous forme de texte.
+  * Retourne :
+    * void
