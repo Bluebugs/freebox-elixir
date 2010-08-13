@@ -21,7 +21,6 @@ var smartClavier = null;
 var smartInput = null;
 var bgGris = null;
 var villeEnCours = "Paris";
-var mode;
 var timestamp = null;
 
 function key_up_cb(data, e, obj, event)
@@ -48,7 +47,6 @@ function key_down_cb(data, e, obj, event)
       case "KP_Enter":
       case "Select":
       case "Green":
-	 if(mode == "meteo"){
 	    elx.print("Action \n");
 	    evas_object_key_ungrab(o_bg, "Return", 0, 0);
 	    evas_object_key_ungrab(o_bg, "RC/Ok", 0, 0);
@@ -56,10 +54,7 @@ function key_down_cb(data, e, obj, event)
 	    evas_object_key_ungrab(o_bg, "Select", 0, 0);
 	    evas_object_key_ungrab(o_bg, "Green", 0, 0);
 	    show_input(data);
-	    mode = "input";
-	 } else {
-	    mode = "meteo";
-	 }
+
      }    
 }
 
@@ -117,8 +112,6 @@ function main()
    evas_object_resize(o_bg, win.w, win.h);
    evas_object_color_set(o_bg, 0, 0, 0, 255);
    evas_object_show(o_bg);
-
-   mode = "meteo";
 
    evas_object_event_callback_add(o_bg, EVAS_CALLBACK_KEY_UP, key_up_cb, evas);
    evas_object_event_callback_add(o_bg, EVAS_CALLBACK_KEY_DOWN, key_down_cb, evas);
