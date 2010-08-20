@@ -62,8 +62,10 @@ collections
                 {
                     state: "default" 0.0;
                     color: 255 255 255 255;
+                    max: 1000 40;
                     rel1.relative: 0.8 1.0;
                     rel2.relative: 0.9 2.0;
+                    align: 0.5 0.0;
                 }
             }
             part
@@ -76,8 +78,10 @@ collections
                 {
                     state: "default" 0.0;
                     color: 50 50 50 200;
+                    max: 1000 40;
                     rel1.relative: 0.8 1.0;
                     rel2.relative: 0.9 2.0;
+                    align: 0.5 0.0;
                 }
             }
 	    
@@ -90,9 +94,12 @@ collections
 		description
                 {
                     state: "default" 0.0;
-                    rel1.relative: 0.8 1.0;
-                    rel2.relative: 0.9 2.0;
+                    rel1.to: "textentry/mode/bg";
+                    rel2.to: "textentry/mode/bg";
+                    rel1.relative: 0.0 0.0;
+                    rel2.relative: 1.0 1.0;
                     color: 255 255 255 255;
+                    max: 1000 40;
                     text
                     {
                         text: "Abc";
