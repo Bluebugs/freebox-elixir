@@ -16,8 +16,6 @@ var touches;
 var smartClavier;
 var smartInputBlock;
 
-var currentFocus = 1;
-
 function key_up_cb(data, e, obj, event)
 {
    switch (event.keyname)
@@ -44,14 +42,11 @@ function _resize_cb(ee){
     evas_object_resize(smartClavier, geom.w-100, geom.h-200);
     evas_object_resize(smartInputBlock, geom.w-200, geom.h-500);
     evas_object_focus_set(smartInputBlock, 1);
-    currentFocus = 1;
-
 }
 
 
 function main()
 {
-
    ecore_init();
    ecore_evas_init();
    ecore_con_init();
@@ -96,7 +91,6 @@ pharetra.");
    evas_object_resize(smartInputBlock, win.w-200, 100);
    evas_object_move(smartInputBlock, 100, 50);
    evas_object_show(smartInputBlock);
-      
       
    evan_inputblock_object_change_mode_key_set(smartInputBlock, "Swap,End");
 
