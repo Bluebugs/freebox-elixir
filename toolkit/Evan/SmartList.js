@@ -219,8 +219,8 @@ function _smart_calculate(obj)
    if (!sd) return;
    
    
-   liste = edje_object_part_object_get(sd.obj, "liste/items");
-   geom = evas_object_geometry_get(liste);
+   var liste = edje_object_part_object_get(sd.obj, "liste/items");
+   var geom = evas_object_geometry_get(liste);
    
    
    x_contenant = geom.x;
@@ -306,9 +306,11 @@ function _smart_calculate(obj)
 	 currentShown++;
       }
       
-      item = sd.items[dernierAjout];
+      var item = sd.items[dernierAjout];
       sd.items.splice(dernierAjout, 1);
+      if(item)
       edje_object_part_box_remove(sd.obj, "liste/items", item);	
+      
       
       if(dernierAjout >= sd.items.length){
 	 sd.itemN2 = sd.itemN1;
@@ -365,6 +367,7 @@ function _smart_calculate(obj)
       
 
       if(sd.items.length == 0){
+	 if(sd.cursor)
 	 evas_object_hide(sd.cursor);
 	 sd.firstShownItem = -1;
 	 sd.currentItem = -1;
@@ -681,6 +684,14 @@ function _smart_add(obj)
    sd.key_count = 0;
    
    evas_object_focus_set(sd.obj, 1);
+   evas_object_event_callback_add(obj, EVAS_CALLBACK_FOCUS_IN, _evan_list_get_focus, obj);
+}
+
+function  _evan_list_get_focus(obj)
+{
+   elx.print("On get le focus sur la liste\n");
+   _update_main(obj)
+
 }
 
 function _smart_del(obj)
