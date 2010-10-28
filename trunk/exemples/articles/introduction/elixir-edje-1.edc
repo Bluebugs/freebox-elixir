@@ -1,0 +1,121 @@
+collections {
+   group {
+      name: "main";
+      parts {
+	 part {
+	    name: "background";
+	    type: RECT;
+	    mouse_events: 0;
+
+	    description {
+	       state: "default" 0.0;
+	       rel1.relative: 0.0 0.0;
+	       rel2.relative: 1.0 1.0;
+	       color: 0 0 100 255;
+	    }
+	 }
+	 part {
+	    name: "constrain";
+	    type: RECT;
+	    mouse_events: 0;
+
+	    description {
+	       state: "default" 0.0;
+	       rel1.relative: 0.1 0.1;
+	       rel2.relative: 0.7 0.9;
+	       color: 0 0 180 255;
+	    }
+	 }
+	 part {
+	    name: "animation";
+	    type: RECT;
+	    mouse_events: 0;
+
+	    description {
+	       state: "default" 0.0;
+	       rel1.relative: 0.75 0.1;
+	       rel2.relative: 0.85 0.2;
+	       color: 0 0 255 255;
+	    }
+	    description {
+	       state: "right" 0.0;
+	       rel1.relative: 0.85 0.1;
+	       rel2.relative: 0.95 0.2;
+	       color: 255 0 0 255;
+	    }
+	    description {
+	       state: "bottom" 0.0;
+	       rel1.relative: 0.75 0.8;
+	       rel2.relative: 0.85 0.9;
+	       color: 0 255 0 255;
+	    }
+	 }
+	 part {
+	    name: "feedback";
+	    type: RECT;
+	    mouse_events: 0;
+
+	    description {
+	       state: "default" 0.0;
+	       rel1.relative: 0.85 0.1;
+	       rel2.relative: 0.95 0.2;
+	       color: 0 255 0 255;
+	    }
+	    description {
+	       state: "transparent" 0.0;
+	       inherit: "default" 0.0;
+	       color: 0 255 0 0;
+	    }
+	 }
+      }
+      programs {
+	 program {
+ 	    name: "beginning";
+	    source: "";
+	    signal: "show";
+	    in: 0.1 1.0;
+	    action: STATE_SET "right" 0.0;
+	    transition: LINEAR 0.5;
+	    target: "animation";
+	    after: "nextstep";
+	 }
+	 program {
+	    name: "nextstep";
+	    action: STATE_SET "bottom" 0.0;
+	    transition: SINUSOIDAL 0.8;
+	    target: "animation";
+	    after: "laststep";
+	 }
+	 program {
+	    name: "laststep";
+	    action: STATE_SET "default" 0.0;
+	    transition: ACCELERATE 0.8;
+	    target: "animation";
+	    after: "beginning";
+	 }
+
+	 program {
+	    source: "js";
+	    signal: "toggle";
+	    filter: "feedback" "default";
+	    action: STATE_SET "transparent" 0.0;
+	    transition: LINEAR 0.5;
+	    target: "feedback";
+	    after: "back";
+	 }
+	 program {
+	    source: "js";
+	    signal: "toggle";
+	    filter: "feedback" "transparent";
+	    action: STATE_SET "default" 0.0;
+	    transition: LINEAR 0.5;
+	    target: "feedback";
+	    after: "back";
+	 }
+	 program {
+	    name: "back";
+	    action: SIGNAL_EMIT "toggle" "end";
+	 }
+      }
+   }
+}
