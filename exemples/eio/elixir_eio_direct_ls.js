@@ -11,7 +11,7 @@ tst = eio_file_direct_ls(".",
                          function (data, file) { elx.print("FILTER: ", file.path, "\n"); return true; },
                          function (data, file) { elx.print("FILE: ", file.path, "\n"); },
                          function (data) { elx.print("DONE\n"); ecore_main_loop_quit(); },
-                         function (error, data) { elx.print("ERR: ", error, "\n"); ecore_main_loop_quit(); },
+                         function (data, error) { elx.print("ERR: ", error, "\n"); ecore_main_loop_quit(); },
                          null);
 
 ecore_main_loop_begin();
