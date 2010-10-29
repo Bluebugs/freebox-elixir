@@ -18,7 +18,7 @@ function refcount_die()
 
 
 tst = eio_file_direct_stat("../articles/introduction/elixir.edj",
-                           function (data, st) { elx.print("STAT: ", st.st_size, "\n"); refcount_die(); },
+                           function (data, st) { elx.print("STAT: ", st.st_size, " [ ", eio_file_is_dir(st), ", ", eio_file_is_lnk(st), "]\n"); refcount_die(); },
                            function (data, error) { elx.print("PFIOUT ", error,"\n"); refcount_die(); },
                            null);
 
