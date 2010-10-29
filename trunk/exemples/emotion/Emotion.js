@@ -10,6 +10,7 @@ if (shutdown == undefined || shutdown == false)
   }
 
 test &= elx.load("emotion");
+test &= elx.include("repeat.js");
 
 var FN = "/.fonts/";
 
@@ -77,7 +78,7 @@ function anim_cb(obj)
    return 1;
 }
 
-function key_up_cb(data, e, obj, event)
+function key_cb(data, e, obj, event)
 {
    switch (event.keyname)
      {
@@ -91,6 +92,7 @@ function key_up_cb(data, e, obj, event)
 	 ecore_main_loop_quit();
 	 break;
       case "space":
+      case "Play":
 	 emotion_object_play_set(obj, !emotion_object_play_get(obj));
 	 break;
       default:
@@ -108,7 +110,7 @@ function main()
 
    ecore_animator_frametime_set(1 / 20);
 
-   ee = ecore_evas_new(null, 0, 0, 720, 576, "name=Test;");
+   ee = ecore_evas_new(null, 0, 0, 720, 576, "name=Test;alpha=1;");
 
    var evas = ecore_evas_get(ee);
 
@@ -119,15 +121,22 @@ function main()
    obj = evas_object_rectangle_add(evas);
    evas_object_resize(obj, 720, 576);
    evas_object_color_set(obj, 0, 0, 0, 255);
+   evas_object_layer_set(obj, -2);
    evas_object_show(obj);
    bg = obj;
 
    obj = emotion_object_add(evas);
+   // This specific line force the use of the video hardware plan on Freebox
+   // Much better quality and don't use GPU fillrate at all, but not
+   // possible to make it transparent and not possible to put object under it.
+   evas_object_layer_set(obj, -1);
    if (!emotion_object_init(obj, null))
      throw("emotion_object_init");
    // emotion_object_vis_set(obj, EMOTION_VIS_NONE);
    // http://download.blender.org/peach/bigbuckbunny_movies/BigBuckBunny_320x180.mp4
    emotion_object_file_set(obj, "BigBuckBunny_320x180.mp4");
+   // emotion_object_file_set(obj, "srv://FREEBOX TV/118");
+   // emotion_object_file_set(obj, "tvperso://<id>");
    emotion_object_play_set(obj, 1);
    //emotion_object_audio_mute_set(obj, 1);
    //emotion_object_video_mute_set(obj, 1);
@@ -136,7 +145,7 @@ function main()
    emotion_object_smooth_scale_set(obj, 1);
    evas_object_show(obj);
 
-   evas_object_event_callback_add(obj, EVAS_CALLBACK_KEY_UP, key_up_cb, null);
+   repeat_catcher(obj, key_cb, null, null, null)
    evas_object_focus_set(obj, 1);
 
    evas_object_data_set(obj, "dx", +20);
