@@ -8,54 +8,54 @@ Vous pouvez comparer avec votre PC en compilant/executant `expedite` depuis le s
 
 = Details =
 
-||Tests||Freebox HD||PC Soft||x||PC OpenGL||x||
-||Widgets File Icons||1,13||83,31||_74_||141,53||_125_||
-||Widgets File Icons 2||17,08||229,11||_13_||633,12||_37_||
-||Widgets File Icons 3||5,04||156,27||_31_||157,72||_31_||
-||Widgets File Icons 4||19,67||222,57||_11_||834,20||_42_||
-||Image Blend Unscaled||15,09||97,75||_6_||340,75||_23_||
-||Image Blend Solid Middle Unscaled||3,47||81,24||_23_||160,53||_46_||
-||Image Blend Fade Unscaled||11,64||74,22||_6_||315,22||_27_||
-||Image Blend Fade Power 2 Unscaled||11,90||76,08||_6_||311,47||_26_||
-||Image Blend Solid Unscaled||14,15||398,24||_28_||919,72||_65_||
-||Image Blend Solid Fade Unscaled||11,65||112,50||_10_||258,17||_22_||
-||Image Blend Solid Fade Power 2 Unscaled||11,76||113,02||_10_||254,50||_22_||
-||Image Blend Nearest Scaled||8,51||32,93||_4_||247,08||_29_||
-||Image Blend Nearest Solid Scaled||9,25||317,64||_34_||923,71||_100_||
-||Image Blend Smooth Scaled||8,48||10,73||_1_||243,79||_29_||
-||Image Blend Smooth Solid Scaled||9,33||190,00||_20_||873,35||_94_||
-||Image Blend Nearest Same Scaled||17,43||121,74||_7_||421,90||_24_||
-||Image Blend Nearest Solid Same Scaled||17,77||569,30||_32_||1059,21||_60_||
-||Image Blend Smooth Same Scaled||17,52||31,42||_2_||421,54||_24_||
-||Image Blend Smooth Solid Same Scaled||15,92||762,20||_48_||1058,19||_66_||
-||Image Blend Border||6,53||12,23||_2_||419,51||_64_||
-||Image Blend Solid Middle Border||6,20||148,07||_24_||470,38||_76_||
-||Image Blend Solid Border||6,76||197,85||_29_||560,07||_83_||
-||Image Blend Border Recolor||6,39||13,27||_2_||445,25||_70_||
-||Image Quality Scale||24,81||166,50||_7_||1655,91||_67_||
-||Image Data ARGB||34,19||297,26||_9_||270,88||_8_||
-||Image Crossfade||29,93||238,50||_8_||800,22||_27_||
-||Text Basic||8,36||227,62||_27_||425,99||_51_||
-||Text Styles||0,51||18,93||_37_||14,78||_29_||
-||Text Styles Different Strings||0,40||13,59||_34_||11,86||_30_||
-||Text Change||6,16||111,38||_18_||298,47||_48_||
-||Textblock Basic||4,83||155,94||_32_||246,72||_51_||
-||Textblock Intl||16,72||60,29||_4_||287,43||_17_||
-||Rect Blend||9,32||92,54||_10_||265,32||_28_||
-||Rect Blend Power 2||9,16||93,26||_10_||263,58||_29_||
-||Rect Solid||13,07||326,57||_25_||1085,77||_83_||
-||Rect Blend Few||42,09||2833,93||_67_||1903,15||_45_||
-||Rect Blend Power 2 Few||42,95||2679,1||_62_||1901,99||_44_||
-||Rect Solid Few||43,43||3326,59||_77_||2250,79||_52_||
-||Image Blend Occlude 1 Few||37,73||1944,70||_52_||1832,34||_49_||
-||Image Blend Occlude 2 Few||35,18||778,05||_22_||1550,65||_44_||
-||Image Blend Occlude 3 Few||36,59||619,99||_17_||1313,98||_36_||
-||Image Blend Occlude 1||21,03||974,76||_46_||1280,64||_61_||
-||Image Blend Occlude 2||23,37||447,06||_19_||1437,41||_62_||
-||Image Blend Occlude 3||20,71||168,17||_8_||579,28||_28_||
-||Image Blend Occlude 1 Many||5,17||455,84||_88_||311,16||_60_||
-||Image Blend Occlude 2 Many||6,73||193,17||_29_||411,19||_61_||
-||Image Blend Occlude 3 Many||7,51||73,86||_10_||276,56||_37_||
-||Image Blend Occlude 1 Very Many||0,27||68,41||_253_||11,80||_44_||
-||Image Blend Occlude 2 Very Many||0,39||20,74||_53_||19,35||_50_||
-||Image Blend Occlude 3 Very Many||0,68||12,46||_18_||37,13||_55_||
+||Tests||Freebox HD||PC Soft||x||PC OpenGL||x||Freebox Revolution||x||
+||Widgets File Icons||1,13||83,31||_74_||141,53||_125_||14.43||_12.769_||
+||Widgets File Icons 2||17,08||229,11||_13_||633,12||_37_||148.15||_8.673_||
+||Widgets File Icons 3||5,04||156,27||_31_||157,72||_31_||34.22||_6.789_||
+||Widgets File Icons 4||19,67||222,57||_11_||834,20||_42_||181.49||_9.226_||
+||Image Blend Unscaled||15,09||97,75||_6_||340,75||_23_||77.31||_11.750_||
+||Image Blend Solid Middle Unscaled||3,47||81,24||_23_||160,53||_46_||14.58||_4.201_||
+||Image Blend Fade Unscaled||11,64||74,22||_6_||315,22||_27_||38.67||_3.322_||
+||Image Blend Fade Power 2 Unscaled||11,90||76,08||_6_||311,47||_26_||38.64||_3.247_||
+||Image Blend Solid Unscaled||14,15||398,24||_28_||919,72||_65_||140.59||_9.935_||
+||Image Blend Solid Fade Unscaled||11,65||112,50||_10_||258,17||_22_||38.66||_3.318_||
+||Image Blend Solid Fade Power 2 Unscaled||11,76||113,02||_10_||254,50||_22_||38.64||_3.285_||
+||Image Blend Nearest Scaled||8,51||32,93||_4_||247,08||_29_||91.49||_10.750_||
+||Image Blend Nearest Solid Scaled||9,25||317,64||_34_||923,71||_100_||149.38||_16.149_||
+||Image Blend Smooth Scaled||8,48||10,73||_1_||243,79||_29_||57.67||_6.800_||
+||Image Blend Smooth Solid Scaled||9,33||190,00||_20_||873,35||_94_||142.86||_15.311_||
+||Image Blend Nearest Same Scaled||17,43||121,74||_7_||421,90||_24_||174.67||_10.021_||
+||Image Blend Nearest Solid Same Scaled||17,77||569,30||_32_||1059,21||_60_||161.70||_9.099_||
+||Image Blend Smooth Same Scaled||17,52||31,42||_2_||421,54||_24_||109.55||_6.252_||
+||Image Blend Smooth Solid Same Scaled||15,92||762,20||_48_||1058,19||_66_||159.35||_10.009_||
+||Image Blend Border||6,53||12,23||_2_||419,51||_64_||67.96||_10.407_||
+||Image Blend Solid Middle Border||6,20||148,07||_24_||470,38||_76_||88.38||_14.254_||
+||Image Blend Solid Border||6,76||197,85||_29_||560,07||_83_||98.82||_14.618_||
+||Image Blend Border Recolor||6,39||13,27||_2_||445,25||_70_||22.98||_3.596_||
+||Image Quality Scale||24,81||166,50||_7_||1655,91||_67_||404.52||_16.304_||
+||Image Data ARGB||34,19||297,26||_9_||270,88||_8_||16.31||_0.477_||
+||Image Crossfade||29,93||238,50||_8_||800,22||_27_||176.90||_5.910_||
+||Text Basic||8,36||227,62||_27_||425,99||_51_||79.68||_9.531_||
+||Text Styles||0,51||18,93||_37_||14,78||_29_||6.01||_11.784_||
+||Text Styles Different Strings||0,40||13,59||_34_||11,86||_30_||4.47||_11.175_||
+||Text Change||6,16||111,38||_18_||298,47||_48_||57.22||_9.288_||
+||Textblock Basic||4,83||155,94||_32_||246,72||_51_||55.77||_11.546_||
+||Textblock Intl||16,72||60,29||_4_||287,43||_17_||171.34||_10.247_||
+||Rect Blend||9,32||92,54||_10_||265,32||_28_||52.38||_5.620_||
+||Rect Blend Power 2||9,16||93,26||_10_||263,58||_29_||52.31||_5.710_||
+||Rect Solid||13,07||326,57||_25_||1085,77||_83_||173.70||_13.289_||
+||Rect Blend Few||42,09||2833,93||_67_||1903,15||_45_||407.64||_9.684_||
+||Rect Blend Power 2 Few||42,95||2679,1||_62_||1901,99||_44_||412.61||_9.606_||
+||Rect Solid Few||43,43||3326,59||_77_||2250,79||_52_||478.42||_11.015_||
+||Image Blend Occlude 1 Few||37,73||1944,70||_52_||1832,34||_49_||321.43||_8.519_||
+||Image Blend Occlude 2 Few||35,18||778,05||_22_||1550,65||_44_||266.12||_7.564_||
+||Image Blend Occlude 3 Few||36,59||619,99||_17_||1313,98||_36_||270.13||_7.382_||
+||Image Blend Occlude 1||21,03||974,76||_46_||1280,64||_61_||193.61||_9.206_||
+||Image Blend Occlude 2||23,37||447,06||_19_||1437,41||_62_||189.35||_8.102_||
+||Image Blend Occlude 3||20,71||168,17||_8_||579,28||_28_||112.36||_5.425_||
+||Image Blend Occlude 1 Many||5,17||455,84||_88_||311,16||_60_||64.77||_12.528_||
+||Image Blend Occlude 2 Many||6,73||193,17||_29_||411,19||_61_||78.83||_11.713_||
+||Image Blend Occlude 3 Many||7,51||73,86||_10_||276,56||_37_||49.24||_6.556_||
+||Image Blend Occlude 1 Very Many||0,27||68,41||_253_||11,80||_44_||2.58||_9.555_||
+||Image Blend Occlude 2 Very Many||0,39||20,74||_53_||19,35||_50_||3.24||_8.307_||
+||Image Blend Occlude 3 Very Many||0,68||12,46||_18_||37,13||_55_||6.17||_9.073_||
