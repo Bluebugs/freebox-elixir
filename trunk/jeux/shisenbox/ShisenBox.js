@@ -1,9 +1,9 @@
-// v1.0beta11
-// Time-stamp: <15 décembre 2008, 15:21 mid>
-// TODO: Optimiser l'algo de solvabilité, mettre une progress bar
+// v1.1
+// Time-stamp: <26 janvier 2011, 04:19 mid>
 
 var DEBUG = false;
 var SOLVABLE = false;
+var version = 5;
 
 var test = true;
 
@@ -695,6 +695,10 @@ function game_rc_on_key_down(data, e, obj, event)
     case "Start":
 	is_game_over = true;
 	break;
+    case "F2":
+        if (version == 6)
+            is_game_over = true;
+        break;
     case "Right":
     case "FP/Right":
     case "RC/Right":
@@ -1122,6 +1126,17 @@ function menu_on_key_down(data, e, obj, event)
 	if (sample_btn)
 	    Mix_PlayChannel(-1, sample_btn, 0);
 	break;
+    case "F1":
+    case "F2":
+    case "F3":
+    case "F4":
+        if (version == 6) {
+            edje_object_message_send(edje_o, EDJE_MESSAGE_INT, 2, 1);
+            edje_object_signal_callback_add(edje_o, "menu_disappeared", "edc", menu_disappeared, 2);
+            if (sample_btn)
+                Mix_PlayChannel(-1, sample_btn, 0);
+        }
+        break;
     case "Home":
     case "equal":
     case "Escape":
@@ -1221,6 +1236,11 @@ function read_env()
 	    break;
 	case 'SOLVABLE':
 	    SOLVABLE = val;
+	    break;
+	case 'version':
+	    version = parseInt(val);
+            if (version > 5)
+                SOLVABLE = true; // always solvable on v6
 	    break;
 	}
     }

@@ -1,4 +1,4 @@
-var scores_db_name = "Scores_Mid.db";
+var scores_db_name = elx.env.version && parseInt(elx.env.version) > 5 ? "save/Scores_Mid.db" : "Scores_Mid.db";
 var scores_name = null;
 
 function scores_init(name)
