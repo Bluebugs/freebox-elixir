@@ -1,8 +1,9 @@
-// v1.0beta13
-// Time-stamp: <26 avril 2010, 22:31 mid>
+// v1.1
+// Time-stamp: <26 janvier 2011, 02:34 mid>
 
 var DEBUG = false;
 var LEVEL = false;
+var version = 5;
 
 //var usid = elx.usid();
 var usid = 'dd3788b8d3f6cbe9804043395721338f72a21549d19d45b44b73cf94b';
@@ -303,6 +304,12 @@ function game_on_key_down(data, e, obj, event)
     case "Start":
 	is_game_over = true;
 	break;
+    case "F1":
+    case "F3":
+    case "F4":
+        if (version == 6)
+            is_game_over = true;
+	break;
     case "KP6":
     case "Right":
     case "FP/Right":
@@ -339,16 +346,32 @@ function game_on_key_down(data, e, obj, event)
     case "Yellow":
 	undo_man();
 	break;
+    case "F2":
+        if (version == 6)
+            undo_man();
+	break;
     case "Red":
     case "n":
     case "b":
 	if (level < level_max || DEBUG)
 	    next_level();
 	break;
+    case "KP_Plus":
+    case "F11":
+    case "F6":
+	if (version == 6 && level < level_max || DEBUG)
+	    next_level();
+	break;
     case "Blue":
     case "p":
     case "x":
 	if (level > 0)
+	    prev_level();
+	break;
+    case "KP_Minus":
+    case "F9":
+    case "F5":
+	if (version == 6 && level > 0)
 	    prev_level();
 	break;
     default:
@@ -910,7 +933,7 @@ function test_and_create_db(level_db)
 
 function max_level_save()
 {
-    var level_db = sqlite3_open('SokoBox_Level.db');
+    var level_db = sqlite3_open(version > 5 ? 'save/SokoBox_Level.db' : 'SokoBox_Level.db');
     var level_crypted;
 
     for (var lo = 0; lo < rand(10) + 5; lo++)
@@ -930,7 +953,7 @@ function max_level_load()
 {
     var level_max_load = { maxi: "1" };
 
-    var level_db = sqlite3_open('SokoBox_Level.db');
+    var level_db = sqlite3_open(version > 5 ? 'save/SokoBox_Level.db' : 'SokoBox_Level.db');
     test_and_create_db(level_db);
 
     function get_row(obj, row) {
@@ -988,6 +1011,9 @@ function read_env()
 	    break;
 	case 'LEVEL':
 	    LEVEL = parseInt(val);
+	    break;
+	case 'version':
+	    version = parseInt(val);
 	    break;
 	}
     }
