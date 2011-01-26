@@ -1,5 +1,5 @@
-// v1.0beta5
-// Time-stamp: <26 janvier 2011, 04:31 mid>
+// v1.1
+// Time-stamp: <26 janvier 2011, 04:51 mid>
 // Tableaux from http://www.vbfrance.com/codes/NIBBLES-QBASIC_2107.aspx
 
 var DEBUG = false;
