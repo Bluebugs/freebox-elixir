@@ -1,5 +1,5 @@
-// v1.0beta17
-// Time-stamp: <15 décembre 2008, 15:24 mid>
+// v1.1beta1
+// Time-stamp: <25 janvier 2011, 23:02 mid>
 
 var DEBUG = false;
 var DEBUG_LEVEL = 1;
@@ -7,6 +7,7 @@ var DEBUG_BONUS = false;
 var DEBUG_PIECE = false;
 var DEBUG_FAST  = false;
 var DEBUG_CHEAT = false;
+var version = 5;
 
 //elx.tracker(true);
 
@@ -251,6 +252,7 @@ var checking_lines = 0;		// Are we currently checking lines?
 var doing_bonuses;		// Are we currently displaying bonus animations?
 var blinking_bonuses = 0;	// Are there blinking bonuses?
 var displaying_text = false;	// Are we displaying an image text?
+var removing_playfield = false; // Are we currently removing blocks?
 
 // E objects
 
@@ -1605,6 +1607,15 @@ function game_on_key_down(data, e, obj, event)
 	else
 	    b_is_game_over = true;
 	break;
+    case "F2":
+        if (version == 6) {
+            pause_me = false;
+            if (state == GAME)
+                is_game_over = true;
+            else
+                b_is_game_over = true;
+        }
+        break;
     case "p":
     case "greater":
     case "Play":
@@ -1614,6 +1625,15 @@ function game_on_key_down(data, e, obj, event)
     case "Red":
     case "r":
 	rotate_right();
+	break;
+    case "Up":
+    case "F4":
+        if (version == 6)
+            rotate_right();
+	break;
+    case "F3":
+        if (version == 6)
+            rotate_left();
 	break;
     case "a":
     case "Green":
@@ -1653,11 +1673,17 @@ function game_on_key_down(data, e, obj, event)
 	    cmd_dy = V_SPEED_TOP;
 	}
 	break;
+    case "Down":
+        if (version == 6 && state == GAME) {
+	    ecore_timer_interval_set(game_timer, 0.005);
+	    cmd_dy = V_SPEED_TOP;
+        }
+	break;
     case "i":
     case "Info":
-	if (DEBUG)
-	    cmd_nxp = 1;
-	break;
+        if (DEBUG)
+            cmd_nxp = 1;
+        break;
     default:
 	break;
     }
@@ -1944,7 +1970,7 @@ function set_nouv_piece()
 // main loop
 function loop()
 {
-    if (pause_me || displaying_text)
+    if (pause_me || displaying_text || removing_playfield)
 	return 1;
 
     switch (state) {
@@ -2053,6 +2079,7 @@ function setdown_playfield_done()
 	    if (playfield[x][y])
 		del_block(x, y);
 
+    removing_playfield = false;
     return 0;
 }
 
@@ -2111,6 +2138,7 @@ function setdown_payload(data)
 // animated removing of playfields
 function setdown_playfield()
 {
+    removing_playfield = true;
     anim({ interval: 0.02, min_x: 0, min_y: 0, max_x: PF_W, max_y: PF_H, next_x: function(data) { return ++data.x }, next_y: function(data) { return ++data.y }, testfunc: function(data) { return (data.obj = playfield[data.x][data.y]) }, payload_func: setdown_payload, after_interval: 0.8, after_func: setdown_playfield_done });
 }
 
@@ -2324,6 +2352,9 @@ function read_env()
 	    break;
 	case 'DEBUG_CHEAT':
 	    DEBUG_CHEAT = parseInt(val);
+	    break;
+	case 'version':
+	    version = parseInt(val);
 	    break;
 	}
     }
