@@ -1,9 +1,10 @@
 // v1.0beta5
-// Time-stamp: <15 décembre 2008, 15:43 mid>
+// Time-stamp: <26 janvier 2011, 04:31 mid>
 // Tableaux from http://www.vbfrance.com/codes/NIBBLES-QBASIC_2107.aspx
 
 var DEBUG = false;
 var LEVEL = 0;
+var version = 5;
 
 var test = true;
 
@@ -925,6 +926,17 @@ function menu_on_key_down(data, e, obj, event)
 	if (sample_btn)
 	    Mix_PlayChannel(-1, sample_btn, 0);
 	break;
+    case "F1":
+    case "F2":
+    case "F3":
+    case "F4":
+        if (version == 6) {
+            edje_object_message_send(edje_o, EDJE_MESSAGE_INT, 2, 1);
+            edje_object_signal_callback_add(edje_o, "menu_disappeared", "edc", menu_disappeared, 2);
+            if (sample_btn)
+                Mix_PlayChannel(-1, sample_btn, 0);
+        }
+        break;
     case "Home":
     case "equal":
     case "Escape":
@@ -1027,6 +1039,9 @@ function read_env()
 	    break;
 	case 'LEVEL':
 	    LEVEL = parseInt(val);
+	    break;
+	case 'version':
+	    version = parseInt(val);
 	    break;
 	}
     }
