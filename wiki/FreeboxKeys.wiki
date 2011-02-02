@@ -86,3 +86,31 @@ Evas recois des events d'appuie de touche. Certain d'entre eux sont specifique a
 || Bleu || Blue ||
 || Jaune || Yellow ||
 || AV || AV ||
+
+= Freebox Revolution Player =
+
+|| Touche || Code ||
+|| 0 || 0 ||
+|| 1 ||  ||
+|| 2 ||  ||
+|| 3 ||  ||
+|| 4 ||  ||
+|| 5 ||  ||
+|| 6 ||  ||
+|| 7 ||  ||
+|| 8 ||  ||
+|| 9 ||  ||
+|| Rouge || F2 ||
+|| Bleu || F1 ||
+|| Vert || F3 ||
+|| Jaune || F4 ||
+|| Ok || Return ||
+|| Vol+ || F6 ||
+|| Vol- || F5 ||
+|| Mute || F7 ||
+|| Record || F12 ||
+|| Prog+ || KP_Plus ||
+|| Prog- || KP_Minus ||
+|| Backward || F9 ||
+|| Play/Pause || F10 ||
+|| Forward || F11 ||
